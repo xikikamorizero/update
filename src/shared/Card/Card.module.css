@@ -1,0 +1,25 @@
+.cardContainer {
+    width: 100%;
+    padding: 3% 3% 0 3%;
+    box-sizing: border-box;
+}
+.cardContainer:hover {
+    -webkit-box-shadow: 0px 0px 8px 0px var(--main_color);
+    -moz-box-shadow: 0px 0px 8px 0px var(--main_color);
+    box-shadow: 0px 0px 8px 0px var(--main_color);
+}
+.avatar {
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+.title {
+    color: var(--secondary_text_color);
+    font-weight: 600;
+}
+.subtitle {
+    color: var(--subtitle_text_color);
+}
+.titleContainer {
+    font-size: 15px;
+    height: 45px;
+}

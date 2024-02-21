@@ -1,0 +1,6 @@
+.editorJs {
+    width: 100%;
+    background-color: var(--sub_color);
+    padding: 10px 20px 10px 20px;
+    border: 1px solid var(--main_color);
+}

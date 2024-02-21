@@ -1,0 +1,12 @@
+.editorJs {
+    width: 100%;
+    padding: 10px 20px 10px 20px;
+
+}
+.editorJs .math-input {
+    display: none;
+}
+
+.editorJsEdit .math-input {
+    display: block;
+}

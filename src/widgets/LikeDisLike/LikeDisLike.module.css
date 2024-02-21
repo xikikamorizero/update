@@ -1,0 +1,36 @@
+.likesContainer {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+    height: max-content;
+    bottom: 0;
+    right: 0;
+    font-size: 15px;
+}
+.likeAndDis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    transition: all 0.3s;
+    opacity: 0.5;
+    user-select: none;
+}
+.likeAndDisActive {
+    opacity: 1;
+}
+.likeAndDis div {
+    width: 15px;
+    height: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+.like div {
+    background-image: url("./assets/like.png");
+}
+.dislike div {
+    transform: rotate(180deg);
+    background-image: url("./assets/like.png");
+}

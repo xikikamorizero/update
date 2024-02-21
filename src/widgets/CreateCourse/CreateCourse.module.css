@@ -1,0 +1,46 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 770px;
+}
+.inputText {
+    width: 100%;
+    font-size: 20px;
+    padding: 10px 20px 10px 10px;
+    border-radius: 5px;
+    color: var(--main_text_color);
+    background-color: var(--sub_color);
+    border: 1px solid var(--main_color);
+}
+.buttonCreate {
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    background-color: var(--main_color);
+    border-radius: 5px;
+    color: var(--secondary_text_color);
+    user-select: none;
+}
+.inputImage{
+    width: 300px;
+    height: 200px;
+    background-color: var(--sub_color);
+    border: 1px solid var(--main_color);
+   
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

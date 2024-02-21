@@ -1,0 +1,63 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    max-width: 770px;
+    height: max-content;
+}
+.title {
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+}
+.subInfo {
+    width: 100%;
+    text-align: start;
+    font-size: 20px;
+}
+.subInput {
+    width: 200px;
+    padding: 5px 10px;
+}
+.titleInput {
+    border: 1px solid var(--sub_color);
+    border-radius: 5px;
+}
+.editorJs {
+    width: 100%;
+    padding: 10px 20px 10px 20px;
+}
+.buttonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+.buttonContainer button {
+    width: 150px;
+    text-align: center;
+    padding: 5px 20px;
+    font-size: 30px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    color: var(--secondary_text_color);
+
+    cursor: pointer;
+    opacity: 0.9;
+}
+.buttonContainer button:hover {
+    opacity: 1;
+}
+.editButton {
+    background-color: var(--main_color);
+}
+.deleteButton {
+    background-color: var(--delete);
+}

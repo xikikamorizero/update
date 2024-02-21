@@ -1,0 +1,28 @@
+.container {
+    width: 100%;
+    max-width: 100%;
+    padding: 5px 3% 5px 3%;
+    display: flex;
+    align-items: center;
+    gap: 3%;
+    overflow: hidden;
+    background-color: var(--sub_color);
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s;
+    color: var(--main_text_color);
+    text-decoration: none;
+}
+.container:hover {
+    opacity: 1;
+}
+.container p{
+    font-size: 25px;
+}
+.container img {
+    border-radius: 50%;
+    width: 20%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}

@@ -1,0 +1,14 @@
+.sub_func {
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+    background-color: var(--subtitle_text_color);
+    user-select: none;
+    border-radius: 10px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.sub_func:hover {
+    opacity: 0.8;
+}

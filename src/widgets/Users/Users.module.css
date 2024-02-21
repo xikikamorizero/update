@@ -1,0 +1,100 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: max-content;
+}
+.card {
+    background: red;
+    height: 200px;
+}
+.pagination {
+    background-color: var(--main_color);
+    width: max-content;
+    border-radius: 10px;
+}
+.filterPanel {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.inputSearchContainer {
+    width: max-content;
+    height: max-content;
+    position: relative;
+}
+.searchInput {
+    max-width: 200px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 20px;
+}
+.filterInput {
+    max-width: 120px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 20px;
+}
+.iconSearch {
+    width: 20px;
+    height: 20px;
+    color: var(--secondary_color);
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translate(0, -50%);
+}
+.filterButton {
+    display: none;
+    width: 30px;
+    height: 30px;
+    color: var(--main_color);
+    cursor: pointer;
+}
+.filterContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 5px;
+}
+.secondaryFilterContainer {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    gap: 10px;
+}
+.title {
+    font-size: 25px;
+    font-weight: 600;
+}
+@media (max-width: 750px) {
+    .filterContainer{
+        align-items: start;
+    }
+    .secondaryFilterContainer{
+        gap:5px;
+    }
+    .filterInput{
+        width: 100px;
+    }
+    .filterPanel {
+        width: 300px;
+        flex-wrap: wrap-reverse;
+        justify-content: end;
+    }
+    .filterButton {
+        display: block;
+    }
+}
+@media (max-width: 500px) {
+    .searchInput {
+        max-width: 140px;
+    }
+    .filterPanel {
+        gap: 5px;
+    }
+}

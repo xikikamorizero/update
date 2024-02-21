@@ -1,0 +1,22 @@
+.searchInput {
+    max-width: 200px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 20px;
+}
+.filterInput {
+    max-width: 120px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 20px;
+}
+@media (max-width: 750px) {
+    .filterInput {
+        width: 100px;
+    }
+}
+@media (max-width: 500px) {
+    .searchInput {
+        max-width: 140px;
+    }
+}
