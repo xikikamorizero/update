@@ -30,7 +30,7 @@ export interface createLesson {
 }
 export interface editProfile {
     name?: string | null;
-    image?: any;
+    avatar?: any;
     description?: string | null;
     place_of_work?: string | null;
     science_degree?: string | null;

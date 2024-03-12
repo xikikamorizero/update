@@ -2,11 +2,25 @@ import style from "./Users.module.css";
 import { Users as UsersWidget } from "@/widgets";
 import { WithWrapper } from "@/features/hoc/authRedirect";
 
-export const Users =({loc}:{loc:string}) => {
+type PropsType = {
+    loc: string;
+    title: string;
+    type: string;
+    category: string;
+    keyword: string;
+};
+
+export const Users = ({ ...props }: PropsType) => {
     return (
         <div className={style.wrapper}>
             <WithWrapper>
-                <UsersWidget loc={loc} />
+                <UsersWidget
+                    loc={props.loc}
+                    title={props.title}
+                    type={props.type}
+                    category={props.category}
+                    keyword={props.keyword}
+                />
             </WithWrapper>
         </div>
     );

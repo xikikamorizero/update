@@ -2,11 +2,25 @@ import style from "./Portfolio.module.css";
 import { Portfolio as PortfolioPage } from "@/widgets";
 import { WithWrapper } from "@/features/hoc/authRedirect";
 
-export const Portfolio = ({loc}:{loc:string}) => {
+type PropsType = {
+    loc: string;
+    title: string;
+    type: string;
+    category: string;
+    keyword: string;
+};
+
+export const Portfolio = ({ ...props }: PropsType) => {
     return (
         <div className={style.container}>
             <WithWrapper>
-                <PortfolioPage loc={loc} />
+                <PortfolioPage
+                    loc={props.loc}
+                    title={props.title}
+                    type={props.type}
+                    category={props.category}
+                    keyword={props.keyword}
+                />
             </WithWrapper>
         </div>
     );

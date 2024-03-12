@@ -16,10 +16,11 @@ export const useProject = () => {
     const [placeOfWork, setPlaceOfWork] = useState<string | null>("");
     const [scienceDegree, setScienceDegree] = useState<string | null>("");
     const [contacts, setContacts] = useState<string | null>("");
-    const [image, setImage] = useState<File|null>(null);
+    const [image, setImage] = useState<any | null>(null);
 
     useEffect(() => {
         if (global_store.store.profile) {
+            setImage(global_store.store.profile.avatar)
             setName(global_store.store.profile.name);
             setDescription(global_store.store.profile.description);
             setPlaceOfWork(global_store.store.profile.place_of_work);
@@ -28,6 +29,8 @@ export const useProject = () => {
         }
     }, [global_store.store.profile]);
 
+    console.log("аватар", image);
+
     function EditProfile() {
         global_store.store.user
             .editProfile({
@@ -35,13 +38,14 @@ export const useProject = () => {
                 description: description,
                 place_of_work: placeOfWork,
                 science_degree: scienceDegree,
-                contacts: contacts
+                contacts: contacts,
+                avatar: image,
             })
             .then((response) => {
-                global_store.store.profile = response.data
+                global_store.store.profile = response.data;
             })
             .catch((error) => {
-                console.log("Ошибка при EditProfile");
+                console.log("Ошибка при EditProfile", error);
             })
             .finally(() => {});
     }
@@ -72,11 +76,11 @@ export const useProject = () => {
         setScienceDegree: setScienceDegree,
         contacts: contacts,
         setContacts: setContacts,
-        image:image,
-        setImage:setImage,
+        image: image,
+        setImage: setImage,
         profile: global_store.store.profile,
         portfolio: store.portfolio,
         course: store.course,
-        EditProfile:EditProfile
+        EditProfile: EditProfile,
     };
 };

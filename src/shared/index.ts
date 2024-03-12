@@ -6,3 +6,4 @@ export * from './CardProject/CardProject';
 export * from './ImageInput/ImageInput';
 export * from './WrapperEditBlock/WrapperEditBlok';
 export * from './BottomNavigation/BottomNavigation';
+export * from './AccessDenied/AccessDenied';

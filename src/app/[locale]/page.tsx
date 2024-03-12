@@ -1,13 +1,17 @@
-import { useTranslations } from 'next-intl';
-import LocalSwitcher from '../../components/local-switcher';
+import { useTranslations } from "next-intl";
+import type { Metadata } from "next";
+import "./main.css";
+
+export const metadata: Metadata = {
+    title: "VoxMentor | Home",
+    description: "VoxMentor home page",
+};
 
 export default function Home() {
-  const t = useTranslations('IndexPage');
-  return (
-    <div>
-      <h1 className='text-4xl mb-4 font-semibold'>{t('title')}</h1>
-      <p>{t('description')}</p>
-      <LocalSwitcher />
-    </div>
-  );
+    const t = useTranslations("IndexPage");
+    return (
+        <div className={'container'}>
+          dsdsds
+        </div>
+    );
 }

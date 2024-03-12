@@ -17,8 +17,8 @@ export class Auth {
     static async registration(
         email: string,
         password: string
-    ): Promise<AxiosResponse<types.authType>> {
-        return await axios.post<types.authType>(urls.auth.registration(), {
+    ): Promise<AxiosResponse<types.LoginResponseType>> {
+        return await axios.post<types.LoginResponseType>(urls.auth.registration(), {
             email: email,
             password: password,
         });
@@ -77,7 +77,7 @@ export class User {
 
     static async editProfile({
         name,
-        image,
+        avatar,
         description,
         place_of_work,
         science_degree,
@@ -88,7 +88,7 @@ export class User {
 
         const fields = {
             name,
-            image,
+            avatar,
             description,
             place_of_work,
             science_degree,

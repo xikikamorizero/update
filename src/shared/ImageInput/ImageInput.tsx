@@ -1,8 +1,9 @@
 import style from "./ImageInput.module.css";
 import { memo, ChangeEvent } from "react";
+import { baseUrl } from "../api/const";
 
 type PropsType = {
-    image?: File | null;
+    image?: File | string | null;
     setImage?: (a: File | null) => void;
 };
 export const ImageInput = memo(({ ...props }: PropsType) => {
@@ -11,7 +12,7 @@ export const ImageInput = memo(({ ...props }: PropsType) => {
             props.setImage(e.target.files[0]);
         }
     };
-    console.log("ren2043");
+
     return (
         <div className={style.inputImageContainer}>
             <input
@@ -28,7 +29,7 @@ export const ImageInput = memo(({ ...props }: PropsType) => {
                 style={{
                     backgroundImage: `url(${
                         props.image
-                            ? URL.createObjectURL(props.image)
+                            ? typeof props.image==='string'? baseUrl+props.image : URL.createObjectURL(props.image)
                             : "https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg"
                     })`,
                 }}

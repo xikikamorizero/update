@@ -1,42 +1,23 @@
 "use client";
 import style from "./LoginForm.module.css";
 import { CloseCircle } from "iconsax-react";
-import { useState, useContext, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Context } from "@/shared/api";
 import Link from "next/link";
+import { useLogin } from "./lib/hook";
 
-export const LoginForm = () => {
-    let router = useRouter();
-    const { store } = useContext(Context);
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+type PropsType = {
+    loc: string;
+    username: string;
+    password: string;
+    log_in?: string;
+    no_account?: string;
+    create: string;
+};
 
-    useEffect(() => {
-        if (store.isAuth) {
-            router.push("/");
-        }
-    }, []);
-
-    const Login = () => {
-        store.auth
-            .login(username, password)
-            .then((response) => {
-                localStorage.setItem("token", response.data.token);
-                store.user
-                    .getProfile()
-                    .then((response) => {
-                        store.profile = response.data;
-                        store.isAuth = true;
-                        console.log(store.profile);
-                        router.push("/");
-                    })
-                    .catch();
-            })
-            .catch((error) => {
-                console.log('что за хуйня ?');
-            });
-    };
+export const LoginForm = ({ ...props }: PropsType) => {
+    const { username, setUsername, password, setPassword, Login, router } =
+        useLogin({
+            loc: props.loc,
+        });
 
     return (
         <div className={style.formContainer}>
@@ -47,7 +28,7 @@ export const LoginForm = () => {
                 }}
                 className={style.inputLogin}
                 type={"text"}
-                placeholder={"username"}
+                placeholder={props.username}
             />
             <input
                 value={password}
@@ -56,7 +37,7 @@ export const LoginForm = () => {
                 }}
                 className={style.inputLogin}
                 type={"text"}
-                placeholder={"password"}
+                placeholder={props.password}
             />
             <div
                 className={style.buttonLogin}
@@ -64,15 +45,15 @@ export const LoginForm = () => {
                     Login();
                 }}
             >
-                log in
+                {props.log_in}
             </div>
             <div className={style.newAccBlock}>
-                <p className={style.newAccBlockText}>no account ?</p>
-                <Link href={"/registration"}>create</Link>
+                <p className={style.newAccBlockText}>{props.no_account}</p>
+                <Link href={`/${props.loc}/registration`}>{props.create}</Link>
             </div>
             <CloseCircle
                 onClick={() => {
-                    router.push("/");
+                    router.push(`/${props.loc}`);
                 }}
                 className={style.closeIcon}
                 size="32"

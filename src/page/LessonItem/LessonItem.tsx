@@ -5,13 +5,14 @@ import { WithWrapper } from "@/features/hoc/authRedirect";
 type PropsType = {
     lessonId: string;
     loc:string;
+    accessdenied:string;
 };
 
-export const LessonItem = ({ lessonId, loc }: PropsType) => {
+export const LessonItem = ({ lessonId, loc, accessdenied }: PropsType) => {
     return (
         <div className={style.container}>
             <WithWrapper>
-                <Lesson lessonId={lessonId} loc={loc} />
+                <Lesson lessonId={lessonId} loc={loc} accessdenied={accessdenied} />
             </WithWrapper>
         </div>
     );

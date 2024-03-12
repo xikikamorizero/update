@@ -11,7 +11,15 @@ import Link from "next/link";
 import { InputFilter } from "@/entities/InputFilter/InputFilter";
 import { SearchNormal1, FilterSquare } from "iconsax-react";
 
-export const Portfolio = observer(({loc}:{loc:string}) => {
+type PropsType = {
+    loc: string;
+    title: string;
+    type: string;
+    category: string;
+    keyword: string;
+};
+
+export const Portfolio = observer(({...props}:PropsType) => {
     const large = { span: 6 };
     const middle = { span: 8 };
     const small = { span: 12 };
@@ -24,18 +32,18 @@ export const Portfolio = observer(({loc}:{loc:string}) => {
     return (
         <div className={style.container}>
             <div className={style.filterContainer}>
-                <p className={style.title}>Professor</p>
+                <p className={style.title}>{props.title}</p>
                 <div className={style.filterPanel}>
                     <div className={style.secondaryFilterContainer}>
                         <InputFilter
                             value={data.category}
                             setValue={data.setCategory}
-                            placeholder={"категория"}
+                            placeholder={props.category}
                         />
                         <InputFilter
                             value={data.type}
                             setValue={data.setType}
-                            placeholder={"Тип"}
+                            placeholder={props.type}
                         />
                     </div>
 
@@ -44,7 +52,7 @@ export const Portfolio = observer(({loc}:{loc:string}) => {
                             type={"search"}
                             value={data.keyword}
                             setValue={data.setKeyword}
-                            placeholder={"введите имя"}
+                            placeholder={props.keyword}
                         />
                         <SearchNormal1 className={style.iconSearch} />
                     </div>
@@ -60,7 +68,7 @@ export const Portfolio = observer(({loc}:{loc:string}) => {
             <Row gutter={[16, 16]}>
                 {data.portfolio?.map((a, i) => (
                     <Col xs={xsmall} sm={small} md={middle} lg={large} key={i}>
-                        <Link href={`/${loc}/portfolio/${a.id}`}>
+                        <Link href={`/${props.loc}/portfolio/${a.id}`}>
                             <Card
                                 loading={false}
                                 src={a.image}

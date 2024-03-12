@@ -10,7 +10,15 @@ import { Context } from "./lib/context";
 import { SearchNormal1, FilterSquare } from "iconsax-react";
 import Link from "next/link";
 
-export const Users = observer(({loc}:{loc:string}) => {
+type PropsType = {
+    loc: string;
+    title: string;
+    type: string;
+    category: string;
+    keyword: string;
+};
+
+export const Users = observer(({ ...props }: PropsType) => {
     const large = { span: 6 };
     const middle = { span: 8 };
     const small = { span: 12 };
@@ -24,18 +32,18 @@ export const Users = observer(({loc}:{loc:string}) => {
     return (
         <div className={style.container}>
             <div className={style.filterContainer}>
-                <p className={style.title}>Professor</p>
+                <p className={style.title}>{props.title}</p>
                 <div className={style.filterPanel}>
                     <div className={style.secondaryFilterContainer}>
                         <InputFilter
                             value={data.placeOfWork}
                             setValue={data.setPlaceOfWork}
-                            placeholder={"ВуЗ"}
+                            placeholder={props.type}
                         />
                         <InputFilter
                             value={data.scienceDegreets}
                             setValue={data.setScienceDegreets}
-                            placeholder={"Категория"}
+                            placeholder={props.category}
                         />
                     </div>
 
@@ -44,7 +52,7 @@ export const Users = observer(({loc}:{loc:string}) => {
                             type={"search"}
                             value={data.keyword}
                             setValue={data.setKeyword}
-                            placeholder={"введите имя"}
+                            placeholder={props.keyword}
                         />
                         <SearchNormal1 className={style.iconSearch} />
                     </div>
@@ -63,8 +71,8 @@ export const Users = observer(({loc}:{loc:string}) => {
                         <Link
                             href={
                                 data.myId == a.id
-                                    ? `/${loc}/profile`
-                                    : `/${loc}/users/${a.id}`
+                                    ? `/${props.loc}/profile`
+                                    : `/${props.loc}/users/${a.id}`
                             }
                         >
                             <Card

@@ -15,20 +15,26 @@
 }
 .navbar {
     width: 100%;
+    position: relative;
     display: flex;
     justify-content: space-between;
     gap: 15px;
     margin: 0 auto;
 }
 .linkContainer {
-    width: 405px;
+    width: 40%;
+    max-width: 415px;
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
     flex-shrink: 0;
+}
+.linkContainerIndigo{
+    padding-right: 20px;
 }
 .profileContainer {
     width: 50px;
     height: 50px;
+    flex-shrink: 0;
 }
 .logo {
     display: flex;

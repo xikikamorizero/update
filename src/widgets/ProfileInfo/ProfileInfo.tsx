@@ -9,14 +9,27 @@ import { LikeDisLike } from "../LikeDisLike/LikeDisLike";
 type PropsType = {
     likedislikeC?: ReactNode;
     loc: string;
+
+    add_name: string;
+    add_placeOfWork: string;
+    save: string;
+    edit_profile: string;
+    add_scienceDegree: string;
+    add_contacts: string;
+    subscribers: string;
+    no_subscribers: string;
+    portfolio_title: string;
+    course_title: string;
+    create_portfolio: string;
+    create_course: string;
 };
 
-export const ProfileInfo = observer(({ likedislikeC, loc }: PropsType) => {
+export const ProfileInfo = observer(({ ...props }: PropsType) => {
     const data = useProject();
     return (
         <div className={style.container}>
             <Profile
-                loc={loc}
+                loc={props.loc}
                 user={data.profile}
                 editMode={data.editMode}
                 setEditMode={data.setEditMode}
@@ -43,6 +56,19 @@ export const ProfileInfo = observer(({ likedislikeC, loc }: PropsType) => {
                         disabled={true}
                     />
                 }
+                
+                add_name={props.add_name}
+                add_placeOfWork={props.add_placeOfWork}
+                save={props.save}
+                edit_profile={props.edit_profile}
+                add_scienceDegree={props.add_scienceDegree}
+                add_contacts={props.add_contacts}
+                subscribers={props.subscribers}
+                no_subscribers={props.no_subscribers}
+                portfolio_title={props.portfolio_title}
+                course_title={props.course_title}
+                create_portfolio={props.create_portfolio}
+                create_course={props.create_course}
             />
         </div>
     );

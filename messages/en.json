@@ -1,16 +1,97 @@
 {
-  "IndexPage": {
-    "title": "next-intl example",
-    "description": "Welcome to the Next.js Internationalization (i18n) example! This demo showcases the power of the App Router and how to manage multilingual content seamlessly using next-intl."
-  },
-  "NotFoundPage": {
-    "title": "Page Not Found",
-    "description": "Oops! It seems like you've stumbled upon a page that doesn't exist. Don't worry, our internationalization magic is still hard at work on other parts of the app. Feel free to navigate back to explore more!"
-  },
-  "Navigation": {
-    "home": "Home"
-  },
-  "Footer": {
-    "copyright": "© 2024 Your App. All rights reserved."
-  }
+    "IndexPage": {
+        "title": "next-intl example",
+        "description": "Welcome to the Next.js Internationalization (i18n) example! This demo showcases the power of the App Router and how to manage multilingual content seamlessly using next-intl."
+    },
+    "Navigation": {
+        "home": "home",
+        "teachers": "teachers",
+        "portfolio": "portfolio",
+        "about": "about"
+    },
+    "Teachers": {
+        "title": "teachers",
+        "type": "type",
+        "category": "category",
+        "keyword": "Find by name"
+    },
+    "Portfolio": {
+        "title": "Portfolio",
+        "type": "type",
+        "category": "category",
+        "keyword": "Find by name",
+        "editType": "editType",
+        "editCategory": "editCategory",
+        "editTitle": "editTitle",
+        "save": "Save",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "About": {
+        "title": "About Our Project",
+        "text": "VoxMentor is your guide in the world of education and professional development! Our project is an innovative platform designed for convenient interaction between teachers and students.",
+        "title_2": "Our Mission",
+        "text_2": "We aim to make education accessible and engaging for everyone. Our goal is to provide a space where teachers can share their expertise and knowledge, and students can find courses that interest them.",
+        "title_3": "About Our Platform",
+        "text_3": "The voxMentor website allows teachers to register and showcase their portfolios, where they can present their experience and specialization. Additionally, teachers can create and publish courses in their field of expertise.",
+        "title_4": "Join Us!",
+        "text_4": "We welcome anyone who shares our commitment to education and development. Join voxMentor now to start your educational journey!"
+    },
+    "Profile": {
+        "add_name": "Add name",
+        "add_placeOfWork": "Add place of work",
+        "save": "Save",
+        "edit_profile": "Edit profile",
+        "add_scienceDegree": "Add science degree",
+        "add_contacts": "Add contacts ",
+        "subscribers": "subscribers:",
+        "no_subscribers": "no subscribers ",
+        "portfolio_title": "Portfolio ",
+        "course_title": "courses",
+        "create_portfolio": "Create portfolio",
+        "create_course": "Create course ",
+        "subscribe":"subscribe",
+        "unsubscribe":"unsubscribe"
+    },
+    "Course": {
+        "description": "Description",
+        "create": "Create lesson",
+        "accessdenied":"You do not have access. To view it you need to subscribe to the author !"
+    },
+    "CreateCourse": {
+        "title": "Create course",
+        "add_title": "Add title",
+        "add_description": "Add description",
+        "add_level": "Add level",
+        "add_category": "Add category",
+        "add_image": "Add image",
+        "create": "Create"
+    },
+    "CreateLesson": {
+        "title": "Create lesson",
+        "add_title":"Add title",
+        "add_description":"Add description",
+        "add_lessonNumber":"Add lessonNumber",
+        "create":"Create"        
+    },
+    "CreatePortfolio": {
+        "title": "Create portfolio",
+        "add_title": "Add title",
+        "add_category": "Add category",
+        "add_type": "Add type",
+        "create": "Create"
+    },
+    "Login":{
+        "title_reg":"Sing up",
+        "title_log":"Sing in",
+        "username": "username",
+        "password": "password",
+        "log_in": "log in",
+        "registration": "registration",
+        "no_account": "no account?",
+        "create": "create"
+    },
+    "Footer": {
+        "copyright": "© 2024 Your App. All rights reserved."
+    }
 }

@@ -1,13 +1,18 @@
 "use client";
 import style from "./RegistrationForm.module.css";
 import { CloseCircle } from "iconsax-react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRegistration } from "./lib/hook";
 
-export const RegistrationForm = () => {
-    let router = useRouter();
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+type PropsType = {
+    loc: string;
+    username: string;
+    password: string;
+    registration?: string;
+};
+
+export const RegistrationForm = ({ ...props }: PropsType) => {
+   
+    const {username, setUsername, password, setPassword, Registration, router} = useRegistration({loc:props.loc})
 
     return (
         <div className={style.formContainer}>
@@ -18,7 +23,7 @@ export const RegistrationForm = () => {
                 }}
                 className={style.inputLogin}
                 type={"text"}
-                placeholder={"username"}
+                placeholder={props.username}
             />
             <input
                 value={password}
@@ -27,12 +32,12 @@ export const RegistrationForm = () => {
                 }}
                 className={style.inputLogin}
                 type={"text"}
-                placeholder={"password"}
+                placeholder={props.password}
             />
-            <div className={style.buttonLogin}>Create account</div>
+            <div className={style.buttonLogin} onClick={()=>{Registration()}}>{props.registration}</div>
             <CloseCircle
                 onClick={() => {
-                    router.push("/");
+                    router.push(`/${props.loc}`);
                 }}
                 className={style.closeIcon}
                 size="32"

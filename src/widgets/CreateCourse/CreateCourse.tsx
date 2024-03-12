@@ -3,7 +3,17 @@ import { ChangeEvent } from "react";
 import style from "./CreateCourse.module.css";
 import { useCourse } from "./lib/hook";
 
-export const CreateCourse = ({loc}:{loc:string}) => {
+type PropsType = {
+    loc: string;
+    add_title:string;
+    add_description:string;
+    add_level:string;
+    add_category:string;
+    add_image:string;
+    create:string;
+};
+
+export const CreateCourse = ({ ...props }: PropsType) => {
     const {
         CreateCourse,
         loading,
@@ -17,7 +27,7 @@ export const CreateCourse = ({loc}:{loc:string}) => {
         setCategory,
         uploadedImages,
         setUploadedImages,
-    } = useCourse({loc});
+    } = useCourse({ loc: props.loc });
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -35,7 +45,7 @@ export const CreateCourse = ({loc}:{loc:string}) => {
                         setTitle(e.target.value);
                     }}
                     type={"text"}
-                    placeholder={"add title"}
+                    placeholder={props.add_title}
                 />
                 <input
                     className={style.inputText}
@@ -44,7 +54,7 @@ export const CreateCourse = ({loc}:{loc:string}) => {
                         setDescription(e.target.value);
                     }}
                     type={"text"}
-                    placeholder={"add description"}
+                    placeholder={props.add_description}
                 />
                 <input
                     className={style.inputText}
@@ -53,7 +63,7 @@ export const CreateCourse = ({loc}:{loc:string}) => {
                         setLevel(e.target.value);
                     }}
                     type={"text"}
-                    placeholder={"add level"}
+                    placeholder={props.add_level}
                 />
                 <input
                     className={style.inputText}
@@ -62,13 +72,13 @@ export const CreateCourse = ({loc}:{loc:string}) => {
                         setCategory(e.target.value);
                     }}
                     type={"text"}
-                    placeholder={"add category"}
+                    placeholder={props.add_category}
                 />
                 <input
                     type={"file"}
                     accept="image/*"
                     onChange={handleImageChange}
-                    placeholder={"add image"}
+                    placeholder={props.add_image}
                     id={"imageinput"}
                     style={{ display: "none" }}
                 />
@@ -87,10 +97,10 @@ export const CreateCourse = ({loc}:{loc:string}) => {
                     disabled={loading}
                     className={style.buttonCreate}
                     onClick={() => {
-                        CreateCourse()
+                        CreateCourse();
                     }}
                 >
-                    Create
+                    {props.create}
                 </button>
             </div>
         </div>

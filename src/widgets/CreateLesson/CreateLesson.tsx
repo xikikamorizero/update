@@ -5,8 +5,17 @@ import React from "react";
 import { EditorJsEdit } from "@/entities/EditorJsEdit/EditorJsEdit";
 import { ImageInput } from "@/shared";
 
-export const CreateLesson = ({loc}:{loc:string}) => {
-    const data = useLesson({loc});
+type PropsType = {
+    loc: string;
+    add_title: string;
+    add_description: string;
+    add_lessonNumber: string;
+    create: string;
+};
+
+export const CreateLesson = ({...props}:PropsType) => {
+    const data = useLesson({loc:props.loc});
+    
     return (
         <div className={style.wrapper}>
             <div className={style.container}>
@@ -17,7 +26,7 @@ export const CreateLesson = ({loc}:{loc:string}) => {
                     }}
                     type={"text"}
                     className={style.inputTitle}
-                    placeholder={"add title"}
+                    placeholder={props.add_title}
                 />
                 <input
                     value={data.description}
@@ -26,7 +35,7 @@ export const CreateLesson = ({loc}:{loc:string}) => {
                     }}
                     type={"text"}
                     className={style.inputTitle}
-                    placeholder={"add description"}
+                    placeholder={props.add_description}
                 />
                 <input
                     value={data.lessonNumber}
@@ -35,7 +44,7 @@ export const CreateLesson = ({loc}:{loc:string}) => {
                     }}
                     type={"text"}
                     className={style.inputTitle}
-                    placeholder={"add lesson number"}
+                    placeholder={props.add_lessonNumber}
                 />
 
                 <div className={style.inputImage}>
@@ -56,7 +65,7 @@ export const CreateLesson = ({loc}:{loc:string}) => {
                         data.Create();
                     }}
                 >
-                    Create
+                    {props.create}
                 </button>
             </div>
         </div>

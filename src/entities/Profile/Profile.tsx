@@ -36,11 +36,25 @@ type PropsType = {
     subBlock?: ReactNode;
     likeBlock?: ReactNode;
     myiD?: number;
-    loc:string;
+    loc: string;
+
+    subscribers: string;
+    no_subscribers: string;
+    portfolio_title: string;
+    course_title: string;
+    add_name?: string;
+    add_placeOfWork?: string;
+    save?: string;
+    edit_profile?: string;
+    add_scienceDegree?: string;
+    add_contacts?: string;
+    create_portfolio?: string;
+    create_course?: string;
 };
 
 export const Profile = ({ ...props }: PropsType) => {
     const [portfolio, setPortfolio] = useState(true);
+    console.log("портфолион",props.user?.postfolio)
     return (
         <div className={style.container}>
             <div className={style.userInfo}>
@@ -65,7 +79,7 @@ export const Profile = ({ ...props }: PropsType) => {
                 <WrapperEditBlock
                     value={props.name}
                     setValue={props.setName}
-                    placeholder={"add name"}
+                    placeholder={props.add_name}
                     editMode={props.editMode}
                     block={<p className={style.userName}>{props.user?.name}</p>}
                 />
@@ -73,7 +87,7 @@ export const Profile = ({ ...props }: PropsType) => {
                 <WrapperEditBlock
                     value={props.placeOfWork}
                     setValue={props.setPlaceOfWork}
-                    placeholder={"add place of work"}
+                    placeholder={props.add_placeOfWork}
                     editMode={props.editMode}
                     block={
                         <p className={style.place_of_work}>
@@ -96,14 +110,14 @@ export const Profile = ({ ...props }: PropsType) => {
                             }
                         }}
                     >
-                        {props.editMode ? "Save" : "Edit profile"}
+                        {props.editMode ? props.save : props.edit_profile}
                     </div>
                 )}
 
                 <WrapperEditBlock
                     value={props.scienceDegree}
                     setValue={props.setScienceDegree}
-                    placeholder={"add science degree"}
+                    placeholder={props.add_scienceDegree}
                     editMode={props.editMode}
                     block={
                         <p className={style.science_degree}>
@@ -114,7 +128,7 @@ export const Profile = ({ ...props }: PropsType) => {
                 <WrapperEditBlock
                     value={props.contacts}
                     setValue={props.setContacts}
-                    placeholder={"add contacts"}
+                    placeholder={props.add_contacts}
                     editMode={props.editMode}
                     block={
                         <p className={style.contacts}>{props.user?.contacts}</p>
@@ -124,7 +138,7 @@ export const Profile = ({ ...props }: PropsType) => {
                 <Categories categories={props.user?.categories} />
 
                 <div className={style.subscribers}>
-                    <p>subscribers:</p>
+                    <p>{props.subscribers}</p>
                     <Avatar.Group
                         maxCount={5}
                         maxStyle={{
@@ -153,7 +167,7 @@ export const Profile = ({ ...props }: PropsType) => {
                                 </Link>
                             ))
                         ) : (
-                            <p>no subscribers</p>
+                            <p>{props.no_subscribers}</p>
                         )}
                     </Avatar.Group>
                 </div>
@@ -166,7 +180,7 @@ export const Profile = ({ ...props }: PropsType) => {
                             setPortfolio(true);
                         }}
                     >
-                        Portfolio
+                        {props.portfolio_title}
                     </div>
                     <div
                         className={!portfolio ? style.active : ""}
@@ -174,7 +188,7 @@ export const Profile = ({ ...props }: PropsType) => {
                             setPortfolio(false);
                         }}
                     >
-                        Course
+                        {props.course_title}
                     </div>
                 </div>
                 <div className={style.projectWrapper}>
@@ -201,10 +215,16 @@ export const Profile = ({ ...props }: PropsType) => {
 
                 {props.myProf ? (
                     <Link
-                        href={portfolio ? `/${props.loc}/createPortfolio` : `/${props.loc}/createCourse`}
+                        href={
+                            portfolio
+                                ? `/${props.loc}/createPortfolio`
+                                : `/${props.loc}/createCourse`
+                        }
                         className={style.create}
                     >
-                        {portfolio ? "Create Project" : "Create Course"}
+                        {portfolio
+                            ? props.create_portfolio
+                            : props.create_course}
                     </Link>
                 ) : null}
             </div>

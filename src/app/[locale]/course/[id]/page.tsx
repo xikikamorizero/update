@@ -1,4 +1,5 @@
 import { CourseItem as CourseItemPage } from "@/page";
+import { useTranslations } from "next-intl";
 import axios from "axios";
 
 type PropsType = {
@@ -33,9 +34,10 @@ export async function generateMetadata({ params }: PropsType) {
 }
 
 export default function CourseItem({ params }: PropsType) {
+    const t = useTranslations("Course");
     return (
         <>
-            <CourseItemPage courseId={params.id} loc={params.locale} />
+            <CourseItemPage courseId={params.id} loc={params.locale} description={t("description")} create={t("create")} accessdenied={t("accessdenied")}  />
         </>
     );
 }

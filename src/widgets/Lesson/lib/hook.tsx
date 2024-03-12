@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 type PropsType = {
     lessonId: string;
-    loc:string;
+    loc: string;
 };
 
 export const useLesson = ({ lessonId, loc }: PropsType) => {
@@ -23,6 +23,8 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
     const [dataEditor, setDataEditor] = useState(
         store.lesson?.content ? store.lesson.content : "{}"
     );
+    const [error, setError] = useState(false);
+
     useEffect(() => {
         if (store.lesson) {
             setTitle(store.lesson.title);
@@ -72,14 +74,15 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
             store.lesson = null;
         }
         if (!store.loading) {
-            console.log("A Туту");
             store.loading = true;
             global_store.store.lesson
                 .getLesson({ id: lessonId })
                 .then((response) => {
+                    setError(false);
                     store.lesson = response.data;
                 })
                 .catch((error) => {
+                    setError(true);
                     console.log(error);
                 })
                 .finally(() => {
@@ -89,7 +92,8 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
     }, []);
 
     return {
-        authorId:authorId,
+        error,
+        authorId: authorId,
         lesson: store.lesson,
         loading: store.loading,
         profile: global_store.store.profile,

@@ -23,7 +23,7 @@
     font-size: 20px;
 }
 .subInput {
-    width: 200px;
+    width: 250px;
     padding: 5px 10px;
 }
 .titleInput {
@@ -41,7 +41,7 @@
     gap: 10px;
 }
 .buttonContainer button {
-    width: 150px;
+    width: max-content;
     text-align: center;
     padding: 5px 20px;
     font-size: 30px;

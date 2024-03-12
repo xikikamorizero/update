@@ -1,0 +1,32 @@
+.containerSwitcher {
+    width: max-content;
+    height: max-content;
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: -55px;
+    transform: translate(0, -50%);
+}
+.selectCust {
+    width: 45px;
+    padding: 5px;
+    border-radius: 1px;
+    background-color: var(--secondary_color);
+    color:var(--main_text_color);
+    cursor: pointer;
+}
+.lang {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width: 1120px) {
+    .containerSwitcher {
+        right: 15px;
+    }
+    .selectCust{    
+        background-color: var(--main_color);
+        color:var(--secondary_text_color);
+    }
+}

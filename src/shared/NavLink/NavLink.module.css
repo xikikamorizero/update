@@ -1,16 +1,17 @@
 .link {
-    width: 160px;
+    width: 165px;
     font-size: 20px;
     font-weight: 600;
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
     text-decoration: none;
-    color: black;
+    color: var(--secondary_text_color);
     transition: all 0.3;
     padding: 0 40px;
-    border-radius: 60px;
+    border-radius: 50px;
     user-select: none;
     cursor: pointer;
 }

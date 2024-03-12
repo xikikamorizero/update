@@ -3,8 +3,15 @@ import style from "./Login.module.css";
 import { LoginForm, RegistrationForm } from "@/widgets";
 
 type PropsType = {
-    reg: boolean;
+    reg?: boolean;
+    loc: string;
     title: string;
+    username: string;
+    password: string;
+    log_in?: string;
+    no_account?: string;
+    create: string;
+    registration?: string;
 };
 
 export const Login = ({ ...props }: PropsType) => {
@@ -12,7 +19,18 @@ export const Login = ({ ...props }: PropsType) => {
         <div className={style.container}>
             <div className={style.login}>
                 <p className={style.title}>{props.title}</p>
-                {props.reg ? <RegistrationForm /> : <LoginForm />}
+                {props.reg ? (
+                    <RegistrationForm loc={props.loc} registration={props.registration} username={props.username} password={props.password} />
+                ) : (
+                    <LoginForm
+                        loc={props.loc}
+                        log_in={props.log_in}
+                        username={props.username}
+                        password={props.password}
+                        no_account={props.no_account}
+                        create={props.create}
+                    />
+                )}
             </div>
         </div>
     );

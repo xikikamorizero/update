@@ -8,10 +8,18 @@ import "./index.css";
 
 type PropsType = {
     portfolioId: string;
+    category:string;
+    type:string;
+    editType: string;
+    editCategory: string;
+    editTitle: string;
+    save: string;
+    edit: string;
+    delete: string;
 };
-export const PortfolioItem = observer(({ portfolioId }: PropsType) => {
+export const PortfolioItem = observer(({ ...props }: PropsType) => {
     const data = usePortfolio({
-        portfolioId: portfolioId,
+        portfolioId: props.portfolioId,
     });
     return (
         <div className={style.wrapper}>
@@ -26,7 +34,7 @@ export const PortfolioItem = observer(({ portfolioId }: PropsType) => {
                             data.setTitle(e.target.value);
                         }}
                         type={"text"}
-                        placeholder={"editTitle"}
+                        placeholder={props.editTitle}
                     />
                 )}
                 {data.portfolio?.content ? (
@@ -41,7 +49,7 @@ export const PortfolioItem = observer(({ portfolioId }: PropsType) => {
 
                 {!data.editMode ? (
                     <p className={style.subInfo}>
-                        category:{data.portfolio?.category}
+                        {props.category}:{data.portfolio?.category}
                     </p>
                 ) : (
                     <input
@@ -51,12 +59,12 @@ export const PortfolioItem = observer(({ portfolioId }: PropsType) => {
                             data.setCategory(e.target.value);
                         }}
                         type={"text"}
-                        placeholder={"editCategory"}
+                        placeholder={props.editCategory}
                     />
                 )}
 
                 {!data.editMode ? (
-                    <p className={style.subInfo}>type:{data.portfolio?.type}</p>
+                    <p className={style.subInfo}>{props.type}:{data.portfolio?.type}</p>
                 ) : (
                     <input
                         className={`${style.subInput} ${style.subInfo}`}
@@ -65,7 +73,7 @@ export const PortfolioItem = observer(({ portfolioId }: PropsType) => {
                             data.setType(e.target.value);
                         }}
                         type={"text"}
-                        placeholder={"editType"}
+                        placeholder={props.editType}
                     />
                 )}
 
@@ -78,7 +86,7 @@ export const PortfolioItem = observer(({ portfolioId }: PropsType) => {
                                 data.DeletePortfolio();
                             }}
                         >
-                            Delete
+                            {props.delete}
                         </button>
                         <button
                             disabled={!data.portfolio}
@@ -90,7 +98,7 @@ export const PortfolioItem = observer(({ portfolioId }: PropsType) => {
                                 data.setEditMode(!data.editMode);
                             }}
                         >
-                            {data.editMode ? "Save" : "Edit"}
+                            {data.editMode ? props.save : props.edit}
                         </button>
                     </div>
                 )}

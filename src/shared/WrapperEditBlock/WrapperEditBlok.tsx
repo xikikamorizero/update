@@ -4,7 +4,7 @@ type PropsType = {
     editMode?: boolean;
     value?: string | null;
     setValue?: (a: string) => void;
-    placeholder: string;
+    placeholder?: string;
     block: ReactNode;
 };
 
@@ -15,7 +15,7 @@ export const WrapperEditBlock = memo(({ ...props }: PropsType) => {
                 <input
                     className={style.inputTitle}
                     type={"text"}
-                    placeholder={"add name"}
+                    placeholder={props.placeholder}
                     value={props.value ? props.value : ""}
                     onChange={(e) => {
                         if (props.setValue) props.setValue(e.target.value);

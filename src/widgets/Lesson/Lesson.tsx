@@ -4,14 +4,19 @@ import style from "./Lesson.module.css";
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { EditorJs } from "../../entities/EditorJs/EditorJs";
+import { AccessDenied } from "@/shared";
 
 type PropsType = {
     lessonId: string;
-    loc:string;
+    loc: string;
+    accessdenied: string;
 };
 
-export const Lesson = observer(({ lessonId, loc }: PropsType) => {
+export const Lesson = observer(({ lessonId, loc, accessdenied }: PropsType) => {
     const data = useLesson({ lessonId, loc });
+    if (data.error) {
+        return <AccessDenied text={accessdenied} />;
+    }
     return (
         <div className={style.wrapper}>
             <div className={style.container}>

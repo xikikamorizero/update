@@ -1,0 +1,97 @@
+{
+    "IndexPage": {
+        "title": "contoh next-intl",
+        "description": "Selamat datang di contoh Next.js Internationalization (i18n)! Demo ini memperlihatkan kekuatan App Router dan cara mengelola konten multibahasa dengan lancar menggunakan next-intl."
+    },
+    "Navigation": {
+        "home": "Home",
+        "teachers": "o'qituvchilar",
+        "portfolio": "portfolio",
+        "about": "about"
+    },
+    "Teachers": {
+        "title": "O'qituvchilar",
+        "type": "universitet",
+        "category": "kategoriya",
+        "keyword": "Find by name"
+    },
+    "Portfolio": {
+        "title": "Portfolio",
+        "type": "type",
+        "category": "category",
+        "keyword": "Find by name",
+        "editType": "Turi o'zgartirish",
+        "editCategory": "Kategoriyani o'zgartirish",
+        "editTitle": "Sarlavhani o'zgartirish",
+        "save": "Saqlash",
+        "edit": "Tahrirlash",
+        "delete": "O'chirish"
+    },
+    "About": {
+        "title": "Bizning Proyekt Haqida",
+        "text": "VoxMentor - bu ta'lim va professional rivojlanishning sizning yo'ldoshingiz! Bizning proyektimiz o'qituvchilar va talabalar o'rtasidagi muloqotni qulaylashtirish uchun ishlab chiqilgan innovatsion platformadir.",
+        "title_2": "Bizning Maqsadimiz",
+        "text_2": "Biz har bir odam uchun ta'limni mukammal va qiziqarli qilishni hedef qilamiz. Maqsadimiz, o'qituvchilarining malakasini va bilimlarini bo'lishlari mumkin bo'lgan joyni taqdim etish va talabalarining ularni qiziqtiradigan kurslarni topishlarini ta'minlashdir.",
+        "title_3": "Bizning Platforma Haqida",
+        "text_3": "voxMentor sayti o'qituvchilarga ro'yxatdan o'tish va ularning portfollari, ularning tajribalarini va mutaxassisligini namoyish etishi mumkin bo'lgan joylarini taqdim etishga imkon beradi. Qo'shimcha ravishda, o'qituvchilar o'z sohasida kurslar tuzish va nashr qilishlari mumkin.",
+        "title_4": "Bizga qo'shiling!",
+        "text_4": "Ta'lim va rivojlanishga oid murojaatimizni ulashgan har bir kishini qo'shilishga chaqiramiz. Talabalar talabalarining ta'lim yo'ldoshligini boshlash uchun hozir voxMentorga qo'shiling!"
+    },
+    "Profile": {
+        "add_name": "Ism qo'shish",
+        "add_placeOfWork": "Ish joyini qo'shish",
+        "save": "Saqlash",
+        "edit_profile": "Profilni tahrirlash",
+        "add_scienceDegree": "Ilmiy darajani qo'shish",
+        "add_contacts": "Kontaktlarni qo'shish",
+        "subscribers": "Obunachilar:",
+        "no_subscribers": "Obunachilar yo'q",
+        "portfolio_title": "Portfolyo",
+        "course_title": "Kurslar",
+        "create_portfolio": "Portfolyo yaratish",
+        "create_course": "Kurs yaratish",
+        "subscribe":"qo`shilish",
+        "unsubscribe":"bekor qilish"
+    },
+    "Course": {
+        "description": "Ta'rif",
+        "create": "Dars yaratish",
+        "accessdenied":"Sizda ruxsat yo‘q. Uni ko'rish uchun muallifga obuna bo'lishingiz kerak !"
+    },
+    "CreateCourse": {
+        "title": "Kurs yarating",
+        "add_title": "Sarlavhani qo'shish",
+        "add_description": "Tavsifni qo'shish",
+        "add_level": "Qiyinchilikni qo'shish",
+        "add_category": "Turini qo'shish",
+        "add_image": "Qopqoqni qo'shing",
+        "create": "Yaratish"
+    },
+    "CreateLesson": {
+        "title": "Dars yaratish",
+        "add_title": "Sarlavhani qo'shish",
+        "add_description": "Tavsifni qo'shish",
+        "add_lessonNumber": "Dars raqamini qo'shish",
+        "create": "Yaratish"
+    },
+    "CreatePortfolio": {
+        "title": "Portfel yaratish",
+        "add_title": "Sarlavhani qo'shish",
+        "add_category": "Turini qo'shish",
+        "add_type": "Turdan qo'shish",
+        "create": "Yaratish"
+    },
+    "Login": {
+        "title_reg": "Ro'yxatdan o'tish",
+        "title_log": "Tizimga kirish",
+        "username": "Foydalanuvchi nomi",
+        "password": "Parol",
+        "log_in": "Kirish",
+        "registration": "Ro'yxatdan o'tish",
+        "no_account": "Hisobingiz yo'qmi?",
+        "create": "Yaratish"
+    },
+    "Footer": {
+        "copyright": "© 2024 Aplikasi Anda. Hak cipta dilindungi."
+    }
+}

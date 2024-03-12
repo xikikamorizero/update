@@ -5,8 +5,17 @@ import { EditorJsEdit } from "../../entities/EditorJsEdit/EditorJsEdit";
 import { ImageInput } from "@/shared";
 import { useCreatePortfolio } from "./lib/hook";
 
-export const CreatePortfolio = ({loc}:{loc:string}) => {
-    const data = useCreatePortfolio({loc});
+type PropsType = {
+    loc: string;
+    add_title: string;
+    add_category: string;
+    add_type: string;
+    create: string;
+};
+
+export const CreatePortfolio = ({ ...props }: PropsType) => {
+    const data = useCreatePortfolio({ loc: props.loc });
+
     return (
         <div className={style.wrapper}>
             <div className={style.container}>
@@ -18,7 +27,7 @@ export const CreatePortfolio = ({loc}:{loc:string}) => {
                     }}
                     type={"text"}
                     className={style.inputTitle}
-                    placeholder={"add title"}
+                    placeholder={props.add_title}
                 />
                 <input
                     value={data.category}
@@ -28,7 +37,7 @@ export const CreatePortfolio = ({loc}:{loc:string}) => {
                     }}
                     type={"text"}
                     className={style.inputTitle}
-                    placeholder={"add category"}
+                    placeholder={props.add_category}
                 />
                 <input
                     value={data.type}
@@ -38,7 +47,7 @@ export const CreatePortfolio = ({loc}:{loc:string}) => {
                     }}
                     type={"text"}
                     className={style.inputTitle}
-                    placeholder={"add type"}
+                    placeholder={props.add_type}
                 />
                 <div className={style.inputImage}>
                     <ImageInput
@@ -58,7 +67,7 @@ export const CreatePortfolio = ({loc}:{loc:string}) => {
                         data.Create();
                     }}
                 >
-                    Create
+                    {props.create}
                 </button>
             </div>
         </div>

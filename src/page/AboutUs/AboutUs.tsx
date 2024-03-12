@@ -1,49 +1,35 @@
 import styled from "../AboutUs/AboutUs.module.css";
 import { WithWrapper } from "@/features/hoc/authRedirect";
 
-type Props = {
-    title?: string;
-    text?: string;
+type PropsType = {
+    title_1: string;
+    text_1: string;
+    title_2: string;
+    text_2: string;
+    title_3: string;
+    text_3: string;
+    title_4: string;
+    text_4: string;
 };
 
-export const AboutUsPage = () => {
+export const AboutUs = ({ ...props }: PropsType) => {
     return (
         <div className={styled.container}>
+            <WithWrapper>
             <div className={styled.aboutUs}>
-                <Block
-                    title={"О Нашем Проекте"}
-                    text={
-                        "VoxMentor - это ваш путеводитель в мире образования и профессионального развития! Наш проект - это инновационная платформа, разработанная для удобства взаимодействия между преподавателями и студентами."
-                    }
-                />
-                <Block
-                    title={"Наша Миссия"}
-                    text={
-                        "Мы стремимся сделать образование доступным и увлекательным для всех. Наша цель - предоставить пространство, где преподаватели могут делиться своим опытом и знаниями, а студенты могут находить интересующие их курсы."
-                    }
-                />
-                <Block
-                    title={"О Нашей Платформе"}
-                    text={
-                        "Сайт voxMentor предоставляет возможность преподавателям зарегистрироваться и разместить свои портфолио, где они могут представить свой опыт и специализацию. Кроме того, преподаватели могут создавать и публиковать курсы по своей области знаний."
-                    }
-                />
-                <Block
-                    title={"Присоединяйтесь К Нам!"}
-                    text={
-                        "Мы рады видеть каждого, кто разделяет наше стремление к образованию и развитию. Присоединяйтесь к voxMentor прямо сейчас, чтобы начать свое образовательное путешествие!"
-                    }
-                />
+                <Block title={props.title_1} text={props.text_1} />
+                <Block title={props.title_2} text={props.text_2} />
+                <Block title={props.title_3} text={props.text_3} />
+                <Block title={props.title_4} text={props.text_4} />
             </div>
+            </WithWrapper>
         </div>
     );
 };
-
-export const AboutUs = () => (
-    <WithWrapper>
-        <AboutUsPage />
-    </WithWrapper>
-);
+type Props={
+    title:string;
+    text:string;
+}
 
 const Block = ({ title, text }: Props) => {
     return (

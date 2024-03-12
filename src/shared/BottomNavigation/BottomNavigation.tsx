@@ -7,55 +7,59 @@ import { usePathname } from "next/navigation";
 
 type PropsType = {
     profile?: ReactNode;
-    loc:string
+    loc:string;
+    home:string;
+    teacher:string;
+    portfolio:string;
+    about:string;
 };
 
-export const BottomNavigation = ({ profile, loc }: PropsType) => {
+export const BottomNavigation = ({ ...props }: PropsType) => {
     const pathname = usePathname();
     return (
         <div className={style.container}>
             <Link
-                href={`/${loc}`}
+                href={`/${props.loc}`}
                 className={`${style.itemNav} ${
-                    pathname == `/${loc}` ? style.itemNavAc : null
+                    pathname == `/${props.loc}` ? style.itemNavAc : null
                 }`}
                 draggable={false}
             >
                 <Home2 className={style.iconNav} />
-                <p className={style.title}>home</p>
+                <p className={style.title}>{props.home}</p>
             </Link>
             <Link
-                href={`/${loc}/users`}
+                href={`/${props.loc}/users`}
                 className={`${style.itemNav} ${
-                    pathname == `/${loc}/users` ? style.itemNavAc : null
+                    pathname == `/${props.loc}/users` ? style.itemNavAc : null
                 }`}
                 draggable={false}
             >
                 <Teacher className={style.iconNav} />
-                <p className={style.title}>teacher</p>
+                <p className={style.title}>{props.teacher}</p>
             </Link>
             <div className={style.itemNavProfile}>
-                <div className={style.profileContainer}>{profile}</div>
+                <div className={style.profileContainer}>{props.profile}</div>
             </div>
             <Link
-                href={`/${loc}/portfolio`}
+                href={`/${props.loc}/portfolio`}
                 className={`${style.itemNav} ${
-                    pathname == `/${loc}/portfolio` ? style.itemNavAc : null
+                    pathname == `/${props.loc}/portfolio` ? style.itemNavAc : null
                 }`}
                 draggable={false}
             >
                 <Direct className={style.iconNav} />
-                <p className={style.title}>project</p>
+                <p className={style.title}>{props.portfolio}</p>
             </Link>
             <Link
-                href={`/${loc}/aboutUs`}
+                href={`/${props.loc}/aboutUs`}
                 className={`${style.itemNav} ${
-                    pathname == `/${loc}/aboutUs` ? style.itemNavAc : null
+                    pathname == `/${props.loc}/aboutUs` ? style.itemNavAc : null
                 }`}
                 draggable={false}
             >
                 <Information className={style.iconNav} />
-                <p className={style.title}>about</p>
+                <p className={style.title}>{props.about}</p>
             </Link>
         </div>
     );
