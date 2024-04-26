@@ -26,7 +26,6 @@ export async function generateMetadata({ params }: PropsType) {
             title: courseResponse.data.title,
         };
     } catch (error) {
-        console.error("Error:", error);
         return {
             title: `Lesson ${params.id}`,
         };

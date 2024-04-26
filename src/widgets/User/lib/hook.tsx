@@ -3,14 +3,17 @@ import { Context as GlobalContext } from "@/shared/api";
 import { types } from "@/shared/api";
 import { Context } from "./context";
 import { useContext, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 type PropsType = {
     userId: string;
+    loc:string;
 };
 
-export const useUser = ({ userId }: PropsType) => {
+export const useUser = ({ userId, loc }: PropsType) => {
     const global_store = useContext(GlobalContext);
     const { store } = useContext(Context);
+    let router = useRouter();
 
     function isIdPresent(
         arrayOfObjects:
@@ -30,18 +33,23 @@ export const useUser = ({ userId }: PropsType) => {
     useEffect(() => {
         console.log(userId);
         if (!store.loading) {
-            store.loading = true;
-            global_store.store.user
-                .getUser({ id: userId })
-                .then((response) => {
-                    store.user = response.data;
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-                .finally(() => {
-                    store.loading = false;
-                });
+            if(Number(userId)!=global_store.store.profile?.id){
+                store.loading = true;
+                global_store.store.user
+                    .getUser({ id: userId })
+                    .then((response) => {
+                        store.user = response.data;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        store.loading = false;
+                    });
+            }
+            else{
+                router.push(`/${loc}/profile`);
+            }
         }
     }, [global_store.store.update_profile]);
 

@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 type PropsType = {
     params: {
         id: string;
+        locale: string;
     };
 };
 
@@ -33,6 +34,8 @@ export default function Portfolio({ params }: PropsType) {
                 save={t("save")}
                 edit={t("edit")}
                 delete={t("delete")}
+                creator={t("creator")}
+                loc={params.locale}
             />
         </>
     );

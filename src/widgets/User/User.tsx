@@ -20,7 +20,7 @@ type PropsType = {
 };
 
 export const User = observer(({ ...props }: PropsType) => {
-    const { user, myProfile, isIdPresent } = useUser({ userId: props.userId });
+    const { user, myProfile, isIdPresent } = useUser({ userId: props.userId, loc:props.loc });
     return (
         <div className={style.containert}>
             <Profile
@@ -60,6 +60,7 @@ export const User = observer(({ ...props }: PropsType) => {
                         )}
                     />
                 }
+                category={user?.categories}
                 subscribers={props.subscribers}
                 no_subscribers={props.no_subscribers}
                 portfolio_title={props.portfolio_title}

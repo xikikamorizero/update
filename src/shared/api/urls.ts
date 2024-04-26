@@ -76,6 +76,12 @@ export const course = {
     create() {
         return "/courses";
     },
+    edit(id: string) {
+        return `/courses/${id}`;
+    },
+    delete(id: string) {
+        return `/courses/${id}`;
+    }
 };
 export const lesson = {
     create() {

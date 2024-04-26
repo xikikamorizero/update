@@ -10,7 +10,7 @@
         "about": "about"
     },
     "Teachers": {
-        "title": "teachers",
+        "title": "Teachers",
         "type": "type",
         "category": "category",
         "keyword": "Find by name"
@@ -25,7 +25,8 @@
         "editTitle": "editTitle",
         "save": "Save",
         "edit": "Edit",
-        "delete": "Delete"
+        "delete": "Delete",
+        "creator": "Author"
     },
     "About": {
         "title": "About Our Project",
@@ -44,19 +45,26 @@
         "edit_profile": "Edit profile",
         "add_scienceDegree": "Add science degree",
         "add_contacts": "Add contacts ",
+        "add_description": "Add description",
         "subscribers": "subscribers:",
         "no_subscribers": "no subscribers ",
         "portfolio_title": "Portfolio ",
-        "course_title": "courses",
+        "course_title": "Сourses",
         "create_portfolio": "Create portfolio",
         "create_course": "Create course ",
-        "subscribe":"subscribe",
-        "unsubscribe":"unsubscribe"
+        "subscribe": "subscribe",
+        "unsubscribe": "unsubscribe",
+        "out": "logout"
     },
     "Course": {
         "description": "Description",
         "create": "Create lesson",
-        "accessdenied":"You do not have access. To view it you need to subscribe to the author !"
+        "accessdenied": "You do not have access. To view it you need to subscribe to the author !",
+        "level": "level",
+        "category": "category",
+        "save": "Save",
+        "edit": "Edit",
+        "delete": "Delete"
     },
     "CreateCourse": {
         "title": "Create course",
@@ -69,10 +77,10 @@
     },
     "CreateLesson": {
         "title": "Create lesson",
-        "add_title":"Add title",
-        "add_description":"Add description",
-        "add_lessonNumber":"Add lessonNumber",
-        "create":"Create"        
+        "add_title": "Add title",
+        "add_description": "Add description",
+        "add_lessonNumber": "Add lessonNumber",
+        "create": "Create"
     },
     "CreatePortfolio": {
         "title": "Create portfolio",
@@ -81,15 +89,16 @@
         "add_type": "Add type",
         "create": "Create"
     },
-    "Login":{
-        "title_reg":"Sing up",
-        "title_log":"Sing in",
+    "Login": {
+        "title_reg": "Sing up",
+        "title_log": "Sing in",
         "username": "username",
         "password": "password",
         "log_in": "log in",
         "registration": "registration",
         "no_account": "no account?",
-        "create": "create"
+        "create": "create",
+        "text": "teacher?"
     },
     "Footer": {
         "copyright": "© 2024 Your App. All rights reserved."

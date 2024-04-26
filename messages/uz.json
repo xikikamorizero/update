@@ -25,7 +25,8 @@
         "editTitle": "Sarlavhani o'zgartirish",
         "save": "Saqlash",
         "edit": "Tahrirlash",
-        "delete": "O'chirish"
+        "delete": "O'chirish",
+        "creator": "Muallif"
     },
     "About": {
         "title": "Bizning Proyekt Haqida",
@@ -44,19 +45,26 @@
         "edit_profile": "Profilni tahrirlash",
         "add_scienceDegree": "Ilmiy darajani qo'shish",
         "add_contacts": "Kontaktlarni qo'shish",
+        "add_description": "Tavsif qo'shing",
         "subscribers": "Obunachilar:",
         "no_subscribers": "Obunachilar yo'q",
         "portfolio_title": "Portfolyo",
         "course_title": "Kurslar",
         "create_portfolio": "Portfolyo yaratish",
         "create_course": "Kurs yaratish",
-        "subscribe":"qo`shilish",
-        "unsubscribe":"bekor qilish"
+        "subscribe": "qo`shilish",
+        "unsubscribe": "bekor qilish",
+        "out": "chiquvchi bo'lish"
     },
     "Course": {
         "description": "Ta'rif",
         "create": "Dars yaratish",
-        "accessdenied":"Sizda ruxsat yo‘q. Uni ko'rish uchun muallifga obuna bo'lishingiz kerak !"
+        "accessdenied": "Sizda ruxsat yo‘q. Uni ko'rish uchun muallifga obuna bo'lishingiz kerak !",
+        "level": "Daraja",
+        "category": "Kategoriya",
+        "save": "Saqlash",
+        "edit": "O'zgartirish",
+        "delete": "O'chirish"
     },
     "CreateCourse": {
         "title": "Kurs yarating",
@@ -89,7 +97,8 @@
         "log_in": "Kirish",
         "registration": "Ro'yxatdan o'tish",
         "no_account": "Hisobingiz yo'qmi?",
-        "create": "Yaratish"
+        "create": "Yaratish",
+        "text": "o'qituvchi?"
     },
     "Footer": {
         "copyright": "© 2024 Aplikasi Anda. Hak cipta dilindungi."

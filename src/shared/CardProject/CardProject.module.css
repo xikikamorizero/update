@@ -17,8 +17,13 @@
 .container:hover {
     opacity: 1;
 }
-.container p{
+.container p {
+    width: 100%;
+    max-height: 30px;
     font-size: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .container img {
     border-radius: 50%;

@@ -34,7 +34,7 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
         }
     }, [store.lesson]);
 
-    function EditPortfolio() {
+    function EditLesson() {
         global_store.store.lesson
             .edit(
                 { id: lessonId },
@@ -55,12 +55,12 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
             .finally(() => {});
     }
 
-    function DeletePortfolio() {
+    function DeleteLesson() {
         global_store.store.lesson
             .delete({ id: lessonId })
             .then((response) => {
                 if (response.data.success) {
-                    router.push(`/${loc}/profile`);
+                    router.push(`/${loc}/course/${store.lesson?.courseId}`);
                 }
             })
             .catch((error) => {
@@ -97,8 +97,8 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
         lesson: store.lesson,
         loading: store.loading,
         profile: global_store.store.profile,
-        EditPortfolio: EditPortfolio,
-        DeletePortfolio: DeletePortfolio,
+        EditLesson,
+        DeleteLesson,
         editMode: editMode,
         setEditMode: setEditMode,
         title: title,

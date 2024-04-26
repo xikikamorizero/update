@@ -1,5 +1,5 @@
 "use client";
-import style from './LanguageSwitcher.module.css'
+import style from "./LanguageSwitcher.module.css";
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import { ChangeEvent, useTransition } from "react";
@@ -9,11 +9,13 @@ export const LanguageSwitcher = () => {
     const router = useRouter();
     const path = usePathname();
     const localActive = useLocale();
- 
+
     const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        const nextLocale = e.target.value;  
+        const nextLocale = e.target.value;
+        const languageRegex = /^(\/en|\/ru|\/uz)(\/|$)/;
+        const newPath = path.replace(languageRegex, "/");
         startTransition(() => {
-            router.replace(`/${nextLocale}/${path.replace(/^\/(en|ru|uz)\//, '')}`);
+            router.replace(`/${nextLocale}${newPath}`);
         });
     };
 
@@ -25,9 +27,15 @@ export const LanguageSwitcher = () => {
                 onChange={onSelectChange}
                 disabled={isPending}
             >
-                <option value="en" className={style.lang}>EN</option>
-                <option value="uz" className={style.lang}>UZ</option>
-                <option value="ru" className={style.lang}>RU</option>
+                <option value="en" className={style.lang}>
+                    EN
+                </option>
+                <option value="uz" className={style.lang}>
+                    UZ
+                </option>
+                <option value="ru" className={style.lang}>
+                    RU
+                </option>
             </select>
         </div>
     );

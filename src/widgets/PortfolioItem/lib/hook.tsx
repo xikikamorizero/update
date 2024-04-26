@@ -70,7 +70,6 @@ export const usePortfolio = ({ portfolioId }: PropsType) => {
             store.portfolio = null;
         }
         if (!store.loading) {
-            console.log("A Туту");
             store.loading = true;
             global_store.store.portfolio
                 .getPortfolio({ id: portfolioId })

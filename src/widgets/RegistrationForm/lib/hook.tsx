@@ -8,11 +8,16 @@ export const useRegistration = ({ loc }: { loc: string }) => {
     const { store } = useContext(GlobalContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [isChecked, setIsChecked] = useState(false);
     let router = useRouter();
+
+    const handleCheckboxChange = (event:any) => {
+        setIsChecked(event.target.checked);
+      };
 
     const Registration = () => {
         store.auth
-            .registration(username, password)
+            .registration(username, password, isChecked)
             .then((response) => {
                 localStorage.setItem("token", response.data.token);
                 store.user
@@ -26,7 +31,7 @@ export const useRegistration = ({ loc }: { loc: string }) => {
                     .catch();
             })
             .catch((error) => {
-                console.log("ошибка в login form ?");
+                console.log("ошибка в reg form ?");
             });
     };
 
@@ -42,6 +47,8 @@ export const useRegistration = ({ loc }: { loc: string }) => {
         setUsername,
         password,
         setPassword,
+        isChecked,
+        handleCheckboxChange,
         Registration
     };
 };

@@ -5,8 +5,10 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { EditorJs } from "@/entities/EditorJs/EditorJs";
 import "./index.css";
+import Link from "next/link";
 
 type PropsType = {
+    loc: string;
     portfolioId: string;
     category:string;
     type:string;
@@ -16,6 +18,7 @@ type PropsType = {
     save: string;
     edit: string;
     delete: string;
+    creator: string;
 };
 export const PortfolioItem = observer(({ ...props }: PropsType) => {
     const data = usePortfolio({
@@ -76,6 +79,8 @@ export const PortfolioItem = observer(({ ...props }: PropsType) => {
                         placeholder={props.editType}
                     />
                 )}
+                
+                <Link href={`/${props.loc}/users/${data.portfolio?.userId}`}>{props.creator}</Link>
 
                 {data.profile?.id == data.portfolio?.userId && (
                     <div className={style.buttonContainer}>

@@ -5,6 +5,11 @@ export interface authType {
     email: string;
     password: string;
 }
+export interface authTypeReg {
+    email: string;
+    password: string;
+    teacher:boolean;
+}
 export interface createPortfolio {
     title: string;
     content: string;
@@ -34,8 +39,16 @@ export interface editProfile {
     description?: string | null;
     place_of_work?: string | null;
     science_degree?: string | null;
-    categories?: string | null;
+    categories?: string[] | null;
     contacts?: string | null;
+}
+
+export interface editCourse {
+    title: string;
+    description: string;
+    level: string;
+    category: string;
+    image: any;
 }
 export interface editLesson {
     title: string;

@@ -25,6 +25,7 @@ export default function Registration({
                 no_account={t("no_account")}
                 create={t("create")}
                 registration={t("registration")}
+                text={t("text")}
             />
         </>
     );

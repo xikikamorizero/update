@@ -39,7 +39,6 @@ input:focus {
     outline: none;
 }
 
-
 @custom-media --mobile_adaptive (max-width: 895px);
 
 :root {
@@ -63,5 +62,10 @@ input:focus {
 @media (max-width: 1120px) {
     .center {
         padding: 20px 0 90px 0;
+    }
+}
+@media (max-width: 400px) {
+    .ant-card-body {
+        padding: 10px 5px 16px 5px !important;
     }
 }

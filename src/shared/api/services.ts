@@ -16,12 +16,17 @@ export class Auth {
     }
     static async registration(
         email: string,
-        password: string
+        password: string,
+        teacher:boolean
     ): Promise<AxiosResponse<types.LoginResponseType>> {
-        return await axios.post<types.LoginResponseType>(urls.auth.registration(), {
-            email: email,
-            password: password,
-        });
+        return await axios.post<types.LoginResponseType>(
+            urls.auth.registration(),
+            {
+                email: email,
+                password: password,
+                teacher:teacher
+            }
+        );
     }
 }
 export class User {
@@ -92,7 +97,6 @@ export class User {
             description,
             place_of_work,
             science_degree,
-            categories,
             contacts,
         };
 
@@ -101,6 +105,16 @@ export class User {
                 formData.append(key, value);
             }
         });
+
+        if (categories) {
+            if (categories.length == 0) {
+                formData.append("categories", "null");
+            } else {
+                categories.forEach(function (item) {
+                    formData.append("categories", item);
+                });
+            }
+        }
 
         return await $voxmentor_api_public.put<types.userType>(
             urls.user.editProfile(),
@@ -266,6 +280,30 @@ export class Course {
         return await $voxmentor_api_public.post<types.CourseType>(
             urls.course.create(),
             formData
+        );
+    }
+
+    static async edit(
+        { id }: types.ID,
+        { title, description, level, category, image }: types.editCourse
+    ): Promise<AxiosResponse<types.CourseType>> {
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("level", level);
+        formData.append("category", category);
+        formData.append("image", image);
+        return await $voxmentor_api_public.put<types.CourseType>(
+            urls.course.edit(id),
+            formData
+        );
+    }
+
+    static async delete({
+        id,
+    }: types.ID): Promise<AxiosResponse<types.DeleteResponse>> {
+        return await $voxmentor_api_public.delete<types.DeleteResponse>(
+            urls.course.delete(id)
         );
     }
 

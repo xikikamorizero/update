@@ -46,7 +46,6 @@ export const usePortfolio = () => {
             current.set("category", store.category);
         } else {
             current.delete("category");
-            console.log("хули");
         }
         if (store.type != "") {
             current.set("type", store.type);

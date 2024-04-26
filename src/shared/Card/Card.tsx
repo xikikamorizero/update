@@ -35,14 +35,14 @@ export const Card = ({ ...props }: PropsType) => {
                         src={
                             props.src
                                 ? baseUrl + props.src
-                                : "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                                : "https://api.dicebear.com/7.x/miniavs/svg?seed=25"
                         }
                     />
                 }
             >
                 <div className={style.titleContainer}>
                     <Meta
-                        style={{ margin: "0", padding: "0" }}
+                        style={{margin: "0", padding: "0" }}
                         title={
                             <p className={style.title}>
                                 {props.title ? props.title : "undefined"}
@@ -51,7 +51,7 @@ export const Card = ({ ...props }: PropsType) => {
                         description={
                             props.subtitle ? (
                                 <p className={style.subtitle}>
-                                    {props.subtitle ? props.subtitle : "dsdsds"}
+                                    {props.subtitle ? props.subtitle : "undefined"}
                                 </p>
                             ) : null
                         }

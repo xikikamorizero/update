@@ -25,7 +25,8 @@
         "editTitle": "изменить заголовок",
         "save": "Сохранить",
         "edit": "Изменить",
-        "delete": "Удалить"
+        "delete": "Удалить",
+        "creator": "Автор"
     },
     "About": {
         "title": "О Нашем Проекте",
@@ -44,19 +45,26 @@
         "edit_profile": "Изменить профиль",
         "add_scienceDegree": "Добавить научную степень",
         "add_contacts": "Добавить контакты",
+        "add_description": "Добавить описание",
         "subscribers": "Подписчики:",
         "no_subscribers": "нет подписчиков",
         "portfolio_title": "Портфолио ",
         "course_title": "Курсы",
         "create_portfolio": "Создать портфолио",
         "create_course": "Создать курс ",
-        "subscribe":"подписаться",
-        "unsubscribe":"отписаться"
+        "subscribe": "подписаться",
+        "unsubscribe": "отписаться",
+        "out": "выйти"
     },
     "Course": {
         "description": "Описание",
         "create": "Создать урок",
-        "accessdenied":"У вас нет доступа. Для его просмотра вам необходимо подписаться на автора !"
+        "accessdenied": "У вас нет доступа. Для его просмотра вам необходимо подписаться на автора !",
+        "level": "Уровень",
+        "category": "Категории",
+        "save": "Сохранить",
+        "edit": "Изменить",
+        "delete": "Удалить"
     },
     "CreateCourse": {
         "title": "Создать курс",
@@ -89,7 +97,8 @@
         "log_in": "Войти",
         "registration": "Регистрация",
         "no_account": "Нет аккаунта?",
-        "create": "Создать"
+        "create": "Создать",
+        "text": "преподаватель?"
     },
     "Footer": {
         "copyright": "© 2024 Aplikasi Anda. Hak cipta dilindungi."

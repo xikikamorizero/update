@@ -13,13 +13,31 @@
     aspect-ratio: 1 / 1;
 }
 .title {
+    width: 100%;
     color: var(--secondary_text_color);
     font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .subtitle {
+    width: 100%;
     color: var(--subtitle_text_color);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .titleContainer {
     font-size: 15px;
     height: 45px;
+}
+
+@media (max-width:400px) {
+    .titleContainer {
+        font-size: 13px;
+        height: 45px;
+    }
+    .subtitle{
+        margin: 0;
+    }
 }

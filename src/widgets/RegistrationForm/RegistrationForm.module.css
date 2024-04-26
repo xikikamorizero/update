@@ -29,3 +29,12 @@
     right: 10px;
     cursor: pointer;
 }
+.checkboxContainer{
+    width: 100%;
+    display: flex;
+    flex-shrink: 0;
+    gap:10px;
+}
+.checkboxContainer p{
+    color:var(--secondary_text_color);
+}

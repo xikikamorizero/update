@@ -41,6 +41,8 @@ class Course {
         makeAutoObservable(this);
     }
     public readonly create = services.Course.create;
+    public readonly edit = services.Course.edit;
+    public readonly delete = services.Course.delete;
     public readonly getCourseById = services.Course.getCourseById;
 }
 class Lesson {

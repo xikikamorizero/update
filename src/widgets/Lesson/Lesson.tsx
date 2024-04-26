@@ -63,7 +63,7 @@ export const Lesson = observer(({ lessonId, loc, accessdenied }: PropsType) => {
                             disabled={!data.lesson}
                             className={style.deleteButton}
                             onClick={() => {
-                                data.DeletePortfolio();
+                                data.DeleteLesson();
                             }}
                         >
                             Delete
@@ -73,7 +73,7 @@ export const Lesson = observer(({ lessonId, loc, accessdenied }: PropsType) => {
                             className={style.editButton}
                             onClick={() => {
                                 if (data.editMode) {
-                                    data.EditPortfolio();
+                                    data.EditLesson();
                                 }
                                 data.setEditMode(!data.editMode);
                             }}

@@ -2,7 +2,8 @@
 import style from "./Profile.module.css";
 import { baseUrl } from "@/shared/api/const";
 import { Profile as ProfileIcon } from "iconsax-react";
-import { Categories } from "@/shared";
+import { DescriptionEditBlok } from "@/shared";
+import { Categories } from "@/shared/Categories/Categories";
 import { Avatar, Tooltip } from "antd";
 import { types } from "@/shared/api";
 import { ReactNode, useState } from "react";
@@ -37,6 +38,8 @@ type PropsType = {
     likeBlock?: ReactNode;
     myiD?: number;
     loc: string;
+    category?: string[]|null;
+    setCategory?: (a: string[]) => void;
 
     subscribers: string;
     no_subscribers: string;
@@ -48,13 +51,16 @@ type PropsType = {
     edit_profile?: string;
     add_scienceDegree?: string;
     add_contacts?: string;
+    add_description?: string;
     create_portfolio?: string;
     create_course?: string;
+    out?: string;
+
+    logout?: () => void;
 };
 
 export const Profile = ({ ...props }: PropsType) => {
     const [portfolio, setPortfolio] = useState(true);
-    console.log("портфолион",props.user?.postfolio)
     return (
         <div className={style.container}>
             <div className={style.userInfo}>
@@ -134,8 +140,23 @@ export const Profile = ({ ...props }: PropsType) => {
                         <p className={style.contacts}>{props.user?.contacts}</p>
                     }
                 />
+                <DescriptionEditBlok
+                    value={props.description}
+                    setValue={props.setDescription}
+                    placeholder={props.add_description}
+                    editMode={props.editMode}
+                    block={
+                        <p className={style.description}>
+                            {props.user?.description}
+                        </p>
+                    }
+                />
 
-                <Categories categories={props.user?.categories} />
+                <Categories
+                    categories={props.category}
+                    setCategories={props.setCategory}
+                    editMode={props.editMode}
+                />
 
                 <div className={style.subscribers}>
                     <p>{props.subscribers}</p>
@@ -171,6 +192,20 @@ export const Profile = ({ ...props }: PropsType) => {
                         )}
                     </Avatar.Group>
                 </div>
+
+                {props.myProf ? (
+                    <div
+                        className={style.sub_func}
+                        style={{ color: "red" }}
+                        onClick={() => {
+                            props.logout && props.logout();
+                        }}
+                    >
+                        {props.out}
+                    </div>
+                ) : (
+                    <></>
+                )}
             </div>
             <div className={style.userProject}>
                 <div className={style.userWorkLinks}>

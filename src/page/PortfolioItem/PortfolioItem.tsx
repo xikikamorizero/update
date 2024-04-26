@@ -12,6 +12,8 @@ type PropsType = {
     save: string;
     edit: string;
     delete: string;
+    creator: string;
+    loc: string;
 };
 
 export const PortfolioItem = ({ ...props }: PropsType) => {
@@ -28,6 +30,8 @@ export const PortfolioItem = ({ ...props }: PropsType) => {
                     save={props.save}
                     edit={props.edit}
                     delete={props.delete}
+                    creator={props.creator}
+                    loc={props.loc}
                 />
             </WithWrapper>
         </div>

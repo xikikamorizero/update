@@ -9,7 +9,6 @@ async function loadPosts() {
 
 export const Users = async () => {
     const posts = await loadPosts();
-    console.log("Узеры", posts);
     return (
         <div className={style.wrapper}>
             <p className={style.title}>Users</p>

@@ -12,6 +12,7 @@ type PropsType = {
     no_account?: string;
     create: string;
     registration?: string;
+    text?: string;
 };
 
 export const Login = ({ ...props }: PropsType) => {
@@ -20,7 +21,13 @@ export const Login = ({ ...props }: PropsType) => {
             <div className={style.login}>
                 <p className={style.title}>{props.title}</p>
                 {props.reg ? (
-                    <RegistrationForm loc={props.loc} registration={props.registration} username={props.username} password={props.password} />
+                    <RegistrationForm
+                        loc={props.loc}
+                        registration={props.registration}
+                        username={props.username}
+                        password={props.password}
+                        text={props.text}
+                    />
                 ) : (
                     <LoginForm
                         loc={props.loc}

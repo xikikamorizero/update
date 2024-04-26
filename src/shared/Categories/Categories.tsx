@@ -1,51 +1,71 @@
+"use client";
 import style from "./Categories.module.css";
+import { CloseCircle, AddCircle } from "iconsax-react";
+import { useState } from "react";
 
 type PropsType = {
-    categories: string[] | null | undefined;
+    categories?: string[] | null;
+    setCategories?: (a: string[]) => void;
+    editMode?: boolean;
 };
 
 export const Categories = ({ ...props }: PropsType) => {
-    const colors = generateUniqueColors(
-        props.categories?.length ? props.categories?.length : 0
-    );
-    return (
-        <div className={style.container}>
-            {props.categories?.map((a, i) => (
-                <div
-                    className={style.item}
-                    style={{ backgroundColor: colors[i] }}
-                    key={i}
-                >
-                    {a}
-                </div>
-            ))}
-        </div>
-    );
-};
+    const [value, setValue] = useState("");
 
-function generateUniqueColors(count: number): string[] {
-    const letters = "0123456789ABCDEF";
-    const colors: string[] = [];
+    let categories = props.categories? [...props.categories]: [];
 
-    while (colors.length < count) {
-        let color = "#";
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        const isSimilarToWhite = isColorSimilarToWhite(color);
-        if (!isSimilarToWhite) {
-            colors.push(color);
+    function DeleteItem(id: number) {
+        categories.splice(id, 1);
+        if(props.setCategories) props.setCategories(categories);
+    }
+
+    function AddItem() {
+        const trimmedValue = value.trim();
+        if(trimmedValue){
+            categories.push(value);
+            if(props.setCategories) props.setCategories(categories);
+            setValue("")
         }
     }
 
-    return colors;
-}
-
-function isColorSimilarToWhite(color: string): boolean {
-    const whiteThreshold = 128;
-    const r = parseInt(color.substr(1, 2), 16);
-    const g = parseInt(color.substr(3, 2), 16);
-    const b = parseInt(color.substr(5, 2), 16);
-    const brightness = (r + g + b) / 3;
-    return brightness > whiteThreshold;
-}
+    return (
+        <div className={style.container}>
+            {props.categories?.map((a, i) => (
+                <div className={style.item} key={i}>
+                    {a}
+                    {props.editMode ? (
+                        <CloseCircle
+                            onClick={() => {
+                                DeleteItem(i);
+                            }}
+                            className={style.icon}
+                            size="20"
+                            color="#ff3c00"
+                        />
+                    ) : null}
+                </div>
+            ))}
+            {props.editMode ? (
+                <div className={style.addCategory}>
+                    <input
+                        type={"text"}
+                        className={style.inputTitle}
+                        value={value}
+                        onChange={(e) => {
+                            setValue(e.target.value);
+                        }}
+                        placeholder={"категория"}
+                    />
+                    <AddCircle
+                        onClick={() => {
+                            AddItem();
+                        }}
+                        className={style.icon}
+                        size="25"
+                        color="#ffffff"
+                    />
+                </div>
+            ) : null}
+        </div>
+    );
+};
