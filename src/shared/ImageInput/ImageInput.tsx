@@ -1,3 +1,4 @@
+"use client";
 import style from "./ImageInput.module.css";
 import { memo, ChangeEvent } from "react";
 import { baseUrl } from "../api/const";

@@ -1,3 +1,4 @@
+"use client";
 import style from './DescriptionEditBlok.module.css';
 import {ReactNode, memo} from 'react';
 type PropsType = {
