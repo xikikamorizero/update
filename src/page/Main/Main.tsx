@@ -4,11 +4,12 @@ import { Grammerly, ReceiptText, BookSaved } from "iconsax-react";
 import { Slaider } from "@/widgets";
 import { SlaiderProject } from "@/widgets/SlaiderProject/SlaiderProject";
 import { WithWrapper } from "@/features/hoc/authRedirect";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
-    title1:string;
-    title2:string;
-    textLink:string;
+    title1: string;
+    title2: string;
+    textLink: string;
     text1: string;
     text2: string;
     text3: string;
@@ -43,6 +44,9 @@ export const Main = ({ ...props }: PropsType) => {
                             <BookSaved className={style.icon} />
                             {props.text3}
                         </div>
+                    </div>
+                    <div className={style.iconContainer}>
+                        <Preloader />
                     </div>
                 </div>
             </WithWrapper>

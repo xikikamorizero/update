@@ -1,14 +1,27 @@
 .sub_func {
+    height: 35px;
     font-size: 20px;
     padding: 5px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--subtitle_text_color);
     user-select: none;
     border-radius: 10px;
     border: 1px solid;
     cursor: pointer;
     transition: all 0.3s;
+    overflow: hidden;
 }
 .sub_func:hover {
     opacity: 0.8;
+}
+.preloaderContainer {
+    width:30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
 }

@@ -32,6 +32,12 @@
     min-width: 52px;
     min-height: 52px;
 }
+.iconContainer{
+    background-color: red;
+    width: 60px;
+    height: 60px;
+    position: relative;
+}
 @media (max-width: 700px) {
     .bannerContainer {
         gap: 20px;
