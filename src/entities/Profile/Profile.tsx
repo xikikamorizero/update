@@ -180,6 +180,7 @@ export const Profile = ({ ...props }: PropsType) => {
                                             : `/${props.loc}/users/${a.id}`
                                     }
                                     style={{ borderRadius: "50%" }}
+                                    key={i}
                                 >
                                     <Tooltip
                                         title={a.name}
