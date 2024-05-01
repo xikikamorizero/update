@@ -9,6 +9,15 @@
         "portfolio": "portfolio",
         "about": "about"
     },
+    "Main": {
+        "text1": "Intellektual meros: sizning ekraningizda o'qituvchilarning kashfiyotlari.",
+        "text2": "Ilhomlangan o'qituvchilar portfeli orqali bilim olamini oching.",
+        "text3": "Bilim markazidagi o'qituvchilar: noyob hikoyalar, ilhomlantiruvchi natijalar.",
+        "title":"Ushbu sahifaning funktsionali faqat o'qituvchilar va professorlar uchun mavjud.",
+        "title1":"Professorlar",
+        "title2":"Loyihalar",
+        "textLink":"hama"
+    },
     "Teachers": {
         "title": "O'qituvchilar",
         "type": "universitet",
@@ -80,7 +89,9 @@
         "add_title": "Sarlavhani qo'shish",
         "add_description": "Tavsifni qo'shish",
         "add_lessonNumber": "Dars raqamini qo'shish",
-        "create": "Yaratish"
+        "create": "Yaratish",
+        "titleValid": "Hajmi juda uzun sharh",
+        "descriptionValid": "Matn uzunligi 250 belgidan oshmasligi kerak"
     },
     "CreatePortfolio": {
         "title": "Portfel yaratish",
@@ -98,7 +109,11 @@
         "registration": "Ro'yxatdan o'tish",
         "no_account": "Hisobingiz yo'qmi?",
         "create": "Yaratish",
-        "text": "o'qituvchi?"
+        "text": "o'qituvchi?",
+        "titleErrorReg":"Ro'yxatdan o'tishda xato",
+        "descriptionReg":"Bu elektron pochta manziliga ega foydalanuvchi allaqachon mavjud",
+        "titleError":"Autentifikatsiyada xato",
+        "description":"Noto'g'ri email yoki parol"
     },
     "Footer": {
         "copyright": "© 2024 Aplikasi Anda. Hak cipta dilindungi."

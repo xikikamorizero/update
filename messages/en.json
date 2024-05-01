@@ -9,6 +9,15 @@
         "portfolio": "portfolio",
         "about": "about"
     },
+    "Main": {
+        "text1": "Intellectual Heritage: Faculty Discoveries on Your Screen.",
+        "text2": "Open the World of Knowledge through Portfolios of Inspired Teachers.",
+        "text3": "Teachers at the Center of Knowledge: Unique Stories, Inspiring Results.",
+        "title": "The functionality of this page is only available to teachers and professors.",
+        "title1": "Professors",
+        "title2": "Projects",
+        "textLink": "all"
+    },
     "Teachers": {
         "title": "Teachers",
         "type": "type",
@@ -80,7 +89,9 @@
         "add_title": "Add title",
         "add_description": "Add description",
         "add_lessonNumber": "Add lessonNumber",
-        "create": "Create"
+        "create": "Create",
+        "titleValid": "Too long description",
+        "descriptionValid": "Text length should not exceed 250 characters"
     },
     "CreatePortfolio": {
         "title": "Create portfolio",
@@ -98,7 +109,11 @@
         "registration": "registration",
         "no_account": "no account?",
         "create": "create",
-        "text": "teacher?"
+        "text": "teacher?",
+        "titleErrorReg": "Registration error",
+        "descriptionReg": "User with this email already exists",
+        "titleError": "Login error",
+        "description": "Incorrect email or password"
     },
     "Footer": {
         "copyright": "© 2024 Your App. All rights reserved."

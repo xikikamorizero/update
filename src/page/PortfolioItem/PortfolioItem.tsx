@@ -19,7 +19,7 @@ type PropsType = {
 export const PortfolioItem = ({ ...props }: PropsType) => {
     return (
         <div className={style.container}>
-            <WithWrapper>
+            <WithWrapper loc={props.loc}>
                 <PortfolioItemWidget
                     portfolioId={props.portfolioId}
                     category={props.category}

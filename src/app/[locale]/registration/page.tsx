@@ -26,6 +26,8 @@ export default function Registration({
                 create={t("create")}
                 registration={t("registration")}
                 text={t("text")}
+                titleError={t("titleErrorReg")}
+                description={t("descriptionReg")}
             />
         </>
     );

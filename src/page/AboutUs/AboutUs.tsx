@@ -15,14 +15,12 @@ type PropsType = {
 export const AboutUs = ({ ...props }: PropsType) => {
     return (
         <div className={styled.container}>
-            <WithWrapper>
             <div className={styled.aboutUs}>
                 <Block title={props.title_1} text={props.text_1} />
                 <Block title={props.title_2} text={props.text_2} />
                 <Block title={props.title_3} text={props.text_3} />
                 <Block title={props.title_4} text={props.text_4} />
             </div>
-            </WithWrapper>
         </div>
     );
 };

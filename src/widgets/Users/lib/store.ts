@@ -9,7 +9,7 @@ export class Store {
     public count: number | null = null;
     public page_count: number | null = null;
     public page: number = 1;
-    public limit: number = 10;
+    public limit: number = 8;
     public loading: boolean = false;
 
     constructor() {

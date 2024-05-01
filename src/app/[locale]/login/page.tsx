@@ -19,6 +19,8 @@ export default function Login({ params }: { params: { locale: string } }) {
                 password={t("password")}
                 no_account={t("no_account")}
                 create={t("create")}
+                titleError={t("titleError")}
+                description={t("description")}
             />
         </>
     );

@@ -17,7 +17,7 @@ type PropsType = {
 export const User = ({ ...props }: PropsType) => {
     return (
         <div className={style.container}>
-            <WithWrapper>
+            <WithWrapper loc={props.loc}>
                 <UserWidget
                     userId={props.userId}
                     loc={props.loc}

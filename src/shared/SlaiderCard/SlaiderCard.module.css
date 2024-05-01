@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 20px;
+
+    min-width: calc(20% - 8px);
+    max-width: calc(20% - 8px);
+    width: auto;
+    user-select: none;
+}
+.avatar {
+    width: 100%;
+    height: 19vw;
+    max-height: 300px;
+    flex-shrink: 0;
+}
+.container p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 700px) {
+    .container {
+        min-width: calc(25% - 7.5px);
+        max-width: calc(25% - 7.5px);
+        font-size: 15px;
+    }
+    .avatar {
+        height: 25vw;
+    }
+}
+@media (max-width: 500px) {
+    .container {
+        min-width: calc(100% / 3 - 6.9px);
+        max-width: calc(100% / 3 - 6.9px);
+        font-size: 15px;
+    }
+    .avatar {
+        height: 35vw;
+    }
+}

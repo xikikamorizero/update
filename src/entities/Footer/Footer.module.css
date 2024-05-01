@@ -7,9 +7,13 @@
     max-width: var(--container_maxwidth);
     margin: 0 auto;
     padding: 10px 0;
-    min-height: 60px;
+    min-height: 40px;
     color: var(--secondary_text_color);
     overflow: hidden;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 15px;
 }
 .bottomNavigation {
     display: none;

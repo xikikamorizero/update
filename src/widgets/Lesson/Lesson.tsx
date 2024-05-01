@@ -34,7 +34,7 @@ export const Lesson = observer(({ lessonId, loc, accessdenied }: PropsType) => {
                     />
                 )}
 
-                {!data.editMode ? (
+                {/* {!data.editMode ? (
                     <p className={style.title}>{data.lesson?.description}</p>
                 ) : (
                     <input
@@ -46,7 +46,7 @@ export const Lesson = observer(({ lessonId, loc, accessdenied }: PropsType) => {
                         type={"text"}
                         placeholder={"editDescription"}
                     />
-                )}
+                )} */}
 
                 {data.lesson?.content ? (
                     <EditorJs

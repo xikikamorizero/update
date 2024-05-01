@@ -13,7 +13,7 @@ type PropsType = {
 export const Portfolio = ({ ...props }: PropsType) => {
     return (
         <div className={style.container}>
-            <WithWrapper>
+            <WithWrapper loc={props.loc}>
                 <PortfolioPage
                     loc={props.loc}
                     title={props.title}

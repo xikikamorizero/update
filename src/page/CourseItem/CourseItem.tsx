@@ -18,7 +18,7 @@ type PropsType = {
 export const CourseItem = ({ ...props }: PropsType) => {
     return (
         <div className={style.container}>
-            <WithWrapper>
+          <WithWrapper loc={props.loc}>
                 <CourseWidget
                     level={props.level}
                     category={props.category}

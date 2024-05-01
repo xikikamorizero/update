@@ -33,7 +33,7 @@ export const EditPortfolio = () => {
                     editable={true}
                 /> */}
                 {/* <EditorPage /> */}
-                <WithWrapper>
+                <WithWrapper loc={props.loc}>
                     <EditorJs />
                 </WithWrapper>
             </div>

@@ -23,12 +23,14 @@ export const EditorJsEdit = (props) => {
         const editor = new EditorJS({
             holder: "editorjs",
             onReady: () => {
-                editor.render(props.editorData);
-                const editorBlocks = document.querySelectorAll(
-                    ".codex-editor.codex-editor--empty"
-                );
-                if (editorBlocks.length > 1) {
-                    editorBlocks[1].remove();
+                if (props.editorData) {
+                    editor.render(props.editorData);
+                    const editorBlocks = document.querySelectorAll(
+                        ".codex-editor.codex-editor--empty"
+                    );
+                    if (editorBlocks.length > 1) {
+                        editorBlocks[1].remove();
+                    }
                 }
             },
             autofocus: true,

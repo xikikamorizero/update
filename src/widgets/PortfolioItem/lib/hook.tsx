@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation";
 
 type PropsType = {
     portfolioId: string;
+    loc: string;
 };
 
-export const usePortfolio = ({ portfolioId }: PropsType) => {
+export const usePortfolio = ({ portfolioId,loc }: PropsType) => {
     const global_store = useContext(GlobalContext);
     const { store } = useContext(Context);
     let router = useRouter();
@@ -56,7 +57,7 @@ export const usePortfolio = ({ portfolioId }: PropsType) => {
             .delete({ id: portfolioId })
             .then((response) => {
                 if (response.data.success) {
-                    router.push("/profile");
+                    router.push(`/${loc}/profile`);
                 }
             })
             .catch((error) => {

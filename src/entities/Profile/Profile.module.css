@@ -73,7 +73,7 @@
     font-size: 20px;
     font-weight: 600;
 }
-.description{
+.description {
     font-size: 15px;
 }
 .userProject {
@@ -143,8 +143,8 @@
 .create {
     width: max-content;
     height: max-content;
-    padding: 5px 10px;
-    font-size: 30px;
+    padding: 10px 15px;
+    font-size: 20px;
     border-radius: 5px;
     text-decoration: none;
     user-select: none;
@@ -153,8 +153,11 @@
     background-color: var(--main_color);
     cursor: pointer;
 }
+.roles {
+    font-size: 15px;
+}
 
-@media (max-width:895px) {
+@media (max-width: 895px) {
     .container {
         flex-direction: column;
         align-items: center;
@@ -173,10 +176,14 @@
         min-height: 250px;
         margin: 0 auto;
     }
-    .projectContainer{
+    .projectContainer {
         grid-template-columns: 1fr;
     }
-    .projectWrapper{
+    .projectWrapper {
         height: 300px;
+    }
+    .create {
+        padding: 5px 10px;
+        font-size: 20px;
     }
 }

@@ -1,9 +1,16 @@
 "use client";
 import { Context as GlobalContext } from "@/shared/api";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { notification } from "antd";
 
-export const useLesson = ({loc}:{loc:string}) => {
+type Props = {
+    loc:string
+    titleError:string;
+    description:string;
+}
+
+export const useLesson = ({...props}:Props) => {
     let router = useRouter();
     let path = useSearchParams();
     let courseId = path.get("course");
@@ -16,27 +23,41 @@ export const useLesson = ({loc}:{loc:string}) => {
     const [readingMaterials, setReadingMaterials] = useState<string[]>([]);
     const [uploadedImages, setUploadedImages] = useState<File|null>(null);
 
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = () => {
+        api["error"]({
+            message: props.titleError,
+            description: props.description,
+        });
+    };
+
     function createLesson() {
         if (!loading && courseId) {
-            setLoading(true);
-            global_store.store.lesson
-                .create({
-                    courseId,
-                    title,
-                    content,
-                    description,
-                    lesson_number,
-                    image: uploadedImages,
-                })
-                .then((response) => {
-                    router.push(`/${loc}/course/${courseId}`);
-                })
-                .catch((error) => {
-                    console.log("ошибка при создании урока");
-                })
-                .finally(() => {
-                    setLoading(false);
-                });
+            if(description.length<250){
+                setLoading(true);
+                global_store.store.lesson
+                    .create({
+                        courseId,
+                        title,
+                        content,
+                        description,
+                        lesson_number,
+                        image: uploadedImages,
+                    })
+                    .then((response) => {
+                        router.push(`/${props.loc}/course/${courseId}`);
+                    })
+                    .catch((error) => {
+                        console.log("ошибка при создании урока");
+                    })
+                    .finally(() => {
+                        setLoading(false);
+                    });
+            }
+            else{
+                openNotificationWithIcon()
+            }
         }
     }
 
@@ -55,5 +76,6 @@ export const useLesson = ({loc}:{loc:string}) => {
         SetLessonNumber: SetLessonNumber,
         uploadedImages: uploadedImages,
         setUploadedImages: setUploadedImages,
+        contextHolder
     };
 };

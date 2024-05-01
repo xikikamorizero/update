@@ -4,20 +4,23 @@ import { CloseCircle } from "iconsax-react";
 import { useRegistration } from "./lib/hook";
 import { useState } from "react";
 
+
 type PropsType = {
     loc: string;
     username: string;
     password: string;
     registration?: string;
     text?:string;
+    titleError:string;
+    description:string;
 };
 
 export const RegistrationForm = ({ ...props }: PropsType) => {
-    const data = useRegistration({ loc: props.loc });
-    const [roleT, setRoleT] = useState(false);
+    const data = useRegistration({ loc: props.loc, titleError:props.titleError, description:props.description });
 
     return (
         <div className={style.formContainer}>
+            {data.contextHolder}
             <input
                 value={data.username}
                 onChange={(e) => {

@@ -8,7 +8,7 @@ export const Footer = ({ loc }: {loc:string}) => {
     return (
         <div className={style.wrapper}>
             <div className={style.container}>
-              
+            © 2024, «VoxMentor». Все интересное у нас.
             </div>
             <BottomNavigation
                 loc={loc}

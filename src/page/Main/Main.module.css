@@ -1,1 +1,47 @@
-@import url('https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest/dist/editor.css');
+@import url("https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest/dist/editor.css");
+.wrapper {
+    padding-bottom: 100px;
+}
+.bannerContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    margin-top: 50px;
+}
+.banner {
+    max-width: 400px;
+    padding: 10px 40px 10px 40px;
+    border-radius: 25px;
+    border: 2.5px solid rgba(255, 255, 255, 0.3);
+    opacity: 0.6;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 59px;
+    min-height: 173px;
+}
+.icon {
+    min-width: 52px;
+    min-height: 52px;
+}
+@media (max-width: 700px) {
+    .bannerContainer {
+        gap: 20px;
+    }
+    .banner {
+        min-height: 100px;
+        gap: 20px;
+    }
+    .icon {
+        min-width: 42px;
+        min-height: 42px;
+    }
+}

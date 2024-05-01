@@ -3,12 +3,27 @@ import { useState, useEffect } from "react";
 import { Context as GlobalContext } from "@/shared/api";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
+import { notification } from "antd";
 
-export const useLogin = ({ loc }: { loc: string }) => {
+type Props  = {
+    loc:string;
+    titleError:string;
+    description:string;
+}
+
+export const useLogin = ({ ...props }: Props) => {
     const { store } = useContext(GlobalContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [api, contextHolder] = notification.useNotification();
     let router = useRouter();
+
+    const openNotificationWithIcon = (status:number) => {
+        api["error"]({
+            message: props.titleError,
+            description: status==409? props.description: '',
+        });
+    };
 
     const Login = () => {
         store.auth
@@ -21,18 +36,18 @@ export const useLogin = ({ loc }: { loc: string }) => {
                         store.profile = response.data;
                         store.isAuth = true;
                         console.log(store.profile);
-                        router.push(`/${loc}`);
+                        router.push(`/${props.loc}`);
                     })
                     .catch();
             })
             .catch((error) => {
-                console.log("ошибка в login form ?");
+                openNotificationWithIcon(error.request.status)
             });
     };
 
     useEffect(() => {
         if (store.isAuth) {
-            router.push(`/${loc}`);
+            router.push(`/${props.loc}`);
         }
     }, []);
 
@@ -42,6 +57,7 @@ export const useLogin = ({ loc }: { loc: string }) => {
         setUsername,
         password,
         setPassword,
-        Login
+        Login,
+        contextHolder,
     };
 };

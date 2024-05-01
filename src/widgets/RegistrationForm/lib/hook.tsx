@@ -3,17 +3,33 @@ import { useState, useEffect } from "react";
 import { Context as GlobalContext } from "@/shared/api";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
+import { notification } from "antd";
 
-export const useRegistration = ({ loc }: { loc: string }) => {
+
+type Props  = {
+    loc:string;
+    titleError:string;
+    description:string;
+}
+
+export const useRegistration = ({...props }: Props) => {
     const { store } = useContext(GlobalContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [isChecked, setIsChecked] = useState(false);
+    const [api, contextHolder] = notification.useNotification();
     let router = useRouter();
 
-    const handleCheckboxChange = (event:any) => {
+    const openNotificationWithIcon = (status:number) => {
+        api["error"]({
+            message: props.titleError,
+            description: status==409? props.description: '',
+        });
+    };
+
+    const handleCheckboxChange = (event: any) => {
         setIsChecked(event.target.checked);
-      };
+    };
 
     const Registration = () => {
         store.auth
@@ -26,18 +42,18 @@ export const useRegistration = ({ loc }: { loc: string }) => {
                         store.profile = response.data;
                         store.isAuth = true;
                         console.log(store.profile);
-                        router.push(`/${loc}`);
+                        router.push(`/${props.loc}`);
                     })
                     .catch();
             })
             .catch((error) => {
-                console.log("ошибка в reg form ?");
+                openNotificationWithIcon(error.request.status)
             });
     };
 
     useEffect(() => {
         if (store.isAuth) {
-            router.push(`/${loc}`);
+            router.push(`/${props.loc}`);
         }
     }, []);
 
@@ -49,6 +65,7 @@ export const useRegistration = ({ loc }: { loc: string }) => {
         setPassword,
         isChecked,
         handleCheckboxChange,
-        Registration
+        Registration,
+        contextHolder,
     };
 };

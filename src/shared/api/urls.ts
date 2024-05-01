@@ -9,7 +9,7 @@ export const auth = {
 
 export const user = {
     get() {
-        return "/users";
+        return "/users/professor";
     },
     getUser(id: string) {
         return `/users/${id}`;

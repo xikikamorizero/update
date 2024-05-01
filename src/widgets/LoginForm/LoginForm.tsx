@@ -11,29 +11,33 @@ type PropsType = {
     log_in?: string;
     no_account?: string;
     create: string;
+    titleError: string;
+    description: string;
 };
 
 export const LoginForm = ({ ...props }: PropsType) => {
-    const { username, setUsername, password, setPassword, Login, router } =
-        useLogin({
-            loc: props.loc,
-        });
+    const data = useLogin({
+        loc: props.loc,
+        titleError: props.titleError,
+        description: props.description,
+    });
 
     return (
         <div className={style.formContainer}>
+            {data.contextHolder}
             <input
-                value={username}
+                value={data.username}
                 onChange={(e) => {
-                    setUsername(e.target.value);
+                    data.setUsername(e.target.value);
                 }}
                 className={style.inputLogin}
                 type={"text"}
                 placeholder={props.username}
             />
             <input
-                value={password}
+                value={data.password}
                 onChange={(e) => {
-                    setPassword(e.target.value);
+                    data.setPassword(e.target.value);
                 }}
                 className={style.inputLogin}
                 type={"text"}
@@ -42,7 +46,7 @@ export const LoginForm = ({ ...props }: PropsType) => {
             <div
                 className={style.buttonLogin}
                 onClick={() => {
-                    Login();
+                    data.Login();
                 }}
             >
                 {props.log_in}
@@ -53,7 +57,7 @@ export const LoginForm = ({ ...props }: PropsType) => {
             </div>
             <CloseCircle
                 onClick={() => {
-                    router.push(`/${props.loc}`);
+                    data.router.push(`/${props.loc}`);
                 }}
                 className={style.closeIcon}
                 size="32"

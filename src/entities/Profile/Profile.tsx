@@ -61,6 +61,9 @@ type PropsType = {
 
 export const Profile = ({ ...props }: PropsType) => {
     const [portfolio, setPortfolio] = useState(true);
+
+    console.log(props.user?.roles[0].value)
+
     return (
         <div className={style.container}>
             <div className={style.userInfo}>
@@ -206,6 +209,7 @@ export const Profile = ({ ...props }: PropsType) => {
                 ) : (
                     <></>
                 )}
+                <p className={style.roles}>{props.user?.roles.some(obj=>obj.value=="Professor")?"Professor":"User"}</p>
             </div>
             <div className={style.userProject}>
                 <div className={style.userWorkLinks}>
@@ -248,7 +252,7 @@ export const Profile = ({ ...props }: PropsType) => {
                     </div>
                 </div>
 
-                {props.myProf ? (
+                {props.myProf && props.user?.roles.some(obj=>obj.value=="Professor") ? (
                     <Link
                         href={
                             portfolio

@@ -25,9 +25,7 @@ export const useCourse = ({loc}:{loc:string}) => {
                     image: uploadedImages,
                 })
                 .then((response) => {
-                    if (response.status == 200) {
                         router.push(`/${loc}/profile`);
-                    }
                 })
                 .catch((error) => {
                     console.log("ошибка при создании  курса");

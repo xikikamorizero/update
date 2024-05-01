@@ -54,7 +54,7 @@ export const Categories = ({ ...props }: PropsType) => {
                         onChange={(e) => {
                             setValue(e.target.value);
                         }}
-                        placeholder={"категория"}
+                        placeholder={""}
                     />
                     <AddCircle
                         onClick={() => {

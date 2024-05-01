@@ -97,4 +97,8 @@
     .filterPanel {
         gap: 5px;
     }
+    .title{
+        font-size: 20px;
+        font-weight: 600;
+    }
 }

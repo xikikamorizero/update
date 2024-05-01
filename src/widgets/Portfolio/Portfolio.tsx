@@ -10,6 +10,7 @@ import { Context } from "./lib/context";
 import Link from "next/link";
 import { InputFilter } from "@/entities/InputFilter/InputFilter";
 import { SearchNormal1, FilterSquare } from "iconsax-react";
+import { NoItem } from "@/shared/NoItem/NoItem";
 
 type PropsType = {
     loc: string;
@@ -19,7 +20,7 @@ type PropsType = {
     keyword: string;
 };
 
-export const Portfolio = observer(({...props}:PropsType) => {
+export const Portfolio = observer(({ ...props }: PropsType) => {
     const large = { span: 6 };
     const middle = { span: 8 };
     const small = { span: 12 };
@@ -28,7 +29,7 @@ export const Portfolio = observer(({...props}:PropsType) => {
     const [filter, setFilter] = useState(false);
 
     const { store } = useContext(Context);
-    
+
     return (
         <div className={style.container}>
             <div className={style.filterContainer}>
@@ -56,28 +57,38 @@ export const Portfolio = observer(({...props}:PropsType) => {
                         />
                         <SearchNormal1 className={style.iconSearch} />
                     </div>
-                    <FilterSquare
+                    {/* <FilterSquare
                         className={style.filterButton}
                         onClick={() => {
                             setFilter(!filter);
                         }}
-                    />
+                    /> */}
                 </div>
             </div>
 
             <Row gutter={[16, 16]}>
-                {data.portfolio?.map((a, i) => (
-                    <Col xs={xsmall} sm={small} md={middle} lg={large} key={i}>
-                        <Link href={`/${props.loc}/portfolio/${a.id}`}>
-                            <Card
-                                loading={false}
-                                src={a.image}
-                                title={a.title}
-                                subtitle={a.category}
-                            />
-                        </Link>
-                    </Col>
-                ))}
+                {data.portfolio.length > 0 ? (
+                    data.portfolio?.map((a, i) => (
+                        <Col
+                            xs={xsmall}
+                            sm={small}
+                            md={middle}
+                            lg={large}
+                            key={i}
+                        >
+                            <Link href={`/${props.loc}/portfolio/${a.id}`}>
+                                <Card
+                                    loading={false}
+                                    src={a.image}
+                                    title={a.title}
+                                    subtitle={a.category}
+                                />
+                            </Link>
+                        </Col>
+                    ))
+                ) : (
+                    <NoItem />
+                )}
             </Row>
             <Pagination
                 className={style.pagination}

@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Main } from "@/page";
 import type { Metadata } from "next";
 import "./main.css";
 
@@ -7,20 +8,19 @@ export const metadata: Metadata = {
     description: "VoxMentor home page",
 };
 
-// export async function generateMetadata() {
-//     const user = await fetch(`http://localhost:5000/users/1`)
-//         .then((res) => res.json())
-//         .catch((error) => null);
-//     return {
-//         title: user?.name,
-//     };
-// }
-
-export default function Home() {
-    const t = useTranslations("IndexPage");
+export default function Home({ params }: { params: { locale: string } }) {
+    const t = useTranslations("Main");
     return (
         <div className={"container"}>
-            dsdsdsdsdsds
+            <Main
+                loc={params.locale}
+                title1={t("title1")}
+                title2={t("title2")}
+                textLink={t("textLink")}
+                text1={t("text1")}
+                text2={t("text2")}
+                text3={t("text3")}
+            />
         </div>
     );
 }

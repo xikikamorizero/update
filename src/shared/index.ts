@@ -7,3 +7,4 @@ export * from './WrapperEditBlock/WrapperEditBlok';
 export * from './DescriptionEditBlock/DescriptionEditBlok';
 export * from './BottomNavigation/BottomNavigation';
 export * from './AccessDenied/AccessDenied';
+export * from './SlaiderCard/SlaiderCard';

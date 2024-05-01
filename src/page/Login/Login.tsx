@@ -13,6 +13,8 @@ type PropsType = {
     create: string;
     registration?: string;
     text?: string;
+    titleError:string;
+    description:string;
 };
 
 export const Login = ({ ...props }: PropsType) => {
@@ -26,6 +28,8 @@ export const Login = ({ ...props }: PropsType) => {
                         registration={props.registration}
                         username={props.username}
                         password={props.password}
+                        titleError={props.titleError}
+                        description={props.description}
                         text={props.text}
                     />
                 ) : (
@@ -36,6 +40,8 @@ export const Login = ({ ...props }: PropsType) => {
                         password={props.password}
                         no_account={props.no_account}
                         create={props.create}
+                        titleError={props.titleError}
+                        description={props.description}
                     />
                 )}
             </div>

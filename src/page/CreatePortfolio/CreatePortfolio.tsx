@@ -1,6 +1,8 @@
 import style from "./CreatePortfolio.module.css";
 import { CreatePortfolio as CreatePortfolioWidget } from "@/widgets";
 import { WithWrapper } from "@/features/hoc/authRedirect";
+import { Vanguard } from "@/features/hoc/authVanguard";
+import { useTranslations } from "next-intl";
 
 type PropsType = {
     loc: string;
@@ -12,17 +14,20 @@ type PropsType = {
 };
 
 export const CreatePortfolio = ({ ...props }: PropsType) => {
+    const t = useTranslations("Main");
     return (
         <div className={style.container}>
             <p className={style.title}>{props.title}</p>
-            <WithWrapper>
-                <CreatePortfolioWidget
-                    loc={props.loc}
-                    add_title={props.add_title}
-                    add_category={props.add_category}
-                    add_type={props.add_type}
-                    create={props.create}
-                />
+            <WithWrapper loc={props.loc}>
+                <Vanguard text={t("title")}>
+                    <CreatePortfolioWidget
+                        loc={props.loc}
+                        add_title={props.add_title}
+                        add_category={props.add_category}
+                        add_type={props.add_type}
+                        create={props.create}
+                    />
+                </Vanguard>
             </WithWrapper>
         </div>
     );

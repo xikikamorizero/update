@@ -23,6 +23,7 @@ type PropsType = {
 export const PortfolioItem = observer(({ ...props }: PropsType) => {
     const data = usePortfolio({
         portfolioId: props.portfolioId,
+        loc:props.loc
     });
     return (
         <div className={style.wrapper}>

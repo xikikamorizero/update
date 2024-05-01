@@ -9,6 +9,7 @@ import { useContext, useState } from "react";
 import { Context } from "./lib/context";
 import { SearchNormal1, FilterSquare } from "iconsax-react";
 import Link from "next/link";
+import { NoItem } from "@/shared/NoItem/NoItem";
 
 type PropsType = {
     loc: string;
@@ -56,34 +57,44 @@ export const Users = observer(({ ...props }: PropsType) => {
                         />
                         <SearchNormal1 className={style.iconSearch} />
                     </div>
-                    <FilterSquare
+                    {/* <FilterSquare
                         className={style.filterButton}
                         onClick={() => {
                             setFilter(!filter);
                         }}
-                    />
+                    /> */}
                 </div>
             </div>
 
             <Row gutter={[16, 16]}>
-                {data.users?.map((a, i) => (
-                    <Col xs={xsmall} sm={small} md={middle} lg={large} key={i}>
-                        <Link
-                            href={
-                                data.myId == a.id
-                                    ? `/${props.loc}/profile`
-                                    : `/${props.loc}/users/${a.id}`
-                            }
+                {data.users.length > 0 ? (
+                    data.users?.map((a, i) => (
+                        <Col
+                            xs={xsmall}
+                            sm={small}
+                            md={middle}
+                            lg={large}
+                            key={i}
                         >
-                            <Card
-                                loading={false}
-                                src={a.avatar}
-                                title={a.name}
-                                subtitle={a.science_degree}
-                            />
-                        </Link>
-                    </Col>
-                ))}
+                            <Link
+                                href={
+                                    data.myId == a.id
+                                        ? `/${props.loc}/profile`
+                                        : `/${props.loc}/users/${a.id}`
+                                }
+                            >
+                                <Card
+                                    loading={false}
+                                    src={a.avatar}
+                                    title={a.name}
+                                    subtitle={a.science_degree}
+                                />
+                            </Link>
+                        </Col>
+                    ))
+                ) : (
+                    <NoItem />
+                )}
             </Row>
             <Pagination
                 className={style.pagination}

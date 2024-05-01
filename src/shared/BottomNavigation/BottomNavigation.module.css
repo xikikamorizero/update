@@ -12,11 +12,15 @@
     height: 55px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 5px;
     flex-shrink: 0;
     opacity: 1;
     cursor: pointer;
+}
+.itemNav p{
+    font-size: 6px;
 }
 .itemNavAc {
     opacity: 0.7;

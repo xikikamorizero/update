@@ -1,0 +1,11 @@
+.container {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    overflow: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+.container::-webkit-scrollbar {
+    display: none;
+}

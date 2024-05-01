@@ -15,9 +15,9 @@ type PropsType = {
     accessdenied: string;
     level: string;
     category: string;
-    save:string;
-    delete:string;
-    edit:string;
+    save: string;
+    delete: string;
+    edit: string;
 };
 
 export const Course = observer(({ ...props }: PropsType) => {
@@ -27,7 +27,7 @@ export const Course = observer(({ ...props }: PropsType) => {
     const xsmall = { span: 12 };
     const data = useCourse({
         courseId: props.courseId,
-        loc:props.loc
+        loc: props.loc,
     });
 
     if (data.error) {
@@ -123,39 +123,39 @@ export const Course = observer(({ ...props }: PropsType) => {
                 </div>
             )}
 
-            <div className={style.buttonContainer}>
-                {data.profileId == data.course?.authorId ? (
+            {data.profileId == data.course?.authorId ? (
+                <div className={style.buttonContainer}>
                     <Link
                         href={`/${props.loc}/createLesson?course=${props.courseId}`}
                         className={style.button}
                     >
                         {props.create}
                     </Link>
-                ) : null}
 
-                <button
-                    disabled={!data.course}
-                    className={`${style.editButton} ${style.button}`}
-                    onClick={() => {
-                        if (data.editMode) {
-                            data.EditCourse();
-                        }
-                        data.setEditMode(!data.editMode);
-                    }}
-                >
-                    {data.editMode ? props.save : props.edit}
-                </button>
+                    <button
+                        disabled={!data.course}
+                        className={`${style.editButton} ${style.button}`}
+                        onClick={() => {
+                            if (data.editMode) {
+                                data.EditCourse();
+                            }
+                            data.setEditMode(!data.editMode);
+                        }}
+                    >
+                        {data.editMode ? props.save : props.edit}
+                    </button>
 
-                <button
-                    disabled={!data.course}
-                    className={`${style.deleteButton} ${style.button}`}
-                    onClick={() => {
-                        data.DeleteCourse();
-                    }}
-                >
-                    {props.delete}
-                </button>
-            </div>
+                    <button
+                        disabled={!data.course}
+                        className={`${style.deleteButton} ${style.button}`}
+                        onClick={() => {
+                            data.DeleteCourse();
+                        }}
+                    >
+                        {props.delete}
+                    </button>
+                </div>
+            ) : null}
         </div>
     );
 });

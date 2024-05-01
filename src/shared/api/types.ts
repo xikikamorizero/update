@@ -8,7 +8,7 @@ export interface authType {
 export interface authTypeReg {
     email: string;
     password: string;
-    teacher:boolean;
+    teacher: boolean;
 }
 export interface createPortfolio {
     title: string;
@@ -152,13 +152,18 @@ export interface userType {
     dislikes: number;
     createdAt: string;
     updatedAt: string;
-    roles: any[];
+    roles: rolesType[];
     course: any[];
     postfolio: any[];
     subscriptions: Subscribers[];
     subscribers: Subscribers[];
     likedUsers: Likes[];
     dislikedUsers: Likes[];
+}
+interface rolesType {
+    id: number;
+    value: string;
+    description: string;
 }
 export interface usersType {
     users: userType[];

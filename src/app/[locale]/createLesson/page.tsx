@@ -29,6 +29,8 @@ export default function CreateLesson({
                 add_description={t("add_description")}
                 add_lessonNumber={t("add_lessonNumber")}
                 create={t("create")}
+                titleValid={t("titleValid")}
+                descriptionValid={t("descriptionValid")}
             />
         </>
     );

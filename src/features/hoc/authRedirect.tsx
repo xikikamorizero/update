@@ -7,14 +7,15 @@ import { observer } from "mobx-react-lite";
 
 type PropsType = {
     children: ReactNode;
+    loc:string;
 };
 
-export const WithWrapper = observer(({ children }: PropsType) => {
+export const WithWrapper = observer(({ children, loc }: PropsType) => {
     const { store } = useContext(Context);
     const router = useRouter();
     if (store.isAuth) {
         return children;
     } else if (!store.isAuth && !localStorage.getItem("token")) {
-        router.push("/en/login");
+        router.push(`/${loc}/login`);
     }
 });

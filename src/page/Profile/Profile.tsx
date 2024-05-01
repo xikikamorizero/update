@@ -10,20 +10,20 @@ type PropsType = {
     edit_profile: string;
     add_scienceDegree: string;
     add_contacts: string;
-    add_description:string;
+    add_description: string;
     subscribers: string;
     no_subscribers: string;
     portfolio_title: string;
     course_title: string;
     create_portfolio: string;
     create_course: string;
-    out:string;
+    out: string;
 };
 
 export const Profile = ({ ...props }: PropsType) => {
     return (
         <div className={style.container}>
-            <WithWrapper>
+            <WithWrapper loc={props.loc}>
                 <ProfileInfo
                     loc={props.loc}
                     add_name={props.add_name}

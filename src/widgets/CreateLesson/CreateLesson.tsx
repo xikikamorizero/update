@@ -10,14 +10,17 @@ type PropsType = {
     add_title: string;
     add_description: string;
     add_lessonNumber: string;
+    titleValid:string;
+    descriptionValid:string;
     create: string;
 };
 
 export const CreateLesson = ({...props}:PropsType) => {
-    const data = useLesson({loc:props.loc});
+    const data = useLesson({loc:props.loc, titleError:props.titleValid, description:props.descriptionValid});
     
     return (
         <div className={style.wrapper}>
+            {data.contextHolder}
             <div className={style.container}>
                 <input
                     value={data.title}
