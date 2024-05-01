@@ -28,3 +28,5 @@ export const WrapperEditBlock = memo(({ ...props }: PropsType) => {
         </>
     );
 });
+
+WrapperEditBlock.displayName = 'WrapperEditBlock';

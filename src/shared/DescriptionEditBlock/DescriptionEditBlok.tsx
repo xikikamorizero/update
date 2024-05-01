@@ -27,3 +27,5 @@ export const DescriptionEditBlok = memo(({ ...props }: PropsType) => {
         </>
     );
 });
+
+DescriptionEditBlok.displayName = 'DescriptionEditBlok';

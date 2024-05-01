@@ -38,3 +38,5 @@ export const ImageInput = memo(({ ...props }: PropsType) => {
         </div>
     );
 });
+
+ImageInput.displayName = 'ImageInput';

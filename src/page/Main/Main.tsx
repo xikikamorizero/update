@@ -45,9 +45,6 @@ export const Main = ({ ...props }: PropsType) => {
                             {props.text3}
                         </div>
                     </div>
-                    <div className={style.iconContainer}>
-                        <Preloader />
-                    </div>
                 </div>
             </WithWrapper>
         </div>
