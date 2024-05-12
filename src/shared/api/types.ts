@@ -38,7 +38,9 @@ export interface editProfile {
     avatar?: any;
     description?: string | null;
     place_of_work?: string | null;
+    position?: string | null;
     science_degree?: string | null;
+    yearsOfExperience?: string;
     categories?: string[] | null;
     contacts?: string | null;
 }
@@ -66,6 +68,9 @@ export interface DeleteResponse {
     success: boolean;
     message: string;
 }
+export interface DeleteResponseUpd {
+    success: boolean;
+}
 export interface LoginResponseType {
     token: string;
 }
@@ -73,6 +78,16 @@ export interface usersParamType {
     keyword: string;
     place_of_work: string;
     science_degree: string;
+    yearsOfExperienceMin: number | null;
+    yearsOfExperienceMax: number | null;
+    awardMin: number | null;
+    awardMax: number | null;
+    publicationsMin: number | null;
+    publicationsMax: number | null;
+    portfolioMin: number | null;
+    portfolioMax: number | null;
+    courseMin: number | null;
+    courseMax: number | null;
     page: number;
     limit: number;
 }
@@ -143,18 +158,28 @@ export interface userType {
     avatar: string | null;
     description: string | null;
     place_of_work: string | null;
+    position: string | null;
     science_degree: string | null;
+    yearsOfExperience: number;
     categories: string[] | null;
     contacts: string | null;
     banned: boolean;
     banReason: string | null;
     likes: number;
     dislikes: number;
+    awardsCount: number;
+    publicationsCount: number;
+    courseCount: number;
+    portfolioCount: number;
     createdAt: string;
     updatedAt: string;
     roles: rolesType[];
+    awards: Award[];
+    traning: Traning[];
+    education: Education[];
+    publications: Publications[];
     course: any[];
-    postfolio: any[];
+    portfolio: any[];
     subscriptions: Subscribers[];
     subscribers: Subscribers[];
     likedUsers: Likes[];
@@ -225,4 +250,103 @@ export interface CourseListType {
 export interface ProjectType {
     portfolio: PortfolioType[];
     course: CourseType[];
+}
+
+export interface Award {
+    id: number;
+    title: string;
+    year: number;
+    image: string | null;
+    docs: string | null;
+    type: string;
+    userId: number;
+}
+export interface CreateAward {
+    title: string;
+    year: number;
+    image?: any;
+    docs?: any;
+    type: string;
+}
+export interface EditAward {
+    title?: string;
+    year?: string;
+    image?: any;
+    docs?: any;
+    type?: string;
+}
+
+export interface Publications {
+    id: number;
+    title: string;
+    year: number;
+    docs: string | null;
+    type: string;
+    link: string | null;
+    userId: number;
+}
+export interface CreatePublications {
+    title: string;
+    year: number;
+    docs?: any;
+    type: string;
+    link: string;
+}
+export interface EditPublications {
+    title?: string;
+    year?: string;
+    docs?: any;
+    type?: string;
+    link?: string | null;
+}
+
+export interface Traning {
+    id: number;
+    title: string;
+    date: string;
+    location: string;
+    organization: string;
+    hoursSpent: number;
+    image: null;
+    docs: null;
+    userId: number;
+}
+export interface CreateTraning {
+    title: string;
+    date: string;
+    location: string;
+    organization: string;
+    hoursSpent: number;
+    image?: any;
+    docs?: any;
+}
+export interface EditTraning {
+    title?: string;
+    date?: string;
+    location?: string;
+    organization?: string;
+    hoursSpent?: string;
+    image?: any;
+    docs?: any;
+}
+
+export interface Education {
+    id: number;
+    title: string;
+    date: string;
+    image: string | null;
+    docs: string | null;
+    userId: number;
+}
+export interface CreateEducation {
+    title: string;
+    date: string;
+    image?: any;
+    docs?: any;
+}
+export interface EditEducation {
+    title?: string;
+    date?: string;
+    image?: any;
+    docs?: any;
 }

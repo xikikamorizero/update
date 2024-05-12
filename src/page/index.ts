@@ -13,3 +13,7 @@ export * from './CreateCourse/CreateCourse';
 export * from './CourseItem/CourseItem';
 export * from './CreateLesson/CreateLesson';
 export * from './LessonItem/LessonItem';
+export * from './Award/Award';
+export * from './CreateAward/CreateAward';
+export * from './Education/Education';
+export * from './CreateEducation/CreateEducation';

@@ -24,6 +24,20 @@ type PropsType = {
     create_portfolio: string;
     create_course: string;
     out:string;
+
+    staj:string;
+    add_staj:string;
+    positionT:string;
+    add_positionT:string;
+    create:string;
+    control:string;
+    educationT:string;
+    traningT:string;
+    publicationT:string;
+    awardT:string;
+    descriptionT:string;
+    contactsT: string;
+    scienceDegreeT:string;
 };
 
 export const ProfileInfo = observer(({ ...props }: PropsType) => {
@@ -40,6 +54,10 @@ export const ProfileInfo = observer(({ ...props }: PropsType) => {
                 description={data.description}
                 setDescription={data.setDescription}
                 placeOfWork={data.placeOfWork}
+                position={data.position}
+                setPosition={data.setPosition}
+                yearsOfExperience={data.yearsOfExperience}
+                setYearsOfExperience={data.setYearsOfExperience}
                 setPlaceOfWork={data.setPlaceOfWork}
                 scienceDegree={data.scienceDegree}
                 setScienceDegree={data.setScienceDegree}
@@ -74,8 +92,28 @@ export const ProfileInfo = observer(({ ...props }: PropsType) => {
                 course_title={props.course_title}
                 create_portfolio={props.create_portfolio}
                 create_course={props.create_course}
+
+                staj={props.staj}
+                add_staj={props.add_staj}
+                positionT={props.positionT}
+                add_positionT={props.add_positionT}
+                create={props.create}
+                control={props.control}
+                educationT={props.educationT}
+                traningT={props.traningT}
+                publicationT={props.publicationT}
+                awardT={props.awardT}
+                descriptionT={props.descriptionT}
+                contactsT={props.contactsT}
+                scienceDegreeT={props.scienceDegreeT}
+
                 out={props.out}
                 logout={data.logout}
+                publication={data.profile?.publications}
+                traning={data.profile?.traning}
+                awards={data.profile?.awards}
+                education={data.profile?.education}
+                
             />
         </div>
     );

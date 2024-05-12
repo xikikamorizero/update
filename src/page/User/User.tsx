@@ -12,6 +12,16 @@ type PropsType = {
     course_title: string;
     subscribe: string;
     unsubscribe: string;
+
+    staj: string;
+    positionT: string;
+    educationT: string;
+    traningT: string;
+    publicationT: string;
+    awardT: string;
+    descriptionT: string;
+    contactsT: string;
+    scienceDegreeT: string;
 };
 
 export const User = ({ ...props }: PropsType) => {
@@ -27,6 +37,15 @@ export const User = ({ ...props }: PropsType) => {
                     course_title={props.course_title}
                     subscribe={props.subscribe}
                     unsubscribe={props.unsubscribe}
+                    staj={props.staj}
+                    positionT={props.positionT}
+                    educationT={props.educationT}
+                    traningT={props.traningT}
+                    publicationT={props.publicationT}
+                    awardT={props.awardT}
+                    descriptionT={props.descriptionT}
+                    contactsT={props.contactsT}
+                    scienceDegreeT={props.scienceDegreeT}
                 />
             </WithWrapper>
         </div>

@@ -1,0 +1,30 @@
+.container {
+    width: calc(100% / 3 - 20px);
+    border-radius: 6px;
+    flex-shrink: 0;
+    background-color: var(--sub_color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:5px;
+    align-items: center;
+    border: 1px solid var(--main_color);
+    cursor: pointer;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+.container p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+}
+.title {
+    color: var(--main_text_color);
+    font-size: 20px;
+}
+.year {
+    color: var(--subtitle_text_color);
+    font-size: 15px;
+}

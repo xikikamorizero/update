@@ -54,6 +54,28 @@ class Lesson {
     public readonly edit = services.Lesson.edit;
     public readonly delete = services.Lesson.delete;
 }
+class UpdatePort {
+    constructor() {
+        makeAutoObservable(this);
+    }
+    public readonly getAwardItem = services.UpdatePort.getAwardItem;
+    public readonly createAward = services.UpdatePort.createAward;
+    public readonly editAward = services.UpdatePort.editAward;
+    public readonly deleteAward = services.UpdatePort.deleteAward;
+
+    public readonly createPublications = services.UpdatePort.createPublications;
+    public readonly editPublications = services.UpdatePort.editPublications;
+    public readonly deletePublications = services.UpdatePort.deletePublications;
+
+    public readonly createTraning = services.UpdatePort.createTraning;
+    public readonly editTraning = services.UpdatePort.editTraning;
+    public readonly deleteTraning = services.UpdatePort.deleteTraning;
+
+    public readonly getEducationItem = services.UpdatePort.getEducationItem;
+    public readonly createEducation = services.UpdatePort.createEducation;
+    public readonly editEducation = services.UpdatePort.editEducation;
+    public readonly deleteEducation = services.UpdatePort.deleteEducation;
+}
 
 export class Store {
     public readonly auth = new Auth();
@@ -61,6 +83,7 @@ export class Store {
     public readonly portfolio = new Portfolio();
     public readonly course = new Course();
     public readonly lesson = new Lesson();
+    public readonly UpdatePort = new UpdatePort();
     public profile: types.userType | null = null;
     public loader = false;
     public error = 0;

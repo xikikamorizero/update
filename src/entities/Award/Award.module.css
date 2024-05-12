@@ -1,0 +1,30 @@
+.container {
+    width: 100%;
+    border-radius: 6px;
+    background-color: var(--sub_color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--main_color);
+}
+.cupIcon {
+    width: 150px;
+    height: 150px;
+    color: var(--main_text_color);
+}
+.container p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+}
+.title {
+    color: var(--main_text_color);
+    font-size: 20px;
+}
+.year {
+    color: var(--subtitle_text_color);
+    font-size: 15px;
+}

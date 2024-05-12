@@ -15,11 +15,11 @@
     border-radius: 10px;
 }
 .filterPanel {
-    width: max-content;
+    width: 100%;
     height: max-content;
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 .inputSearchContainer {
     width: max-content;
@@ -48,7 +48,6 @@
     transform: translate(0, -50%);
 }
 .filterButton {
-    display: none;
     width: 30px;
     height: 30px;
     color: var(--main_color);
@@ -65,7 +64,8 @@
     width: max-content;
     height: max-content;
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 5px;
 }
 .title {
     font-size: 25px;

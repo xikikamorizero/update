@@ -21,18 +21,38 @@ export const useProject = () => {
             ? global_store.store.profile?.description
             : null
     );
-    const [placeOfWork, setPlaceOfWork] = useState<string | null>(global_store.store.profile?.place_of_work
-        ? global_store.store.profile?.place_of_work
-        : null);
-    const [scienceDegree, setScienceDegree] = useState<string | null>(global_store.store.profile?.science_degree
-        ? global_store.store.profile?.science_degree
-        : null);
-    const [contacts, setContacts] = useState<string | null>(global_store.store.profile?.contacts
-        ? global_store.store.profile?.contacts
-        : null);
-    const [categories, setСategories] = useState<string[]|null>(global_store.store.profile?.categories
-        ? global_store.store.profile?.categories
-        : null);
+    const [placeOfWork, setPlaceOfWork] = useState<string | null>(
+        global_store.store.profile?.place_of_work
+            ? global_store.store.profile?.place_of_work
+            : null
+    );
+
+    const [position, setPosition] = useState<string | null>(
+        global_store.store.profile?.position
+            ? global_store.store.profile?.position
+            : null
+    );
+    const [yearsOfExperience, setYearsOfExperience] = useState<string>(
+        global_store.store.profile?.yearsOfExperience
+            ? String(global_store.store.profile?.yearsOfExperience)
+            : "0"
+    );
+
+    const [scienceDegree, setScienceDegree] = useState<string | null>(
+        global_store.store.profile?.science_degree
+            ? global_store.store.profile?.science_degree
+            : null
+    );
+    const [contacts, setContacts] = useState<string | null>(
+        global_store.store.profile?.contacts
+            ? global_store.store.profile?.contacts
+            : null
+    );
+    const [categories, setСategories] = useState<string[] | null>(
+        global_store.store.profile?.categories
+            ? global_store.store.profile?.categories
+            : null
+    );
     const [image, setImage] = useState<any | null>(
         global_store.store.profile?.avatar
     );
@@ -43,9 +63,11 @@ export const useProject = () => {
                 name: name,
                 description: description,
                 place_of_work: placeOfWork,
+                position:position,
+                yearsOfExperience:yearsOfExperience,
                 science_degree: scienceDegree,
                 contacts: contacts,
-                categories:categories,
+                categories: categories,
                 avatar: image,
             })
             .then((response) => {
@@ -64,6 +86,7 @@ export const useProject = () => {
     }
 
     useEffect(() => {
+        global_store.store.updateProfile();
         global_store.store.user
             .getMyProject()
             .then((response) => {
@@ -87,6 +110,10 @@ export const useProject = () => {
         setPlaceOfWork,
         scienceDegree,
         setScienceDegree,
+        position,
+        setPosition,
+        yearsOfExperience,
+        setYearsOfExperience,
         contacts,
         setContacts,
         categories,

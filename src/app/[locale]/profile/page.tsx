@@ -27,6 +27,19 @@ export default function Profile({ params }: { params: { locale: string } }) {
                 create_portfolio={t("create_portfolio")}
                 create_course={t("create_course")}
                 out={t("out")}
+                staj={t("staj")}
+                add_staj={t("add_staj")}
+                positionT={t("positionT")}
+                add_positionT={t("add_positionT")}
+                create={t("create")}
+                control={t("control")}
+                educationT={t("educationT")}
+                traningT={t("traningT")}
+                publicationT={t("publicationT")}
+                awardT={t("awardT")}
+                descriptionT={t("descriptionT")}
+                contactsT={t("contactsT")}
+                scienceDegreeT={t("scienceDegreeT")}
             />
         </>
     );

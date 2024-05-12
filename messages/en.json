@@ -7,7 +7,8 @@
         "home": "home",
         "teachers": "teachers",
         "portfolio": "portfolio",
-        "about": "about"
+        "about": "about",
+        "title":"© 2024, «VoxMentor». We have everything interesting."
     },
     "Main": {
         "text1": "Intellectual Heritage: Faculty Discoveries on Your Screen.",
@@ -63,7 +64,22 @@
         "create_course": "Create course ",
         "subscribe": "subscribe",
         "unsubscribe": "unsubscribe",
-        "out": "logout"
+        "out": "logout",
+
+        "staj": "Work Experience",
+        "add_staj": "Add Work Experience",
+        "positionT": "Position",
+        "add_positionT": "Add Position",
+        "create": "Create",
+        "control": "Control",
+        "educationT": "Education",
+        "traningT": "Information about advanced training",
+        "publicationT": "Publications",
+        "awardT": "Awards",
+
+        "descriptionT": "about me",
+        "contactsT": "Contacts",
+        "scienceDegreeT": "Academic Degree"
     },
     "Course": {
         "description": "Description",
@@ -99,6 +115,22 @@
         "add_category": "Add category",
         "add_type": "Add type",
         "create": "Create"
+    },
+    "CreateAward": {
+        "add_title": "Add title",
+        "type": "type",
+        "add_type": "Add type",
+        "year": "year of receipt",
+        "add_year": "Add year",
+        "create": "Create",
+        "title": "Create Award"
+    },
+    "CreatePublication": {
+        "add_title": "Add title",
+        "year": "year of receipt",
+        "add_year": "Add year",
+        "create": "Create",
+        "title": "Create Education"
     },
     "Login": {
         "title_reg": "Sing up",

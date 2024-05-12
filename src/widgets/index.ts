@@ -14,3 +14,7 @@ export * from "./Lesson/Lesson";
 export * from "./SubUnSub/SubUnSub";
 export * from './LikeDisLike/LikeDisLike';
 export * from './Slaider/Slaider';
+export * from './Award/Award';
+export * from './CreateAward/CreateAward';
+export * from './Education/Education';
+export * from './CreateEducation/CreateEducation';

@@ -17,10 +17,23 @@ type PropsType = {
     course_title: string;
     subscribe: string;
     unsubscribe: string;
+
+    staj:string;
+    positionT:string;
+    educationT:string;
+    traningT:string;
+    publicationT:string;
+    awardT:string;
+    descriptionT:string;
+    contactsT: string;
+    scienceDegreeT:string;
 };
 
 export const User = observer(({ ...props }: PropsType) => {
-    const { user, myProfile, isIdPresent } = useUser({ userId: props.userId, loc:props.loc });
+    const { user, myProfile, isIdPresent } = useUser({
+        userId: props.userId,
+        loc: props.loc,
+    });
     return (
         <div className={style.containert}>
             <Profile
@@ -65,8 +78,23 @@ export const User = observer(({ ...props }: PropsType) => {
                 no_subscribers={props.no_subscribers}
                 portfolio_title={props.portfolio_title}
                 course_title={props.course_title}
-                portfolio={user?.postfolio}
+
+                staj={props.staj}
+                positionT={props.positionT}
+                educationT={props.educationT}
+                traningT={props.traningT}
+                publicationT={props.publicationT}
+                awardT={props.awardT}
+                descriptionT={props.descriptionT}
+                contactsT={props.contactsT}
+                scienceDegreeT={props.scienceDegreeT}
+
+                portfolio={user?.portfolio}
                 course={user?.course}
+                publication={user?.publications}
+                traning={user?.traning}
+                awards={user?.awards}
+                education={user?.education}
             />
         </div>
     );

@@ -5,6 +5,7 @@ import { useUsers } from "./lib/hook";
 import { observer } from "mobx-react-lite";
 import { Card } from "@/shared";
 import { InputFilter } from "@/entities/InputFilter/InputFilter";
+import { InputFilterNum } from "@/entities/InputFilterNum/InputFilterNum";
 import { useContext, useState } from "react";
 import { Context } from "./lib/context";
 import { SearchNormal1, FilterSquare } from "iconsax-react";
@@ -34,6 +35,14 @@ export const Users = observer(({ ...props }: PropsType) => {
         <div className={style.container}>
             <div className={style.filterContainer}>
                 <p className={style.title}>{props.title}</p>
+                <FilterSquare
+                    className={style.filterButton}
+                    onClick={() => {
+                        setFilter(!filter);
+                    }}
+                />
+            </div>
+            {filter && (
                 <div className={style.filterPanel}>
                     <div className={style.secondaryFilterContainer}>
                         <InputFilter
@@ -48,6 +57,76 @@ export const Users = observer(({ ...props }: PropsType) => {
                         />
                     </div>
 
+                    <div className={style.secondaryFilterContainer}>
+                        Award:
+                        <InputFilterNum
+                            value={data.awardMin}
+                            setValue={data.setAwardMin}
+                            placeholder={props.type}
+                        />
+                        <InputFilterNum
+                            value={data.awardMax}
+                            setValue={data.setAwardMax}
+                            placeholder={props.category}
+                        />
+                    </div>
+
+                    <div className={style.secondaryFilterContainer}>
+                        Publication:
+                        <InputFilterNum
+                            value={data.publicationsMin}
+                            setValue={data.setPublicationsMin}
+                            placeholder={props.type}
+                        />
+                        <InputFilterNum
+                            value={data.publicationsMax}
+                            setValue={data.setPublicationsMax}
+                            placeholder={props.category}
+                        />
+                    </div>
+
+                    <div className={style.secondaryFilterContainer}>
+                        Стаж:
+                        <InputFilterNum
+                            value={data.yearsOfExperienceMin}
+                            setValue={data.setYearsOfExperienceMin}
+                            placeholder={props.type}
+                        />
+                        <InputFilterNum
+                            value={data.yearsOfExperienceMax}
+                            setValue={data.setYearsOfExperienceMax}
+                            placeholder={props.category}
+                        />
+                    </div>
+
+                    <div className={style.secondaryFilterContainer}>
+                        Проекты:
+                        <InputFilterNum
+                            value={data.portfolioMin}
+                            setValue={data.setPortfolioMin}
+                            placeholder={props.type}
+                        />
+                        <InputFilterNum
+                            value={data.portfolioMax}
+                            setValue={data.setPortfolioMax}
+                            placeholder={props.category}
+                        />
+                    </div>
+
+                    <div className={style.secondaryFilterContainer}>
+                        Курсы:
+                        <InputFilterNum
+                            value={data.courseMin}
+                            setValue={data.setCourseMin}
+                            placeholder={props.type}
+                        />
+                        <InputFilterNum
+                            value={data.courseMax}
+                            setValue={data.setCourseMax}
+                            placeholder={props.category}
+                        />
+                    </div>
+
                     <div className={style.inputSearchContainer}>
                         <InputFilter
                             type={"search"}
@@ -57,14 +136,8 @@ export const Users = observer(({ ...props }: PropsType) => {
                         />
                         <SearchNormal1 className={style.iconSearch} />
                     </div>
-                    {/* <FilterSquare
-                        className={style.filterButton}
-                        onClick={() => {
-                            setFilter(!filter);
-                        }}
-                    /> */}
                 </div>
-            </div>
+            )}
 
             <Row gutter={[16, 16]}>
                 {data.users.length > 0 ? (

@@ -31,6 +31,16 @@ export default function User({ params }: PropsType) {
                 course_title={t("course_title")}
                 subscribe={t("subscribe")}
                 unsubscribe={t("unsubscribe")}
+
+                staj={t("staj")}
+                positionT={t("positionT")}
+                educationT={t("educationT")}
+                traningT={t("traningT")}
+                publicationT={t("publicationT")}
+                awardT={t("awardT")}
+                descriptionT={t("descriptionT")}
+                contactsT={t("contactsT")}
+                scienceDegreeT={t("scienceDegreeT")}
             />
         </>
     );

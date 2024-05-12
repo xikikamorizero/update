@@ -3,13 +3,11 @@ import { BottomNavigation } from "@/shared";
 import { useTranslations } from "next-intl";
 import { Profile } from "@/widgets";
 
-export const Footer = ({ loc }: {loc:string}) => {
+export const Footer = ({ loc }: { loc: string }) => {
     const t = useTranslations("Navigation");
     return (
         <div className={style.wrapper}>
-            <div className={style.container}>
-            © 2024, «VoxMentor». Все интересное у нас.
-            </div>
+            <div className={style.container}>{t("title")}</div>
             <BottomNavigation
                 loc={loc}
                 profile={<Profile loc={loc} />}

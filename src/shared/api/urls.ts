@@ -52,6 +52,60 @@ export const user = {
         return "/users/subscribers";
     },
 };
+
+export const updatePort = {
+    getAward(id: string) {
+        return `/award/${id}`;
+    },
+    createAward() {
+        return "/award";
+    },
+    updateAward(id: string) {
+        return `/award/${id}`;
+    },
+    deleteAward(id: string) {
+        return `/award/${id}`;
+    },
+
+    getPublications(id: string) {
+        return `/publications/${id}`;
+    },
+    createPublications() {
+        return "/publications";
+    },
+    updatePublications(id: string) {
+        return `/publications/${id}`;
+    },
+    deletePublications(id: string) {
+        return `/publications/${id}`;
+    },
+
+    getTraning(id: string) {
+        return `/traning/${id}`;
+    },
+    createTraning() {
+        return "/traning";
+    },
+    updateTraning(id: string) {
+        return `/traning/${id}`;
+    },
+    deleteTraning(id: string) {
+        return `/traning/${id}`;
+    },
+
+    getEducation(id: string) {
+        return `/education/${id}`;
+    },
+    createEducation() {
+        return "/education";
+    },
+    updateEducation(id: string) {
+        return `/education/${id}`;
+    },
+    deleteEducation(id: string) {
+        return `/education/${id}`;
+    },
+};
 export const portfolio = {
     get() {
         return "/portfolio";
@@ -81,7 +135,7 @@ export const course = {
     },
     delete(id: string) {
         return `/courses/${id}`;
-    }
+    },
 };
 export const lesson = {
     create() {

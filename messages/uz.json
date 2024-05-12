@@ -7,16 +7,17 @@
         "home": "Home",
         "teachers": "o'qituvchilar",
         "portfolio": "portfolio",
-        "about": "about"
+        "about": "about",
+        "title":"© 2024, «VoxMentor». Bizda hamma narsa qiziq."
     },
     "Main": {
         "text1": "Intellektual meros: sizning ekraningizda o'qituvchilarning kashfiyotlari.",
         "text2": "Ilhomlangan o'qituvchilar portfeli orqali bilim olamini oching.",
         "text3": "Bilim markazidagi o'qituvchilar: noyob hikoyalar, ilhomlantiruvchi natijalar.",
-        "title":"Ushbu sahifaning funktsionali faqat o'qituvchilar va professorlar uchun mavjud.",
-        "title1":"Professorlar",
-        "title2":"Loyihalar",
-        "textLink":"hama"
+        "title": "Ushbu sahifaning funktsionali faqat o'qituvchilar va professorlar uchun mavjud.",
+        "title1": "Professorlar",
+        "title2": "Loyihalar",
+        "textLink": "hama"
     },
     "Teachers": {
         "title": "O'qituvchilar",
@@ -63,7 +64,22 @@
         "create_course": "Kurs yaratish",
         "subscribe": "qo`shilish",
         "unsubscribe": "bekor qilish",
-        "out": "chiquvchi bo'lish"
+        "out": "chiquvchi bo'lish",
+
+        "staj": "Ish tajriba",
+        "add_staj": "Ish tajribasini qo'shish",
+        "positionT": "Vazifa",
+        "add_positionT": "Vazifani qo'shish",
+        "create": "Yaratish",
+        "control": "Boshqarish",
+        "educationT": "Ta'lim",
+        "traningT": "Ilg'or malaka oshirish haqida ma'lumot",
+        "publicationT": "Nashrlar",
+        "awardT": "Mukofotlar",
+
+        "descriptionT": "meni haqimda",
+        "contactsT": "Aloqalar",
+        "scienceDegreeT": "Ilmiy daraja"
     },
     "Course": {
         "description": "Ta'rif",
@@ -100,6 +116,22 @@
         "add_type": "Turdan qo'shish",
         "create": "Yaratish"
     },
+    "CreateAward": {
+        "add_title": "Sarlavhani qo'shish",
+        "type": "turi",
+        "add_type": "Turi qo'shish",
+        "year": "oolish yili",
+        "add_year": "Yil qo'shish",
+        "create": "Yaratish",
+        "title": "Mukofot yaratish"
+    },
+    "CreatePublication": {
+        "add_title": "Nomi qo'shish",
+        "year": "o'qish sanasi",
+        "add_year": "Sana qo'shish",
+        "create": "Yaratish",
+        "title": "O'qish haqida yozuv yaratish"
+    },
     "Login": {
         "title_reg": "Ro'yxatdan o'tish",
         "title_log": "Tizimga kirish",
@@ -110,10 +142,10 @@
         "no_account": "Hisobingiz yo'qmi?",
         "create": "Yaratish",
         "text": "o'qituvchi?",
-        "titleErrorReg":"Ro'yxatdan o'tishda xato",
-        "descriptionReg":"Bu elektron pochta manziliga ega foydalanuvchi allaqachon mavjud",
-        "titleError":"Autentifikatsiyada xato",
-        "description":"Noto'g'ri email yoki parol"
+        "titleErrorReg": "Ro'yxatdan o'tishda xato",
+        "descriptionReg": "Bu elektron pochta manziliga ega foydalanuvchi allaqachon mavjud",
+        "titleError": "Autentifikatsiyada xato",
+        "description": "Noto'g'ri email yoki parol"
     },
     "Footer": {
         "copyright": "© 2024 Aplikasi Anda. Hak cipta dilindungi."

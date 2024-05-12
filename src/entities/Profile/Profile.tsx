@@ -2,6 +2,7 @@
 import style from "./Profile.module.css";
 import { baseUrl } from "@/shared/api/const";
 import { Profile as ProfileIcon } from "iconsax-react";
+import { CardPublication } from "@/shared/CardPublication/CardPublication";
 import { DescriptionEditBlok } from "@/shared";
 import { Categories } from "@/shared/Categories/Categories";
 import { Avatar, Tooltip } from "antd";
@@ -10,6 +11,16 @@ import { ReactNode, useState } from "react";
 import { CardProject } from "@/shared";
 import Link from "next/link";
 import { ImageInput, WrapperEditBlock } from "@/shared";
+import {
+    Award as AwardType,
+    Education,
+    Publications,
+    Traning,
+} from "@/shared/api/types";
+import { TraningTable } from "../TraningTable/TraningTable";
+import { observer } from "mobx-react-lite";
+import { Award } from "../Award/Award";
+import { EducationCard } from "@/shared/EducationCard/EducationCard";
 
 type PropsType = {
     user: types.userType | null;
@@ -22,8 +33,12 @@ type PropsType = {
     setDescription?: (a: string) => void;
     placeOfWork?: string | null;
     setPlaceOfWork?: (a: string) => void;
+    position?: string | null;
+    setPosition?: (a: string) => void;
     scienceDegree?: string | null;
     setScienceDegree?: (a: string) => void;
+    yearsOfExperience?: string;
+    setYearsOfExperience?: (a: string) => void;
     contacts?: string | null;
     setContacts?: (a: string) => void;
     image?: File | null;
@@ -38,8 +53,13 @@ type PropsType = {
     likeBlock?: ReactNode;
     myiD?: number;
     loc: string;
-    category?: string[]|null;
+    category?: string[] | null;
     setCategory?: (a: string[]) => void;
+
+    publication?: Publications[];
+    traning?: Traning[];
+    awards?: AwardType[];
+    education?: Education[];
 
     subscribers: string;
     no_subscribers: string;
@@ -56,218 +76,411 @@ type PropsType = {
     create_course?: string;
     out?: string;
 
+    staj?: string;
+    add_staj?: string;
+    positionT?: string;
+    add_positionT?: string;  
+    descriptionT?:string;
+    contactsT?: string;
+    scienceDegreeT?:string;
+    create?: string;
+    control?: string;
+    educationT?: string;
+    traningT?: string;
+    publicationT?: string;
+    awardT?: string;
+
     logout?: () => void;
 };
 
-export const Profile = ({ ...props }: PropsType) => {
+export const Profile = observer(({ ...props }: PropsType) => {
     const [portfolio, setPortfolio] = useState(true);
-
-    console.log(props.user?.roles[0].value)
+    const [editPublication, setEditPublication] = useState(false);
+    const [editTraning, setEditTraning] = useState(false);
 
     return (
-        <div className={style.container}>
-            <div className={style.userInfo}>
-                <div className={style.avatarContainer}>
-                    {props.editMode ? (
-                        <ImageInput
-                            setImage={props.setImage}
-                            image={props.image}
-                        />
-                    ) : props.user?.avatar ? (
-                        <img
-                            className={style.avatar}
-                            draggable={false}
-                            alt={"avatar"}
-                            src={baseUrl + props.user?.avatar}
-                        />
-                    ) : (
-                        <ProfileIcon size={"100%"} />
-                    )}
-                </div>
-                {props.likeBlock}
-                <WrapperEditBlock
-                    value={props.name}
-                    setValue={props.setName}
-                    placeholder={props.add_name}
-                    editMode={props.editMode}
-                    block={<p className={style.userName}>{props.user?.name}</p>}
-                />
-
-                <WrapperEditBlock
-                    value={props.placeOfWork}
-                    setValue={props.setPlaceOfWork}
-                    placeholder={props.add_placeOfWork}
-                    editMode={props.editMode}
-                    block={
-                        <p className={style.place_of_work}>
-                            {props.user?.place_of_work}
-                        </p>
-                    }
-                />
-
-                {!props.myProf ? (
-                    props.subBlock
-                ) : (
-                    <div
-                        className={style.sub_func}
-                        onClick={() => {
-                            if (props.setEditMode) {
-                                props.setEditMode(!props.editMode);
-                            }
-                            if (props.editMode && props.EditProfile) {
-                                props.EditProfile();
-                            }
-                        }}
-                    >
-                        {props.editMode ? props.save : props.edit_profile}
+        <div className={style.wrapper}>
+            <div className={style.container}>
+                <div className={style.userInfo}>
+                    <div className={style.avatarContainer}>
+                        {props.editMode ? (
+                            <ImageInput
+                                setImage={props.setImage}
+                                image={props.image}
+                            />
+                        ) : props.user?.avatar ? (
+                            <img
+                                className={style.avatar}
+                                draggable={false}
+                                alt={"avatar"}
+                                src={baseUrl + props.user?.avatar}
+                            />
+                        ) : (
+                            <ProfileIcon size={"100%"} />
+                        )}
                     </div>
-                )}
+                    {props.likeBlock}
+                    <WrapperEditBlock
+                        value={props.name}
+                        setValue={props.setName}
+                        placeholder={props.add_name}
+                        editMode={props.editMode}
+                        block={
+                            <p className={style.userName}>{props.user?.name}</p>
+                        }
+                    />
 
-                <WrapperEditBlock
-                    value={props.scienceDegree}
-                    setValue={props.setScienceDegree}
-                    placeholder={props.add_scienceDegree}
-                    editMode={props.editMode}
-                    block={
-                        <p className={style.science_degree}>
-                            {props.user?.science_degree}
-                        </p>
-                    }
-                />
-                <WrapperEditBlock
-                    value={props.contacts}
-                    setValue={props.setContacts}
-                    placeholder={props.add_contacts}
-                    editMode={props.editMode}
-                    block={
-                        <p className={style.contacts}>{props.user?.contacts}</p>
-                    }
-                />
-                <DescriptionEditBlok
-                    value={props.description}
-                    setValue={props.setDescription}
-                    placeholder={props.add_description}
-                    editMode={props.editMode}
-                    block={
-                        <p className={style.description}>
-                            {props.user?.description}
-                        </p>
-                    }
-                />
+                    <WrapperEditBlock
+                        value={props.placeOfWork}
+                        setValue={props.setPlaceOfWork}
+                        placeholder={props.add_placeOfWork}
+                        editMode={props.editMode}
+                        block={
+                            <p className={style.place_of_work}>
+                                {props.user?.place_of_work}
+                            </p>
+                        }
+                    />
 
-                <Categories
-                    categories={props.category}
-                    setCategories={props.setCategory}
-                    editMode={props.editMode}
-                />
+                    {!props.myProf ? (
+                        props.subBlock
+                    ) : (
+                        <div
+                            className={style.sub_func}
+                            onClick={() => {
+                                if (props.setEditMode) {
+                                    props.setEditMode(!props.editMode);
+                                }
+                                if (props.editMode && props.EditProfile) {
+                                    props.EditProfile();
+                                }
+                            }}
+                        >
+                            {props.editMode ? props.save : props.edit_profile}
+                        </div>
+                    )}
 
-                <div className={style.subscribers}>
-                    <p>{props.subscribers}</p>
-                    <Avatar.Group
-                        maxCount={5}
-                        maxStyle={{
-                            userSelect: "none",
-                            color: "#000000",
-                            backgroundColor: "var(--main_color)",
-                        }}
-                    >
-                        {props.user?.subscribers.length !== 0 ? (
-                            props.user?.subscribers.map((a, i) => (
-                                <Link
-                                    href={
-                                        props.myiD == a.id
-                                            ? `/${props.loc}/profile`
-                                            : `/${props.loc}/users/${a.id}`
-                                    }
-                                    style={{ borderRadius: "50%" }}
-                                    key={i}
-                                >
-                                    <Tooltip
-                                        title={a.name}
-                                        placement="top"
+                    <WrapperEditBlock
+                        value={props.position}
+                        setValue={props.setPosition}
+                        placeholder={props.add_positionT}
+                        editMode={props.editMode}
+                        block={
+                            <div className={style.containerItemP}>
+                                <h1 className={style.contacts}>{props.positionT}:</h1>
+                                <p className={style.contacts}>  
+                                    {props.position}
+                                </p>
+                            </div>
+                        }
+                    />
+
+                    <WrapperEditBlock
+                        value={props.scienceDegree}
+                        setValue={props.setScienceDegree}
+                        placeholder={props.add_scienceDegree}
+                        editMode={props.editMode}
+                        block={
+                            <div className={style.containerItemP}>
+                                <h1 className={style.science_degree}>{props.scienceDegreeT}:</h1>
+                                <p className={style.science_degree}>
+                                    {props.user?.science_degree}
+                                </p>
+                            </div>
+                        }
+                    />
+                    <WrapperEditBlock
+                        value={props.contacts}
+                        setValue={props.setContacts}
+                        placeholder={props.add_contacts}
+                        editMode={props.editMode}
+                        block={
+                            <div className={style.containerItemP}>
+                                <h1 className={style.contacts}>{props.contactsT}:</h1>
+                                <p className={style.contacts}>
+                                    {props.user?.contacts}
+                                </p>
+                            </div>
+                        }
+                    />
+                    <DescriptionEditBlok
+                        value={props.description}
+                        setValue={props.setDescription}
+                        placeholder={props.add_description}
+                        editMode={props.editMode}
+                        block={
+                            <div className={style.containerItemP}>
+                                <h1 className={style.description}>{props.descriptionT}:</h1>
+                                <p className={style.description}>
+                                    {props.user?.description}
+                                </p>
+                            </div>
+                        }
+                    />
+
+                    <WrapperEditBlock
+                        value={props.yearsOfExperience}
+                        setValue={props.setYearsOfExperience}
+                        placeholder={props.add_staj}
+                        editMode={props.editMode}
+                        block={
+                            <p className={style.contacts}>
+                                {props.staj}: {props.yearsOfExperience}
+                            </p>
+                        }
+                    />
+
+                    <Categories
+                        categories={props.category}
+                        setCategories={props.setCategory}
+                        editMode={props.editMode}
+                    />
+
+                    <div className={style.subscribers}>
+                        <p>{props.subscribers}</p>
+                        <Avatar.Group
+                            maxCount={5}
+                            maxStyle={{
+                                userSelect: "none",
+                                color: "#000000",
+                                backgroundColor: "var(--main_color)",
+                            }}
+                        >
+                            {props.user?.subscribers.length !== 0 ? (
+                                props.user?.subscribers.map((a, i) => (
+                                    <Link
+                                        href={
+                                            props.myiD == a.id
+                                                ? `/${props.loc}/profile`
+                                                : `/${props.loc}/users/${a.id}`
+                                        }
+                                        style={{ borderRadius: "50%" }}
                                         key={i}
                                     >
-                                        <Avatar src={baseUrl + a?.avatar} />
-                                    </Tooltip>
-                                </Link>
-                            ))
-                        ) : (
-                            <p>{props.no_subscribers}</p>
+                                        <Tooltip
+                                            title={a.name}
+                                            placement="top"
+                                            key={i}
+                                        >
+                                            <Avatar src={baseUrl + a?.avatar} />
+                                        </Tooltip>
+                                    </Link>
+                                ))
+                            ) : (
+                                <p>{props.no_subscribers}</p>
+                            )}
+                        </Avatar.Group>
+                    </div>
+
+                    {props.myProf ? (
+                        <div
+                            className={style.sub_func}
+                            style={{ color: "red" }}
+                            onClick={() => {
+                                props.logout && props.logout();
+                            }}
+                        >
+                            {props.out}
+                        </div>
+                    ) : (
+                        <></>
+                    )}
+                    <p className={style.roles}>
+                        {props.user?.roles.some(
+                            (obj) => obj.value == "Professor"
+                        )
+                            ? "Professor"
+                            : "User"}
+                    </p>
+                </div>
+                <div className={style.userDopInfo}>
+                    <div className={style.userProject}>
+                        <div className={style.userWorkLinks}>
+                            <div
+                                className={portfolio ? style.active : ""}
+                                onClick={() => {
+                                    setPortfolio(true);
+                                }}
+                            >
+                                {props.portfolio_title}
+                            </div>
+                            <div
+                                className={!portfolio ? style.active : ""}
+                                onClick={() => {
+                                    setPortfolio(false);
+                                }}
+                            >
+                                {props.course_title}
+                            </div>
+                        </div>
+                        <div className={style.projectWrapper}>
+                            <div className={style.projectContainer}>
+                                {portfolio
+                                    ? props.portfolio?.map((a, i) => (
+                                          <CardProject
+                                              href={`/${props.loc}/portfolio/${a.id}`}
+                                              image={a.image}
+                                              title={a.title}
+                                              key={i}
+                                          />
+                                      ))
+                                    : props.course?.map((a, i) => (
+                                          <CardProject
+                                              href={`/${props.loc}/course/${a.id}`}
+                                              image={a.image}
+                                              title={a.title}
+                                              key={i}
+                                          />
+                                      ))}
+                            </div>
+                        </div>
+
+                        {props.myProf &&
+                        props.user?.roles.some(
+                            (obj) => obj.value == "Professor"
+                        ) ? (
+                            <Link
+                                href={
+                                    portfolio
+                                        ? `/${props.loc}/createPortfolio`
+                                        : `/${props.loc}/createCourse`
+                                }
+                                className={style.create}
+                            >
+                                {portfolio
+                                    ? props.create_portfolio
+                                    : props.create_course}
+                            </Link>
+                        ) : null}
+                    </div>
+
+                    <div className={style.publicationsContainer}>
+                        <div className={style.titlePublication}>
+                            {props.publicationT}
+                        </div>
+                        <div
+                            className={style.projectWrapper}
+                            style={{ height: "300px" }}
+                        >
+                            <div className={style.projectContainer}>
+                                {props.publication
+                                    ?.slice()
+                                    .sort((a, b) => a.id - b.id)
+                                    .map((a, i) => (
+                                        <CardPublication
+                                            id={String(a.id)}
+                                            editMode={editPublication}
+                                            title={a.title}
+                                            type={a.type}
+                                            link={a.link}
+                                            year={a.year}
+                                            key={i}
+                                        />
+                                    ))}
+                                {props.myProf && editPublication && (
+                                    <CardPublication
+                                        id={"1"}
+                                        link={""}
+                                        editMode={editPublication}
+                                        create={"true"}
+                                    />
+                                )}
+
+                                <div></div>
+                            </div>
+                        </div>
+                        {props.myProf && (
+                            <div
+                                className={style.create}
+                                onClick={() => {
+                                    setEditPublication(!editPublication);
+                                }}
+                            >
+                                {props.control}
+                            </div>
                         )}
-                    </Avatar.Group>
-                </div>
-
-                {props.myProf ? (
-                    <div
-                        className={style.sub_func}
-                        style={{ color: "red" }}
-                        onClick={() => {
-                            props.logout && props.logout();
-                        }}
-                    >
-                        {props.out}
                     </div>
-                ) : (
-                    <></>
-                )}
-                <p className={style.roles}>{props.user?.roles.some(obj=>obj.value=="Professor")?"Professor":"User"}</p>
+                </div>
             </div>
-            <div className={style.userProject}>
-                <div className={style.userWorkLinks}>
-                    <div
-                        className={portfolio ? style.active : ""}
-                        onClick={() => {
-                            setPortfolio(true);
-                        }}
-                    >
-                        {props.portfolio_title}
-                    </div>
-                    <div
-                        className={!portfolio ? style.active : ""}
-                        onClick={() => {
-                            setPortfolio(false);
-                        }}
-                    >
-                        {props.course_title}
-                    </div>
-                </div>
-                <div className={style.projectWrapper}>
-                    <div className={style.projectContainer}>
-                        {portfolio
-                            ? props.portfolio?.map((a, i) => (
-                                  <CardProject
-                                      href={`/${props.loc}/portfolio/${a.id}`}
-                                      image={a.image}
-                                      title={a.title}
-                                      key={i}
-                                  />
-                              ))
-                            : props.course?.map((a, i) => (
-                                  <CardProject
-                                      href={`/${props.loc}/course/${a.id}`}
-                                      image={a.image}
-                                      title={a.title}
-                                      key={i}
-                                  />
-                              ))}
+
+            <div className={style.publicationsContainer}>
+                <div className={style.titlePublication}>{props.educationT}</div>
+                <div
+                    className={style.projectWrapper}
+                    style={{ height: "max-content" }}
+                >
+                    <div className={style.educationContainer}>
+                        {props.education?.map((a, i) => (
+                            <EducationCard
+                                href={`/${props.loc}/education/${a.id}`}
+                                id={String(a.id)}
+                                title={a.title}
+                                year={a.date}
+                                key={i}
+                            />
+                        ))}
                     </div>
                 </div>
 
-                {props.myProf && props.user?.roles.some(obj=>obj.value=="Professor") ? (
+                {props.myProf && (
                     <Link
-                        href={
-                            portfolio
-                                ? `/${props.loc}/createPortfolio`
-                                : `/${props.loc}/createCourse`
-                        }
+                        href={`/${props.loc}/createEducation`}
                         className={style.create}
                     >
-                        {portfolio
-                            ? props.create_portfolio
-                            : props.create_course}
+                        {props.create}
                     </Link>
-                ) : null}
+                )}
+            </div>
+
+            <div className={style.publicationsContainer}>
+                <div className={style.titlePublication}>{props.awardT}</div>
+                <div
+                    className={style.projectWrapper}
+                    style={{ height: "max-content" }}
+                >
+                    <div className={style.awardContainer}>
+                        {props.awards?.map((a, i) => (
+                            <Award
+                                title={a.title}
+                                year={a.year}
+                                href={`/${props.loc}/award/${a.id}`}
+                                key={i}
+                            />
+                        ))}
+                    </div>
+                </div>
+                {props.myProf && (
+                    <Link
+                        href={`/${props.loc}/createAward`}
+                        className={style.create}
+                    >
+                        {props.create}
+                    </Link>
+                )}
+            </div>
+
+            <div className={style.publicationsContainer}>
+                <div className={style.titlePublication}>{props.traningT}</div>
+                <div
+                    className={style.projectWrapper}
+                    style={{ height: "max-content" }}
+                >
+                    <TraningTable
+                        editMode={editTraning}
+                        traning={props.traning}
+                    />
+                </div>
+                {props.myProf && (
+                    <div
+                        className={style.create}
+                        onClick={() => {
+                            setEditTraning(!editTraning);
+                        }}
+                    >
+                        {props.control}
+                    </div>
+                )}
             </div>
         </div>
     );
-};
+});

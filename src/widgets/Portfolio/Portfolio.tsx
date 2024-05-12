@@ -34,6 +34,15 @@ export const Portfolio = observer(({ ...props }: PropsType) => {
         <div className={style.container}>
             <div className={style.filterContainer}>
                 <p className={style.title}>{props.title}</p>
+                <FilterSquare
+                    className={style.filterButton}
+                    onClick={() => {
+                        setFilter(!filter);
+                    }}
+                />
+            </div>
+
+            {filter && (
                 <div className={style.filterPanel}>
                     <div className={style.secondaryFilterContainer}>
                         <InputFilter
@@ -57,14 +66,8 @@ export const Portfolio = observer(({ ...props }: PropsType) => {
                         />
                         <SearchNormal1 className={style.iconSearch} />
                     </div>
-                    {/* <FilterSquare
-                        className={style.filterButton}
-                        onClick={() => {
-                            setFilter(!filter);
-                        }}
-                    /> */}
                 </div>
-            </div>
+            )}
 
             <Row gutter={[16, 16]}>
                 {data.portfolio.length > 0 ? (

@@ -17,14 +17,14 @@ export class Auth {
     static async registration(
         email: string,
         password: string,
-        teacher:boolean
+        teacher: boolean
     ): Promise<AxiosResponse<types.LoginResponseType>> {
         return await axios.post<types.LoginResponseType>(
             urls.auth.registration(),
             {
                 email: email,
                 password: password,
-                teacher:teacher
+                teacher: teacher,
             }
         );
     }
@@ -34,6 +34,16 @@ export class User {
         keyword,
         place_of_work,
         science_degree,
+        yearsOfExperienceMin,
+        yearsOfExperienceMax,
+        awardMin,
+        awardMax,
+        publicationsMin,
+        publicationsMax,
+        portfolioMin,
+        portfolioMax,
+        courseMin,
+        courseMax,
         page,
         limit,
     }: types.usersParamType): Promise<AxiosResponse<types.usersType>> {
@@ -44,6 +54,16 @@ export class User {
                     keyword,
                     place_of_work,
                     science_degree,
+                    yearsOfExperienceMin,
+                    yearsOfExperienceMax,
+                    awardMin,
+                    awardMax,
+                    publicationsMin,
+                    publicationsMax,
+                    portfolioMin,
+                    portfolioMax,
+                    courseMin,
+                    courseMax,
                     page,
                     limit,
                 },
@@ -84,7 +104,9 @@ export class User {
         name,
         avatar,
         description,
+        position,
         place_of_work,
+        yearsOfExperience,
         science_degree,
         categories,
         contacts,
@@ -95,7 +117,9 @@ export class User {
             name,
             avatar,
             description,
+            position,
             place_of_work,
+            yearsOfExperience,
             science_degree,
             contacts,
         };
@@ -370,6 +394,245 @@ export class Lesson {
     }: types.ID): Promise<AxiosResponse<types.DeleteResponse>> {
         return await $voxmentor_api_public.delete<types.DeleteResponse>(
             urls.lesson.delete(id)
+        );
+    }
+}
+
+export class UpdatePort {
+    static async getAwardItem({
+        id,
+    }: types.ID): Promise<AxiosResponse<types.Award>> {
+        return await $voxmentor_api_public.get<types.Award>(
+            urls.updatePort.getAward(id),
+            {
+                params: {},
+            }
+        );
+    }
+    static async createAward({
+        title,
+        year,
+        image,
+        docs,
+        type,
+    }: types.CreateAward): Promise<AxiosResponse<types.Award>> {
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("year", String(year));
+        formData.append("image", image);
+        formData.append("docs", docs);
+        formData.append("type", type);
+
+        return await $voxmentor_api_public.post<types.Award>(
+            urls.updatePort.createAward(),
+            formData
+        );
+    }
+    static async editAward(
+        { id }: types.ID,
+        { title, year, image, docs, type }: types.EditAward
+    ): Promise<AxiosResponse<types.Award>> {
+        const formData = new FormData();
+        const fields = {
+            title,
+            year,
+            image,
+            docs,
+            type,
+        };
+        Object.entries(fields).forEach(([key, value]) => {
+            if (value) {
+                formData.append(key, value);
+            }
+        });
+
+        return await $voxmentor_api_public.put<types.Award>(
+            urls.updatePort.updateAward(id),
+            formData
+        );
+    }
+    static async deleteAward({
+        id,
+    }: types.ID): Promise<AxiosResponse<types.DeleteResponseUpd>> {
+        return await $voxmentor_api_public.delete<types.DeleteResponseUpd>(
+            urls.updatePort.deleteAward(id)
+        );
+    }
+
+    //Publications
+
+    static async createPublications({
+        title,
+        year,
+        docs,
+        type,
+        link,
+    }: types.CreatePublications): Promise<AxiosResponse<types.Publications>> {
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("year", String(year));
+        formData.append("docs", docs);
+        formData.append("type", type);
+        formData.append("link", link);
+
+        return await $voxmentor_api_public.post<types.Publications>(
+            urls.updatePort.createPublications(),
+            formData
+        );
+    }
+    static async editPublications(
+        { id }: types.ID,
+        { title, year, docs, type, link }: types.EditPublications
+    ): Promise<AxiosResponse<types.Publications>> {
+        const formData = new FormData();
+        const fields = {
+            title,
+            year,
+            docs,
+            type,
+            link,
+        };
+        Object.entries(fields).forEach(([key, value]) => {
+            if (value) {
+                formData.append(key, value);
+            }
+        });
+
+        return await $voxmentor_api_public.put<types.Publications>(
+            urls.updatePort.updatePublications(id),
+            formData
+        );
+    }
+    static async deletePublications({
+        id,
+    }: types.ID): Promise<AxiosResponse<types.DeleteResponseUpd>> {
+        return await $voxmentor_api_public.delete<types.DeleteResponseUpd>(
+            urls.updatePort.deletePublications(id)
+        );
+    }
+
+    //Traning
+
+    static async createTraning({
+        title,
+        date,
+        location,
+        organization,
+        hoursSpent,
+        image,
+        docs,
+    }: types.CreateTraning): Promise<AxiosResponse<types.Traning>> {
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("date", date);
+        formData.append("location", location);
+        formData.append("organization", organization);
+        formData.append("hoursSpent", String(hoursSpent));
+        formData.append("image", image);
+        formData.append("docs", docs);
+
+        return await $voxmentor_api_public.post<types.Traning>(
+            urls.updatePort.createTraning(),
+            formData
+        );
+    }
+    static async editTraning(
+        { id }: types.ID,
+        {
+            title,
+            date,
+            location,
+            organization,
+            hoursSpent,
+            image,
+            docs,
+        }: types.EditTraning
+    ): Promise<AxiosResponse<types.Traning>> {
+        const formData = new FormData();
+        const fields = {
+            title,
+            date,
+            location,
+            organization,
+            hoursSpent,
+            image,
+            docs,
+        };
+        Object.entries(fields).forEach(([key, value]) => {
+            if (value) {
+                formData.append(key, value);
+            }
+        });
+
+        return await $voxmentor_api_public.put<types.Traning>(
+            urls.updatePort.updateTraning(id),
+            formData
+        );
+    }
+    static async deleteTraning({
+        id,
+    }: types.ID): Promise<AxiosResponse<types.DeleteResponseUpd>> {
+        return await $voxmentor_api_public.delete<types.DeleteResponseUpd>(
+            urls.updatePort.deleteTraning(id)
+        );
+    }
+
+    //Education
+    static async getEducationItem({
+        id,
+    }: types.ID): Promise<AxiosResponse<types.Education>> {
+        return await $voxmentor_api_public.get<types.Education>(
+            urls.updatePort.getEducation(id),
+            {
+                params: {},
+            }
+        );
+    }
+
+    static async createEducation({
+        title,
+        date,
+        image,
+        docs,
+    }: types.CreateEducation): Promise<AxiosResponse<types.Education>> {
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("date", date);
+        formData.append("image", image);
+        formData.append("docs", docs);
+
+        return await $voxmentor_api_public.post<types.Education>(
+            urls.updatePort.createEducation(),
+            formData
+        );
+    }
+    static async editEducation(
+        { id }: types.ID,
+        { title, date, image, docs }: types.EditEducation
+    ): Promise<AxiosResponse<types.Education>> {
+        const formData = new FormData();
+        const fields = {
+            title,
+            date,
+            image,
+            docs,
+        };
+        Object.entries(fields).forEach(([key, value]) => {
+            if (value) {
+                formData.append(key, value);
+            }
+        });
+
+        return await $voxmentor_api_public.put<types.Education>(
+            urls.updatePort.updateEducation(id),
+            formData
+        );
+    }
+    static async deleteEducation({
+        id,
+    }: types.ID): Promise<AxiosResponse<types.DeleteResponseUpd>> {
+        return await $voxmentor_api_public.delete<types.DeleteResponseUpd>(
+            urls.updatePort.deleteEducation(id)
         );
     }
 }
