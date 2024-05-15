@@ -10,9 +10,12 @@ type PropsType = {
     lessonId: string;
     loc: string;
     accessdenied: string;
+    deleteT: string;
+    saveT:string;
+    editT:string;
 };
 
-export const Lesson = observer(({ lessonId, loc, accessdenied }: PropsType) => {
+export const Lesson = observer(({ lessonId, loc, accessdenied, deleteT,saveT, editT}: PropsType) => {
     const data = useLesson({ lessonId, loc });
     if (data.error) {
         return <AccessDenied text={accessdenied} />;
@@ -66,7 +69,7 @@ export const Lesson = observer(({ lessonId, loc, accessdenied }: PropsType) => {
                                 data.DeleteLesson();
                             }}
                         >
-                            Delete
+                            {deleteT}
                         </button>
                         <button
                             disabled={!data.lesson}
@@ -78,7 +81,7 @@ export const Lesson = observer(({ lessonId, loc, accessdenied }: PropsType) => {
                                 data.setEditMode(!data.editMode);
                             }}
                         >
-                            {data.editMode ? "Save" : "Edit"}
+                            {data.editMode ? saveT : editT}
                         </button>
                     </div>
                 )}

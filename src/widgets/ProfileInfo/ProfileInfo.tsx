@@ -19,6 +19,8 @@ type PropsType = {
     add_contacts: string;
     subscribers: string;
     no_subscribers: string;
+    subscriptions: string;
+    no_subscriptions: string;
     portfolio_title: string;
     course_title: string;
     create_portfolio: string;
@@ -38,6 +40,13 @@ type PropsType = {
     descriptionT:string;
     contactsT: string;
     scienceDegreeT:string;
+
+    titleTable:string;
+    dateTable:string;
+    locationTable:string;
+    organizationTable:string;
+    numberOfHoursTable:string;
+    docsTable:string;
 };
 
 export const ProfileInfo = observer(({ ...props }: PropsType) => {
@@ -113,7 +122,17 @@ export const ProfileInfo = observer(({ ...props }: PropsType) => {
                 traning={data.profile?.traning}
                 awards={data.profile?.awards}
                 education={data.profile?.education}
-                
+                typesPortfolio={data.typesPortfolio}
+
+                titleTable={props.titleTable}
+                dateTable={props.dateTable}
+                locationTable={props.locationTable}
+                organizationTable={props.organizationTable}
+                numberOfHoursTable={props.numberOfHoursTable}
+                docsTable={props.docsTable}
+
+                subscriptions={props.subscriptions}
+                no_subscriptions={props.no_subscriptions}
             />
         </div>
     );

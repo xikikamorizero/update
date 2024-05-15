@@ -34,6 +34,7 @@ export class User {
         keyword,
         place_of_work,
         science_degree,
+        category,
         yearsOfExperienceMin,
         yearsOfExperienceMax,
         awardMin,
@@ -47,26 +48,34 @@ export class User {
         page,
         limit,
     }: types.usersParamType): Promise<AxiosResponse<types.usersType>> {
+        const params: Record<string, any> = {
+            keyword,
+            place_of_work,
+            science_degree,
+            yearsOfExperienceMin,
+            yearsOfExperienceMax,
+            awardMin,
+            awardMax,
+            publicationsMin,
+            publicationsMax,
+            portfolioMin,
+            portfolioMax,
+            courseMin,
+            courseMax,
+            page,
+            limit,
+        };
+
+        if (category && category.length > 0) {
+            category.forEach((cat, index) => {
+                params[`category[${index}]`] = cat;
+            });
+        }
+
         return await $voxmentor_api_public.get<types.usersType>(
             urls.user.get(),
             {
-                params: {
-                    keyword,
-                    place_of_work,
-                    science_degree,
-                    yearsOfExperienceMin,
-                    yearsOfExperienceMax,
-                    awardMin,
-                    awardMax,
-                    publicationsMin,
-                    publicationsMax,
-                    portfolioMin,
-                    portfolioMax,
-                    courseMin,
-                    courseMax,
-                    page,
-                    limit,
-                },
+               params,
             }
         );
     }
@@ -123,6 +132,7 @@ export class User {
             science_degree,
             contacts,
         };
+        console.log('Обновленные',fields)
 
         Object.entries(fields).forEach(([key, value]) => {
             if (value) {
@@ -217,7 +227,7 @@ export class Portfolio {
     static async getPortfolio({
         keyword,
         category,
-        type,
+        typeId,
         page,
         limit,
     }: types.portfolioParamType): Promise<
@@ -226,7 +236,18 @@ export class Portfolio {
         return await $voxmentor_api_public.get<types.PortfolioListType>(
             urls.portfolio.get(),
             {
-                params: { keyword, category, type, page, limit },
+                params: { keyword, category, typeId, page, limit },
+            }
+        );
+    }
+
+    static async getPortfolioType(): Promise<
+        AxiosResponse<types.TypePortfolio[]>
+    > {
+        return await $voxmentor_api_public.get<types.TypePortfolio[]>(
+            urls.portfolio.getTypes(),
+            {
+                params: {},
             }
         );
     }
@@ -246,14 +267,14 @@ export class Portfolio {
         title,
         content,
         category,
-        type,
+        typeId,
         image,
     }: types.createPortfolio): Promise<AxiosResponse<types.PortfolioType>> {
         const formData = new FormData();
         formData.append("title", title);
         formData.append("content", content);
         formData.append("category", category);
-        formData.append("type", type);
+        formData.append("typeId", String(typeId));
         formData.append("image", image);
         return await $voxmentor_api_public.post<types.PortfolioType>(
             urls.portfolio.create(),
@@ -263,13 +284,13 @@ export class Portfolio {
 
     static async edit(
         { id }: types.ID,
-        { title, content, category, type, image }: types.createPortfolio
+        { title, content, category, typeId, image }: types.createPortfolio
     ): Promise<AxiosResponse<types.PortfolioType>> {
         const formData = new FormData();
         formData.append("title", title);
         formData.append("content", content);
         formData.append("category", category);
-        formData.append("type", type);
+        formData.append("type", String(typeId));
         formData.append("image", image);
         return await $voxmentor_api_public.put<types.PortfolioType>(
             urls.portfolio.edit(id),

@@ -19,7 +19,7 @@ export const usePortfolio = () => {
         store.category = value;
     }
     function setType(value: string) {
-        store.type = value;
+        store.typeId = value;
     }
     useEffect(() => {
         const keyword = path.get("keyword");
@@ -32,7 +32,7 @@ export const usePortfolio = () => {
             store.category = category;
         }
         if (type != null) {
-            store.type = type;
+            store.typeId = type;
         }
     }, []);
 
@@ -47,15 +47,30 @@ export const usePortfolio = () => {
         } else {
             current.delete("category");
         }
-        if (store.type != "") {
-            current.set("type", store.type);
+        if (store.typeId != "") {
+            current.set("type", String(store.typeId));
         } else {
             current.delete("type");
         }
         const search = current.toString();
         const query = search ? `?${search}` : "";
         window.history.pushState(null, "", `${pathname}${query}`);
-    }, [store.keyword, store.category, store.type]);
+    }, [store.keyword, store.category, store.typeId]);
+
+    useEffect(() => {
+        if (!store.loadingT) {
+            store.loadingT = true;
+            global_store.store.portfolio
+                .getPortfolioType()
+                .then((response) => {
+                    store.types = response.data;
+                })
+                .catch(() => {})
+                .finally(() => {
+                    store.loadingT = false;
+                });
+        }
+    }, []);
 
     useEffect(() => {
         if (!store.loading) {
@@ -64,7 +79,10 @@ export const usePortfolio = () => {
                 .getPortfolioList({
                     keyword: store.keyword,
                     category: store.category,
-                    type: store.type,
+                    typeId:
+                        store.typeId.trim() !== ""
+                            ? Number(store.typeId)
+                            : undefined,
                     page: store.page,
                     limit: store.limit,
                 })
@@ -81,7 +99,7 @@ export const usePortfolio = () => {
                     store.loading = false;
                 });
         }
-    }, [store.page, store.keyword, store.category, store.type]);
+    }, [store.page, store.keyword, store.category, store.typeId]);
 
     return {
         portfolio: store.portfolio,
@@ -89,10 +107,12 @@ export const usePortfolio = () => {
         setKeyword,
         category: store.category,
         setCategory,
-        type: store.type,
+        type: store.typeId,
         setType,
         page: store.page,
         pageCount: store.page_count,
         limit: store.limit,
+        loadingT: store.loadingT,
+        types: store.types,
     };
 };

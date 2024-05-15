@@ -10,6 +10,7 @@ type PropsType = {
     title?: string | null;
     subtitle?: string | null;
     loading: boolean;
+    proj?: string;
 };
 
 export const Card = ({ ...props }: PropsType) => {
@@ -35,25 +36,25 @@ export const Card = ({ ...props }: PropsType) => {
                         src={
                             props.src
                                 ? baseUrl + props.src
-                                : "https://api.dicebear.com/7.x/miniavs/svg?seed=25"
+                                : props.proj
+                                ? "/noposter.jpg"
+                                : "/user.png"
                         }
                     />
                 }
             >
                 <div className={style.titleContainer}>
                     <Meta
-                        style={{margin: "0", padding: "0" }}
+                        style={{ margin: "0", padding: "0" }}
                         title={
                             <p className={style.title}>
-                                {props.title ? props.title : "undefined"}
+                                {props.title ? props.title : "null"}
                             </p>
                         }
                         description={
-                            props.subtitle ? (
-                                <p className={style.subtitle}>
-                                    {props.subtitle ? props.subtitle : "undefined"}
-                                </p>
-                            ) : null
+                            <p className={style.subtitle}>
+                                {props.subtitle ? props.subtitle : "null"}
+                            </p>
                         }
                     />
                 </div>

@@ -137,7 +137,7 @@ export const ItemTable = observer(({ ...props }: PropsType) => {
             ) : (
                 <div className={style.titleTable}>
                     <div className={`${style.itemTitle} ${style.item}`}>
-                        {props.title}|{props.kei}
+                        {props.title}
                     </div>
                     <div className={`${style.itemTitle} ${style.item}`}>
                         {props.date}

@@ -35,6 +35,7 @@ class Portfolio {
     public readonly create = services.Portfolio.create;
     public readonly edit = services.Portfolio.edit;
     public readonly delete = services.Portfolio.delete;
+    public readonly getPortfolioType = services.Portfolio.getPortfolioType;
 }
 class Course {
     constructor() {
@@ -90,6 +91,7 @@ export class Store {
     public isAuth: boolean = false;
     private token: string | null = null;
     public update_profile: boolean = false;
+    public typePortfolio: types.TypePortfolio[] = [];
 
     constructor() {
         makeAutoObservable(this);

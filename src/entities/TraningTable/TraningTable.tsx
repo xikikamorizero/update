@@ -7,18 +7,25 @@ import { observer } from "mobx-react-lite";
 type PropsType = {
     traning?: Traning[];
     editMode: boolean;
+
+    titleTable:string;
+    dateTable:string;
+    locationTable:string;
+    organizationTable:string;
+    numberOfHoursTable:string;
+    docsTable:string;
 };
 
 export const TraningTable = observer(({ ...props }: PropsType) => {
     return (
         <div className={style.container}>
             <div className={style.titleTable}>
-                <div className={style.itemTitle}>Название</div>
-                <div className={style.itemTitle}>Дата</div>
-                <div className={style.itemTitle}>Место</div>
-                <div className={style.itemTitle}>Организация</div>
-                <div className={style.itemTitle}>Кол.часов</div>
-                <div className={style.itemTitle}>Доки</div>
+                <div className={style.itemTitle}>{props.titleTable}</div>
+                <div className={style.itemTitle}>{props.dateTable}</div>
+                <div className={style.itemTitle}>{props.locationTable}</div>
+                <div className={style.itemTitle}>{props.organizationTable}</div>
+                <div className={style.itemTitle}>{props.numberOfHoursTable}</div>
+                <div className={style.itemTitle}>{props.docsTable}</div>
             </div>
             {props.traning
                 ?.slice()

@@ -1,6 +1,7 @@
 import style from "./Profile.module.css";
 import { ProfileInfo } from "@/widgets";
 import { WithWrapper } from "@/features/hoc/authRedirect";
+import { useTranslations } from "next-intl";
 
 type PropsType = {
     loc: string;
@@ -19,22 +20,26 @@ type PropsType = {
     create_course: string;
     out: string;
 
-    staj:string;
-    add_staj:string;
-    positionT:string;
-    add_positionT:string;
-    create:string;
-    control:string;
-    educationT:string;
-    traningT:string;
-    publicationT:string;
-    awardT:string;
-    descriptionT:string;
+    staj: string;
+    add_staj: string;
+    positionT: string;
+    add_positionT: string;
+    create: string;
+    control: string;
+    educationT: string;
+    traningT: string;
+    publicationT: string;
+    awardT: string;
+    descriptionT: string;
     contactsT: string;
-    scienceDegreeT:string;
+    scienceDegreeT: string;
+
+    subscriptions: string;
+    no_subscriptions: string;
 };
 
 export const Profile = ({ ...props }: PropsType) => {
+    const t = useTranslations("Table");
     return (
         <div className={style.container}>
             <WithWrapper loc={props.loc}>
@@ -54,7 +59,6 @@ export const Profile = ({ ...props }: PropsType) => {
                     create_portfolio={props.create_portfolio}
                     create_course={props.create_course}
                     out={props.out}
-
                     staj={props.staj}
                     add_staj={props.add_staj}
                     positionT={props.positionT}
@@ -66,8 +70,18 @@ export const Profile = ({ ...props }: PropsType) => {
                     publicationT={props.publicationT}
                     awardT={props.awardT}
                     descriptionT={props.descriptionT}
-                contactsT={props.contactsT}
-                scienceDegreeT={props.scienceDegreeT}
+                    contactsT={props.contactsT}
+                    scienceDegreeT={props.scienceDegreeT}
+
+                    titleTable={t("titleTable")}
+                    dateTable={t("dateTable")}
+                    locationTable={t("locationTable")}
+                    organizationTable={t("organizationTable")}
+                    numberOfHoursTable={t("numberOfHoursTable")}
+                    docsTable={t("docsTable")}
+
+                    subscriptions={props.subscriptions}
+                    no_subscriptions={props.no_subscriptions}
                 />
             </WithWrapper>
         </div>

@@ -1,13 +1,18 @@
 "use client";
 import style from "./Profile.module.css";
 import { baseUrl } from "@/shared/api/const";
-import { Profile as ProfileIcon } from "iconsax-react";
+import {
+    Profile as ProfileIcon,
+    Teacher,
+    UserOctagon,
+    Ranking,
+} from "iconsax-react";
 import { CardPublication } from "@/shared/CardPublication/CardPublication";
 import { DescriptionEditBlok } from "@/shared";
 import { Categories } from "@/shared/Categories/Categories";
 import { Avatar, Tooltip } from "antd";
 import { types } from "@/shared/api";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { CardProject } from "@/shared";
 import Link from "next/link";
 import { ImageInput, WrapperEditBlock } from "@/shared";
@@ -16,11 +21,14 @@ import {
     Education,
     Publications,
     Traning,
+    TypePortfolio,
 } from "@/shared/api/types";
 import { TraningTable } from "../TraningTable/TraningTable";
 import { observer } from "mobx-react-lite";
 import { Award } from "../Award/Award";
 import { EducationCard } from "@/shared/EducationCard/EducationCard";
+import { BlockPortfolio } from "./BlockPortfolio";
+import { WrapperEditBlockNum } from "@/shared/WrapperEditBlock/WrapperEditBlokNum";
 
 type PropsType = {
     user: types.userType | null;
@@ -37,8 +45,8 @@ type PropsType = {
     setPosition?: (a: string) => void;
     scienceDegree?: string | null;
     setScienceDegree?: (a: string) => void;
-    yearsOfExperience?: string;
-    setYearsOfExperience?: (a: string) => void;
+    yearsOfExperience?: number;
+    setYearsOfExperience?: (a: number) => void;
     contacts?: string | null;
     setContacts?: (a: string) => void;
     image?: File | null;
@@ -60,9 +68,12 @@ type PropsType = {
     traning?: Traning[];
     awards?: AwardType[];
     education?: Education[];
+    typesPortfolio?: TypePortfolio[];
 
     subscribers: string;
     no_subscribers: string;
+    subscriptions: string;
+    no_subscriptions: string;
     portfolio_title: string;
     course_title: string;
     add_name?: string;
@@ -79,16 +90,23 @@ type PropsType = {
     staj?: string;
     add_staj?: string;
     positionT?: string;
-    add_positionT?: string;  
-    descriptionT?:string;
+    add_positionT?: string;
+    descriptionT?: string;
     contactsT?: string;
-    scienceDegreeT?:string;
+    scienceDegreeT?: string;
     create?: string;
     control?: string;
     educationT?: string;
     traningT?: string;
     publicationT?: string;
     awardT?: string;
+
+    titleTable: string;
+    dateTable: string;
+    locationTable: string;
+    organizationTable: string;
+    numberOfHoursTable: string;
+    docsTable: string;
 
     logout?: () => void;
 };
@@ -126,7 +144,9 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         placeholder={props.add_name}
                         editMode={props.editMode}
                         block={
-                            <p className={style.userName}>{props.user?.name}</p>
+                            <p className={style.userName}>
+                                {props.user?.name ? props.user?.name : "null"}
+                            </p>
                         }
                     />
 
@@ -137,7 +157,9 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         editMode={props.editMode}
                         block={
                             <p className={style.place_of_work}>
-                                {props.user?.place_of_work}
+                                {props.user?.place_of_work
+                                    ? props.user?.place_of_work
+                                    : "null"}
                             </p>
                         }
                     />
@@ -167,9 +189,13 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         editMode={props.editMode}
                         block={
                             <div className={style.containerItemP}>
-                                <h1 className={style.contacts}>{props.positionT}:</h1>
-                                <p className={style.contacts}>  
-                                    {props.position}
+                                <h1 className={style.contacts}>
+                                    {props.positionT}:
+                                </h1>
+                                <p className={style.contacts}>
+                                    {props.user?.position
+                                        ? props.user?.position
+                                        : "null"}
                                 </p>
                             </div>
                         }
@@ -182,9 +208,13 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         editMode={props.editMode}
                         block={
                             <div className={style.containerItemP}>
-                                <h1 className={style.science_degree}>{props.scienceDegreeT}:</h1>
+                                <h1 className={style.science_degree}>
+                                    {props.scienceDegreeT}:
+                                </h1>
                                 <p className={style.science_degree}>
-                                    {props.user?.science_degree}
+                                    {props.user?.science_degree
+                                        ? props.user?.science_degree
+                                        : "null"}
                                 </p>
                             </div>
                         }
@@ -196,9 +226,13 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         editMode={props.editMode}
                         block={
                             <div className={style.containerItemP}>
-                                <h1 className={style.contacts}>{props.contactsT}:</h1>
+                                <h1 className={style.contacts}>
+                                    {props.contactsT}:
+                                </h1>
                                 <p className={style.contacts}>
-                                    {props.user?.contacts}
+                                    {props.user?.contacts
+                                        ? props.user?.contacts
+                                        : "null"}
                                 </p>
                             </div>
                         }
@@ -210,22 +244,26 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         editMode={props.editMode}
                         block={
                             <div className={style.containerItemP}>
-                                <h1 className={style.description}>{props.descriptionT}:</h1>
+                                <h1 className={style.description}>
+                                    {props.descriptionT}:
+                                </h1>
                                 <p className={style.description}>
-                                    {props.user?.description}
+                                    {props.user?.description
+                                        ? props.user?.description
+                                        : "null"}
                                 </p>
                             </div>
                         }
                     />
 
-                    <WrapperEditBlock
+                    <WrapperEditBlockNum
                         value={props.yearsOfExperience}
                         setValue={props.setYearsOfExperience}
                         placeholder={props.add_staj}
                         editMode={props.editMode}
                         block={
                             <p className={style.contacts}>
-                                {props.staj}: {props.yearsOfExperience}
+                                {props.staj}: {props.user?.yearsOfExperience}
                             </p>
                         }
                     />
@@ -271,6 +309,50 @@ export const Profile = observer(({ ...props }: PropsType) => {
                             )}
                         </Avatar.Group>
                     </div>
+                    
+                    {/*  */}
+                    {props.myProf ? (
+                        <div className={style.subscribers}>
+                            <p>{props.subscriptions}</p>
+                            <Avatar.Group
+                                maxCount={5}
+                                maxStyle={{
+                                    userSelect: "none",
+                                    color: "#000000",
+                                    backgroundColor: "var(--main_color)",
+                                }}
+                            >
+                                {props.user?.subscriptions.length !== 0 ? (
+                                    props.user?.subscriptions.map((a, i) => (
+                                        <Link
+                                            href={
+                                                props.myiD == a.id
+                                                    ? `/${props.loc}/profile`
+                                                    : `/${props.loc}/users/${a.id}`
+                                            }
+                                            style={{ borderRadius: "50%" }}
+                                            key={i}
+                                        >
+                                            <Tooltip
+                                                title={a.name}
+                                                placement="top"
+                                                key={i}
+                                            >
+                                                <Avatar
+                                                    src={baseUrl + a?.avatar}
+                                                />
+                                            </Tooltip>
+                                        </Link>
+                                    ))
+                                ) : (
+                                    <p>{props.no_subscriptions}</p>
+                                )}
+                            </Avatar.Group>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
+                    {/*  */}
 
                     {props.myProf ? (
                         <div
@@ -286,11 +368,23 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         <></>
                     )}
                     <p className={style.roles}>
-                        {props.user?.roles.some(
-                            (obj) => obj.value == "Professor"
-                        )
-                            ? "Professor"
-                            : "User"}
+                        {props.user?.roles.map((a, i) =>
+                            a.value == "User" ? (
+                                <div className={style.iconRole} title={a.value}>
+                                    <UserOctagon className={style.iconRole} />
+                                </div>
+                            ) : a.value == "Professor" ? (
+                                <div className={style.iconRole} title={a.value}>
+                                    <Teacher className={style.iconRole} />
+                                </div>
+                            ) : a.value == "Admin" ? (
+                                <div className={style.iconRole} title={a.value}>
+                                    <Ranking className={style.iconRole} />
+                                </div>
+                            ) : (
+                                <></>
+                            )
+                        )}
                     </p>
                 </div>
                 <div className={style.userDopInfo}>
@@ -314,25 +408,34 @@ export const Profile = observer(({ ...props }: PropsType) => {
                             </div>
                         </div>
                         <div className={style.projectWrapper}>
-                            <div className={style.projectContainer}>
-                                {portfolio
-                                    ? props.portfolio?.map((a, i) => (
-                                          <CardProject
-                                              href={`/${props.loc}/portfolio/${a.id}`}
-                                              image={a.image}
-                                              title={a.title}
-                                              key={i}
-                                          />
-                                      ))
-                                    : props.course?.map((a, i) => (
-                                          <CardProject
-                                              href={`/${props.loc}/course/${a.id}`}
-                                              image={a.image}
-                                              title={a.title}
-                                              key={i}
-                                          />
-                                      ))}
-                            </div>
+                            {portfolio ? (
+                                <div className={style.projectWrapperPort}>
+                                    {props.typesPortfolio?.map((a, i) => (
+                                        <BlockPortfolio
+                                            array={props.portfolio?.filter(
+                                                (item) => item.typeId === a.id
+                                            )}
+                                            loc={props.loc}
+                                            title={
+                                                props.loc == "ru"
+                                                    ? a.description
+                                                    : a.value
+                                            }
+                                        />
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className={style.projectContainer}>
+                                    {props.course?.map((a, i) => (
+                                        <CardProject
+                                            href={`/${props.loc}/course/${a.id}`}
+                                            image={a.image}
+                                            title={a.title}
+                                            key={i}
+                                        />
+                                    ))}
+                                </div>
+                            )}
                         </div>
 
                         {props.myProf &&
@@ -468,6 +571,12 @@ export const Profile = observer(({ ...props }: PropsType) => {
                     <TraningTable
                         editMode={editTraning}
                         traning={props.traning}
+                        titleTable={props.titleTable}
+                        dateTable={props.dateTable}
+                        locationTable={props.locationTable}
+                        organizationTable={props.organizationTable}
+                        numberOfHoursTable={props.numberOfHoursTable}
+                        docsTable={props.docsTable}
                     />
                 </div>
                 {props.myProf && (

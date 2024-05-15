@@ -57,5 +57,6 @@ export const useUser = ({ userId, loc }: PropsType) => {
         user: store.user,
         myProfile: global_store.store.profile,
         isIdPresent: isIdPresent,
+        typesPortfolio:global_store.store.typePortfolio
     };
 };

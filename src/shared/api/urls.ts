@@ -110,6 +110,9 @@ export const portfolio = {
     get() {
         return "/portfolio";
     },
+    getTypes(){
+        return "/types"
+    },
     getPortfolio(id: string) {
         return `/portfolio/${id}`;
     },

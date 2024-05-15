@@ -12,41 +12,39 @@ export const useProject = () => {
     const { store } = useContext(Context);
     const [editMode, setEditMode] = useState(false);
     const [name, setName] = useState<string | null>(
-        global_store.store.profile?.name
-            ? global_store.store.profile?.name
-            : null
+        global_store.store.profile?.name ? global_store.store.profile?.name : ""
     );
     const [description, setDescription] = useState<string | null>(
         global_store.store.profile?.description
             ? global_store.store.profile?.description
-            : null
+            : ""
     );
     const [placeOfWork, setPlaceOfWork] = useState<string | null>(
         global_store.store.profile?.place_of_work
             ? global_store.store.profile?.place_of_work
-            : null
+            : ""
     );
 
     const [position, setPosition] = useState<string | null>(
         global_store.store.profile?.position
             ? global_store.store.profile?.position
-            : null
+            : ""
     );
-    const [yearsOfExperience, setYearsOfExperience] = useState<string>(
+    const [yearsOfExperience, setYearsOfExperience] = useState<number>(
         global_store.store.profile?.yearsOfExperience
-            ? String(global_store.store.profile?.yearsOfExperience)
-            : "0"
+            ? global_store.store.profile?.yearsOfExperience
+            : 0
     );
 
     const [scienceDegree, setScienceDegree] = useState<string | null>(
         global_store.store.profile?.science_degree
             ? global_store.store.profile?.science_degree
-            : null
+            : ""
     );
     const [contacts, setContacts] = useState<string | null>(
         global_store.store.profile?.contacts
             ? global_store.store.profile?.contacts
-            : null
+            : ""
     );
     const [categories, setСategories] = useState<string[] | null>(
         global_store.store.profile?.categories
@@ -60,13 +58,13 @@ export const useProject = () => {
     function EditProfile() {
         global_store.store.user
             .editProfile({
-                name: name,
-                description: description,
-                place_of_work: placeOfWork,
-                position:position,
-                yearsOfExperience:yearsOfExperience,
-                science_degree: scienceDegree,
-                contacts: contacts,
+                name: name?.trim() !== "" ? name : "null",
+                description: description?.trim() !== "" ? description : "null",
+                place_of_work: placeOfWork?.trim() !== "" ? placeOfWork : "null",
+                position: position?.trim() !== "" ? position : "null",
+                yearsOfExperience:String(yearsOfExperience),
+                science_degree: scienceDegree?.trim() !== "" ? scienceDegree : "null",
+                contacts: contacts?.trim() !== "" ? contacts : "null",
                 categories: categories,
                 avatar: image,
             })
@@ -125,5 +123,6 @@ export const useProject = () => {
         course: store.course,
         EditProfile,
         logout,
+        typesPortfolio: global_store.store.typePortfolio,
     };
 };

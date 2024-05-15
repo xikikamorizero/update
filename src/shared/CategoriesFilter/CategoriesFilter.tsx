@@ -1,5 +1,5 @@
 "use client";
-import style from "./Categories.module.css";
+import style from "./CategoriesFilter.module.css";
 import { CloseCircle, AddCircle } from "iconsax-react";
 import { useState } from "react";
 
@@ -9,14 +9,17 @@ type PropsType = {
     editMode?: boolean;
 };
 
-export const Categories = ({ ...props }: PropsType) => {
+export const CategoriesFilter = ({ ...props }: PropsType) => {
     const [value, setValue] = useState("");
 
-    let categories = props.categories? [...props.categories]: [];
+    let categories = props.categories ? [...props.categories] : [];
+
+    console.log("loc",categories)
+    console.log("glob",props.categories)
 
     function DeleteItem(id: number) {
         categories.splice(id, 1);
-        if(props.setCategories) props.setCategories(categories);
+        if (props.setCategories) props.setCategories(categories);
     }
 
     function AddItem() {

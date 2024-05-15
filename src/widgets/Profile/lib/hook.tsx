@@ -25,6 +25,14 @@ export const useProfile = () => {
                 .catch(() => {
                     store.isAuth = false;
                 });
+            store.portfolio
+                .getPortfolioType()
+                .then((response) => {
+                    store.typePortfolio = response.data;
+                })
+                .catch(() => {
+                    store.isAuth = false;
+                });
         }
     }, [store.update_profile]);
 

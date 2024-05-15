@@ -11,6 +11,7 @@ type PropsType = {
     add_category: string;
     add_type: string;
     create: string;
+    selectType:string;
 };
 
 export const CreatePortfolio = ({ ...props }: PropsType) => {
@@ -39,16 +40,29 @@ export const CreatePortfolio = ({ ...props }: PropsType) => {
                     className={style.inputTitle}
                     placeholder={props.add_category}
                 />
-                <input
+
+                <select
+                    className={style.selectC}
                     value={data.type}
-                    disabled={data.loading}
+                    defaultValue={''}
                     onChange={(e) => {
                         data.setType(e.target.value);
                     }}
-                    type={"text"}
-                    className={style.inputTitle}
-                    placeholder={props.add_type}
-                />
+                >
+                    {data.loadingType ? (
+                        <div>Loading...</div>
+                    ) : (
+                        data.types?.map((a, i) => (
+                            <option key={i} value={a.id}>
+                                {props.loc == "ru" ? a.description : a.value}
+                            </option>
+                        ))
+                    )}
+                    <option value={''} disabled={true}>
+                        {props.selectType}
+                    </option>
+                </select>
+
                 <div className={style.inputImage}>
                     <ImageInput
                         image={data.uploadedImages}

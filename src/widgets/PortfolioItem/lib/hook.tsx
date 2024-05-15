@@ -9,7 +9,7 @@ type PropsType = {
     loc: string;
 };
 
-export const usePortfolio = ({ portfolioId,loc }: PropsType) => {
+export const usePortfolio = ({ portfolioId, loc }: PropsType) => {
     const global_store = useContext(GlobalContext);
     const { store } = useContext(Context);
     let router = useRouter();
@@ -17,7 +17,7 @@ export const usePortfolio = ({ portfolioId,loc }: PropsType) => {
     const [editMode, setEditMode] = useState(false);
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
-    const [type, setType] = useState("");
+    const [type, setType] = useState(1);
     const [uploadedImages, setUploadedImages] = useState<File | null>(null);
     const [dataEditor, setDataEditor] = useState(
         store.portfolio?.content ? store.portfolio.content : "{}"
@@ -27,7 +27,7 @@ export const usePortfolio = ({ portfolioId,loc }: PropsType) => {
             setTitle(store.portfolio.title);
             setDataEditor(store.portfolio.content);
             setCategory(store.portfolio.category);
-            setType(store.portfolio.type);
+            setType(store.portfolio.typeId);
         }
     }, [store.portfolio]);
 
@@ -39,7 +39,7 @@ export const usePortfolio = ({ portfolioId,loc }: PropsType) => {
                     title: title,
                     content: dataEditor,
                     category,
-                    type,
+                    typeId: type,
                     image: uploadedImages,
                 }
             )

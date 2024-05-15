@@ -11,13 +11,23 @@ import { Context } from "./lib/context";
 import { SearchNormal1, FilterSquare } from "iconsax-react";
 import Link from "next/link";
 import { NoItem } from "@/shared/NoItem/NoItem";
+import { CategoriesFilter } from "@/shared/CategoriesFilter/CategoriesFilter";
 
 type PropsType = {
     loc: string;
     title: string;
     type: string;
-    category: string;
+    scienceDegree: string;
     keyword: string;
+
+    awardT: string;
+    publicationT: string;
+    stajT: string;
+    projectT: string;
+    courseT: string;
+    categoryT: string;
+    from: string;
+    to: string;
 };
 
 export const Users = observer(({ ...props }: PropsType) => {
@@ -51,79 +61,89 @@ export const Users = observer(({ ...props }: PropsType) => {
                             placeholder={props.type}
                         />
                         <InputFilter
+                            width={"150px"}
                             value={data.scienceDegreets}
                             setValue={data.setScienceDegreets}
-                            placeholder={props.category}
+                            placeholder={props.scienceDegree}
                         />
                     </div>
 
                     <div className={style.secondaryFilterContainer}>
-                        Award:
+                        {props.awardT}:
                         <InputFilterNum
                             value={data.awardMin}
                             setValue={data.setAwardMin}
-                            placeholder={props.type}
+                            placeholder={props.from}
                         />
                         <InputFilterNum
                             value={data.awardMax}
                             setValue={data.setAwardMax}
-                            placeholder={props.category}
+                            placeholder={props.to}
                         />
                     </div>
 
                     <div className={style.secondaryFilterContainer}>
-                        Publication:
+                        {props.publicationT}:
                         <InputFilterNum
                             value={data.publicationsMin}
                             setValue={data.setPublicationsMin}
-                            placeholder={props.type}
+                            placeholder={props.from}
                         />
                         <InputFilterNum
                             value={data.publicationsMax}
                             setValue={data.setPublicationsMax}
-                            placeholder={props.category}
+                            placeholder={props.to}
                         />
                     </div>
 
                     <div className={style.secondaryFilterContainer}>
-                        Стаж:
+                        {props.stajT}:
                         <InputFilterNum
                             value={data.yearsOfExperienceMin}
                             setValue={data.setYearsOfExperienceMin}
-                            placeholder={props.type}
+                            placeholder={props.from}
                         />
                         <InputFilterNum
                             value={data.yearsOfExperienceMax}
                             setValue={data.setYearsOfExperienceMax}
-                            placeholder={props.category}
+                            placeholder={props.to}
                         />
                     </div>
 
                     <div className={style.secondaryFilterContainer}>
-                        Проекты:
+                        {props.projectT}:
                         <InputFilterNum
                             value={data.portfolioMin}
                             setValue={data.setPortfolioMin}
-                            placeholder={props.type}
+                            placeholder={props.from}
                         />
                         <InputFilterNum
                             value={data.portfolioMax}
                             setValue={data.setPortfolioMax}
-                            placeholder={props.category}
+                            placeholder={props.to}
                         />
                     </div>
 
                     <div className={style.secondaryFilterContainer}>
-                        Курсы:
+                        {props.courseT}:
                         <InputFilterNum
                             value={data.courseMin}
                             setValue={data.setCourseMin}
-                            placeholder={props.type}
+                            placeholder={props.from}
                         />
                         <InputFilterNum
                             value={data.courseMax}
                             setValue={data.setCourseMax}
-                            placeholder={props.category}
+                            placeholder={props.to}
+                        />
+                    </div>
+
+                    <div className={style.secondaryFilterContainer}>
+                        <p>{props.categoryT}</p>
+                        <CategoriesFilter
+                            categories={data.categories}
+                            setCategories={data.setСategories}
+                            editMode={filter}
                         />
                     </div>
 

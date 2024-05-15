@@ -70,6 +70,15 @@
     font-size: 25px;
     font-weight: 600;
 }
+.selectC{
+    width: 220px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @media (max-width: 750px) {
     .filterContainer{
         align-items: start;

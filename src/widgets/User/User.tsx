@@ -11,6 +11,8 @@ type PropsType = {
     userId: string;
     loc: string;
 
+    subscriptions: string;
+    no_subscriptions: string;
     subscribers: string;
     no_subscribers: string;
     portfolio_title: string;
@@ -27,10 +29,17 @@ type PropsType = {
     descriptionT:string;
     contactsT: string;
     scienceDegreeT:string;
+
+    titleTable:string;
+    dateTable:string;
+    locationTable:string;
+    organizationTable:string;
+    numberOfHoursTable:string;
+    docsTable:string;
 };
 
 export const User = observer(({ ...props }: PropsType) => {
-    const { user, myProfile, isIdPresent } = useUser({
+    const { user, myProfile, isIdPresent, typesPortfolio } = useUser({
         userId: props.userId,
         loc: props.loc,
     });
@@ -95,6 +104,17 @@ export const User = observer(({ ...props }: PropsType) => {
                 traning={user?.traning}
                 awards={user?.awards}
                 education={user?.education}
+                typesPortfolio={typesPortfolio}
+
+                titleTable={props.titleTable}
+                dateTable={props.dateTable}
+                locationTable={props.locationTable}
+                organizationTable={props.organizationTable}
+                numberOfHoursTable={props.numberOfHoursTable}
+                docsTable={props.docsTable}
+
+                subscriptions={props.subscriptions}
+                no_subscriptions={props.no_subscriptions}
             />
         </div>
     );

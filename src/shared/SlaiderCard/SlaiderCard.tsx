@@ -29,11 +29,11 @@ export const SlaiderCard = ({ ...props }: PropsType) => {
                     src={
                         props.src
                             ? baseUrl + props.src
-                            : "https://api.dicebear.com/7.x/miniavs/svg?seed=25"
+                            : "/user.png"
                     }
                 />
-                <p className={style.title}>{props.title}</p>
-                <p className={style.subtitle}>{props.subtitle}</p>
+                <p className={style.title}>{props.title?props.title:"null"}</p>
+                <p className={style.subtitle}>{props.subtitle?props.subtitle:"null"}</p>
             </div>
         </Skeleton>
     );

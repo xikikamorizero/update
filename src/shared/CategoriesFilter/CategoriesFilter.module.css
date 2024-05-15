@@ -1,0 +1,37 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+}
+.item {
+    width: max-content;
+    height: max-content;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 25px;
+    user-select: none;
+    background-color: rgba(37, 38, 39, 0.792);
+    display: flex;
+    align-items: center;
+    gap:3px;
+}
+.icon{
+    cursor: pointer;
+}
+.inputTitle {
+    width: 100px;
+    font-size: 15px;
+    padding:0px 5px; 
+    height: 30px;
+    border-radius: 5px;
+    color: var(--main_text_color);
+    background-color: var(--sub_color);
+    border: 1px solid var(--main_color);
+}
+.addCategory{
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+}

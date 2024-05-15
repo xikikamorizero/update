@@ -8,6 +8,7 @@ type PropsType = {
     value: string;
     placeholder: string;
     setValue: (key: string) => void;
+    width?: string;
 };
 
 export const InputFilter = ({ ...props }: PropsType) => {
@@ -34,6 +35,7 @@ export const InputFilter = ({ ...props }: PropsType) => {
 
     return (
         <input
+            style={{ maxWidth: props.width }}
             className={props.type ? style.searchInput : style.filterInput}
             type={"text"}
             placeholder={props.placeholder}

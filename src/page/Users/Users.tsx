@@ -6,8 +6,17 @@ type PropsType = {
     loc: string;
     title: string;
     type: string;
-    category: string;
+    scienceDegree: string;
     keyword: string;
+
+    awardT:string;
+    publicationT:string;
+    stajT:string;
+    projectT:string;
+    courseT:string;
+    categoryT:string;
+    from:string;
+    to:string;
 };
 
 export const Users = ({ ...props }: PropsType) => {
@@ -18,8 +27,17 @@ export const Users = ({ ...props }: PropsType) => {
                     loc={props.loc}
                     title={props.title}
                     type={props.type}
-                    category={props.category}
+                    scienceDegree={props.scienceDegree}
                     keyword={props.keyword}
+
+                    awardT={props.awardT}
+                    publicationT={props.publicationT}
+                    stajT={props.stajT}
+                    projectT={props.projectT}
+                    courseT={props.courseT}
+                    categoryT={props.categoryT}
+                    from={props.from}
+                    to={props.to}
                 />
             </WithWrapper>
         </div>

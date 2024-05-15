@@ -14,7 +14,7 @@ export interface createPortfolio {
     title: string;
     content: string;
     category: string;
-    type: string;
+    typeId: number;
     image: any;
 }
 export interface createCourse {
@@ -75,26 +75,27 @@ export interface LoginResponseType {
     token: string;
 }
 export interface usersParamType {
-    keyword: string;
-    place_of_work: string;
-    science_degree: string;
-    yearsOfExperienceMin: number | null;
-    yearsOfExperienceMax: number | null;
-    awardMin: number | null;
-    awardMax: number | null;
-    publicationsMin: number | null;
-    publicationsMax: number | null;
-    portfolioMin: number | null;
-    portfolioMax: number | null;
-    courseMin: number | null;
-    courseMax: number | null;
-    page: number;
-    limit: number;
+    keyword?: string;
+    place_of_work?: string;
+    science_degree?: string;
+    category?:string[];
+    yearsOfExperienceMin?: number | null;
+    yearsOfExperienceMax?: number | null;
+    awardMin?: number | null;
+    awardMax?: number | null;
+    publicationsMin?: number | null;
+    publicationsMax?: number | null;
+    portfolioMin?: number | null;
+    portfolioMax?: number | null;
+    courseMin?: number | null;
+    courseMax?: number | null;
+    page?: number;
+    limit?: number;
 }
 export interface portfolioParamType {
     keyword: string;
     category: string;
-    type: string;
+    typeId?: number;
     page: number;
     limit: number;
 }
@@ -202,10 +203,16 @@ export interface PortfolioType {
     title: string;
     content: string;
     category: string;
-    type: string;
+    typeId:number;
+    type: TypePortfolio;
     image: string | null;
     docs: string | null;
     userId: number;
+}
+export interface TypePortfolio{
+    id:number;
+    value:string;
+    description:string;
 }
 
 export interface PortfolioListType {

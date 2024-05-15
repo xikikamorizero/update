@@ -1,17 +1,36 @@
 "use client";
 import { Context as GlobalContext } from "@/shared/api";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { TypePortfolio } from "@/shared/api/types";
 
-export const useCreatePortfolio = ({loc}:{loc:string}) => {
+export const useCreatePortfolio = ({ loc }: { loc: string }) => {
     const { store } = useContext(GlobalContext);
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState("");
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
-    const [type, setType] = useState("");
+    const [type, setType] = useState('');
     const [uploadedImages, setUploadedImages] = useState<File | null>(null);
+
+    const [loadingType, setLoadingType] = useState(false);
+    const [types, setTypes] = useState<TypePortfolio[]>([]);
     let router = useRouter();
+
+    useEffect(() => {
+        if (!loadingType) {
+            setLoadingType(true);
+            store.portfolio
+                .getPortfolioType()
+                .then((response) => {
+                    setTypes(response.data);
+                })
+                .catch(() => {})
+                .finally(() => {
+                    setLoadingType(false);
+                });
+        }
+    }, []);
 
     function Create() {
         if (!loading) {
@@ -21,7 +40,7 @@ export const useCreatePortfolio = ({loc}:{loc:string}) => {
                     title: title,
                     content: data,
                     category,
-                    type,
+                    typeId: Number(type),
                     image: uploadedImages,
                 })
                 .then((response) => {
@@ -49,6 +68,8 @@ export const useCreatePortfolio = ({loc}:{loc:string}) => {
         type,
         setType,
         uploadedImages,
-        setUploadedImages
+        setUploadedImages,
+        types,
+        loadingType,
     };
 };

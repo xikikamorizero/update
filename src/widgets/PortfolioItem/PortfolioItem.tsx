@@ -10,8 +10,8 @@ import Link from "next/link";
 type PropsType = {
     loc: string;
     portfolioId: string;
-    category:string;
-    type:string;
+    category: string;
+    type: string;
     editType: string;
     editCategory: string;
     editTitle: string;
@@ -23,7 +23,7 @@ type PropsType = {
 export const PortfolioItem = observer(({ ...props }: PropsType) => {
     const data = usePortfolio({
         portfolioId: props.portfolioId,
-        loc:props.loc
+        loc: props.loc,
     });
     return (
         <div className={style.wrapper}>
@@ -68,20 +68,27 @@ export const PortfolioItem = observer(({ ...props }: PropsType) => {
                 )}
 
                 {!data.editMode ? (
-                    <p className={style.subInfo}>{props.type}:{data.portfolio?.type}</p>
+                    <p className={style.subInfo}>
+                        {props.type}:
+                        {props.loc == "ru"
+                            ? data.portfolio?.type?.description
+                            : data.portfolio?.type?.value}
+                    </p>
                 ) : (
                     <input
                         className={`${style.subInput} ${style.subInfo}`}
                         value={data.type}
                         onChange={(e) => {
-                            data.setType(e.target.value);
+                            data.setType(Number(e.target.value));
                         }}
-                        type={"text"}
+                        type={"number"}
                         placeholder={props.editType}
                     />
                 )}
-                
-                <Link href={`/${props.loc}/users/${data.portfolio?.userId}`}>{props.creator}</Link>
+
+                <Link href={`/${props.loc}/users/${data.portfolio?.userId}`}>
+                    {props.creator}
+                </Link>
 
                 {data.profile?.id == data.portfolio?.userId && (
                     <div className={style.buttonContainer}>

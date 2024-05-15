@@ -22,14 +22,23 @@
     "Teachers": {
         "title": "Teachers",
         "type": "type",
-        "category": "category",
-        "keyword": "Find by name"
+        "scienceDegree": "Science Degree",
+        "keyword": "Find by name",
+
+        "awardT":"Awards",
+        "publicationT":"Publications",
+        "stajT":"Experience",
+        "projectT":"Projects",
+        "courseT":"Сourses",
+        "categoryT":"Сategories",
+        "from":"from",
+        "to":"to"
     },
     "Portfolio": {
         "title": "Portfolio",
-        "type": "type",
+        "type": "all",
         "category": "category",
-        "keyword": "Find by name",
+        "keyword": "Find by title",
         "editType": "editType",
         "editCategory": "editCategory",
         "editTitle": "editTitle",
@@ -44,9 +53,9 @@
         "title_2": "Our Mission",
         "text_2": "We aim to make education accessible and engaging for everyone. Our goal is to provide a space where teachers can share their expertise and knowledge, and students can find courses that interest them.",
         "title_3": "About Our Platform",
-        "text_3": "The voxMentor website allows teachers to register and showcase their portfolios, where they can present their experience and specialization. Additionally, teachers can create and publish courses in their field of expertise.",
+        "text_3": "The VoxMentor website allows teachers to register and showcase their portfolios, where they can present their experience and specialization. Additionally, teachers can create and publish courses in their field of expertise.",
         "title_4": "Join Us!",
-        "text_4": "We welcome anyone who shares our commitment to education and development. Join voxMentor now to start your educational journey!"
+        "text_4": "We welcome anyone who shares our commitment to education and development. Join VoxMentor now to start your educational journey!"
     },
     "Profile": {
         "add_name": "Add name",
@@ -56,7 +65,7 @@
         "add_scienceDegree": "Add science degree",
         "add_contacts": "Add contacts ",
         "add_description": "Add description",
-        "subscribers": "subscribers:",
+        "subscribers": "Subscribers:",
         "no_subscribers": "no subscribers ",
         "portfolio_title": "Portfolio ",
         "course_title": "Сourses",
@@ -79,7 +88,18 @@
 
         "descriptionT": "about me",
         "contactsT": "Contacts",
-        "scienceDegreeT": "Academic Degree"
+        "scienceDegreeT": "Academic Degree",
+
+        "subscriptions":"Subscriptions:",
+        "no_subscriptions":"no subscriptions"
+    },
+    "Table":{
+        "titleTable":"Title",
+        "dateTable":"Date",
+        "locationTable":"Location",
+        "organizationTable":"Organization",
+        "numberOfHoursTable":"Number of Hours",
+        "docsTable":"Document"
     },
     "Course": {
         "description": "Description",
@@ -114,7 +134,8 @@
         "add_title": "Add title",
         "add_category": "Add category",
         "add_type": "Add type",
-        "create": "Create"
+        "create": "Create",
+        "selectType":"Select type"
     },
     "CreateAward": {
         "add_title": "Add title",

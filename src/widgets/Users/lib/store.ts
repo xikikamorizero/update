@@ -6,6 +6,7 @@ export class Store {
     public keyword = "";
     public placeOfWork = "";
     public scienceDegreets = "";
+    public categories:string[] = []
     public count: number | null = null;
     public page_count: number | null = null;
     public page: number = 1;

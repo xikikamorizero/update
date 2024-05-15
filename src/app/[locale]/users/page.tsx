@@ -15,8 +15,16 @@ export default function Users({ params }: { params: { locale: string } }) {
                 loc={params.locale}
                 title={t("title")}
                 type={t("type")}
-                category={t("category")}
+                scienceDegree={t("scienceDegree")}
                 keyword={t("keyword")}
+                awardT={t("awardT")}
+                publicationT={t("publicationT")}
+                stajT={t("stajT")}
+                projectT={t("projectT")}
+                courseT={t("courseT")}
+                categoryT={t("categoryT")}
+                from={t("from")}
+                to={t("to")}
             />
         </>
     );

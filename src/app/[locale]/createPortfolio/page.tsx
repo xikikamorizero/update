@@ -22,6 +22,7 @@ export default function CreatePortfolio({
                 add_category={t("add_category")}
                 add_type={t("add_type")}
                 create={t("create")}
+                selectType={t("selectType")}
             />
         </>
     );

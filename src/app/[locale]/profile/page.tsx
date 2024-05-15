@@ -40,6 +40,9 @@ export default function Profile({ params }: { params: { locale: string } }) {
                 descriptionT={t("descriptionT")}
                 contactsT={t("contactsT")}
                 scienceDegreeT={t("scienceDegreeT")}
+                
+                subscriptions={t("subscriptions")}
+                no_subscriptions={t("no_subscriptions")}
             />
         </>
     );

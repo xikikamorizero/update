@@ -50,11 +50,27 @@ export const Portfolio = observer(({ ...props }: PropsType) => {
                             setValue={data.setCategory}
                             placeholder={props.category}
                         />
-                        <InputFilter
+
+                        <select
+                            className={style.selectC}
                             value={data.type}
-                            setValue={data.setType}
-                            placeholder={props.type}
-                        />
+                            onChange={(e) => {
+                                data.setType(e.target.value);
+                            }}
+                        >
+                            {data.loadingT ? (
+                                <div>Loading...</div>
+                            ) : (
+                                data.types.map((a, i) => (
+                                    <option value={a.id} key={i}>
+                                        {props.loc == "ru"
+                                            ? a.description
+                                            : a.value}
+                                    </option>
+                                ))
+                            )}
+                            <option value={""}>{props.type}</option>
+                        </select>
                     </div>
 
                     <div className={style.inputSearchContainer}>
@@ -85,6 +101,7 @@ export const Portfolio = observer(({ ...props }: PropsType) => {
                                     src={a.image}
                                     title={a.title}
                                     subtitle={a.category}
+                                    proj={"true"}
                                 />
                             </Link>
                         </Col>

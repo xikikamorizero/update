@@ -8,7 +8,7 @@
         "teachers": "o'qituvchilar",
         "portfolio": "portfolio",
         "about": "about",
-        "title":"© 2024, «VoxMentor». Bizda hamma narsa qiziq."
+        "title": "© 2024, «VoxMentor». Bizda hamma narsa qiziq."
     },
     "Main": {
         "text1": "Intellektual meros: sizning ekraningizda o'qituvchilarning kashfiyotlari.",
@@ -22,14 +22,23 @@
     "Teachers": {
         "title": "O'qituvchilar",
         "type": "universitet",
-        "category": "kategoriya",
-        "keyword": "Find by name"
+        "scienceDegree": "fan darajasi",
+        "keyword": "Find by name",
+
+        "awardT": "Mukofotlar",
+        "publicationT": "Nashrlar",
+        "stajT": "Ish tajribasi",
+        "projectT": "Loyihalar",
+        "courseT": "Kurslar",
+        "categoryT": "Kategoriyalar",
+        "from":"dan",
+        "to":"oldin"
     },
     "Portfolio": {
         "title": "Portfolio",
-        "type": "type",
-        "category": "category",
-        "keyword": "Find by name",
+        "type": "hammasi",
+        "category": "kategoriya",
+        "keyword": "Ism bo'yicha qidirish",
         "editType": "Turi o'zgartirish",
         "editCategory": "Kategoriyani o'zgartirish",
         "editTitle": "Sarlavhani o'zgartirish",
@@ -44,9 +53,9 @@
         "title_2": "Bizning Maqsadimiz",
         "text_2": "Biz har bir odam uchun ta'limni mukammal va qiziqarli qilishni hedef qilamiz. Maqsadimiz, o'qituvchilarining malakasini va bilimlarini bo'lishlari mumkin bo'lgan joyni taqdim etish va talabalarining ularni qiziqtiradigan kurslarni topishlarini ta'minlashdir.",
         "title_3": "Bizning Platforma Haqida",
-        "text_3": "voxMentor sayti o'qituvchilarga ro'yxatdan o'tish va ularning portfollari, ularning tajribalarini va mutaxassisligini namoyish etishi mumkin bo'lgan joylarini taqdim etishga imkon beradi. Qo'shimcha ravishda, o'qituvchilar o'z sohasida kurslar tuzish va nashr qilishlari mumkin.",
+        "text_3": "VoxMentor sayti o'qituvchilarga ro'yxatdan o'tish va ularning portfollari, ularning tajribalarini va mutaxassisligini namoyish etishi mumkin bo'lgan joylarini taqdim etishga imkon beradi. Qo'shimcha ravishda, o'qituvchilar o'z sohasida kurslar tuzish va nashr qilishlari mumkin.",
         "title_4": "Bizga qo'shiling!",
-        "text_4": "Ta'lim va rivojlanishga oid murojaatimizni ulashgan har bir kishini qo'shilishga chaqiramiz. Talabalar talabalarining ta'lim yo'ldoshligini boshlash uchun hozir voxMentorga qo'shiling!"
+        "text_4": "Ta'lim va rivojlanishga oid murojaatimizni ulashgan har bir kishini qo'shilishga chaqiramiz. Talabalar talabalarining ta'lim yo'ldoshligini boshlash uchun hozir VoxMentorga qo'shiling!"
     },
     "Profile": {
         "add_name": "Ism qo'shish",
@@ -79,7 +88,18 @@
 
         "descriptionT": "meni haqimda",
         "contactsT": "Aloqalar",
-        "scienceDegreeT": "Ilmiy daraja"
+        "scienceDegreeT": "Ilmiy daraja",
+
+        "subscriptions":"Obunalar:",
+        "no_subscriptions":"obunalar yo'q"
+    },
+    "Table":{
+        "titleTable":"Sarlavha",
+        "dateTable":"Sana",
+        "locationTable":"Joylashuv",
+        "organizationTable":"Tashkilot",
+        "numberOfHoursTable":"Soatlar soni",
+        "docsTable":"Hujjatlar"
     },
     "Course": {
         "description": "Ta'rif",
@@ -114,7 +134,8 @@
         "add_title": "Sarlavhani qo'shish",
         "add_category": "Turini qo'shish",
         "add_type": "Turdan qo'shish",
-        "create": "Yaratish"
+        "create": "Yaratish",
+        "selectType":"Turini tanlang"
     },
     "CreateAward": {
         "add_title": "Sarlavhani qo'shish",

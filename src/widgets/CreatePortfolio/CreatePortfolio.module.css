@@ -32,6 +32,15 @@
     background-position: center;
     background-size: cover;
 }
+.selectC {
+    width: 100%;
+    color: var(--main_text_color);
+    background-color: var(--sub_color);
+    border: 1px solid var(--main_color);
+    font-size: 20px;
+    padding: 10px 20px 10px 10px;
+    border-radius: 5px;
+}
 .buttonCreate {
     width: 100%;
     max-width: 300px;

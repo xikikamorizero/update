@@ -15,6 +15,10 @@ export const useUsers = () => {
     function setKeyword(keyword: string) {
         store.keyword = keyword;
     }
+    function setСategories(categories: string[]) {
+        store.categories = categories;
+    }
+
     function setPlaceOfWork(placeOfWork: string) {
         store.placeOfWork = placeOfWork;
     }
@@ -66,6 +70,11 @@ export const useUsers = () => {
         const portfolioMax = path.get("portfolio_max");
         const courseMin = path.get("course_min");
         const courseMax = path.get("course_max");
+        const categoryParams = path.getAll("category");
+
+        // if (categoryParams != null) {
+        //     setСategories(categoryParams as string[]);
+        // }
 
         if (keyword != null) {
             store.keyword = keyword;
@@ -106,9 +115,43 @@ export const useUsers = () => {
         if (courseMax != null) {
             store.courseMax = Number(courseMax);
         }
-    }, []);
+    }, [path]);
 
     useEffect(() => {
+        const categoryParams = path.getAll("category");
+        if (store.categories.length !== 0) {
+            console.log('категории',store.categories)
+
+            const missingInArray2 = store.categories.filter(
+                (item: string) => !categoryParams.includes(item)
+            );
+            console.log('missingInArray2',missingInArray2)
+            const missingInArray1 = categoryParams.filter(
+                (item: string) => !store.categories.includes(item)
+            );
+            console.log('missingInArray1',missingInArray1)
+
+            if (missingInArray2.length !== 0) {
+                store.categories.forEach((type) => {
+                    if (!categoryParams.includes(type)) {
+                        current.append("category", type);
+                    }
+                });
+            }
+
+            if (missingInArray1.length !== 0) {
+                current.delete("category");
+                const categoryParams = current.getAll("category");
+                store.categories.forEach((type) => {
+                    if (!categoryParams.includes(type)) {
+                        current.append("category", type);
+                    }
+                });
+            }
+        } else {
+            current.delete("category");
+        }
+
         if (store.keyword != "") {
             current.set("keyword", store.keyword);
         } else {
@@ -198,6 +241,7 @@ export const useUsers = () => {
         store.portfolioMax,
         store.courseMin,
         store.courseMax,
+        store.categories,
     ]);
 
     useEffect(() => {
@@ -209,16 +253,17 @@ export const useUsers = () => {
                     keyword: store.keyword,
                     place_of_work: store.placeOfWork,
                     science_degree: store.scienceDegreets,
-                    yearsOfExperienceMin:store.yearsOfExperienceMin,
-                    yearsOfExperienceMax:store.yearsOfExperienceMax,
-                    awardMin:store.awardMin,
-                    awardMax:store.awardMax,
-                    publicationsMin:store.publicationsMin,
-                    publicationsMax:store.publicationsMax,
-                    portfolioMin:store.portfolioMin,
-                    portfolioMax:store.portfolioMax,
-                    courseMin:store.courseMin,
-                    courseMax:store.courseMax,
+                    category: store.categories,
+                    yearsOfExperienceMin: store.yearsOfExperienceMin,
+                    yearsOfExperienceMax: store.yearsOfExperienceMax,
+                    awardMin: store.awardMin,
+                    awardMax: store.awardMax,
+                    publicationsMin: store.publicationsMin,
+                    publicationsMax: store.publicationsMax,
+                    portfolioMin: store.portfolioMin,
+                    portfolioMax: store.portfolioMax,
+                    courseMin: store.courseMin,
+                    courseMax: store.courseMax,
                     page: store.page,
                     limit: store.limit,
                 })
@@ -240,6 +285,7 @@ export const useUsers = () => {
         store.keyword,
         store.placeOfWork,
         store.scienceDegreets,
+        store.categories,
         store.awardMin,
         store.awardMax,
         store.publicationsMin,
@@ -263,6 +309,7 @@ export const useUsers = () => {
         setPortfolioMax,
         setCourseMin,
         setCourseMax,
+        setСategories,
 
         yearsOfExperienceMin: store.yearsOfExperienceMin,
         yearsOfExperienceMax: store.yearsOfExperienceMax,
@@ -274,6 +321,7 @@ export const useUsers = () => {
         portfolioMax: store.portfolioMax,
         courseMin: store.courseMin,
         courseMax: store.courseMax,
+        categories: store.categories,
 
         users: store.users,
         keyword: store.keyword,
