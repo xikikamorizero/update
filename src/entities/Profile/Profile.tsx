@@ -290,7 +290,6 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                         <Tooltip
                                             title={a.name}
                                             placement="top"
-                                            key={i}
                                         >
                                             <Avatar src={baseUrl + a?.avatar} />
                                         </Tooltip>
@@ -328,7 +327,6 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                             <Tooltip
                                                 title={a.name}
                                                 placement="top"
-                                                key={i}
                                             >
                                                 <Avatar
                                                     src={baseUrl + a?.avatar}
@@ -374,7 +372,7 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                     <Ranking className={style.iconRole} />
                                 </div>
                             ) : (
-                                <></>
+                                <div key={i}></div>
                             )
                         )}
                     </p>
