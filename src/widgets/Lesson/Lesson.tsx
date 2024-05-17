@@ -60,7 +60,7 @@ export const Lesson = observer(({ lessonId, loc, accessdenied, deleteT,saveT, ed
                         editorData={JSON.parse(data.lesson.content)}
                     />
                 ) : null}
-                {data.profile?.id == Number(data.authorId) && (
+                {data.profile?.id == data.authorId && (
                     <div className={style.buttonContainer}>
                         <button
                             disabled={!data.lesson}

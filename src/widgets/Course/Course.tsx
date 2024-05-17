@@ -86,6 +86,7 @@ export const Course = observer(({ ...props }: PropsType) => {
                                           src={a.image}
                                           title={a.title}
                                           subtitle={a.lesson_number}
+                                          proj={"true"}
                                       />
                                   </Link>
                               </Col>

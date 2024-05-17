@@ -15,7 +15,6 @@ export const useSlaiderProject = () => {
                 .getPortfolioList({
                     keyword: store.keyword,
                     category: store.category,
-                    type: store.type,
                     page: store.page,
                     limit: store.limit,
                 })

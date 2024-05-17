@@ -24,7 +24,7 @@ export const useUser = ({ userId, loc }: PropsType) => {
         targetId: string
     ) {
         if (arrayOfObjects) {
-            return arrayOfObjects.some((obj) => obj.id === Number(targetId));
+            return arrayOfObjects.some((obj) => obj.id === targetId);
         } else {
             return false;
         }
@@ -33,7 +33,7 @@ export const useUser = ({ userId, loc }: PropsType) => {
     useEffect(() => {
         console.log(userId);
         if (!store.loading) {
-            if(Number(userId)!=global_store.store.profile?.id){
+            if(userId!=global_store.store.profile?.id){
                 store.loading = true;
                 global_store.store.user
                     .getUser({ id: userId })

@@ -104,20 +104,20 @@ export interface defaultParamType {
     limit: number;
 }
 export interface Subscription {
-    subscriberId: number;
-    authorId: number;
+    subscriberId: string;
+    authorId: string;
     createdAt: string;
     updatedAt: string;
 }
 export interface Dislike {
-    id: number;
-    userId: number;
+    id: string;
+    userId: string;
     dislikedUserId: number;
     createdAt: string;
     updatedAt: string;
 }
 export interface Subscribers {
-    id: number;
+    id: string;
     email: string;
     name: string | null;
     avatar: string | null;
@@ -135,7 +135,7 @@ export interface Subscribers {
     Subscription: Subscription[];
 }
 export interface Likes {
-    id: number;
+    id: string;
     email: string;
     name: string | null;
     avatar: string | null;
@@ -153,7 +153,7 @@ export interface Likes {
     Dislike: Dislike[];
 }
 export interface userType {
-    id: number;
+    id: string;
     email: string;
     name: string | null;
     avatar: string | null;
@@ -207,7 +207,7 @@ export interface PortfolioType {
     type: TypePortfolio;
     image: string | null;
     docs: string | null;
-    userId: number;
+    userId: string;
 }
 export interface TypePortfolio{
     id:number;
@@ -215,7 +215,7 @@ export interface TypePortfolio{
     valueRu:string;
     valueUz:string;
     count:number;
-    userId:number;
+    userId:string;
     description:string;
 }
 
@@ -252,7 +252,7 @@ export interface CourseType {
     level: string;
     category: string;
     image: string;
-    authorId: number;
+    authorId: string;
     lessonCount: number;
     lessons: LessonType[];
 }
@@ -277,7 +277,7 @@ export interface Award {
     image: string | null;
     docs: string | null;
     type: string;
-    userId: number;
+    userId: string;
 }
 export interface CreateAward {
     title: string;
@@ -301,7 +301,7 @@ export interface Publications {
     docs: string | null;
     type: string;
     link: string | null;
-    userId: number;
+    userId: string;
 }
 export interface CreatePublications {
     title: string;
@@ -327,7 +327,7 @@ export interface Traning {
     hoursSpent: number;
     image: null;
     docs: null;
-    userId: number;
+    userId: string;
 }
 export interface CreateTraning {
     title: string;
@@ -354,7 +354,7 @@ export interface Education {
     date: string;
     image: string | null;
     docs: string | null;
-    userId: number;
+    userId: string;
 }
 export interface CreateEducation {
     title: string;

@@ -59,7 +59,7 @@ type PropsType = {
     EditProfile?: () => void;
     subBlock?: ReactNode;
     likeBlock?: ReactNode;
-    myiD?: number;
+    myiD?: string;
     loc: string;
     category?: string[] | null;
     setCategory?: (a: string[]) => void;
@@ -362,15 +362,15 @@ export const Profile = observer(({ ...props }: PropsType) => {
                     <p className={style.roles}>
                         {props.user?.roles.map((a, i) =>
                             a.value == "User" ? (
-                                <div className={style.iconRole} title={a.value}>
+                                <div className={style.iconRole} title={a.value} key={i}>
                                     <UserOctagon className={style.iconRole} />
                                 </div>
                             ) : a.value == "Professor" ? (
-                                <div className={style.iconRole} title={a.value}>
+                                <div className={style.iconRole} title={a.value} key={i}>
                                     <Teacher className={style.iconRole} />
                                 </div>
                             ) : a.value == "Admin" ? (
-                                <div className={style.iconRole} title={a.value}>
+                                <div className={style.iconRole} title={a.value} key={i}>
                                     <Ranking className={style.iconRole} />
                                 </div>
                             ) : (
@@ -413,6 +413,7 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                 <div className={style.projectWrapperPort}>
                                     {props.typesPortfolio?.map((a, i) => (
                                         <BlockPortfolio
+                                            key={i}
                                             array={props.portfolio?.filter(
                                                 (item) => item.typeId === a.id
                                             )}
