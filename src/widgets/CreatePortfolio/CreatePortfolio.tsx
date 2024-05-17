@@ -11,7 +11,7 @@ type PropsType = {
     add_category: string;
     add_type: string;
     create: string;
-    selectType:string;
+    selectType: string;
 };
 
 export const CreatePortfolio = ({ ...props }: PropsType) => {
@@ -44,7 +44,7 @@ export const CreatePortfolio = ({ ...props }: PropsType) => {
                 <select
                     className={style.selectC}
                     value={data.type}
-                    defaultValue={''}
+                    defaultValue={""}
                     onChange={(e) => {
                         data.setType(e.target.value);
                     }}
@@ -54,11 +54,15 @@ export const CreatePortfolio = ({ ...props }: PropsType) => {
                     ) : (
                         data.types?.map((a, i) => (
                             <option key={i} value={a.id}>
-                                {props.loc == "ru" ? a.description : a.value}
+                                {props.loc == "ru"
+                                    ? a.valueRu
+                                    : props.loc == "en"
+                                    ? a.valueEn
+                                    : a.valueUz}
                             </option>
                         ))
                     )}
-                    <option value={''} disabled={true}>
+                    <option value={""} disabled={true}>
                         {props.selectType}
                     </option>
                 </select>

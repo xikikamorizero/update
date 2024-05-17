@@ -137,19 +137,18 @@ export const ItemTable = observer(({ ...props }: PropsType) => {
             ) : (
                 <div className={style.titleTable}>
                     <div className={`${style.itemTitle} ${style.item}`}>
-                        {props.title}
+                        {props.title?props.title:'null'}
                     </div>
                     <div className={`${style.itemTitle} ${style.item}`}>
-                        {props.date}
+                        {props.date?props.date:'null'}
                     </div>
                     <div className={`${style.itemTitle} ${style.item}`}>
-                        {props.location}
+                        {props.location?props.location:'null'}
                     </div>
                     <div className={`${style.itemTitle} ${style.item}`}>
-                        {props.organization}
+                        {props.organization?props.organization:'null'}
                     </div>
                     <div className={`${style.itemTitle} ${style.item}`}>
-                        {" "}
                         {props.hoursSpent}
                     </div>
                     <div className={`${style.itemTitle}  ${style.panel}`}>

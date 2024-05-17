@@ -36,6 +36,9 @@ class Portfolio {
     public readonly edit = services.Portfolio.edit;
     public readonly delete = services.Portfolio.delete;
     public readonly getPortfolioType = services.Portfolio.getPortfolioType;
+    public readonly createType = services.Portfolio.createType;
+    public readonly editType = services.Portfolio.editType;
+    public readonly deleteType = services.Portfolio.deleteType;
 }
 class Course {
     constructor() {

@@ -75,7 +75,7 @@ export class User {
         return await $voxmentor_api_public.get<types.usersType>(
             urls.user.get(),
             {
-               params,
+                params,
             }
         );
     }
@@ -132,7 +132,6 @@ export class User {
             science_degree,
             contacts,
         };
-        console.log('Обновленные',fields)
 
         Object.entries(fields).forEach(([key, value]) => {
             if (value) {
@@ -260,6 +259,40 @@ export class Portfolio {
             {
                 params: {},
             }
+        );
+    }
+
+    static async createType({
+        valueEn,
+        valueRu,
+        valueUz,
+        description,
+    }: types.TypePortfolioDto): Promise<AxiosResponse<types.TypePortfolio>> {
+        return await $voxmentor_api_public.post<types.TypePortfolio>(
+            urls.portfolio.createType(),
+            {
+                valueEn,
+                valueRu,
+                valueUz,
+                description,
+            }
+        );
+    }
+
+    static async editType(
+        { id }: types.ID,
+        { valueEn, valueRu, valueUz, description }: types.TypePortfolioDto
+    ): Promise<AxiosResponse<types.TypePortfolio>> {
+        return await $voxmentor_api_public.put<types.TypePortfolio>(
+            urls.portfolio.updateType(id),
+            { valueEn, valueRu, valueUz, description }
+        );
+    }
+    static async deleteType({
+        id,
+    }: types.ID): Promise<AxiosResponse<types.DeleteResponse>> {
+        return await $voxmentor_api_public.delete<types.DeleteResponse>(
+            urls.portfolio.deleteType(id)
         );
     }
 

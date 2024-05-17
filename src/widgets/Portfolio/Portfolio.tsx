@@ -64,8 +64,10 @@ export const Portfolio = observer(({ ...props }: PropsType) => {
                                 data.types.map((a, i) => (
                                     <option value={a.id} key={i}>
                                         {props.loc == "ru"
-                                            ? a.description
-                                            : a.value}
+                                            ? a.valueRu
+                                            : props.loc == "en"
+                                            ? a.valueEn
+                                            : a.valueUz}
                                     </option>
                                 ))
                             )}
@@ -79,6 +81,7 @@ export const Portfolio = observer(({ ...props }: PropsType) => {
                             value={data.keyword}
                             setValue={data.setKeyword}
                             placeholder={props.keyword}
+                            width={"200px"}
                         />
                         <SearchNormal1 className={style.iconSearch} />
                     </div>

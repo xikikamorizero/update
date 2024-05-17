@@ -15,6 +15,7 @@
         "text2": "Ilhomlangan o'qituvchilar portfeli orqali bilim olamini oching.",
         "text3": "Bilim markazidagi o'qituvchilar: noyob hikoyalar, ilhomlantiruvchi natijalar.",
         "title": "Ushbu sahifaning funktsionali faqat o'qituvchilar va professorlar uchun mavjud.",
+        "titleAdmin": "Ushbu sahifaning funksiyalaridan faqat administrator foydalanishi mumkin.",
         "title1": "Professorlar",
         "title2": "Loyihalar",
         "textLink": "hama"
@@ -37,6 +38,7 @@
     "Portfolio": {
         "title": "Portfolio",
         "type": "hammasi",
+        "typeT": "Turi",
         "category": "kategoriya",
         "keyword": "Ism bo'yicha qidirish",
         "editType": "Turi o'zgartirish",
@@ -91,7 +93,9 @@
         "scienceDegreeT": "Ilmiy daraja",
 
         "subscriptions":"Obunalar:",
-        "no_subscriptions":"obunalar yo'q"
+        "no_subscriptions":"obunalar yo'q",
+
+        "adminT":"Administrator paneli"
     },
     "Table":{
         "titleTable":"Sarlavha",
@@ -167,6 +171,15 @@
         "descriptionReg": "Bu elektron pochta manziliga ega foydalanuvchi allaqachon mavjud",
         "titleError": "Autentifikatsiyada xato",
         "description": "Noto'g'ri email yoki parol"
+    },
+    "Admin":{
+        "add_type_title":"Portfel turlarini boshqarish",
+        "add_title_ru":"Ismni rus tilida kiriting",
+        "add_title_en":"Ismni ingliz tilida kiriting",
+        "add_title_uz":"Ismni o'zbekcha kiriting",
+        "descriptionT": "Tavsif kiriting",
+        "countT": "miqdori"
+        
     },
     "Footer": {
         "copyright": "© 2024 Aplikasi Anda. Hak cipta dilindungi."

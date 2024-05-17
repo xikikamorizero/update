@@ -9,9 +9,9 @@ type PropsType = {
     text:string;
 };
 
-export const Vanguard = observer(({ children, text }: PropsType) => {
+export const VanguardAdm = observer(({ children, text }: PropsType) => {
     const { store } = useContext(Context);
-    if (store.profile?.roles.some((obj) => obj.value == "Professor")) {
+    if (store.profile?.roles.some((obj) => obj.value == "Admin")) {
         return children;
     } else {
         return (

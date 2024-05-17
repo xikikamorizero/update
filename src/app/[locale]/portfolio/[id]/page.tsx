@@ -27,7 +27,7 @@ export default function Portfolio({ params }: PropsType) {
             <PortfolioItem
                 portfolioId={params.id}
                 category={t("category")}
-                type={t("type")}
+                type={t("typeT")}
                 editType={t("editType")}
                 editCategory={t("editCategory")}
                 editTitle={t("editTitle")}

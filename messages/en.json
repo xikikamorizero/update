@@ -8,13 +8,14 @@
         "teachers": "teachers",
         "portfolio": "portfolio",
         "about": "about",
-        "title":"© 2024, «VoxMentor». We have everything interesting."
+        "title": "© 2024, «VoxMentor». We have everything interesting."
     },
     "Main": {
         "text1": "Intellectual Heritage: Faculty Discoveries on Your Screen.",
         "text2": "Open the World of Knowledge through Portfolios of Inspired Teachers.",
         "text3": "Teachers at the Center of Knowledge: Unique Stories, Inspiring Results.",
         "title": "The functionality of this page is only available to teachers and professors.",
+        "titleAdmin": "The functionality of this page is only available to admin.",
         "title1": "Professors",
         "title2": "Projects",
         "textLink": "all"
@@ -25,18 +26,19 @@
         "scienceDegree": "Science Degree",
         "keyword": "Find by name",
 
-        "awardT":"Awards",
-        "publicationT":"Publications",
-        "stajT":"Experience",
-        "projectT":"Projects",
-        "courseT":"Сourses",
-        "categoryT":"Сategories",
-        "from":"from",
-        "to":"to"
+        "awardT": "Awards",
+        "publicationT": "Publications",
+        "stajT": "Experience",
+        "projectT": "Projects",
+        "courseT": "Сourses",
+        "categoryT": "Сategories",
+        "from": "from",
+        "to": "to"
     },
     "Portfolio": {
         "title": "Portfolio",
         "type": "all",
+        "typeT": "Type",
         "category": "category",
         "keyword": "Find by title",
         "editType": "editType",
@@ -90,16 +92,18 @@
         "contactsT": "Contacts",
         "scienceDegreeT": "Academic Degree",
 
-        "subscriptions":"Subscriptions:",
-        "no_subscriptions":"no subscriptions"
+        "subscriptions": "Subscriptions:",
+        "no_subscriptions": "no subscriptions",
+
+        "adminT":"Admin panel"
     },
-    "Table":{
-        "titleTable":"Title",
-        "dateTable":"Date",
-        "locationTable":"Location",
-        "organizationTable":"Organization",
-        "numberOfHoursTable":"Number of Hours",
-        "docsTable":"Document"
+    "Table": {
+        "titleTable": "Title",
+        "dateTable": "Date",
+        "locationTable": "Location",
+        "organizationTable": "Organization",
+        "numberOfHoursTable": "Number of Hours",
+        "docsTable": "Document"
     },
     "Course": {
         "description": "Description",
@@ -135,7 +139,7 @@
         "add_category": "Add category",
         "add_type": "Add type",
         "create": "Create",
-        "selectType":"Select type"
+        "selectType": "Select type"
     },
     "CreateAward": {
         "add_title": "Add title",
@@ -167,6 +171,14 @@
         "descriptionReg": "User with this email already exists",
         "titleError": "Login error",
         "description": "Incorrect email or password"
+    },
+    "Admin": {
+        "add_type_title": "Management of portfolio types",
+        "add_title_ru": "Enter the name in russian",
+        "add_title_en": "Enter the name in english",
+        "add_title_uz": "Enter the name in uzbek",
+        "descriptionT": "Enter the description",
+        "countT": "count"
     },
     "Footer": {
         "copyright": "© 2024 Your App. All rights reserved."

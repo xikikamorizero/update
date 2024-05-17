@@ -110,8 +110,8 @@ export const portfolio = {
     get() {
         return "/portfolio";
     },
-    getTypes(){
-        return "/types"
+    getTypes() {
+        return "/types";
     },
     getPortfolio(id: string) {
         return `/portfolio/${id}`;
@@ -124,6 +124,15 @@ export const portfolio = {
     },
     delete(id: string) {
         return `/portfolio/${id}`;
+    },
+    createType() {
+        return "/types";
+    },
+    updateType(id: string) {
+        return `/types/${id}`;
+    },
+    deleteType(id: string) {
+        return `/types/${id}`;
     },
 };
 export const course = {

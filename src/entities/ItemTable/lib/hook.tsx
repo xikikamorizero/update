@@ -31,7 +31,7 @@ export const useProject = ({ ...props }: PropsType) => {
 
     const [editModeItem, setEditModeItem] = useState(false);
 
-    const handleFileChange = (event:any) => {
+    const handleFileChange = (event: any) => {
         setDocs(event.target.files[0]);
     };
 
@@ -45,11 +45,11 @@ export const useProject = ({ ...props }: PropsType) => {
         global_store.store.UpdatePort.editTraning(
             { id: props.id },
             {
-                title,
-                date,
-                location,
+                title: title.trim() ? title : "null",
+                date: date.trim() ? date : "null",
+                location: location.trim() ? location : "null",
                 docs,
-                organization,
+                organization: organization.trim() ? organization : "null",
                 hoursSpent: String(hoursSpent),
             }
         )
@@ -116,6 +116,6 @@ export const useProject = ({ ...props }: PropsType) => {
         setEditModeItem,
         Delete,
         Create,
-        handleFileChange
+        handleFileChange,
     };
 };

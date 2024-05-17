@@ -108,6 +108,8 @@ type PropsType = {
     numberOfHoursTable: string;
     docsTable: string;
 
+    adminT?: string;
+
     logout?: () => void;
 };
 
@@ -242,18 +244,8 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         setValue={props.setDescription}
                         placeholder={props.add_description}
                         editMode={props.editMode}
-                        block={
-                            <div className={style.containerItemP}>
-                                <h1 className={style.description}>
-                                    {props.descriptionT}:
-                                </h1>
-                                <p className={style.description}>
-                                    {props.user?.description
-                                        ? props.user?.description
-                                        : "null"}
-                                </p>
-                            </div>
-                        }
+                        text={props.user?.description}
+                        descriptionT={props.descriptionT}
                     />
 
                     <WrapperEditBlockNum
@@ -309,7 +301,7 @@ export const Profile = observer(({ ...props }: PropsType) => {
                             )}
                         </Avatar.Group>
                     </div>
-                    
+
                     {/*  */}
                     {props.myProf ? (
                         <div className={style.subscribers}>
@@ -386,6 +378,15 @@ export const Profile = observer(({ ...props }: PropsType) => {
                             )
                         )}
                     </p>
+
+                    {props.user?.roles.some((obj) => obj.value == "Admin") &&
+                    props.myProf ? (
+                        <Link href={`/${props.loc}/adminPanel`}>
+                            {props.adminT}
+                        </Link>
+                    ) : (
+                        <></>
+                    )}
                 </div>
                 <div className={style.userDopInfo}>
                     <div className={style.userProject}>
@@ -418,8 +419,10 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                             loc={props.loc}
                                             title={
                                                 props.loc == "ru"
-                                                    ? a.description
-                                                    : a.value
+                                                    ? a.valueRu
+                                                    : props.loc == "en"
+                                                    ? a.valueEn
+                                                    : a.valueUz
                                             }
                                         />
                                     ))}

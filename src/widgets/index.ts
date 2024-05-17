@@ -18,3 +18,4 @@ export * from './Award/Award';
 export * from './CreateAward/CreateAward';
 export * from './Education/Education';
 export * from './CreateEducation/CreateEducation';
+export * from './AdminPanel/AdminPanel';

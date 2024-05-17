@@ -211,7 +211,18 @@ export interface PortfolioType {
 }
 export interface TypePortfolio{
     id:number;
-    value:string;
+    valueEn:string;
+    valueRu:string;
+    valueUz:string;
+    count:number;
+    userId:number;
+    description:string;
+}
+
+export interface TypePortfolioDto{
+    valueEn:string;
+    valueRu:string;
+    valueUz:string;
     description:string;
 }
 

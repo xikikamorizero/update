@@ -71,8 +71,10 @@ export const PortfolioItem = observer(({ ...props }: PropsType) => {
                     <p className={style.subInfo}>
                         {props.type}:
                         {props.loc == "ru"
-                            ? data.portfolio?.type?.description
-                            : data.portfolio?.type?.value}
+                            ? data.portfolio?.type?.valueRu
+                            : props.loc == "en"
+                            ? data.portfolio?.type?.valueEn
+                            : data.portfolio?.type?.valueUz}
                     </p>
                 ) : (
                     <input

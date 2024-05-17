@@ -43,6 +43,8 @@ export default function Profile({ params }: { params: { locale: string } }) {
                 
                 subscriptions={t("subscriptions")}
                 no_subscriptions={t("no_subscriptions")}
+                
+                adminT={t("adminT")}
             />
         </>
     );

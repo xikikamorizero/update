@@ -33,7 +33,32 @@
     width: 100%;
     display: flex;
     gap: 10px;
-    padding: 10px 20px 0px; 
+    padding: 10px 20px 0px;
+}
+.passwordContainer {
+    width: 100%;
+    height: max-content;
+    position: relative;
+    border: 1px solid #000;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.inputPassword{
+    width: 100%;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 5px 10px;
+}
+.iconEye {
+    width: 35px;
+    height: 34.6px;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    right: 0;
+    cursor: pointer;
+    background-color: white;
 }
 .newAccBlockText {
     color: var(--secondary_text_color);

@@ -63,6 +63,7 @@ export const Course = observer(({ ...props }: PropsType) => {
                     <p className={style.description}>
                         {props.description}: {data.description}
                     </p>
+                    <p>{data.course?.lessonCount}</p>
                 </>
             )}
 
@@ -84,6 +85,7 @@ export const Course = observer(({ ...props }: PropsType) => {
                                           loading={false}
                                           src={a.image}
                                           title={a.title}
+                                          subtitle={a.lesson_number}
                                       />
                                   </Link>
                               </Col>

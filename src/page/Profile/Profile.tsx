@@ -36,6 +36,8 @@ type PropsType = {
 
     subscriptions: string;
     no_subscriptions: string;
+
+    adminT:string;
 };
 
 export const Profile = ({ ...props }: PropsType) => {
@@ -82,6 +84,8 @@ export const Profile = ({ ...props }: PropsType) => {
 
                     subscriptions={props.subscriptions}
                     no_subscriptions={props.no_subscriptions}
+
+                    adminT={props.adminT}
                 />
             </WithWrapper>
         </div>

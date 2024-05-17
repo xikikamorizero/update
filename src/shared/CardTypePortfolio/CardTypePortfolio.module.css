@@ -1,0 +1,59 @@
+.container {
+    width: 100%;
+}
+.cardContainer {
+    width: 100%;
+    max-width: 100%;
+    padding: 5px 3% 5px 3%;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow: hidden;
+    background-color: var(--sub_color);
+    border-radius: 3px;
+    transition: all 0.3s;
+    color: var(--main_text_color);
+    text-decoration: none;
+}
+.cardContainer input {
+    width: 100%;
+    font-size: 15px;
+}
+.cardContainer h1 {
+    font-size: 25px;
+}
+.year {
+    font-size: 17px;
+    color: var(--subtitle_text_color);
+}
+.type {
+    font-size: 20px;
+}
+.link {
+    width: max-content;
+    font-size: 20px;
+    color: #643ff8;
+}
+.link:active {
+    color: #643ff8;
+}
+
+.panelUpr {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.editButton {
+    width: 30px;
+    height: 30px;
+    color: green;
+    cursor: pointer;
+}
+.deleteButton {
+    width: 30px;
+    height: 30px;
+    color: red;
+    cursor: pointer;
+}

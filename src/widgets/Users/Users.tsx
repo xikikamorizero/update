@@ -153,6 +153,7 @@ export const Users = observer(({ ...props }: PropsType) => {
                             value={data.keyword}
                             setValue={data.setKeyword}
                             placeholder={props.keyword}
+                            width={"200px"}
                         />
                         <SearchNormal1 className={style.iconSearch} />
                     </div>

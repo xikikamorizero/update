@@ -46,6 +46,7 @@
     top: 50%;
     right: 5px;
     transform: translate(0, -50%);
+    background-color: rgb(255, 255, 255);
 }
 .filterButton {
     width: 30px;
@@ -90,7 +91,7 @@
         width: 100px;
     }
     .filterPanel {
-        width: 300px;
+        width: 100%;
         flex-wrap: wrap-reverse;
         justify-content: end;
     }
@@ -100,7 +101,7 @@
 }
 @media (max-width: 500px) {
     .searchInput {
-        max-width: 140px;
+        max-width: 190px;
     }
     .filterPanel {
         gap: 5px;

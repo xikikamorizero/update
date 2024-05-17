@@ -3,6 +3,8 @@ import style from "./LoginForm.module.css";
 import { CloseCircle } from "iconsax-react";
 import Link from "next/link";
 import { useLogin } from "./lib/hook";
+import { Eye, EyeSlash } from "iconsax-react";
+import { useState } from "react";
 
 type PropsType = {
     loc: string;
@@ -21,6 +23,7 @@ export const LoginForm = ({ ...props }: PropsType) => {
         titleError: props.titleError,
         description: props.description,
     });
+    const [viewPass, setViewPass] = useState(false);
 
     return (
         <div className={style.formContainer}>
@@ -34,15 +37,30 @@ export const LoginForm = ({ ...props }: PropsType) => {
                 type={"text"}
                 placeholder={props.username}
             />
-            <input
-                value={data.password}
-                onChange={(e) => {
-                    data.setPassword(e.target.value);
-                }}
-                className={style.inputLogin}
-                type={"text"}
-                placeholder={props.password}
-            />
+            <div className={style.passwordContainer}>
+                <input
+                    value={data.password}
+                    onChange={(e) => {
+                        data.setPassword(e.target.value);
+                    }}
+                    className={style.inputPassword}
+                    type={viewPass ? "text" : "password"}
+                    placeholder={props.password}
+                />
+                <div
+                    className={style.iconEye}
+                    onClick={() => {
+                        setViewPass(!viewPass);
+                    }}
+                >
+                    {viewPass ? (
+                        <EyeSlash className={style.iconEye} />
+                    ) : (
+                        <Eye className={style.iconEye} />
+                    )}
+                </div>
+            </div>
+
             <div
                 className={style.buttonLogin}
                 onClick={() => {

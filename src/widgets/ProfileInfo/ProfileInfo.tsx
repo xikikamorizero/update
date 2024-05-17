@@ -47,6 +47,8 @@ type PropsType = {
     organizationTable:string;
     numberOfHoursTable:string;
     docsTable:string;
+
+    adminT:string;
 };
 
 export const ProfileInfo = observer(({ ...props }: PropsType) => {
@@ -130,6 +132,8 @@ export const ProfileInfo = observer(({ ...props }: PropsType) => {
                 organizationTable={props.organizationTable}
                 numberOfHoursTable={props.numberOfHoursTable}
                 docsTable={props.docsTable}
+
+                adminT={props.adminT}
 
                 subscriptions={props.subscriptions}
                 no_subscriptions={props.no_subscriptions}
