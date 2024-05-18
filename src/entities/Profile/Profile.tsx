@@ -6,6 +6,7 @@ import {
     Teacher,
     UserOctagon,
     Ranking,
+    EmojiSad,
 } from "iconsax-react";
 import { CardPublication } from "@/shared/CardPublication/CardPublication";
 import { DescriptionEditBlok } from "@/shared";
@@ -29,6 +30,7 @@ import { Award } from "../Award/Award";
 import { EducationCard } from "@/shared/EducationCard/EducationCard";
 import { BlockPortfolio } from "./BlockPortfolio";
 import { WrapperEditBlockNum } from "@/shared/WrapperEditBlock/WrapperEditBlokNum";
+import iconNoResult from "./assets/noresult.png";
 
 type PropsType = {
     user: types.userType | null;
@@ -287,10 +289,7 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                         style={{ borderRadius: "50%" }}
                                         key={i}
                                     >
-                                        <Tooltip
-                                            title={a.name}
-                                            placement="top"
-                                        >
+                                        <Tooltip title={a.name} placement="top">
                                             <Avatar src={baseUrl + a?.avatar} />
                                         </Tooltip>
                                     </Link>
@@ -360,15 +359,27 @@ export const Profile = observer(({ ...props }: PropsType) => {
                     <p className={style.roles}>
                         {props.user?.roles.map((a, i) =>
                             a.value == "User" ? (
-                                <div className={style.iconRole} title={a.value} key={i}>
+                                <div
+                                    className={style.iconRole}
+                                    title={a.value}
+                                    key={i}
+                                >
                                     <UserOctagon className={style.iconRole} />
                                 </div>
                             ) : a.value == "Professor" ? (
-                                <div className={style.iconRole} title={a.value} key={i}>
+                                <div
+                                    className={style.iconRole}
+                                    title={a.value}
+                                    key={i}
+                                >
                                     <Teacher className={style.iconRole} />
                                 </div>
                             ) : a.value == "Admin" ? (
-                                <div className={style.iconRole} title={a.value} key={i}>
+                                <div
+                                    className={style.iconRole}
+                                    title={a.value}
+                                    key={i}
+                                >
                                     <Ranking className={style.iconRole} />
                                 </div>
                             ) : (
@@ -408,7 +419,18 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         </div>
                         <div className={style.projectWrapper}>
                             {portfolio ? (
-                                <div className={style.projectWrapperPort}>
+                                <div
+                                    className={style.projectWrapperPort}
+                                    style={
+                                        props.portfolio &&
+                                        props.portfolio.length == 0
+                                            ? {
+                                                  backgroundImage:
+                                                      "url(/noresult.png)",
+                                              }
+                                            : {}
+                                    }
+                                >
                                     {props.typesPortfolio?.map((a, i) => (
                                         <BlockPortfolio
                                             key={i}
@@ -427,7 +449,18 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                     ))}
                                 </div>
                             ) : (
-                                <div className={style.projectContainer}>
+                                <div
+                                    className={style.projectContainer}
+                                    style={
+                                        props.course && props.course.length == 0
+                                            ? {
+                                                  backgroundImage:
+                                                      "url(/noresult.png)",
+                                                  height: "400px",
+                                              }
+                                            : {}
+                                    }
+                                >
                                     {props.course?.map((a, i) => (
                                         <CardProject
                                             href={`/${props.loc}/course/${a.id}`}
@@ -465,34 +498,44 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         </div>
                         <div
                             className={style.projectWrapper}
-                            style={{ height: "300px" }}
+                            style={
+                                editPublication
+                                    ? { height: "300px" }
+                                    : props.publication &&
+                                      props.publication.length == 0
+                                    ? {
+                                          height: "300px",
+                                          backgroundImage: `url(/noresult.png)`,
+                                      }
+                                    : { height: "300px" }
+                            }
                         >
-                            <div className={style.projectContainer}>
-                                {props.publication
-                                    ?.slice()
-                                    .sort((a, b) => a.id - b.id)
-                                    .map((a, i) => (
+                            {props.publication && (
+                                <div className={style.projectContainer}>
+                                    {props.publication
+                                        .slice()
+                                        .sort((a, b) => a.id - b.id)
+                                        .map((a, i) => (
+                                            <CardPublication
+                                                id={String(a.id)}
+                                                editMode={editPublication}
+                                                title={a.title}
+                                                type={a.type}
+                                                link={a.link}
+                                                year={a.year}
+                                                key={i}
+                                            />
+                                        ))}
+                                    {props.myProf && editPublication && (
                                         <CardPublication
-                                            id={String(a.id)}
+                                            id={"-1"}
+                                            link={""}
                                             editMode={editPublication}
-                                            title={a.title}
-                                            type={a.type}
-                                            link={a.link}
-                                            year={a.year}
-                                            key={i}
+                                            create={"true"}
                                         />
-                                    ))}
-                                {props.myProf && editPublication && (
-                                    <CardPublication
-                                        id={"1"}
-                                        link={""}
-                                        editMode={editPublication}
-                                        create={"true"}
-                                    />
-                                )}
-
-                                <div></div>
-                            </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                         {props.myProf && (
                             <div

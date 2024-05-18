@@ -2,6 +2,7 @@
 import { Context as GlobalContext } from "@/shared/api";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import { notification } from "antd";
 
 export const useCourse = ({loc}:{loc:string}) => {
     let router = useRouter();
@@ -12,6 +13,15 @@ export const useCourse = ({loc}:{loc:string}) => {
     const [level, setLevel] = useState("");
     const [category, setCategory] = useState("");
     const [uploadedImages, setUploadedImages] = useState<any>(null);
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (status: number) => {
+        api["error"]({
+            message: status,
+            description: "Error when creating course",
+        });
+    };
 
     function createCourse() {
         if (!loading) {
@@ -28,7 +38,7 @@ export const useCourse = ({loc}:{loc:string}) => {
                         router.push(`/${loc}/profile`);
                 })
                 .catch((error) => {
-                    console.log("ошибка при создании  курса");
+                    openNotificationWithIcon(error.request.status);
                 })
                 .finally(() => {
                     setLoading(false);
@@ -49,5 +59,6 @@ export const useCourse = ({loc}:{loc:string}) => {
         setCategory: setCategory,
         uploadedImages: uploadedImages,
         setUploadedImages: setUploadedImages,
+        contextHolder
     };
 };

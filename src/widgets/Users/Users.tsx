@@ -68,6 +68,35 @@ export const Users = observer(({ ...props }: PropsType) => {
                         />
                     </div>
 
+                    {/*  */}
+                    <div className={style.secondaryFilterContainer}>
+                        {"likes"}:
+                        <InputFilterNum
+                            value={data.likesMin}
+                            setValue={data.setLikesMin}
+                            placeholder={props.from}
+                        />
+                        <InputFilterNum
+                            value={data.likesMax}
+                            setValue={data.setLikesMax}
+                            placeholder={props.to}
+                        />
+                    </div>
+                    <div className={style.secondaryFilterContainer}>
+                        {"dislikes"}:
+                        <InputFilterNum
+                            value={data.dislikesMin}
+                            setValue={data.setDisLikesMin}
+                            placeholder={props.from}
+                        />
+                        <InputFilterNum
+                            value={data.dislikesMax}
+                            setValue={data.setDisLikesMax}
+                            placeholder={props.to}
+                        />
+                    </div>
+                    {/*  */}
+
                     <div className={style.secondaryFilterContainer}>
                         {props.awardT}:
                         <InputFilterNum

@@ -4,6 +4,7 @@ import React from "react";
 import { EditorJsEdit } from "../../entities/EditorJsEdit/EditorJsEdit";
 import { ImageInput } from "@/shared";
 import { useCreatePortfolio } from "./lib/hook";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
@@ -19,6 +20,7 @@ export const CreatePortfolio = ({ ...props }: PropsType) => {
 
     return (
         <div className={style.wrapper}>
+            {data.contextHolder}
             <div className={style.container}>
                 <input
                     value={data.title}
@@ -49,21 +51,17 @@ export const CreatePortfolio = ({ ...props }: PropsType) => {
                         data.setType(e.target.value);
                     }}
                 >
-                    {data.loadingType ? (
-                        <div>Loading...</div>
-                    ) : (
-                        data.types?.map((a, i) => (
-                            <option key={i} value={a.id}>
-                                {props.loc == "ru"
-                                    ? a.valueRu
-                                    : props.loc == "en"
-                                    ? a.valueEn
-                                    : a.valueUz}
-                            </option>
-                        ))
-                    )}
+                    {data.types?.map((a, i) => (
+                        <option key={i} value={a.id}>
+                            {props.loc == "ru"
+                                ? a.valueRu
+                                : props.loc == "en"
+                                ? a.valueEn
+                                : a.valueUz}
+                        </option>
+                    ))}
                     <option value={""} disabled={true}>
-                        {props.selectType}
+                        {data.loadingType ? "Loading..." : props.selectType}
                     </option>
                 </select>
 
@@ -85,7 +83,7 @@ export const CreatePortfolio = ({ ...props }: PropsType) => {
                         data.Create();
                     }}
                 >
-                    {props.create}
+                    {data.loading ? <div className={style.preloadCo}><Preloader /></div> : props.create}
                 </button>
             </div>
         </div>

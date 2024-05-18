@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Card } from "@/shared";
 import { observer } from "mobx-react-lite";
 import { AccessDenied } from "@/shared";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     courseId: string;
@@ -36,6 +37,7 @@ export const Course = observer(({ ...props }: PropsType) => {
 
     return (
         <div className={style.container}>
+            {data.contextHolder}
             {data.editMode ? (
                 <>
                     <input
@@ -70,27 +72,30 @@ export const Course = observer(({ ...props }: PropsType) => {
             <div className={style.card_container}>
                 <Row gutter={[16, 16]}>
                     {data.course?.lessons
-                        ? data.course?.lessons.map((a, i) => (
-                              <Col
-                                  xs={xsmall}
-                                  sm={small}
-                                  md={middle}
-                                  lg={large}
-                                  key={i}
-                              >
-                                  <Link
-                                      href={`/${props.loc}/lesson/${a.id}?author=${data.course?.authorId}`}
+                        ? data.course?.lessons
+                              ?.slice()
+                              .sort((a, b) => a.id - b.id)
+                              .map((a, i) => (
+                                  <Col
+                                      xs={xsmall}
+                                      sm={small}
+                                      md={middle}
+                                      lg={large}
+                                      key={i}
                                   >
-                                      <Card
-                                          loading={false}
-                                          src={a.image}
-                                          title={a.title}
-                                          subtitle={a.lesson_number}
-                                          proj={"true"}
-                                      />
-                                  </Link>
-                              </Col>
-                          ))
+                                      <Link
+                                          href={`/${props.loc}/lesson/${a.id}?author=${data.course?.authorId}`}
+                                      >
+                                          <Card
+                                              loading={false}
+                                              src={a.image}
+                                              title={a.title}
+                                              subtitle={a.lesson_number}
+                                              proj={"true"}
+                                          />
+                                      </Link>
+                                  </Col>
+                              ))
                         : null}
                 </Row>
             </div>
@@ -130,13 +135,13 @@ export const Course = observer(({ ...props }: PropsType) => {
                 <div className={style.buttonContainer}>
                     <Link
                         href={`/${props.loc}/createLesson?course=${props.courseId}`}
-                        className={style.button}
+                        className={`${style.createLesson} ${style.button}`}
                     >
                         {props.create}
                     </Link>
 
                     <button
-                        disabled={!data.course}
+                        disabled={!data.course || data.loading}
                         className={`${style.editButton} ${style.button}`}
                         onClick={() => {
                             if (data.editMode) {
@@ -145,17 +150,31 @@ export const Course = observer(({ ...props }: PropsType) => {
                             data.setEditMode(!data.editMode);
                         }}
                     >
-                        {data.editMode ? props.save : props.edit}
+                        {data.loading ? (
+                            <div className={style.preloadCo}>
+                                <Preloader />
+                            </div>
+                        ) : data.editMode ? (
+                            props.save
+                        ) : (
+                            props.edit
+                        )}
                     </button>
 
                     <button
-                        disabled={!data.course}
+                        disabled={!data.course || data.loading}
                         className={`${style.deleteButton} ${style.button}`}
                         onClick={() => {
                             data.DeleteCourse();
                         }}
                     >
-                        {props.delete}
+                        {data.loading ? (
+                            <div className={style.preloadCo}>
+                                <Preloader />
+                            </div>
+                        ) : (
+                            props.delete
+                        )}
                     </button>
                 </div>
             ) : null}

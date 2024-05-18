@@ -31,6 +31,12 @@ export const useLesson = ({...props}:Props) => {
             description: props.description,
         });
     };
+    const openNotificationWithIconSt = (status:number) => {
+        api["error"]({
+            message: status,
+            description: "Error when creating lesson",
+        });
+    };
 
     function createLesson() {
         if (!loading && courseId) {
@@ -49,7 +55,7 @@ export const useLesson = ({...props}:Props) => {
                         router.push(`/${props.loc}/course/${courseId}`);
                     })
                     .catch((error) => {
-                        console.log("ошибка при создании урока");
+                        openNotificationWithIconSt(error.request.status);
                     })
                     .finally(() => {
                         setLoading(false);

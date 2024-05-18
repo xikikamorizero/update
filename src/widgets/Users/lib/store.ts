@@ -23,6 +23,11 @@ export class Store {
     public courseMin: number | null = null;
     public courseMax: number | null = null;
 
+    public likesMin: number | null = null;
+    public likesMax: number | null = null;
+    public dislikesMin: number | null = null;
+    public dislikesMax: number | null = null;
+
     public loading: boolean = false;
 
     constructor() {

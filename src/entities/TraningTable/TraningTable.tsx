@@ -3,6 +3,7 @@ import { ItemTable } from "../ItemTable/ItemTable";
 import style from "./TraningTable.module.css";
 import { Traning } from "@/shared/api/types";
 import { observer } from "mobx-react-lite";
+import { useState } from "react";
 
 type PropsType = {
     traning?: Traning[];
@@ -17,6 +18,7 @@ type PropsType = {
 };
 
 export const TraningTable = observer(({ ...props }: PropsType) => {
+    const [editItem, setEditItem]=useState(-1);
     return (
         <div className={style.container}>
             <div className={style.titleTable}>
@@ -40,6 +42,8 @@ export const TraningTable = observer(({ ...props }: PropsType) => {
                         hoursSpent={a.hoursSpent}
                         docs={a.docs}
                         editMode={props.editMode}
+                        editModeItem={String(editItem)}
+                        setEditModeItem={setEditItem}
                         key={i}
                         kei={i}
                     />
@@ -54,6 +58,8 @@ export const TraningTable = observer(({ ...props }: PropsType) => {
                     hoursSpent={0}
                     editMode={props.editMode}
                     create={"true"}
+                    editModeItem={String(editItem)}
+                    setEditModeItem={setEditItem}
                     key={100}
                     kei={3232}
                 />

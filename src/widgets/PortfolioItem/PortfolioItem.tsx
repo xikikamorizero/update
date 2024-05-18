@@ -6,6 +6,7 @@ import React from "react";
 import { EditorJs } from "@/entities/EditorJs/EditorJs";
 import "./index.css";
 import Link from "next/link";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
@@ -19,14 +20,17 @@ type PropsType = {
     edit: string;
     delete: string;
     creator: string;
+    selectType: string;
 };
 export const PortfolioItem = observer(({ ...props }: PropsType) => {
     const data = usePortfolio({
         portfolioId: props.portfolioId,
         loc: props.loc,
     });
+
     return (
         <div className={style.wrapper}>
+            {data.contextHolder}
             <div className={style.container}>
                 {!data.editMode ? (
                     <p className={style.title}>{data.portfolio?.title}</p>
@@ -77,15 +81,27 @@ export const PortfolioItem = observer(({ ...props }: PropsType) => {
                             : data.portfolio?.type?.valueUz}
                     </p>
                 ) : (
-                    <input
-                        className={`${style.subInput} ${style.subInfo}`}
+                    <select
+                        className={style.selectC}
                         value={data.type}
+                        defaultValue={""}
                         onChange={(e) => {
-                            data.setType(Number(e.target.value));
+                            data.setType(e.target.value);
                         }}
-                        type={"number"}
-                        placeholder={props.editType}
-                    />
+                    >
+                        {data.types?.map((a, i) => (
+                            <option key={i} value={a.id}>
+                                {props.loc == "ru"
+                                    ? a.valueRu
+                                    : props.loc == "en"
+                                    ? a.valueEn
+                                    : a.valueUz}
+                            </option>
+                        ))}
+                        <option value={""} disabled={true}>
+                            {data.loadingType ? "Loading..." : props.selectType}
+                        </option>
+                    </select>
                 )}
 
                 <Link href={`/${props.loc}/users/${data.portfolio?.userId}`}>
@@ -95,16 +111,22 @@ export const PortfolioItem = observer(({ ...props }: PropsType) => {
                 {data.profile?.id == data.portfolio?.userId && (
                     <div className={style.buttonContainer}>
                         <button
-                            disabled={!data.portfolio}
+                            disabled={!data.portfolio || data.loading}
                             className={style.deleteButton}
                             onClick={() => {
                                 data.DeletePortfolio();
                             }}
                         >
-                            {props.delete}
+                            {data.loading ? (
+                                <div className={style.preloadCo}>
+                                    <Preloader />
+                                </div>
+                            ) : (
+                                props.delete
+                            )}
                         </button>
                         <button
-                            disabled={!data.portfolio}
+                            disabled={!data.portfolio || data.loading}
                             className={style.editButton}
                             onClick={() => {
                                 if (data.editMode) {
@@ -113,7 +135,15 @@ export const PortfolioItem = observer(({ ...props }: PropsType) => {
                                 data.setEditMode(!data.editMode);
                             }}
                         >
-                            {data.editMode ? props.save : props.edit}
+                            {data.loading ? (
+                                <div className={style.preloadCo}>
+                                    <Preloader />
+                                </div>
+                            ) : data.editMode ? (
+                                props.save
+                            ) : (
+                                props.edit
+                            )}
                         </button>
                     </div>
                 )}

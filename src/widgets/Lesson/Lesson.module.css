@@ -29,7 +29,7 @@
     gap: 10px;
 }
 .buttonContainer button {
-    width: max-content;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,15 +39,26 @@
     text-transform: uppercase;
     color: var(--secondary_text_color);
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     cursor: pointer;
     opacity: 0.9;
+}
+.preloadCo {
+    width: 50px;
+    height: 50px;
+    position: relative;
 }
 .buttonContainer button:hover {
     opacity: 1;
 }
 .editButton {
+    width: 230px;
     background-color: var(--main_color);
 }
 .deleteButton {
+    width: 200px;
     background-color: var(--delete);
 }

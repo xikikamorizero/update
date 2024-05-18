@@ -3,6 +3,7 @@ import style from "./CreateAward.module.css";
 import React from "react";
 import { ImageInput } from "@/shared";
 import { useCreateAward } from "./lib/hook";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
@@ -17,6 +18,7 @@ export const CreateAward = ({ ...props }: PropsType) => {
 
     return (
         <div className={style.wrapper}>
+            {data.contextHolder}
             <div className={style.container}>
                 <input
                     value={data.title}
@@ -63,7 +65,13 @@ export const CreateAward = ({ ...props }: PropsType) => {
                         data.Create();
                     }}
                 >
-                    {props.create}
+                    {data.loading ? (
+                        <div className={style.preloadCo}>
+                            <Preloader />
+                        </div>
+                    ) : (
+                        props.create
+                    )}
                 </button>
             </div>
         </div>

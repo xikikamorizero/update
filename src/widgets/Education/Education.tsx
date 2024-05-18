@@ -5,6 +5,7 @@ import { useEducation } from "./lib/hook";
 import { observer } from "mobx-react-lite";
 import { ImageInput } from "@/shared";
 import React from "react";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
@@ -23,6 +24,7 @@ export const Education = observer(({ ...props }: PropsType) => {
     });
     return (
         <div className={style.wrapper}>
+            {data.contextHolder}
             <div className={style.container}>
                 {!data.editMode ? (
                     <p className={style.title}>{data.education?.title}</p>
@@ -45,18 +47,16 @@ export const Education = observer(({ ...props }: PropsType) => {
                     />
                 ) : (
                     <div className={style.inputImage}>
-                    <ImageInput
-                        image={data.uploadedImages}
-                        setImage={data.setUploadedImages}
-                    />
-                </div>
+                        <ImageInput
+                            image={data.uploadedImages}
+                            setImage={data.setUploadedImages}
+                        />
+                    </div>
                 )}
-
-              
 
                 {!data.editMode ? (
                     <p className={style.subInfo}>
-                        {props.date}: {data.date}
+                        {props.date}: {data.education?.date}
                     </p>
                 ) : (
                     <input
@@ -70,20 +70,25 @@ export const Education = observer(({ ...props }: PropsType) => {
                     />
                 )}
 
-
                 {data.profile?.id == data.education?.userId && (
                     <div className={style.buttonContainer}>
                         <button
-                            disabled={!data.education}
+                            disabled={!data.education || data.loading}
                             className={style.deleteButton}
                             onClick={() => {
                                 data.Delete();
                             }}
                         >
-                            {props.delete}
+                            {data.loading ? (
+                                <div className={style.preloadCo}>
+                                    <Preloader />
+                                </div>
+                            ) : (
+                                props.delete
+                            )}
                         </button>
                         <button
-                            disabled={!data.education}
+                            disabled={!data.education || data.loading}
                             className={style.editButton}
                             onClick={() => {
                                 if (data.editMode) {
@@ -92,7 +97,15 @@ export const Education = observer(({ ...props }: PropsType) => {
                                 data.setEditMode(!data.editMode);
                             }}
                         >
-                            {data.editMode ? props.save : props.edit}
+                            {data.loading ? (
+                                <div className={style.preloadCo}>
+                                    <Preloader />
+                                </div>
+                            ) : data.editMode ? (
+                                props.save
+                            ) : (
+                                props.edit
+                            )}
                         </button>
                     </div>
                 )}

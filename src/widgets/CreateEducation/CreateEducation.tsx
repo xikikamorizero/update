@@ -3,6 +3,7 @@ import style from "./CreateEducation.module.css";
 import React from "react";
 import { ImageInput } from "@/shared";
 import { useCreateEducation } from "./lib/hook";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
@@ -16,6 +17,7 @@ export const CreateEducation = ({ ...props }: PropsType) => {
 
     return (
         <div className={style.wrapper}>
+            {data.contextHolder}
             <div className={style.container}>
                 <input
                     value={data.title}
@@ -52,7 +54,13 @@ export const CreateEducation = ({ ...props }: PropsType) => {
                         data.Create();
                     }}
                 >
-                    {props.create}
+                    {data.loading ? (
+                        <div className={style.preloadCo}>
+                            <Preloader />
+                        </div>
+                    ) : (
+                        props.create
+                    )}
                 </button>
             </div>
         </div>

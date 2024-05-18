@@ -28,8 +28,7 @@
     height: max-content;
 }
 .button {
-    width: max-content;
-    height: max-content;
+    height: 50px;
     padding: 5px 10px;
     font-size: 30px;
     border-radius: 5px;
@@ -40,6 +39,10 @@
     background-color: var(--main_color);
     cursor: pointer;
     flex-shrink: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .infoCourse {
     width: 100%;
@@ -63,9 +66,19 @@
 .button:hover{
     opacity: 1;
 }
+.createLesson{
+    width: max-content;
+}
+.preloadCo {
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
 .editButton {
+    width: 230px;
     background-color: var(--main_color);
 }
 .deleteButton {
+    width: 200px;
     background-color: var(--delete);
 }

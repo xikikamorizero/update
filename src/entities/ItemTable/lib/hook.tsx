@@ -1,6 +1,7 @@
 "use client";
 import { Context as GlobalContext } from "@/shared/api";
 import { useContext, useEffect, useState } from "react";
+import { notification } from "antd";
 
 type PropsType = {
     id: string;
@@ -12,6 +13,8 @@ type PropsType = {
     image?: string;
     docs?: string | null;
     editMode: boolean;
+    editModeItem: string;
+    setEditModeItem: (a: number) => void;
 };
 
 export const useProject = ({ ...props }: PropsType) => {
@@ -29,73 +32,109 @@ export const useProject = ({ ...props }: PropsType) => {
     );
     const [docs, setDocs] = useState<any>(props.docs ? props.docs : null);
 
-    const [editModeItem, setEditModeItem] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    // const [editModeItem, setEditModeItem] = useState(false);
 
     const handleFileChange = (event: any) => {
         setDocs(event.target.files[0]);
     };
 
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (status: number, description: string) => {
+        api["error"]({
+            message: status,
+            description: description,
+        });
+    };
+
     useEffect(() => {
         if (!props.editMode) {
-            setEditModeItem(false);
+            props.setEditModeItem(-1);
         }
     }, [props.editMode]);
 
     function Edit() {
-        global_store.store.UpdatePort.editTraning(
-            { id: props.id },
-            {
-                title: title.trim() ? title : "null",
-                date: date.trim() ? date : "null",
-                location: location.trim() ? location : "null",
-                docs,
-                organization: organization.trim() ? organization : "null",
-                hoursSpent: String(hoursSpent),
-            }
-        )
-            .then((response) => {
-                global_store.store.updateProfile();
-            })
-            .catch((error) => {
-                console.log("Ошибка Traning", error);
-            })
-            .finally(() => {});
+        if (!loading) {
+            setLoading(true);
+            global_store.store.UpdatePort.editTraning(
+                { id: props.id },
+                {
+                    title: title.trim() ? title : "null",
+                    date: date.trim() ? date : "null",
+                    location: location.trim() ? location : "null",
+                    docs,
+                    organization: organization.trim() ? organization : "null",
+                    hoursSpent: String(hoursSpent),
+                }
+            )
+                .then((response) => {
+                    global_store.store.updateProfile();
+                    props.setEditModeItem(-1);
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when changing a professional development record"
+                    );
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
     }
 
     function Create() {
-        global_store.store.UpdatePort.createTraning({
-            title,
-            date,
-            location,
-            organization,
-            docs,
-            hoursSpent,
-        })
-            .then((response) => {
-                global_store.store.updateProfile();
-                setTitle("");
-                setDate("");
-                setLocation("");
-                setOrganization("");
-                setHoursSpent(0);
+        if (!loading) {
+            setLoading(true);
+            global_store.store.UpdatePort.createTraning({
+                title,
+                date,
+                location,
+                organization,
+                docs,
+                hoursSpent,
             })
-            .catch((error) => {
-                console.log("Ошибка Traning", error);
-            })
-            .finally(() => {});
+                .then((response) => {
+                    global_store.store.updateProfile();
+                    setTitle("");
+                    setDate("");
+                    setLocation("");
+                    setOrganization("");
+                    setHoursSpent(0);
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error creating professional development record"
+                    );
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
     }
 
     function Delete() {
-        global_store.store.UpdatePort.deleteTraning({
-            id: props.id,
-        })
-            .then((response) => {
-                global_store.store.updateProfile();
+        if (!loading) {
+            setLoading(true);
+            global_store.store.UpdatePort.deleteTraning({
+                id: props.id,
             })
-            .catch((error) => {
-                console.log("Ошибка Traning", error);
-            })
-            .finally(() => {});
+                .then((response) => {
+                    global_store.store.updateProfile();
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when deleting a professional development record"
+                    );
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
     }
 
     return {
@@ -112,10 +151,10 @@ export const useProject = ({ ...props }: PropsType) => {
         docs,
         setDocs,
         Edit,
-        editModeItem,
-        setEditModeItem,
         Delete,
         Create,
         handleFileChange,
+        contextHolder,
+        loading,
     };
 };

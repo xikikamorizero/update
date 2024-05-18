@@ -2,8 +2,9 @@
 import { Context as GlobalContext } from "@/shared/api";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import { notification } from "antd";
 
-export const useCreateEducation = ({loc}:{loc:string}) => {
+export const useCreateEducation = ({ loc }: { loc: string }) => {
     const { store } = useContext(GlobalContext);
     const [loading, setLoading] = useState(false);
     const [title, setTitle] = useState("");
@@ -11,19 +12,28 @@ export const useCreateEducation = ({loc}:{loc:string}) => {
     const [uploadedImages, setUploadedImages] = useState<File | null>(null);
     let router = useRouter();
 
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (status: number) => {
+        api["error"]({
+            message: status,
+            description: "Error creating education",
+        });
+    };
+
     function Create() {
         if (!loading) {
             setLoading(true);
             store.UpdatePort.createEducation({
-                    title: title,
-                    date: date,
-                    image: uploadedImages,
-                })
+                title: title,
+                date: date,
+                image: uploadedImages,
+            })
                 .then((response) => {
                     router.push(`/${loc}/profile`);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    openNotificationWithIcon(error.request.status);
                 })
                 .finally(() => {
                     setLoading(false);
@@ -40,6 +50,7 @@ export const useCreateEducation = ({loc}:{loc:string}) => {
         date,
         setDate,
         uploadedImages,
-        setUploadedImages
+        setUploadedImages,
+        contextHolder,
     };
 };

@@ -11,6 +11,7 @@ import {
     DocumentDownload,
 } from "iconsax-react";
 import Link from "next/link";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     id: string;
@@ -23,7 +24,9 @@ type PropsType = {
     docs?: string | null;
     editMode: boolean;
     create?: string;
-    kei:number;
+    kei: number;
+    editModeItem: string;
+    setEditModeItem: (a: number) => void;
 };
 
 export const ItemTable = observer(({ ...props }: PropsType) => {
@@ -31,7 +34,8 @@ export const ItemTable = observer(({ ...props }: PropsType) => {
 
     return (
         <div className={style.wrapper}>
-            {data.editModeItem || props.create ? (
+            {data.contextHolder}
+            {props.editModeItem == props.id || props.create ? (
                 <div className={style.titleTable}>
                     <input
                         className={`${style.input} ${style.item}`}
@@ -94,40 +98,67 @@ export const ItemTable = observer(({ ...props }: PropsType) => {
 
                         {props.editMode && !props.create ? (
                             <div className={style.panelUpr}>
-                                {data.editModeItem ? (
-                                    <AddCircle
+                                {props.editModeItem == props.id ? (
+                                    <button
+                                        disabled={data.loading}
                                         className={style.editButton}
                                         onClick={() => {
                                             data.Edit();
-                                            data.setEditModeItem(false);
                                         }}
-                                    />
+                                    >
+                                        {data.loading ? (
+                                            <Preloader />
+                                        ) : (
+                                            <AddCircle
+                                                className={style.editButton}
+                                            />
+                                        )}
+                                    </button>
                                 ) : (
-                                    <Edit2
-                                        className={style.editButton}
-                                        onClick={() => {
-                                            data.setEditModeItem(
-                                                !data.editModeItem
-                                            );
-                                        }}
-                                    />
+                                    <>
+                                        <Edit2
+                                            className={style.editButton}
+                                            onClick={() => {
+                                                props.setEditModeItem(
+                                                    Number(props.id)
+                                                );
+                                            }}
+                                        />
+                                    </>
                                 )}
-
-                                <CloseCircle
+                                <button
+                                    disabled={data.loading}
                                     className={style.deleteButton}
                                     onClick={() => {
                                         data.Delete();
                                     }}
-                                />
+                                >
+                                    {data.loading ? (
+                                        <Preloader />
+                                    ) : (
+                                        <CloseCircle
+                                            className={style.deleteButton}
+                                        />
+                                    )}
+                                </button>
                             </div>
                         ) : props.create ? (
                             <div className={style.panelUpr}>
-                                <AddCircle
+                                <button
+                                    disabled={data.loading}
                                     className={style.editButton}
                                     onClick={() => {
                                         data.Create();
                                     }}
-                                />
+                                >
+                                    {data.loading ? (
+                                        <Preloader />
+                                    ) : (
+                                        <AddCircle
+                                            className={style.editButton}
+                                        />
+                                    )}
+                                </button>
                             </div>
                         ) : (
                             <></>
@@ -137,66 +168,56 @@ export const ItemTable = observer(({ ...props }: PropsType) => {
             ) : (
                 <div className={style.titleTable}>
                     <div className={`${style.itemTitle} ${style.item}`}>
-                        {props.title?props.title:'null'}
+                        {props.title ? props.title : "null"}
                     </div>
                     <div className={`${style.itemTitle} ${style.item}`}>
-                        {props.date?props.date:'null'}
+                        {props.date ? props.date : "null"}
                     </div>
                     <div className={`${style.itemTitle} ${style.item}`}>
-                        {props.location?props.location:'null'}
+                        {props.location ? props.location : "null"}
                     </div>
                     <div className={`${style.itemTitle} ${style.item}`}>
-                        {props.organization?props.organization:'null'}
+                        {props.organization ? props.organization : "null"}
                     </div>
                     <div className={`${style.itemTitle} ${style.item}`}>
                         {props.hoursSpent}
                     </div>
                     <div className={`${style.itemTitle}  ${style.panel}`}>
-                        {props.docs && (
+                        {props.docs ? (
                             <Link
                                 href={`${baseUrl}/${props.docs}`}
                                 target={"_blank"}
                             >
                                 <LinkIco className={style.link} />
                             </Link>
+                        ) : (
+                            <>null</>
                         )}
 
                         {props.editMode && !props.create ? (
                             <div className={style.panelUpr}>
-                                {data.editModeItem ? (
-                                    <AddCircle
-                                        className={style.editButton}
-                                        onClick={() => {
-                                            data.Edit();
-                                            data.setEditModeItem(false);
-                                        }}
-                                    />
-                                ) : (
-                                    <Edit2
-                                        className={style.editButton}
-                                        onClick={() => {
-                                            data.setEditModeItem(
-                                                !data.editModeItem
-                                            );
-                                        }}
-                                    />
-                                )}
+                                <Edit2
+                                    className={style.editButton}
+                                    onClick={() => {
+                                        props.setEditModeItem(Number(props.id));
+                                    }}
+                                />
 
-                                <CloseCircle
+                                <button
+                                    disabled={data.loading}
                                     className={style.deleteButton}
                                     onClick={() => {
                                         data.Delete();
                                     }}
-                                />
-                            </div>
-                        ) : props.create ? (
-                            <div className={style.panelUpr}>
-                                <AddCircle
-                                    className={style.editButton}
-                                    onClick={() => {
-                                        data.Create();
-                                    }}
-                                />
+                                >
+                                    {data.loading ? (
+                                        <Preloader />
+                                    ) : (
+                                        <CloseCircle
+                                            className={style.deleteButton}
+                                        />
+                                    )}
+                                </button>
                             </div>
                         ) : (
                             <></>

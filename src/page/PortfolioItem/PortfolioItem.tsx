@@ -1,6 +1,7 @@
 import style from "./PortfolioItem.module.css";
 import { PortfolioItem as PortfolioItemWidget } from "@/widgets";
 import { WithWrapper } from "@/features/hoc/authRedirect";
+import { useTranslations } from "next-intl";
 
 type PropsType = {
     portfolioId: string;
@@ -17,6 +18,7 @@ type PropsType = {
 };
 
 export const PortfolioItem = ({ ...props }: PropsType) => {
+    const t = useTranslations("CreatePortfolio");
     return (
         <div className={style.container}>
             <WithWrapper loc={props.loc}>
@@ -32,6 +34,7 @@ export const PortfolioItem = ({ ...props }: PropsType) => {
                     delete={props.delete}
                     creator={props.creator}
                     loc={props.loc}
+                    selectType={t("selectType")}
                 />
             </WithWrapper>
         </div>

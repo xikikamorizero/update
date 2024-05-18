@@ -3,8 +3,15 @@ import { Context as GlobalContext } from "@/shared/api";
 import { Context } from "./context";
 import { useContext, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { notification } from "antd";
 
-export const useCourse = ({ courseId, loc }: { courseId: string, loc:string }) => {
+export const useCourse = ({
+    courseId,
+    loc,
+}: {
+    courseId: string;
+    loc: string;
+}) => {
     let router = useRouter();
     let path = useSearchParams();
     const global_store = useContext(GlobalContext);
@@ -17,6 +24,15 @@ export const useCourse = ({ courseId, loc }: { courseId: string, loc:string }) =
 
     const [error, setError] = useState(false);
 
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (status: number, description: string) => {
+        api["error"]({
+            message: status,
+            description: description,
+        });
+    };
+
     useEffect(() => {
         if (store.course) {
             setTitle(store.course.title);
@@ -27,38 +43,54 @@ export const useCourse = ({ courseId, loc }: { courseId: string, loc:string }) =
     }, [store.course]);
 
     function EditCourse() {
-        global_store.store.course
-            .edit(
-                { id: courseId },
-                {
-                    title: title,
-                    description: description,
-                    level: level,
-                    category: category,
-                    image: null,
-                }
-            )
-            .then((response) => {
-                store.course = response.data;
-            })
-            .catch((error) => {
-                console.log("ошибка при EditCourse");
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.course
+                .edit(
+                    { id: courseId },
+                    {
+                        title: title,
+                        description: description,
+                        level: level,
+                        category: category,
+                        image: null,
+                    }
+                )
+                .then((response) => {
+                    store.course = response.data;
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when changing course"
+                    );
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     function DeleteCourse() {
-        global_store.store.course
-            .delete({ id: courseId })
-            .then((response) => {
-                if (response.data.success) {
-                    router.push(`/${loc}/profile`);
-                }
-            })
-            .catch((error) => {
-                console.log("ошбка при DeleteCourse");
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.course
+                .delete({ id: courseId })
+                .then((response) => {
+                    if (response.data.success) {
+                        router.push(`/${loc}/profile`);
+                    }
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when delete course"
+                    );
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     useEffect(() => {
@@ -71,8 +103,13 @@ export const useCourse = ({ courseId, loc }: { courseId: string, loc:string }) =
                     setError(false);
                 })
                 .catch((error) => {
-                    setError(true);
-                    console.log("ошибка при получении курса");
+                    if (error.request.status == 403) {
+                        setError(true);
+                    }
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error receiving course"
+                    );
                 })
                 .finally(() => {
                     store.loading = false;
@@ -96,5 +133,7 @@ export const useCourse = ({ courseId, loc }: { courseId: string, loc:string }) =
         profileId: global_store.store.profile?.id,
         EditCourse,
         DeleteCourse,
+        contextHolder,
+        loading: store.loading,
     };
 };

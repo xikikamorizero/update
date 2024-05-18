@@ -4,6 +4,7 @@ import { Context } from "./context";
 import { useState } from "react";
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { notification } from "antd";
 
 type Props = {
     id: string;
@@ -28,6 +29,15 @@ export const useAward = ({ ...props }: Props) => {
         store.award?.docs ? store.award?.docs : null
     );
 
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (status: number, description: string) => {
+        api["error"]({
+            message: status,
+            description: description,
+        });
+    };
+
     useEffect(() => {
         if (store.award) {
             setTitle(store.award.title);
@@ -42,36 +52,58 @@ export const useAward = ({ ...props }: Props) => {
     };
 
     function Edit() {
-        global_store.store.UpdatePort.editAward(
-            { id: props.id },
-            {
-                title: title,
-                type: type,
-                year: String(year),
-                image: uploadedImages,
-                docs: docs,
-            }
-        )
-            .then((response) => {
-                store.award = response.data;
-            })
-            .catch((error) => {
-                console.log("ошибка при EditAward");
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.UpdatePort.editAward(
+                { id: props.id },
+                {
+                    title: title,
+                    type: type,
+                    year: String(year),
+                    image: uploadedImages,
+                    docs: docs,
+                }
+            )
+                .then((response) => {
+                    store.award = response.data;
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when changing reward"
+                    );
+                    // if (store.award) {
+                    //     setTitle(store.award.title);
+                    //     setType(store.award.type);
+                    //     setYear(store.award.year);
+                    //     setUploadedImages(store.award.image);
+                    // }
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     function Delete() {
-        global_store.store.UpdatePort.deleteAward({ id: props.id })
-            .then((response) => {
-                if (response.data.success) {
-                    router.push(`/${props.loc}/profile`);
-                }
-            })
-            .catch((error) => {
-                console.log("ошибка при DeleteAward");
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.UpdatePort.deleteAward({ id: props.id })
+                .then((response) => {
+                    if (response.data.success) {
+                        router.push(`/${props.loc}/profile`);
+                    }
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when deleting reward"
+                    );
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     useEffect(() => {
@@ -84,7 +116,10 @@ export const useAward = ({ ...props }: Props) => {
                     store.award = response.data;
                 })
                 .catch((error) => {
-                    console.log("ошибка", error);
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when receiving reward"
+                    );
                 })
                 .finally(() => {
                     store.loading = false;
@@ -109,5 +144,7 @@ export const useAward = ({ ...props }: Props) => {
         Delete,
         uploadedImages,
         setUploadedImages,
+        contextHolder,
+        loading: store.loading,
     };
 };

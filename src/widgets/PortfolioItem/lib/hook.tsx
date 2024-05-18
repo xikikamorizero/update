@@ -3,6 +3,8 @@ import { Context as GlobalContext } from "@/shared/api";
 import { Context } from "./context";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { notification } from "antd";
+import { TypePortfolio } from "@/shared/api/types";
 
 type PropsType = {
     portfolioId: string;
@@ -17,53 +19,81 @@ export const usePortfolio = ({ portfolioId, loc }: PropsType) => {
     const [editMode, setEditMode] = useState(false);
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
-    const [type, setType] = useState(1);
+    const [type, setType] = useState("");
+    const [types, setTypes] = useState<TypePortfolio[]>([]);
     const [uploadedImages, setUploadedImages] = useState<File | null>(null);
     const [dataEditor, setDataEditor] = useState(
         store.portfolio?.content ? store.portfolio.content : "{}"
     );
+    const [loadingType, setLoadingType] = useState(false);
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (status: number, description: string) => {
+        api["error"]({
+            message: status,
+            description: description,
+        });
+    };
+
     useEffect(() => {
         if (store.portfolio) {
             setTitle(store.portfolio.title);
             setDataEditor(store.portfolio.content);
             setCategory(store.portfolio.category);
-            setType(store.portfolio.typeId);
+            setType(String(store.portfolio.typeId));
         }
     }, [store.portfolio]);
 
     function EditPortfolio() {
-        global_store.store.portfolio
-            .edit(
-                { id: portfolioId },
-                {
-                    title: title,
-                    content: dataEditor,
-                    category,
-                    typeId: type,
-                    image: uploadedImages,
-                }
-            )
-            .then((response) => {
-                store.portfolio = response.data;
-            })
-            .catch((error) => {
-                console.log("ошибка при EditPortfolio");
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.portfolio
+                .edit(
+                    { id: portfolioId },
+                    {
+                        title: title,
+                        content: dataEditor,
+                        category,
+                        typeId: Number(type),
+                        image: uploadedImages,
+                    }
+                )
+                .then((response) => {
+                    store.portfolio = response.data;
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when changing portfolio project"
+                    );
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     function DeletePortfolio() {
-        global_store.store.portfolio
-            .delete({ id: portfolioId })
-            .then((response) => {
-                if (response.data.success) {
-                    router.push(`/${loc}/profile`);
-                }
-            })
-            .catch((error) => {
-                console.log("ошбка при DeletePortfolio");
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.portfolio
+                .delete({ id: portfolioId })
+                .then((response) => {
+                    if (response.data.success) {
+                        router.push(`/${loc}/profile`);
+                    }
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when deleting portfolio project"
+                    );
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     useEffect(() => {
@@ -78,10 +108,27 @@ export const usePortfolio = ({ portfolioId, loc }: PropsType) => {
                     store.portfolio = response.data;
                 })
                 .catch((error) => {
-                    console.log(error);
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when receiving portfolio"
+                    );
                 })
                 .finally(() => {
                     store.loading = false;
+                });
+        }
+        if (!loadingType) {
+            setLoadingType(true);
+            global_store.store.portfolio
+                .getPortfolioType()
+                .then((response) => {
+                    setTypes(response.data);
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(error.request.status, "true");
+                })
+                .finally(() => {
+                    setLoadingType(false);
                 });
         }
     }, []);
@@ -104,5 +151,8 @@ export const usePortfolio = ({ portfolioId, loc }: PropsType) => {
         setUploadedImages,
         dataEditor,
         setDataEditor,
+        types,
+        loadingType,
+        contextHolder,
     };
 };

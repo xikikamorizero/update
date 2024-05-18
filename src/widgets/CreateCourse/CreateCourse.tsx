@@ -2,15 +2,16 @@
 import { ChangeEvent } from "react";
 import style from "./CreateCourse.module.css";
 import { useCourse } from "./lib/hook";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
-    add_title:string;
-    add_description:string;
-    add_level:string;
-    add_category:string;
-    add_image:string;
-    create:string;
+    add_title: string;
+    add_description: string;
+    add_level: string;
+    add_category: string;
+    add_image: string;
+    create: string;
 };
 
 export const CreateCourse = ({ ...props }: PropsType) => {
@@ -27,6 +28,7 @@ export const CreateCourse = ({ ...props }: PropsType) => {
         setCategory,
         uploadedImages,
         setUploadedImages,
+        contextHolder,
     } = useCourse({ loc: props.loc });
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +39,7 @@ export const CreateCourse = ({ ...props }: PropsType) => {
 
     return (
         <div className={style.wrapper}>
+            {contextHolder}
             <div className={style.container}>
                 <input
                     className={style.inputText}
@@ -100,7 +103,13 @@ export const CreateCourse = ({ ...props }: PropsType) => {
                         CreateCourse();
                     }}
                 >
-                    {props.create}
+                    {loading ? (
+                        <div className={style.preloadCo}>
+                            <Preloader />
+                        </div>
+                    ) : (
+                        props.create
+                    )}
                 </button>
             </div>
         </div>

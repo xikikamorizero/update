@@ -55,6 +55,19 @@ export const useUsers = () => {
     function setCourseMax(courseMax: number | null) {
         store.courseMax = courseMax;
     }
+    //
+    function setLikesMin(likesMin: number | null) {
+        store.likesMin = likesMin;
+    }
+    function setLikesMax(likesMax: number | null) {
+        store.likesMax = likesMax;
+    }
+    function setDisLikesMin(dislikesMin: number | null) {
+        store.dislikesMin = dislikesMin;
+    }
+    function setDisLikesMax(dislikesMax: number | null) {
+        store.dislikesMax = dislikesMax;
+    }
 
     useEffect(() => {
         const keyword = path.get("keyword");
@@ -70,11 +83,17 @@ export const useUsers = () => {
         const portfolioMax = path.get("portfolio_max");
         const courseMin = path.get("course_min");
         const courseMax = path.get("course_max");
+
+        const likesMin = path.get("likes_min");
+        const likesMax = path.get("likes_max");
+        const dislikesMin = path.get("dislikes_min");
+        const dislikesMax = path.get("dislikes_max");
+
         const categoryParams = path.getAll("category");
 
-        // if (categoryParams != null) {
-        //     setСategories(categoryParams as string[]);
-        // }
+        if (categoryParams != null) {
+            setСategories(categoryParams as string[]);
+        }
 
         if (keyword != null) {
             store.keyword = keyword;
@@ -115,21 +134,34 @@ export const useUsers = () => {
         if (courseMax != null) {
             store.courseMax = Number(courseMax);
         }
+        //
+        if (likesMin != null) {
+            store.likesMin = Number(likesMin);
+        }
+        if (likesMax != null) {
+            store.likesMax = Number(likesMax);
+        }
+        if (dislikesMin != null) {
+            store.dislikesMin = Number(dislikesMin);
+        }
+        if (dislikesMax != null) {
+            store.dislikesMax = Number(dislikesMax);
+        }
     }, [path]);
 
     useEffect(() => {
         const categoryParams = path.getAll("category");
         if (store.categories.length !== 0) {
-            console.log('категории',store.categories)
+            console.log("категории", store.categories);
 
             const missingInArray2 = store.categories.filter(
                 (item: string) => !categoryParams.includes(item)
             );
-            console.log('missingInArray2',missingInArray2)
+            console.log("missingInArray2", missingInArray2);
             const missingInArray1 = categoryParams.filter(
                 (item: string) => !store.categories.includes(item)
             );
-            console.log('missingInArray1',missingInArray1)
+            console.log("missingInArray1", missingInArray1);
 
             if (missingInArray2.length !== 0) {
                 store.categories.forEach((type) => {
@@ -223,6 +255,28 @@ export const useUsers = () => {
         } else {
             current.delete("course_max");
         }
+        //
+        if (store.likesMin != null) {
+            current.set("likes_min", String(store.likesMin));
+        } else {
+            current.delete("likes_min");
+        }
+        if (store.likesMax != null) {
+            current.set("likes_max", String(store.likesMax));
+        } else {
+            current.delete("likes_max");
+        }
+        //
+        if (store.dislikesMin != null) {
+            current.set("dislikes_min", String(store.dislikesMin));
+        } else {
+            current.delete("dislikes_min");
+        }
+        if (store.dislikesMax != null) {
+            current.set("dislikes_max", String(store.dislikesMax));
+        } else {
+            current.delete("dislikes_max");
+        }
 
         const search = current.toString();
         const query = search ? `?${search}` : "";
@@ -241,6 +295,10 @@ export const useUsers = () => {
         store.portfolioMax,
         store.courseMin,
         store.courseMax,
+        store.likesMin,
+        store.likesMax,
+        store.dislikesMin,
+        store.dislikesMax,
         store.categories,
     ]);
 
@@ -264,6 +322,10 @@ export const useUsers = () => {
                     portfolioMax: store.portfolioMax,
                     courseMin: store.courseMin,
                     courseMax: store.courseMax,
+                    likesMin: store.likesMin,
+                    likesMax: store.likesMax,
+                    dislikesMin: store.dislikesMin,
+                    dislikesMax: store.dislikesMax,
                     page: store.page,
                     limit: store.limit,
                 })
@@ -296,6 +358,10 @@ export const useUsers = () => {
         store.portfolioMax,
         store.courseMin,
         store.courseMax,
+        store.likesMin,
+        store.likesMax,
+        store.dislikesMin,
+        store.dislikesMax,
     ]);
 
     return {
@@ -309,6 +375,10 @@ export const useUsers = () => {
         setPortfolioMax,
         setCourseMin,
         setCourseMax,
+        setLikesMin,
+        setLikesMax,
+        setDisLikesMin,
+        setDisLikesMax,
         setСategories,
 
         yearsOfExperienceMin: store.yearsOfExperienceMin,
@@ -321,6 +391,10 @@ export const useUsers = () => {
         portfolioMax: store.portfolioMax,
         courseMin: store.courseMin,
         courseMax: store.courseMax,
+        likesMin: store.likesMin,
+        likesMax: store.likesMax,
+        dislikesMin: store.dislikesMin,
+        dislikesMax: store.dislikesMax,
         categories: store.categories,
 
         users: store.users,

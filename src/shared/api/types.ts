@@ -89,6 +89,10 @@ export interface usersParamType {
     portfolioMax?: number | null;
     courseMin?: number | null;
     courseMax?: number | null;
+    likesMin?: number | null;
+    likesMax?: number | null;
+    dislikesMin?: number | null;
+    dislikesMax?: number | null;
     page?: number;
     limit?: number;
 }

@@ -2,6 +2,7 @@
 import { Context as GlobalContext } from "@/shared/api";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import { notification } from "antd";
 
 export const useCreateAward = ({loc}:{loc:string}) => {
     const { store } = useContext(GlobalContext);
@@ -11,6 +12,15 @@ export const useCreateAward = ({loc}:{loc:string}) => {
     const [type, setType] = useState("");
     const [uploadedImages, setUploadedImages] = useState<File | null>(null);
     let router = useRouter();
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (status: number) => {
+        api["error"]({
+            message: status,
+            description: "Error creating reward",
+        });
+    };
 
     function Create() {
         if (!loading) {
@@ -25,7 +35,7 @@ export const useCreateAward = ({loc}:{loc:string}) => {
                     router.push(`/${loc}/profile`);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    openNotificationWithIcon(error.request.status);
                 })
                 .finally(() => {
                     setLoading(false);
@@ -44,6 +54,7 @@ export const useCreateAward = ({loc}:{loc:string}) => {
         type,
         setType,
         uploadedImages,
-        setUploadedImages
+        setUploadedImages,
+        contextHolder
     };
 };

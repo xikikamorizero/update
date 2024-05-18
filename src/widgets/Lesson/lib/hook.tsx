@@ -3,6 +3,7 @@ import { Context as GlobalContext } from "@/shared/api";
 import { Context } from "./context";
 import { useContext, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { notification } from "antd";
 
 type PropsType = {
     lessonId: string;
@@ -25,6 +26,15 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
     );
     const [error, setError] = useState(false);
 
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (status: number, description: string) => {
+        api["error"]({
+            message: status,
+            description: description,
+        });
+    };
+
     useEffect(() => {
         if (store.lesson) {
             setTitle(store.lesson.title);
@@ -35,38 +45,60 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
     }, [store.lesson]);
 
     function EditLesson() {
-        global_store.store.lesson
-            .edit(
-                { id: lessonId },
-                {
-                    title: title,
-                    description: description,
-                    lesson_number: lessonNumber,
-                    content: dataEditor,
-                    image: null,
-                }
-            )
-            .then((response) => {
-                store.lesson = response.data;
-            })
-            .catch((error) => {
-                console.log("ошибка при Editlesson");
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.lesson
+                .edit(
+                    { id: lessonId },
+                    {
+                        title: title,
+                        description: description,
+                        lesson_number: lessonNumber,
+                        content: dataEditor,
+                        image: null,
+                    }
+                )
+                .then((response) => {
+                    store.lesson = response.data;
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when changing lesson"
+                    );
+                    // if (store.lesson) {
+                    //     setTitle(store.lesson.title);
+                    //     setDescription(store.lesson.description);
+                    //     setLessonNumber(store.lesson.lesson_number);
+                    //     setDataEditor(store.lesson.content);
+                    // }
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     function DeleteLesson() {
-        global_store.store.lesson
-            .delete({ id: lessonId })
-            .then((response) => {
-                if (response.data.success) {
-                    router.push(`/${loc}/course/${store.lesson?.courseId}`);
-                }
-            })
-            .catch((error) => {
-                console.log("ошбка при DeleteLesson");
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.lesson
+                .delete({ id: lessonId })
+                .then((response) => {
+                    if (response.data.success) {
+                        router.push(`/${loc}/course/${store.lesson?.courseId}`);
+                    }
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when deleting lesson"
+                    );
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     useEffect(() => {
@@ -82,8 +114,13 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
                     store.lesson = response.data;
                 })
                 .catch((error) => {
-                    setError(true);
-                    console.log(error);
+                    if (error.request.status == 403) {
+                        setError(true);
+                    }
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error receiving lesson"
+                    );
                 })
                 .finally(() => {
                     store.loading = false;
@@ -111,5 +148,6 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
         setUploadedImages: setUploadedImages,
         dataEditor: dataEditor,
         setDataEditor: setDataEditor,
+        contextHolder,
     };
 };

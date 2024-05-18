@@ -5,6 +5,7 @@ import { useAward } from "./lib/hook";
 import { observer } from "mobx-react-lite";
 import { ImageInput } from "@/shared";
 import React from "react";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
@@ -25,6 +26,7 @@ export const Award = observer(({ ...props }: PropsType) => {
     });
     return (
         <div className={style.wrapper}>
+            {data.contextHolder}
             <div className={style.container}>
                 {!data.editMode ? (
                     <p className={style.title}>{data.award?.title}</p>
@@ -47,18 +49,16 @@ export const Award = observer(({ ...props }: PropsType) => {
                     />
                 ) : (
                     <div className={style.inputImage}>
-                    <ImageInput
-                        image={data.uploadedImages}
-                        setImage={data.setUploadedImages}
-                    />
-                </div>
+                        <ImageInput
+                            image={data.uploadedImages}
+                            setImage={data.setUploadedImages}
+                        />
+                    </div>
                 )}
-
-              
 
                 {!data.editMode ? (
                     <p className={style.subInfo}>
-                        {props.type}: {data.type}
+                        {props.type}: {data.award?.type}
                     </p>
                 ) : (
                     <input
@@ -74,7 +74,7 @@ export const Award = observer(({ ...props }: PropsType) => {
 
                 {!data.editMode ? (
                     <p className={style.subInfo}>
-                        {props.year}: {data.year}
+                        {props.year}: {data.award?.year}
                     </p>
                 ) : (
                     <input
@@ -91,16 +91,22 @@ export const Award = observer(({ ...props }: PropsType) => {
                 {data.profile?.id == data.award?.userId && (
                     <div className={style.buttonContainer}>
                         <button
-                            disabled={!data.award}
+                            disabled={!data.award || data.loading}
                             className={style.deleteButton}
                             onClick={() => {
                                 data.Delete();
                             }}
                         >
-                            {props.delete}
+                            {data.loading ? (
+                                <div className={style.preloadCo}>
+                                    <Preloader />
+                                </div>
+                            ) : (
+                                props.delete
+                            )}
                         </button>
                         <button
-                            disabled={!data.award}
+                            disabled={!data.award || data.loading}
                             className={style.editButton}
                             onClick={() => {
                                 if (data.editMode) {
@@ -109,7 +115,15 @@ export const Award = observer(({ ...props }: PropsType) => {
                                 data.setEditMode(!data.editMode);
                             }}
                         >
-                            {data.editMode ? props.save : props.edit}
+                            {data.loading ? (
+                                <div className={style.preloadCo}>
+                                    <Preloader />
+                                </div>
+                            ) : data.editMode ? (
+                                props.save
+                            ) : (
+                                props.edit
+                            )}
                         </button>
                     </div>
                 )}

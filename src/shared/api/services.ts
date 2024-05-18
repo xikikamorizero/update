@@ -45,6 +45,10 @@ export class User {
         portfolioMax,
         courseMin,
         courseMax,
+        likesMin,
+        likesMax,
+        dislikesMin,
+        dislikesMax,
         page,
         limit,
     }: types.usersParamType): Promise<AxiosResponse<types.usersType>> {
@@ -62,6 +66,10 @@ export class User {
             portfolioMax,
             courseMin,
             courseMax,
+            likesMin,
+            likesMax,
+            dislikesMin,
+            dislikesMax,
             page,
             limit,
         };

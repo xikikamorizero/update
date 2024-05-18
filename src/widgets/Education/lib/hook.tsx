@@ -4,6 +4,7 @@ import { Context } from "./context";
 import { useState } from "react";
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { notification } from "antd";
 
 type Props = {
     id: string;
@@ -22,11 +23,20 @@ export const useEducation = ({ ...props }: Props) => {
     const [date, setDate] = useState(
         store.education?.date ? store.education?.date : ""
     );
-  
+
     const [uploadedImages, setUploadedImages] = useState<any | null>(null);
     const [docs, setDocs] = useState<any>(
         store.education?.docs ? store.education?.docs : null
     );
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (status: number, description: string) => {
+        api["error"]({
+            message: status,
+            description: description,
+        });
+    };
 
     useEffect(() => {
         if (store.education) {
@@ -41,35 +51,51 @@ export const useEducation = ({ ...props }: Props) => {
     };
 
     function Edit() {
-        global_store.store.UpdatePort.editEducation(
-            { id: props.id },
-            {
-                title: title,
-                date: date,
-                image: uploadedImages,
-                docs: docs,
-            }
-        )
-            .then((response) => {
-                store.education = response.data;
-            })
-            .catch((error) => {
-                console.log("ошибка при EditEducation");
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.UpdatePort.editEducation(
+                { id: props.id },
+                {
+                    title: title,
+                    date: date,
+                    image: uploadedImages,
+                    docs: docs,
+                }
+            )
+                .then((response) => {
+                    store.education = response.data;
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when changing education"
+                    );
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     function Delete() {
-        global_store.store.UpdatePort.deleteEducation({ id: props.id })
-            .then((response) => {
-                if (response.data.success) {
-                    router.push(`/${props.loc}/profile`);
-                }
-            })
-            .catch((error) => {
-                console.log("ошибка при DeleteAward");
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.UpdatePort.deleteEducation({ id: props.id })
+                .then((response) => {
+                    if (response.data.success) {
+                        router.push(`/${props.loc}/profile`);
+                    }
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error when deleting education"
+                    );
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     useEffect(() => {
@@ -82,7 +108,10 @@ export const useEducation = ({ ...props }: Props) => {
                     store.education = response.data;
                 })
                 .catch((error) => {
-                    console.log("ошибка", error);
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error while receiving education"
+                    );
                 })
                 .finally(() => {
                     store.loading = false;
@@ -105,5 +134,7 @@ export const useEducation = ({ ...props }: Props) => {
         Delete,
         uploadedImages,
         setUploadedImages,
+        contextHolder,
+        loading:store.loading
     };
 };

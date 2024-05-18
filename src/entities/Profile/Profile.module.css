@@ -29,7 +29,7 @@
     gap: 15px;
     font-size: 30px;
 }
-.iconRole{
+.iconRole {
     width: 40px;
     height: 40px;
     color: var(--main_color);
@@ -170,16 +170,24 @@
     overflow-x: hidden;
     overflow-y: scroll;
     scrollbar-width: none;
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
-.projectWrapperPort{
+.projectWrapperPort {
     width: 100%;
     height: 400px;
     display: flex;
     flex-direction: column;
-    gap:15px;
+    gap: 15px;
     overflow-x: hidden;
     overflow-y: scroll;
     scrollbar-width: none;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .projectWrapper::-webkit-scrollbar {
     display: none;
@@ -190,6 +198,10 @@
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     column-gap: 10px;
     row-gap: 5px;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .subscribers {
     display: flex;
@@ -248,7 +260,16 @@
     overflow-x: scroll;
     scrollbar-width: none;
 }
-
+.noResultCont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.iconSad {
+    width: 150px;
+    height: 150px;
+}
 @media (max-width: 895px) {
     .container {
         flex-direction: column;
