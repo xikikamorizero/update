@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { notification } from "antd";
 
-type Props  = {
-    loc:string;
-    titleError:string;
-    description:string;
-}
+type Props = {
+    loc: string;
+    titleError: string;
+    description: string;
+};
 
 export const useLogin = ({ ...props }: Props) => {
     const { store } = useContext(GlobalContext);
@@ -18,10 +18,10 @@ export const useLogin = ({ ...props }: Props) => {
     const [api, contextHolder] = notification.useNotification();
     let router = useRouter();
 
-    const openNotificationWithIcon = (status:number) => {
+    const openNotificationWithIcon = (status: number) => {
         api["error"]({
-            message: props.titleError,
-            description: status==409? props.description: '',
+            message: props.titleError + " " + status,
+            description: status == 409 ? props.description : "",
         });
     };
 
@@ -41,7 +41,7 @@ export const useLogin = ({ ...props }: Props) => {
                     .catch();
             })
             .catch((error) => {
-                openNotificationWithIcon(error.request.status)
+                openNotificationWithIcon(error.request.status);
             });
     };
 
