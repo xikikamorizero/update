@@ -98,19 +98,19 @@ export class Store {
 
     constructor() {
         makeAutoObservable(this);
-        // this.loadFromLocalStorage = this.loadFromLocalStorage.bind(this);
-        // this.loadFromLocalStorage();
+        this.loadFromLocalStorage = this.loadFromLocalStorage.bind(this);
+        this.loadFromLocalStorage();
     }
 
-    // loadFromLocalStorage() {
-    //     const token = localStorage.getItem("token");
-    //     if (token) {
-    //         this.token = token;
-    //     }
-    // }
-    // saveToLocalStorage() {
-    //     localStorage.setItem("token", JSON.stringify(this.token));
-    // }
+    loadFromLocalStorage() {
+        const token = localStorage.getItem("token");
+        if (token) {
+            this.token = token;
+        }
+    }
+    saveToLocalStorage() {
+        localStorage.setItem("token", JSON.stringify(this.token));
+    }
 
     updateProfile() {
         this.update_profile = !this.update_profile;
