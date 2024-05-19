@@ -14,9 +14,9 @@ type PropsType = {
 //         `http://localhost:5000/portfolio/${params.id}`
 //     )
 //         .then((res) => res.json())
-//         .catch((error) => {});
+//         .catch((error) => null);
 //     return {
-//         title: portfolio.title ? portfolio.title : `Portfolio ${params.id}`,
+//         title: portfolio? portfolio.title : `Portfolio ${params.id}`,
 //     };
 // }
 

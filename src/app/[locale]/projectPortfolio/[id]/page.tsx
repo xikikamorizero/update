@@ -9,15 +9,26 @@ type PropsType = {
     };
 };
 
-export async function generateMetadata({ params }: PropsType) {
-    const portfolio = await fetch(
-        `http://localhost:5000/portfolio/${params.id}`
-    )
-        .then((res:any) => res.data.json())
-        .catch((error) => null);
-    return {
-        title: portfolio? portfolio.title : `Portfolio ${params.id}`,
-    };
+export async function generateMetadata({
+    params,
+}: PropsType): Promise<Metadata> {
+    try {
+        const response = await fetch(
+            `http://localhost:5000/portfolio/${params.id}`
+        );
+        const data = await response.json();
+        return {
+            title: data.title,
+        };
+    } catch (error) {
+        console.error(
+            `Error fetching portfolio data for ID ${params.id}:`,
+            error
+        );
+        return {
+            title: `Portfolio ${params.id}`,
+        };
+    }
 }
 
 export default function Portfolio({ params }: PropsType) {
