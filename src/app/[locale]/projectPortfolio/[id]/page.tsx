@@ -9,16 +9,16 @@ type PropsType = {
     };
 };
 
-// export async function generateMetadata({ params }: PropsType) {
-//     const portfolio = await fetch(
-//         `http://localhost:5000/portfolio/${params.id}`
-//     )
-//         .then((res) => res.json())
-//         .catch((error) => null);
-//     return {
-//         title: portfolio.title ? portfolio.title : `Portfolio ${params.id}`,
-//     };
-// }
+export async function generateMetadata({ params }: PropsType) {
+    const portfolio = await fetch(
+        `http://localhost:5000/portfolio/${params.id}`
+    )
+        .then((res:any) => res.data.json())
+        .catch((error) => null);
+    return {
+        title: portfolio? portfolio.title : `Portfolio ${params.id}`,
+    };
+}
 
 export default function Portfolio({ params }: PropsType) {
     const t = useTranslations("Portfolio");

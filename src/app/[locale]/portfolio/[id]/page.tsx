@@ -20,6 +20,12 @@ type PropsType = {
 //     };
 // }
 
+export async function generateMetadata({ params }: PropsType) {
+    return {
+        title: `Portfolio ${params.id}`,
+    };
+}
+
 export default function Portfolio({ params }: PropsType) {
     const t = useTranslations("Portfolio");
     return (
