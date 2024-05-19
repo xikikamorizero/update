@@ -56,25 +56,33 @@ export const useProject = () => {
     );
 
     function EditProfile() {
-        global_store.store.user
-            .editProfile({
-                name: name?.trim() !== "" ? name : "null",
-                description: description?.trim() !== "" ? description : "null",
-                place_of_work: placeOfWork?.trim() !== "" ? placeOfWork : "null",
-                position: position?.trim() !== "" ? position : "null",
-                yearsOfExperience:String(yearsOfExperience),
-                science_degree: scienceDegree?.trim() !== "" ? scienceDegree : "null",
-                contacts: contacts?.trim() !== "" ? contacts : "null",
-                categories: categories,
-                avatar: image,
-            })
-            .then((response) => {
-                global_store.store.profile = response.data;
-            })
-            .catch((error) => {
-                console.log("Ошибка при EditProfile", error);
-            })
-            .finally(() => {});
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.user
+                .editProfile({
+                    name: name?.trim() !== "" ? name : "null",
+                    description:
+                        description?.trim() !== "" ? description : "null",
+                    place_of_work:
+                        placeOfWork?.trim() !== "" ? placeOfWork : "null",
+                    position: position?.trim() !== "" ? position : "null",
+                    yearsOfExperience: String(yearsOfExperience),
+                    science_degree:
+                        scienceDegree?.trim() !== "" ? scienceDegree : "null",
+                    contacts: contacts?.trim() !== "" ? contacts : "null",
+                    categories: categories,
+                    avatar: image,
+                })
+                .then((response) => {
+                    global_store.store.profile = response.data;
+                })
+                .catch((error) => {
+                    console.log("Ошибка при EditProfile", error);
+                })
+                .finally(() => {
+                    store.loading = false;
+                });
+        }
     }
 
     function logout() {
@@ -85,16 +93,22 @@ export const useProject = () => {
 
     useEffect(() => {
         global_store.store.updateProfile();
-        global_store.store.user
-            .getMyProject()
-            .then((response) => {
-                store.portfolio = response.data.portfolio;
-                store.course = response.data.course;
-            })
-            .catch((error) => {
-                console.log("");
-            })
-            .finally(() => {});
+
+        if (!store.loadingProject) {
+            store.loadingProject = true;
+            global_store.store.user
+                .getMyProject()
+                .then((response) => {
+                    store.portfolio = response.data.portfolio;
+                    store.course = response.data.course;
+                })
+                .catch((error) => {
+                    console.log("");
+                })
+                .finally(() => {
+                    store.loadingProject = false;
+                });
+        }
     }, []);
 
     return {
@@ -124,5 +138,7 @@ export const useProject = () => {
         EditProfile,
         logout,
         typesPortfolio: global_store.store.typePortfolio,
+        loading: store.loading,
+        loadingProject: store.loadingProject,
     };
 };

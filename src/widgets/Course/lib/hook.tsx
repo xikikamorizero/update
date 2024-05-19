@@ -103,13 +103,15 @@ export const useCourse = ({
                     setError(false);
                 })
                 .catch((error) => {
-                    if (error.request.status == 403) {
-                        setError(true);
+                    if (error.request) {
+                        if (error.request.status == 403) {
+                            setError(true);
+                        }
+                        openNotificationWithIcon(
+                            error.request.status,
+                            "Error receiving course"
+                        );
                     }
-                    openNotificationWithIcon(
-                        error.request.status,
-                        "Error receiving course"
-                    );
                 })
                 .finally(() => {
                     store.loading = false;

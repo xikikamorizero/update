@@ -80,6 +80,22 @@
     justify-content: center;
     align-items: center;
 }
+.preloaderContainer {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.preloader {
+    width: 50vh;
+    height: 50vh;
+    position: relative;
+    flex-shrink: 0;
+}
+
 @media (max-width: 750px) {
     .filterContainer{
         align-items: start;

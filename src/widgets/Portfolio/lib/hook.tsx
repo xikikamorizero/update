@@ -114,5 +114,6 @@ export const usePortfolio = () => {
         limit: store.limit,
         loadingT: store.loadingT,
         types: store.types,
+        loading:store.loading
     };
 };

@@ -38,7 +38,13 @@ export const Course = observer(({ ...props }: PropsType) => {
     return (
         <div className={style.container}>
             {data.contextHolder}
-            {data.editMode ? (
+            {data.loading ? (
+                <div className={style.preloaderContainer}>
+                    <div className={style.preloader}>
+                        <Preloader />
+                    </div>
+                </div>
+            ) : data.editMode ? (
                 <>
                     <input
                         className={style.title}

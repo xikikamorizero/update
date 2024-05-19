@@ -114,13 +114,15 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
                     store.lesson = response.data;
                 })
                 .catch((error) => {
-                    if (error.request.status == 403) {
-                        setError(true);
+                    if (error.request) {
+                        if (error.request.status == 403) {
+                            setError(true);
+                        }
+                        openNotificationWithIcon(
+                            error.request.status,
+                            "Error receiving lesson"
+                        );
                     }
-                    openNotificationWithIcon(
-                        error.request.status,
-                        "Error receiving lesson"
-                    );
                 })
                 .finally(() => {
                     store.loading = false;

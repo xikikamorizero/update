@@ -31,6 +31,7 @@ import { EducationCard } from "@/shared/EducationCard/EducationCard";
 import { BlockPortfolio } from "./BlockPortfolio";
 import { WrapperEditBlockNum } from "@/shared/WrapperEditBlock/WrapperEditBlokNum";
 import iconNoResult from "./assets/noresult.png";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     user: types.userType | null;
@@ -113,6 +114,9 @@ type PropsType = {
     adminT?: string;
 
     logout?: () => void;
+
+    loadingProject: boolean;
+    loadingEditProfile: boolean;
 };
 
 export const Profile = observer(({ ...props }: PropsType) => {
@@ -171,7 +175,8 @@ export const Profile = observer(({ ...props }: PropsType) => {
                     {!props.myProf ? (
                         props.subBlock
                     ) : (
-                        <div
+                        <button
+                            disabled={props.loadingEditProfile}
                             className={style.sub_func}
                             onClick={() => {
                                 if (props.setEditMode) {
@@ -182,8 +187,16 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                 }
                             }}
                         >
-                            {props.editMode ? props.save : props.edit_profile}
-                        </div>
+                            {props.loadingEditProfile ? (
+                                <div className={style.preloaderEdit}>
+                                    <Preloader />
+                                </div>
+                            ) : props.editMode ? (
+                                props.save
+                            ) : (
+                                props.edit_profile
+                            )}
+                        </button>
                     )}
 
                     <WrapperEditBlock
@@ -419,34 +432,49 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         </div>
                         <div className={style.projectWrapper}>
                             {portfolio ? (
-                                <div
-                                    className={style.projectWrapperPort}
-                                    style={
-                                        props.portfolio &&
-                                        props.portfolio.length == 0
-                                            ? {
-                                                  backgroundImage:
-                                                      "url(/noresult.png)",
-                                              }
-                                            : {}
-                                    }
-                                >
-                                    {props.typesPortfolio?.map((a, i) => (
-                                        <BlockPortfolio
-                                            key={i}
-                                            array={props.portfolio?.filter(
-                                                (item) => item.typeId === a.id
-                                            )}
-                                            loc={props.loc}
-                                            title={
-                                                props.loc == "ru"
-                                                    ? a.valueRu
-                                                    : props.loc == "en"
-                                                    ? a.valueEn
-                                                    : a.valueUz
-                                            }
-                                        />
-                                    ))}
+                                props.loadingProject ? (
+                                    <div className={style.preloaderContainer}>
+                                        <div className={style.preloader}>
+                                            <Preloader />
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div
+                                        className={style.projectWrapperPort}
+                                        style={
+                                            props.portfolio &&
+                                            props.portfolio.length == 0
+                                                ? {
+                                                      backgroundImage:
+                                                          "url(/noresult.png)",
+                                                  }
+                                                : {}
+                                        }
+                                    >
+                                        {props.typesPortfolio?.map((a, i) => (
+                                            <BlockPortfolio
+                                                key={i}
+                                                array={props.portfolio?.filter(
+                                                    (item) =>
+                                                        item.typeId === a.id
+                                                )}
+                                                loc={props.loc}
+                                                title={
+                                                    props.loc == "ru"
+                                                        ? a.valueRu
+                                                        : props.loc == "en"
+                                                        ? a.valueEn
+                                                        : a.valueUz
+                                                }
+                                            />
+                                        ))}
+                                    </div>
+                                )
+                            ) : props.loadingProject ? (
+                                <div className={style.preloaderContainer}>
+                                    <div className={style.preloader}>
+                                        <Preloader />
+                                    </div>
                                 </div>
                             ) : (
                                 <div

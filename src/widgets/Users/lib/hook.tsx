@@ -408,5 +408,6 @@ export const useUsers = () => {
         pageCount: store.page_count,
         limit: store.limit,
         myId: global_store.store.profile?.id,
+        loading: store.loading,
     };
 };

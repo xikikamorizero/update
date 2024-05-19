@@ -31,7 +31,6 @@ export const useUser = ({ userId, loc }: PropsType) => {
     }
 
     useEffect(() => {
-        console.log(userId);
         if (!store.loading) {
             if(userId!=global_store.store.profile?.id){
                 store.loading = true;
@@ -57,6 +56,7 @@ export const useUser = ({ userId, loc }: PropsType) => {
         user: store.user,
         myProfile: global_store.store.profile,
         isIdPresent: isIdPresent,
-        typesPortfolio:global_store.store.typePortfolio
+        typesPortfolio:global_store.store.typePortfolio,
+        loading:store.loading
     };
 };

@@ -9,20 +9,14 @@ type PropsType = {
     };
 };
 
-// export async function generateMetadata({ params }: PropsType) {
-//     const portfolio = await fetch(
-//         `http://localhost:5000/portfolio/${params.id}`
-//     )
-//         .then((res) => res.json())
-//         .catch((error) => null);
-//     return {
-//         title: portfolio? portfolio.title : `Portfolio ${params.id}`,
-//     };
-// }
-
 export async function generateMetadata({ params }: PropsType) {
+    const portfolio = await fetch(
+        `http://localhost:5000/portfolio/${params.id}`
+    )
+        .then((res) => res.json())
+        .catch((error) => null);
     return {
-        title: `Portfolio ${params.id}`,
+        title: portfolio? portfolio.title : `Portfolio ${params.id}`,
     };
 }
 

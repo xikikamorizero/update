@@ -12,6 +12,7 @@ import { SearchNormal1, FilterSquare } from "iconsax-react";
 import Link from "next/link";
 import { NoItem } from "@/shared/NoItem/NoItem";
 import { CategoriesFilter } from "@/shared/CategoriesFilter/CategoriesFilter";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
@@ -188,37 +189,46 @@ export const Users = observer(({ ...props }: PropsType) => {
                     </div>
                 </div>
             )}
-
-            <Row gutter={[16, 16]}>
-                {data.users.length > 0 ? (
-                    data.users?.map((a, i) => (
-                        <Col
-                            xs={xsmall}
-                            sm={small}
-                            md={middle}
-                            lg={large}
-                            key={i}
-                        >
-                            <Link
-                                href={
-                                    data.myId == a.id
-                                        ? `/${props.loc}/profile`
-                                        : `/${props.loc}/users/${a.id}`
-                                }
+            
+            {data.loading ? (
+                <div className={style.preloaderContainer}>
+                    <div className={style.preloader}>
+                        <Preloader />
+                    </div>
+                </div>
+            ) : (
+                <Row gutter={[16, 16]}>
+                    {data.users.length > 0 ? (
+                        data.users?.map((a, i) => (
+                            <Col
+                                xs={xsmall}
+                                sm={small}
+                                md={middle}
+                                lg={large}
+                                key={i}
                             >
-                                <Card
-                                    loading={false}
-                                    src={a.avatar}
-                                    title={a.name}
-                                    subtitle={a.science_degree}
-                                />
-                            </Link>
-                        </Col>
-                    ))
-                ) : (
-                    <NoItem />
-                )}
-            </Row>
+                                <Link
+                                    href={
+                                        data.myId == a.id
+                                            ? `/${props.loc}/profile`
+                                            : `/${props.loc}/users/${a.id}`
+                                    }
+                                >
+                                    <Card
+                                        loading={false}
+                                        src={a.avatar}
+                                        title={a.name}
+                                        subtitle={a.science_degree}
+                                    />
+                                </Link>
+                            </Col>
+                        ))
+                    ) : (
+                        <NoItem />
+                    )}
+                </Row>
+            )}
+
             <Pagination
                 className={style.pagination}
                 defaultCurrent={data.page}

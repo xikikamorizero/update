@@ -13,7 +13,11 @@ type PropsType = {
 export const SubUnSub = ({ ...props }: PropsType) => {
     const data = useSubUnSub({ isSubscribe: props.isSubscribe, id: props.id });
     return (
-        <div className={style.sub_func} onClick={data.SubUnSub}>
+        <button
+            disabled={data.loading}
+            className={style.sub_func}
+            onClick={data.SubUnSub}
+        >
             {data.loading ? (
                 <div className={style.preloaderContainer}>
                     <Preloader />
@@ -21,6 +25,6 @@ export const SubUnSub = ({ ...props }: PropsType) => {
             ) : (
                 <p>{props.isSubscribe ? props.unsubscribe : props.subscribe}</p>
             )}
-        </div>
+        </button>
     );
 };

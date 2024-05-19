@@ -11,6 +11,7 @@ import Link from "next/link";
 import { InputFilter } from "@/entities/InputFilter/InputFilter";
 import { SearchNormal1, FilterSquare } from "iconsax-react";
 import { NoItem } from "@/shared/NoItem/NoItem";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
@@ -88,31 +89,40 @@ export const Portfolio = observer(({ ...props }: PropsType) => {
                 </div>
             )}
 
-            <Row gutter={[16, 16]}>
-                {data.portfolio.length > 0 ? (
-                    data.portfolio?.map((a, i) => (
-                        <Col
-                            xs={xsmall}
-                            sm={small}
-                            md={middle}
-                            lg={large}
-                            key={i}
-                        >
-                            <Link href={`/${props.loc}/portfolio/${a.id}`}>
-                                <Card
-                                    loading={false}
-                                    src={a.image}
-                                    title={a.title}
-                                    subtitle={a.category}
-                                    proj={"true"}
-                                />
-                            </Link>
-                        </Col>
-                    ))
-                ) : (
-                    <NoItem />
-                )}
-            </Row>
+            {data.loading ? (
+                <div className={style.preloaderContainer}>
+                    <div className={style.preloader}>
+                        <Preloader />
+                    </div>
+                </div>
+            ) : (
+                <Row gutter={[16, 16]}>
+                    {data.portfolio.length > 0 ? (
+                        data.portfolio?.map((a, i) => (
+                            <Col
+                                xs={xsmall}
+                                sm={small}
+                                md={middle}
+                                lg={large}
+                                key={i}
+                            >
+                                <Link href={`/${props.loc}/portfolio/${a.id}`}>
+                                    <Card
+                                        loading={false}
+                                        src={a.image}
+                                        title={a.title}
+                                        subtitle={a.category}
+                                        proj={"true"}
+                                    />
+                                </Link>
+                            </Col>
+                        ))
+                    ) : (
+                        <NoItem />
+                    )}
+                </Row>
+            )}
+
             <Pagination
                 className={style.pagination}
                 defaultCurrent={data.page}

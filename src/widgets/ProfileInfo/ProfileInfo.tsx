@@ -5,12 +5,13 @@ import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 import { useProject } from "./lib/hook";
 import { LikeDisLike } from "../LikeDisLike/LikeDisLike";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     likedislikeC?: ReactNode;
     loc: string;
 
-    add_description:string;
+    add_description: string;
     add_name: string;
     add_placeOfWork: string;
     save: string;
@@ -25,30 +26,30 @@ type PropsType = {
     course_title: string;
     create_portfolio: string;
     create_course: string;
-    out:string;
+    out: string;
 
-    staj:string;
-    add_staj:string;
-    positionT:string;
-    add_positionT:string;
-    create:string;
-    control:string;
-    educationT:string;
-    traningT:string;
-    publicationT:string;
-    awardT:string;
-    descriptionT:string;
+    staj: string;
+    add_staj: string;
+    positionT: string;
+    add_positionT: string;
+    create: string;
+    control: string;
+    educationT: string;
+    traningT: string;
+    publicationT: string;
+    awardT: string;
+    descriptionT: string;
     contactsT: string;
-    scienceDegreeT:string;
+    scienceDegreeT: string;
 
-    titleTable:string;
-    dateTable:string;
-    locationTable:string;
-    organizationTable:string;
-    numberOfHoursTable:string;
-    docsTable:string;
+    titleTable: string;
+    dateTable: string;
+    locationTable: string;
+    organizationTable: string;
+    numberOfHoursTable: string;
+    docsTable: string;
 
-    adminT:string;
+    adminT: string;
 };
 
 export const ProfileInfo = observer(({ ...props }: PropsType) => {
@@ -89,7 +90,6 @@ export const ProfileInfo = observer(({ ...props }: PropsType) => {
                 }
                 category={data.categories}
                 setCategory={data.setСategories}
-                
                 add_name={props.add_name}
                 add_placeOfWork={props.add_placeOfWork}
                 save={props.save}
@@ -103,7 +103,6 @@ export const ProfileInfo = observer(({ ...props }: PropsType) => {
                 course_title={props.course_title}
                 create_portfolio={props.create_portfolio}
                 create_course={props.create_course}
-
                 staj={props.staj}
                 add_staj={props.add_staj}
                 positionT={props.positionT}
@@ -117,7 +116,6 @@ export const ProfileInfo = observer(({ ...props }: PropsType) => {
                 descriptionT={props.descriptionT}
                 contactsT={props.contactsT}
                 scienceDegreeT={props.scienceDegreeT}
-
                 out={props.out}
                 logout={data.logout}
                 publication={data.profile?.publications}
@@ -125,18 +123,17 @@ export const ProfileInfo = observer(({ ...props }: PropsType) => {
                 awards={data.profile?.awards}
                 education={data.profile?.education}
                 typesPortfolio={data.typesPortfolio}
-
                 titleTable={props.titleTable}
                 dateTable={props.dateTable}
                 locationTable={props.locationTable}
                 organizationTable={props.organizationTable}
                 numberOfHoursTable={props.numberOfHoursTable}
                 docsTable={props.docsTable}
-
                 adminT={props.adminT}
-
                 subscriptions={props.subscriptions}
                 no_subscriptions={props.no_subscriptions}
+                loadingProject={data.loadingProject}
+                loadingEditProfile={data.loading}
             />
         </div>
     );
