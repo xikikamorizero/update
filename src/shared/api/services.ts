@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { $voxmentor_api_public } from "./instances";
+import { $voxmentor_api_public, $voxmentor_auth } from "./instances";
 import * as types from "./types";
 import * as urls from "./urls";
 import axios from "axios";
@@ -9,7 +9,7 @@ export class Auth {
         email: string,
         password: string
     ): Promise<AxiosResponse<types.LoginResponseType>> {
-        return await axios.post<types.LoginResponseType>(urls.auth.login(), {
+        return await $voxmentor_auth.post<types.LoginResponseType>(urls.auth.login(), {
             email: email,
             password: password,
         });
@@ -19,7 +19,7 @@ export class Auth {
         password: string,
         teacher: boolean
     ): Promise<AxiosResponse<types.LoginResponseType>> {
-        return await axios.post<types.LoginResponseType>(
+        return await $voxmentor_auth.post<types.LoginResponseType>(
             urls.auth.registration(),
             {
                 email: email,

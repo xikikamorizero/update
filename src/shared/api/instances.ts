@@ -7,10 +7,14 @@ export const $voxmentor_api_public = axios.create({
     headers: {},
 });
 
+export const $voxmentor_auth = axios.create({
+    baseURL: baseUrl,
+    headers: {},
+});
+
 $voxmentor_api_public.interceptors.request.use((config: any) => {
     if (!localStorage.getItem("token")) {
         throw new Error("not authorized", config.url);
-        console.log('Нет авторизацц')
     } else {
         config.headers.Authorization = `Bearer ${localStorage.getItem(
             "token"
