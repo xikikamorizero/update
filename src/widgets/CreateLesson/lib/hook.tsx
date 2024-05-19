@@ -56,10 +56,8 @@ export const useLesson = ({...props}:Props) => {
                     })
                     .catch((error) => {
                         openNotificationWithIconSt(error.request.status);
-                    })
-                    .finally(() => {
                         setLoading(false);
-                    });
+                    })
             }
             else{
                 openNotificationWithIcon()
