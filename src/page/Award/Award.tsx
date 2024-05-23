@@ -26,6 +26,8 @@ export const AwardItem = ({ ...props }: PropsType) => {
                     delete={t("delete")}
                     year={c("year")}
                     type={c("type")}
+                    linkT={c("link_docs")}
+                    add_docsT={c("add_docs")}
                 />
             </WithWrapper>
         </div>

@@ -61,6 +61,11 @@ export const User = ({ ...props }: PropsType) => {
 
                     subscriptions={props.subscriptions}
                     no_subscriptions={props.no_subscriptions}
+
+                    linkT={t("linkT")}
+                    docsT={t("docsT")}
+                    add_docsT={t("add_docsT")}
+                    yearT={t("yearT")}
                 />
             </WithWrapper>
         </div>

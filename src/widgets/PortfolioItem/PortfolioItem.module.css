@@ -11,11 +11,17 @@
     gap: 10px;
     max-width: 770px;
     height: max-content;
+    padding-bottom: 70px;
 }
 .title {
     width: 100%;
     text-align: center;
     font-size: 40px;
+    font-weight: 900;
+}
+.link{
+    font-size: 20px;
+    color: var(--link_color);
 }
 .selectC {
     width: 100%;
@@ -78,7 +84,7 @@
     background-color: var(--main_color);
 }
 .deleteButton {
-    width: 200px;
+    width: 230px;
     background-color: var(--delete);
 }
 .preloaderContainer {
@@ -95,4 +101,46 @@
     height: 50vh;
     position: relative;
     flex-shrink: 0;
+}
+
+.inputImage {
+    width: 300px;
+    height: 200px;
+    background-color: var(--sub_color);
+    border: 1px solid var(--main_color);
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.uploadContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 500px) {
+    .buttonContainer {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .buttonContainer button {
+        font-size: 20px;
+        height: 35px;
+    }
+    .preloadCo {
+        width: 30px;
+        height: 30px;
+    }
+    .deleteButton {
+        width: 100%;
+    }
+    .editButton {
+        width: 100%;
+    }
+    .title{
+        font-size: 25px;
+    }
 }

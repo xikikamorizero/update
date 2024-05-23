@@ -51,11 +51,27 @@ input:focus {
     --delete: #eb1616;
     --sub_color: #545454;
 
+    --link_color:#2fff00;
+
     --container_width: 90%;
     --container_maxwidth: 1600px;
     --container_maxheight: 900px;
     --mobile_adaptive: 895px;
 }
+/* :root {
+    --main_color: #000000;
+    --secondary_color: #ffffff;
+    --main_text_color: #000000;
+    --secondary_text_color: #ffffff;
+    --subtitle_text_color: #ffffff;
+    --delete: #eb1616;
+    --sub_color: #545454;
+
+    --container_width: 90%;
+    --container_maxwidth: 1600px;
+    --container_maxheight: 900px;
+    --mobile_adaptive: 895px;
+} */
 .ce-inline-toolbar {
     background-color: var(--secondary_color);
 }

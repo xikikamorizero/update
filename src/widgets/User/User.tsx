@@ -37,6 +37,12 @@ type PropsType = {
     organizationTable: string;
     numberOfHoursTable: string;
     docsTable: string;
+
+    linkT: string;
+
+    docsT: string;
+    add_docsT: string;
+    yearT: string;
 };
 
 export const User = observer(({ ...props }: PropsType) => {
@@ -44,6 +50,7 @@ export const User = observer(({ ...props }: PropsType) => {
         userId: props.userId,
         loc: props.loc,
     });
+
     return (
         <div className={style.containert}>
             {loading ? (
@@ -122,8 +129,14 @@ export const User = observer(({ ...props }: PropsType) => {
                     docsTable={props.docsTable}
                     subscriptions={props.subscriptions}
                     no_subscriptions={props.no_subscriptions}
+
                     loadingProject={false}
                     loadingEditProfile={false}
+
+                    linkT={props.linkT}
+                    docsT={props.docsT}
+                    yearT={props.yearT}
+                    add_docsT={props.add_docsT}
                 />
             )}
         </div>

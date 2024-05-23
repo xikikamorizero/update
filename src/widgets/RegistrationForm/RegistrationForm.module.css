@@ -13,8 +13,8 @@
     padding: 5px 10px;
 }
 .buttonLogin {
-    width: max-content;
-    height: max-content;
+    width: 200px;
+    height: 50px;
     padding: 10px 25px;
     font-size: 25px;
     background-color: var(--secondary_text_color);
@@ -22,6 +22,16 @@
     cursor: pointer;
     user-select: none;
     margin-top: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--main_color);
+}
+.preloadCo {
+    width: 50px;
+    height: 50px;
+    position: relative;
 }
 .closeIcon {
     position: absolute;
@@ -37,7 +47,7 @@
     border-radius: 5px;
     overflow: hidden;
 }
-.inputPassword{
+.inputPassword {
     width: 100%;
     border-radius: 5px;
     font-size: 20px;
@@ -54,12 +64,12 @@
     cursor: pointer;
     background-color: white;
 }
-.checkboxContainer{
+.checkboxContainer {
     width: 100%;
     display: flex;
     flex-shrink: 0;
-    gap:10px;
+    gap: 10px;
 }
-.checkboxContainer p{
-    color:var(--secondary_text_color);
+.checkboxContainer p {
+    color: var(--secondary_text_color);
 }

@@ -5,7 +5,7 @@
     flex-direction: column;
     gap: 30px;
     height: max-content;
-    padding-bottom: 40px;
+    /* padding-bottom: 40px; */
 }
 .container input{
     border: 1px solid var(--sub_color);
@@ -16,6 +16,7 @@
     width: 100%;
     text-align: center;
     font-size: 40px;
+    font-weight: 900;
 }
 .description {
     width: 100%;
@@ -53,7 +54,7 @@
 .infoText{
     width: 100%;
     text-align: start;
-    font-size: 15px;
+    font-size: 20px;
 }
 .buttonContainer {
     flex-wrap: wrap;
@@ -96,4 +97,35 @@
     height: 50vh;
     position: relative;
     flex-shrink: 0;
+}
+
+@media (max-width: 500px) {
+    .buttonContainer {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .buttonContainer button {
+        font-size: 20px;
+        height: 35px;
+    }
+    .preloadCo {
+        width: 30px;
+        height: 30px;
+    }
+    .deleteButton {
+        width: 100%;
+    }
+    .editButton {
+        width: 100%;
+    }
+    .createLesson{
+        width: 100%;
+        font-size: 20px;
+        height: 35px;
+    }
+    .title{
+        font-size: 25px;
+    }
 }

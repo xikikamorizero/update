@@ -16,6 +16,9 @@ export const useLogin = ({ ...props }: Props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [api, contextHolder] = notification.useNotification();
+
+    const [loading, setLoading] = useState(false);
+
     let router = useRouter();
 
     const openNotificationWithIcon = (status: number) => {
@@ -26,30 +29,34 @@ export const useLogin = ({ ...props }: Props) => {
     };
 
     const Login = () => {
-        store.auth
-            .login(username, password)
-            .then((response) => {
-                localStorage.setItem("token", response.data.token);
-                store.user
-                    .getProfile()
-                    .then((response) => {
-                        store.profile = response.data;
-                        store.isAuth = true;
-                        console.log(store.profile);
-                        router.push(`/${props.loc}`);
-                    })
-                    .catch();
-            })
-            .catch((error) => {
-                openNotificationWithIcon(error.request.status);
-            });
+        if (!loading) {
+            setLoading(true);
+            store.auth
+                .login(username, password)
+                .then((response) => {
+                    localStorage.setItem("token", response.data.token);
+                    store.isAuth = true;
+                    store.user
+                        .getProfile()
+                        .then((response) => {
+                            store.profile = response.data;
+                            console.log(store.profile);
+                            router.push(`/${props.loc}`);
+                        })
+                        .catch((error) => {});
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(error.request.status);
+                    setLoading(false);
+                });
+        }
     };
 
-    useEffect(() => {
-        if (store.isAuth) {
-            router.push(`/${props.loc}`);
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (store.isAuth) {
+    //         router.push(`/${props.loc}`);
+    //     }
+    // }, []);
 
     return {
         router,
@@ -59,5 +66,6 @@ export const useLogin = ({ ...props }: Props) => {
         setPassword,
         Login,
         contextHolder,
+        loading,
     };
 };

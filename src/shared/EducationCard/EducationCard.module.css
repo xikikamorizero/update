@@ -1,12 +1,13 @@
 .container {
     width: calc(100% / 3 - 20px);
+    min-width: 200px;
     border-radius: 6px;
     flex-shrink: 0;
     background-color: var(--sub_color);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap:5px;
+    gap: 5px;
     align-items: center;
     border: 1px solid var(--main_color);
     cursor: pointer;

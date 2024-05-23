@@ -34,11 +34,33 @@ export const useProject = ({ ...props }: PropsType) => {
 
     const [loading, setLoading] = useState(false);
 
+    const [loadingProf, setLoadingProf] = useState(false);
+
+    console.log(
+        props.id,
+        title,
+        date,
+        location,
+        organization,
+        docs,
+        hoursSpent
+    );
+
     // const [editModeItem, setEditModeItem] = useState(false);
 
     const handleFileChange = (event: any) => {
         setDocs(event.target.files[0]);
     };
+
+    console.log(
+        props.id,
+        title,
+        date,
+        location,
+        organization,
+        docs,
+        hoursSpent
+    );
 
     const [api, contextHolder] = notification.useNotification();
 
@@ -55,6 +77,26 @@ export const useProject = ({ ...props }: PropsType) => {
         }
     }, [props.editMode]);
 
+    function updateProfile() {
+        if (!loadingProf) {
+            setLoadingProf(true);
+            global_store.store.user
+                .getProfile()
+                .then((response) => {
+                    global_store.store.profile = response.data;
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error updating profile information"
+                    );
+                })
+                .finally(() => {
+                    setLoadingProf(false);
+                });
+        }
+    }
+
     function Edit() {
         if (!loading) {
             setLoading(true);
@@ -70,7 +112,8 @@ export const useProject = ({ ...props }: PropsType) => {
                 }
             )
                 .then((response) => {
-                    global_store.store.updateProfile();
+                    updateProfile();
+                    // global_store.store.updateProfile();
                     props.setEditModeItem(-1);
                 })
                 .catch((error) => {
@@ -97,7 +140,8 @@ export const useProject = ({ ...props }: PropsType) => {
                 hoursSpent,
             })
                 .then((response) => {
-                    global_store.store.updateProfile();
+                    // global_store.store.updateProfile();
+                    updateProfile();
                     setTitle("");
                     setDate("");
                     setLocation("");
@@ -123,7 +167,8 @@ export const useProject = ({ ...props }: PropsType) => {
                 id: props.id,
             })
                 .then((response) => {
-                    global_store.store.updateProfile();
+                    // global_store.store.updateProfile();
+                    updateProfile();
                 })
                 .catch((error) => {
                     openNotificationWithIcon(
@@ -156,5 +201,6 @@ export const useProject = ({ ...props }: PropsType) => {
         handleFileChange,
         contextHolder,
         loading,
+        loadingProf
     };
 };

@@ -8,7 +8,12 @@ import { InputFilter } from "@/entities/InputFilter/InputFilter";
 import { InputFilterNum } from "@/entities/InputFilterNum/InputFilterNum";
 import { useContext, useState } from "react";
 import { Context } from "./lib/context";
-import { SearchNormal1, FilterSquare } from "iconsax-react";
+import {
+    SearchNormal1,
+    FilterSquare,
+    ArrowSquareDown,
+    ArrowSquareUp,
+} from "iconsax-react";
 import Link from "next/link";
 import { NoItem } from "@/shared/NoItem/NoItem";
 import { CategoriesFilter } from "@/shared/CategoriesFilter/CategoriesFilter";
@@ -29,6 +34,9 @@ type PropsType = {
     categoryT: string;
     from: string;
     to: string;
+    likesT: string;
+    dislikesT: string;
+    createdAtT: string;
 };
 
 export const Users = observer(({ ...props }: PropsType) => {
@@ -46,12 +54,62 @@ export const Users = observer(({ ...props }: PropsType) => {
         <div className={style.container}>
             <div className={style.filterContainer}>
                 <p className={style.title}>{props.title}</p>
-                <FilterSquare
-                    className={style.filterButton}
-                    onClick={() => {
-                        setFilter(!filter);
-                    }}
-                />
+                <div className={style.filterSortContainer}>
+                    <div className={style.sortSelectContainer}>
+                        <select
+                            className={style.sortSelect}
+                            value={data.sortBy}
+                            onChange={(e) => {
+                                data.setSortBy(e.target.value);
+                            }}
+                        >
+                            <option value={"createdAt"}>
+                                {props.createdAtT}
+                            </option>
+                            <option value={"likes"}>{props.likesT}</option>
+                            <option value={"dislikes"}>
+                                {props.dislikesT}
+                            </option>
+                            <option value={"portfolioCount"}>
+                                {props.projectT}
+                            </option>
+                            <option value={"courseCount"}>
+                                {props.courseT}
+                            </option>
+                            <option value={"publicationsCount"}>
+                                {props.publicationT}
+                            </option>
+                            <option value={"awardsCount"}>
+                                {props.awardT}
+                            </option>
+                            <option value={"yearsOfExperience"}>
+                                {props.stajT}
+                            </option>
+                        </select>
+                        {data.sortOrder == "ASC" ? (
+                            <ArrowSquareDown
+                                className={style.filterButton}
+                                onClick={() => {
+                                    data.setSortOrder("DESC");
+                                }}
+                            />
+                        ) : (
+                            <ArrowSquareUp
+                                className={style.filterButton}
+                                onClick={() => {
+                                    data.setSortOrder("ASC");
+                                }}
+                            />
+                        )}
+                    </div>
+
+                    <FilterSquare
+                        className={style.filterButton}
+                        onClick={() => {
+                            setFilter(!filter);
+                        }}
+                    />
+                </div>
             </div>
             {filter && (
                 <div className={style.filterPanel}>
@@ -71,7 +129,7 @@ export const Users = observer(({ ...props }: PropsType) => {
 
                     {/*  */}
                     <div className={style.secondaryFilterContainer}>
-                        {"likes"}:
+                        {props.likesT}:
                         <InputFilterNum
                             value={data.likesMin}
                             setValue={data.setLikesMin}
@@ -84,7 +142,7 @@ export const Users = observer(({ ...props }: PropsType) => {
                         />
                     </div>
                     <div className={style.secondaryFilterContainer}>
-                        {"dislikes"}:
+                        {props.dislikesT}:
                         <InputFilterNum
                             value={data.dislikesMin}
                             setValue={data.setDisLikesMin}
@@ -169,7 +227,7 @@ export const Users = observer(({ ...props }: PropsType) => {
                     </div>
 
                     <div className={style.secondaryFilterContainer}>
-                        <p>{props.categoryT}</p>
+                        <p>{props.categoryT}: </p>
                         <CategoriesFilter
                             categories={data.categories}
                             setCategories={data.setСategories}
@@ -189,45 +247,47 @@ export const Users = observer(({ ...props }: PropsType) => {
                     </div>
                 </div>
             )}
-            
-            {data.loading ? (
-                <div className={style.preloaderContainer}>
-                    <div className={style.preloader}>
-                        <Preloader />
+
+            <div className={style.containerCard}>
+                {data.loading ? (
+                    <div className={style.preloaderContainer}>
+                        <div className={style.preloader}>
+                            <Preloader />
+                        </div>
                     </div>
-                </div>
-            ) : (
-                <Row gutter={[16, 16]}>
-                    {data.users.length > 0 ? (
-                        data.users?.map((a, i) => (
-                            <Col
-                                xs={xsmall}
-                                sm={small}
-                                md={middle}
-                                lg={large}
-                                key={i}
-                            >
-                                <Link
-                                    href={
-                                        data.myId == a.id
-                                            ? `/${props.loc}/profile`
-                                            : `/${props.loc}/users/${a.id}`
-                                    }
+                ) : (
+                    <Row gutter={[16, 16]}>
+                        {data.users.length > 0 ? (
+                            data.users?.map((a, i) => (
+                                <Col
+                                    xs={xsmall}
+                                    sm={small}
+                                    md={middle}
+                                    lg={large}
+                                    key={i}
                                 >
-                                    <Card
-                                        loading={false}
-                                        src={a.avatar}
-                                        title={a.name}
-                                        subtitle={a.science_degree}
-                                    />
-                                </Link>
-                            </Col>
-                        ))
-                    ) : (
-                        <NoItem />
-                    )}
-                </Row>
-            )}
+                                    <Link
+                                        href={
+                                            data.myId == a.id
+                                                ? `/${props.loc}/profile`
+                                                : `/${props.loc}/users/${a.id}`
+                                        }
+                                    >
+                                        <Card
+                                            loading={false}
+                                            src={a.avatar}
+                                            title={a.name}
+                                            subtitle={a.science_degree}
+                                        />
+                                    </Link>
+                                </Col>
+                            ))
+                        ) : (
+                            <NoItem />
+                        )}
+                    </Row>
+                )}
+            </div>
 
             <Pagination
                 className={style.pagination}

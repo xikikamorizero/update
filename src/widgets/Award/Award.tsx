@@ -6,6 +6,8 @@ import { observer } from "mobx-react-lite";
 import { ImageInput } from "@/shared";
 import React from "react";
 import { Preloader } from "@/shared/Preloader/Preloader";
+import { DocsUploade } from "../CreateAward/DocsUploader";
+import Link from "next/link";
 
 type PropsType = {
     loc: string;
@@ -18,6 +20,9 @@ type PropsType = {
     save: string;
     edit: string;
     delete: string;
+
+    linkT: string;
+    add_docsT: string;
 };
 export const Award = observer(({ ...props }: PropsType) => {
     const data = useAward({
@@ -55,78 +60,99 @@ export const Award = observer(({ ...props }: PropsType) => {
                         />
                     </div>
                 )}
-
-                {!data.editMode ? (
-                    <p className={style.subInfo}>
-                        {props.type}: {data.award?.type}
-                    </p>
-                ) : (
-                    <input
-                        className={`${style.subInput} ${style.subInfo}`}
-                        value={data.type}
-                        onChange={(e) => {
-                            data.setType(e.target.value);
-                        }}
-                        type={"text"}
-                        placeholder={props.editType}
-                    />
-                )}
-
-                {!data.editMode ? (
-                    <p className={style.subInfo}>
-                        {props.year}: {data.award?.year}
-                    </p>
-                ) : (
-                    <input
-                        type={"number"}
-                        className={`${style.subInput} ${style.subInfo}`}
-                        value={data.year}
-                        onChange={(e) => {
-                            data.setYear(Number(e.target.value));
-                        }}
-                        placeholder={props.editYear}
-                    />
-                )}
-
-                {data.profile?.id == data.award?.userId && (
-                    <div className={style.buttonContainer}>
-                        <button
-                            disabled={!data.award || data.loading}
-                            className={style.deleteButton}
-                            onClick={() => {
-                                data.Delete();
+                <div className={style.panel}>
+                    {!data.editMode ? (
+                        <p className={style.subInfo}>
+                            {props.type}: {data.award?.type}
+                        </p>
+                    ) : (
+                        <input
+                            className={`${style.subInput} ${style.subInfo}`}
+                            value={data.type}
+                            onChange={(e) => {
+                                data.setType(e.target.value);
                             }}
-                        >
-                            {data.loading ? (
-                                <div className={style.preloadCo}>
-                                    <Preloader />
-                                </div>
-                            ) : (
-                                props.delete
-                            )}
-                        </button>
-                        <button
-                            disabled={!data.award || data.loading}
-                            className={style.editButton}
-                            onClick={() => {
-                                if (data.editMode) {
-                                    data.Edit();
-                                }
-                                data.setEditMode(!data.editMode);
+                            type={"text"}
+                            placeholder={props.editType}
+                        />
+                    )}
+
+                    {!data.editMode ? (
+                        <p className={style.subInfo}>
+                            {props.year}: {data.award?.year}
+                        </p>
+                    ) : (
+                        <input
+                            type={"number"}
+                            className={`${style.subInput} ${style.subInfo}`}
+                            value={data.year}
+                            onChange={(e) => {
+                                data.setYear(Number(e.target.value));
                             }}
-                        >
-                            {data.loading ? (
-                                <div className={style.preloadCo}>
-                                    <Preloader />
-                                </div>
-                            ) : data.editMode ? (
-                                props.save
-                            ) : (
-                                props.edit
-                            )}
-                        </button>
-                    </div>
-                )}
+                            placeholder={props.editYear}
+                        />
+                    )}
+
+                    {!data.editMode ? (
+                        data.award?.docs ? (
+                            <Link
+                                className={style.link}
+                                href={baseUrl + data.award?.docs}
+                                target={"_blank"}
+                            >
+                                {props.linkT}
+                            </Link>
+                        ) : (
+                            <></>
+                        )
+                    ) : (
+                        <DocsUploade
+                            fileList={data.file}
+                            setFileList={data.setFile}
+                            add_docs={props.add_docsT}
+                        />
+                    )}
+
+                    {data.profile?.id == data.award?.userId && (
+                        <div className={style.buttonContainer}>
+                            <button
+                                disabled={!data.award || data.loading}
+                                className={style.deleteButton}
+                                onClick={() => {
+                                    data.Delete();
+                                }}
+                            >
+                                {data.loading ? (
+                                    <div className={style.preloadCo}>
+                                        <Preloader />
+                                    </div>
+                                ) : (
+                                    props.delete
+                                )}
+                            </button>
+                            <button
+                                disabled={!data.award || data.loading}
+                                className={style.editButton}
+                                onClick={() => {
+                                    if (data.editMode) {
+                                        data.Edit();
+                                    }
+                                    data.setEditMode(!data.editMode);
+                                }}
+                            >
+                                {data.loading ? (
+                                    <div className={style.preloadCo}>
+                                        <Preloader />
+                                    </div>
+                                ) : data.editMode ? (
+                                    props.save
+                                ) : (
+                                    props.edit
+                                )}
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

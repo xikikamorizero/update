@@ -11,6 +11,7 @@ type PropsType = {
 export const CreateEducation = ({ ...props }: PropsType) => {
     const t = useTranslations("Main");
     const c = useTranslations("CreatePublication");
+    const k = useTranslations("CreateAward");
     return (
         <div className={style.container}>
             <p className={style.title}>{c("title")}</p>
@@ -21,6 +22,7 @@ export const CreateEducation = ({ ...props }: PropsType) => {
                         add_title={c("add_title")}
                         add_year={c("add_year")}
                         create={c("create")}
+                        add_docs={k("add_docs")}
                     />
                 </Vanguard>
             </WithWrapper>

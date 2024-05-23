@@ -22,6 +22,7 @@ export const CreateAward = ({ ...props }: PropsType) => {
                         add_type={c("add_type")}
                         add_year={c("add_year")}
                         create={c("create")}
+                        add_docs={c("add_docs")}
                     />
                 </Vanguard>
             </WithWrapper>

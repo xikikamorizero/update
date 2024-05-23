@@ -10,13 +10,15 @@ type PropsType = {
     loc: string;
 };
 
-export const WithWrapper = observer(({ children, loc }: PropsType) => {
+export const WithWrapperIsAuth = observer(({ children, loc }: PropsType) => {
     const { store } = useContext(Context);
     const router = useRouter();
-    console.log("HOCA", store.isAuth , localStorage.getItem("token"));
-    if (store.isAuth) {
+
+    console.log("HOCL", store.isAuth , localStorage.getItem("token"));
+
+    if (localStorage.getItem("token")) {
+        router.push(`/${loc}/`);
+    } else {
         return children;
-    } else if (!store.isAuth && !localStorage.getItem("token")) {
-        router.push(`/${loc}/login`);
     }
 });

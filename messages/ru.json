@@ -22,7 +22,7 @@
     },
     "Teachers": {
         "title": "Професора",
-        "type": "ВуЗ",
+        "type": "ВУЗ",
         "scienceDegree": "Научная степень",
         "keyword": "Введите Ф.И.О",
 
@@ -33,7 +33,10 @@
         "courseT": "Курсы",
         "categoryT": "Категории",
         "from":"от",
-        "to":"до"
+        "to":"до",
+        "likesT":"Лайки",
+        "dislikesT":"Дизлайки",
+        "createdAtT":"дата"
     },
     "Portfolio": {
         "title": "Портфолио",
@@ -103,7 +106,16 @@
         "locationTable":"Место",
         "organizationTable":"Организация",
         "numberOfHoursTable":"Кол.часов",
-        "docsTable":"Документ"
+        "docsTable":"Документ",
+
+        "addTitleT":"Введите название",
+        "addYearT":"Введите год",
+        "addTypeT":"Введите тип",
+        "addLinkT":"Введите ссылку на публикацию",
+        "linkT": "Ссылка на работу",
+        "docsT": "Просмотреть работу",
+        "add_docsT": "Добавить работу",
+        "yearT": "Год"
     },
     "Course": {
         "description": "Описание",
@@ -139,7 +151,8 @@
         "add_category": "Добавить категорию",
         "add_type": "Добавить тип",
         "create": "Создать",
-        "selectType":"Выберите тип"
+        "selectType":"Выберите тип",
+        "add_docs":"Добавьте документ"
     },
     "CreateAward": {
         "add_title": "Добавить название",
@@ -148,7 +161,10 @@
         "year": "год получения",
         "add_year": "Добавить год",
         "create": "Создать",
-        "title": "Создать награду"
+        "title": "Создать награду",
+        "add_docs":"Добавьте документ",
+        "link_docs":"Ссылка на награду",
+        "link_docsE":"Ссылка на документ"
     },
     "CreatePublication": {
         "add_title": "Добавить название",
@@ -166,7 +182,7 @@
         "registration": "Регистрация",
         "no_account": "Нет аккаунта?",
         "create": "Создать",
-        "text": "преподаватель?",
+        "text": "Преподаватель?",
         "titleErrorReg": "Ошибка при регистрации",
         "descriptionReg": "Пользователь с таким email уже существует",
         "titleError": "Ошибка аутентификации",

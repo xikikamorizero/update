@@ -6,7 +6,7 @@ export class Store {
     public portfolio: types.PortfolioType[] = [];
     public keyword = "";
     public category = "";
-    public typeId:string = "";
+    public typeId: string = "";
     public count: number | null = null;
     public page_count: number | null = null;
     public page: number = 1;
@@ -14,7 +14,9 @@ export class Store {
     public loading: boolean = false;
 
     public loadingT: boolean = false;
-    public types:TypePortfolio[]=[]
+    public types: TypePortfolio[] = [];
+
+    public sortOrder = "ASC";
 
     constructor() {
         makeAutoObservable(this);

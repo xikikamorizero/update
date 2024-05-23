@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { notification } from "antd";
+import type { UploadFile } from "antd";
 
 type Props = {
     id: string;
@@ -25,10 +26,10 @@ export const useAward = ({ ...props }: Props) => {
     );
     const [year, setYear] = useState(store.award?.year ? store.award?.year : 0);
     const [uploadedImages, setUploadedImages] = useState<any | null>(null);
-    const [docs, setDocs] = useState<any>(
-        store.award?.docs ? store.award?.docs : null
-    );
-
+    // const [docs, setDocs] = useState<any>(
+    //     store.award?.docs ? store.award?.docs : null
+    // );
+    const [file, setFile] = useState<any | null>(null);
     const [api, contextHolder] = notification.useNotification();
 
     const openNotificationWithIcon = (status: number, description: string) => {
@@ -44,12 +45,9 @@ export const useAward = ({ ...props }: Props) => {
             setType(store.award.type);
             setYear(store.award.year);
             setUploadedImages(store.award.image);
+            setFile(store.award.docs);
         }
     }, [store.award]);
-
-    const handleFileChange = (event: any) => {
-        setDocs(event.target.files[0]);
-    };
 
     function Edit() {
         if (!store.loading) {
@@ -61,7 +59,7 @@ export const useAward = ({ ...props }: Props) => {
                     type: type,
                     year: String(year),
                     image: uploadedImages,
-                    docs: docs,
+                    docs: file,
                 }
             )
                 .then((response) => {
@@ -72,12 +70,6 @@ export const useAward = ({ ...props }: Props) => {
                         error.request.status,
                         "Error when changing reward"
                     );
-                    // if (store.award) {
-                    //     setTitle(store.award.title);
-                    //     setType(store.award.type);
-                    //     setYear(store.award.year);
-                    //     setUploadedImages(store.award.image);
-                    // }
                 })
                 .finally(() => {
                     store.loading = false;
@@ -137,8 +129,6 @@ export const useAward = ({ ...props }: Props) => {
         year,
         setYear,
         setType,
-        setDocs,
-        handleFileChange,
         profile: global_store.store.profile,
         Edit,
         Delete,
@@ -146,5 +136,7 @@ export const useAward = ({ ...props }: Props) => {
         setUploadedImages,
         contextHolder,
         loading: store.loading,
+        file,
+        setFile,
     };
 };

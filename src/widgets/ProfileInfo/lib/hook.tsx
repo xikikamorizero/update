@@ -92,7 +92,7 @@ export const useProject = () => {
     }
 
     useEffect(() => {
-        global_store.store.updateProfile();
+        // global_store.store.updateProfile();
 
         if (!store.loadingProject) {
             store.loadingProject = true;
@@ -107,6 +107,19 @@ export const useProject = () => {
                 })
                 .finally(() => {
                     store.loadingProject = false;
+                });
+        }
+
+        if (!store.loading) {
+            store.loading = true;
+            global_store.store.user
+                .getProfile()
+                .then((response) => {
+                    global_store.store.profile = response.data;
+                })
+                .catch(() => {})
+                .then(() => {
+                    store.loading = false;
                 });
         }
     }, []);

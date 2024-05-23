@@ -15,7 +15,8 @@ export interface createPortfolio {
     content: string;
     category: string;
     typeId: number;
-    image: any;
+    image?: any;
+    docs?:any;
 }
 export interface createCourse {
     title: string;
@@ -95,6 +96,8 @@ export interface usersParamType {
     dislikesMax?: number | null;
     page?: number;
     limit?: number;
+    sortBy?: string;
+    sortOrder?: string;
 }
 export interface portfolioParamType {
     keyword: string;
@@ -102,6 +105,7 @@ export interface portfolioParamType {
     typeId?: number;
     page: number;
     limit: number;
+    sortOrder?: string;
 }
 export interface defaultParamType {
     page: number;

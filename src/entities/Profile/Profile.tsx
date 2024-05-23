@@ -32,6 +32,7 @@ import { BlockPortfolio } from "./BlockPortfolio";
 import { WrapperEditBlockNum } from "@/shared/WrapperEditBlock/WrapperEditBlokNum";
 import iconNoResult from "./assets/noresult.png";
 import { Preloader } from "@/shared/Preloader/Preloader";
+import { CardPublicationCreate } from "@/shared/CardPublicationCreate/CardPublicationCreate";
 
 type PropsType = {
     user: types.userType | null;
@@ -117,6 +118,16 @@ type PropsType = {
 
     loadingProject: boolean;
     loadingEditProfile: boolean;
+
+    addTitleT?: string;
+    addYearT?: string;
+    addTypeT?: string;
+    addLinkT?: string;
+    linkT: string;
+
+    docsT:string;
+    add_docsT?:string;
+    yearT:string;
 };
 
 export const Profile = observer(({ ...props }: PropsType) => {
@@ -403,7 +414,7 @@ export const Profile = observer(({ ...props }: PropsType) => {
 
                     {props.user?.roles.some((obj) => obj.value == "Admin") &&
                     props.myProf ? (
-                        <Link href={`/${props.loc}/adminPanel`}>
+                        <Link className={style.adminLink} href={`/${props.loc}/adminPanel`}>
                             {props.adminT}
                         </Link>
                     ) : (
@@ -551,15 +562,36 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                                 type={a.type}
                                                 link={a.link}
                                                 year={a.year}
+                                                docs={a.docs}
+                                                addTitleT={props.addTitleT}
+                                                addTypeT={props.addTypeT}
+                                                addYearT={props.addYearT}
+                                                addLinkT={props.addLinkT}
+                                                linkT={props.linkT}
                                                 key={i}
+
+                                                docsT={props.docsT}
+                                                yearT={props.yearT}
+                                                add_docsT={props.add_docsT}
                                             />
                                         ))}
                                     {props.myProf && editPublication && (
                                         <CardPublication
+                                            key={-1}
                                             id={"-1"}
                                             link={""}
                                             editMode={editPublication}
                                             create={"true"}
+                                            addTitleT={props.addTitleT}
+                                            addTypeT={props.addTypeT}
+                                            addYearT={props.addYearT}
+                                            addLinkT={props.addLinkT}
+                                            linkT={props.linkT}
+                                            docs={null}
+
+                                            docsT={props.docsT}
+                                            yearT={props.yearT}
+                                            add_docsT={props.add_docsT}
                                         />
                                     )}
                                 </div>
@@ -611,8 +643,7 @@ export const Profile = observer(({ ...props }: PropsType) => {
             <div className={style.publicationsContainer}>
                 <div className={style.titlePublication}>{props.awardT}</div>
                 <div
-                    className={style.projectWrapper}
-                    style={{ height: "max-content" }}
+                    className={`${style.projectWrapper} ${style.awardWrapper}`}
                 >
                     <div className={style.awardContainer}>
                         {props.awards?.map((a, i) => (

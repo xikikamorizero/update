@@ -6,6 +6,8 @@ import { observer } from "mobx-react-lite";
 import { ImageInput } from "@/shared";
 import React from "react";
 import { Preloader } from "@/shared/Preloader/Preloader";
+import { DocsUploade } from "../CreateAward/DocsUploader";
+import Link from "next/link";
 
 type PropsType = {
     loc: string;
@@ -16,6 +18,8 @@ type PropsType = {
     save: string;
     edit: string;
     delete: string;
+    linkT: string;
+    add_docsT: string;
 };
 export const Education = observer(({ ...props }: PropsType) => {
     const data = useEducation({
@@ -54,61 +58,79 @@ export const Education = observer(({ ...props }: PropsType) => {
                     </div>
                 )}
 
-                {!data.editMode ? (
-                    <p className={style.subInfo}>
-                        {props.date}: {data.education?.date}
-                    </p>
-                ) : (
-                    <input
-                        className={`${style.subInput} ${style.subInfo}`}
-                        value={data.date}
-                        onChange={(e) => {
-                            data.setDate(e.target.value);
-                        }}
-                        type={"text"}
-                        placeholder={props.editDate}
-                    />
-                )}
+                <div className={style.panel}>
+                    {!data.editMode ? (
+                        <p className={style.subInfo}>
+                            {props.date}: {data.education?.date}
+                        </p>
+                    ) : (
+                        <input
+                            className={`${style.subInput} ${style.subInfo}`}
+                            value={data.date}
+                            onChange={(e) => {
+                                data.setDate(e.target.value);
+                            }}
+                            type={"text"}
+                            placeholder={props.editDate}
+                        />
+                    )}
 
-                {data.profile?.id == data.education?.userId && (
-                    <div className={style.buttonContainer}>
-                        <button
-                            disabled={!data.education || data.loading}
-                            className={style.deleteButton}
-                            onClick={() => {
-                                data.Delete();
-                            }}
+                    {!data.editMode ? (
+                        <Link
+                            className={style.link}
+                            href={baseUrl + data.education?.docs}
+                            target={"_blank"}
                         >
-                            {data.loading ? (
-                                <div className={style.preloadCo}>
-                                    <Preloader />
-                                </div>
-                            ) : (
-                                props.delete
-                            )}
-                        </button>
-                        <button
-                            disabled={!data.education || data.loading}
-                            className={style.editButton}
-                            onClick={() => {
-                                if (data.editMode) {
-                                    data.Edit();
-                                }
-                                data.setEditMode(!data.editMode);
-                            }}
-                        >
-                            {data.loading ? (
-                                <div className={style.preloadCo}>
-                                    <Preloader />
-                                </div>
-                            ) : data.editMode ? (
-                                props.save
-                            ) : (
-                                props.edit
-                            )}
-                        </button>
-                    </div>
-                )}
+                            {props.linkT}
+                        </Link>
+                    ) : (
+                        <DocsUploade
+                            fileList={data.file}
+                            setFileList={data.setFile}
+                            add_docs={props.add_docsT}
+                        />
+                    )}
+
+                    {data.profile?.id == data.education?.userId && (
+                        <div className={style.buttonContainer}>
+                            <button
+                                disabled={!data.education || data.loading}
+                                className={style.deleteButton}
+                                onClick={() => {
+                                    data.Delete();
+                                }}
+                            >
+                                {data.loading ? (
+                                    <div className={style.preloadCo}>
+                                        <Preloader />
+                                    </div>
+                                ) : (
+                                    props.delete
+                                )}
+                            </button>
+                            <button
+                                disabled={!data.education || data.loading}
+                                className={style.editButton}
+                                onClick={() => {
+                                    if (data.editMode) {
+                                        data.Edit();
+                                    }
+                                    data.setEditMode(!data.editMode);
+                                }}
+                            >
+                                {data.loading ? (
+                                    <div className={style.preloadCo}>
+                                        <Preloader />
+                                    </div>
+                                ) : data.editMode ? (
+                                    props.save
+                                ) : (
+                                    props.edit
+                                )}
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

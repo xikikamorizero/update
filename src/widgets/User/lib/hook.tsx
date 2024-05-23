@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 type PropsType = {
     userId: string;
-    loc:string;
+    loc: string;
 };
 
 export const useUser = ({ userId, loc }: PropsType) => {
@@ -32,7 +32,7 @@ export const useUser = ({ userId, loc }: PropsType) => {
 
     useEffect(() => {
         if (!store.loading) {
-            if(userId!=global_store.store.profile?.id){
+            if (userId != global_store.store.profile?.id) {
                 store.loading = true;
                 global_store.store.user
                     .getUser({ id: userId })
@@ -45,18 +45,29 @@ export const useUser = ({ userId, loc }: PropsType) => {
                     .finally(() => {
                         store.loading = false;
                     });
-            }
-            else{
+            } else {
                 router.push(`/${loc}/profile`);
             }
         }
+    }, []);
+
+    useEffect(() => {
+        global_store.store.user
+            .getUser({ id: userId })
+            .then((response) => {
+                store.user = response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {});
     }, [global_store.store.update_profile]);
 
     return {
         user: store.user,
         myProfile: global_store.store.profile,
         isIdPresent: isIdPresent,
-        typesPortfolio:global_store.store.typePortfolio,
-        loading:store.loading
+        typesPortfolio: global_store.store.typePortfolio,
+        loading: store.loading,
     };
 };

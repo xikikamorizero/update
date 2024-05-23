@@ -7,7 +7,7 @@ type PropsType = {
     title_en?: string;
     title_ru?: string;
     title_uz?: string;
-    description?:string;
+    description?: string;
     re: () => void;
 };
 
@@ -29,58 +29,77 @@ export const useProject = ({ ...props }: PropsType) => {
 
     const [editModeItem, setEditModeItem] = useState(false);
 
+    const [loading, setLoading] = useState(false);
+
     function Edit() {
-        global_store.store.portfolio
-            .editType(
-                { id: props.id },
-                { 
-                    valueEn:titleEn,
-                    valueRu:titleRu,
-                    valueUz:titleUz,
-                    description:description
-                }
-            )
-            .then((response) => {
-                props.re();
-            })
-            .catch((error) => {
-                console.log("Ошибка Publish", error);
-            })
-            .finally(() => {});
+        if (!loading) {
+            setLoading(true);
+            global_store.store.portfolio
+                .editType(
+                    { id: props.id },
+                    {
+                        valueEn: titleEn,
+                        valueRu: titleRu,
+                        valueUz: titleUz,
+                        description: description,
+                    }
+                )
+                .then((response) => {
+                    setEditModeItem(false);
+                    props.re();
+                })
+                .catch((error) => {
+                    console.log("Ошибка Publish", error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
     }
 
     function Create() {
-        global_store.store.portfolio
-            .createType({
-                valueEn:titleEn,
-                valueRu:titleRu,
-                valueUz:titleUz,
-                description:description
-            })
-            .then((response) => {
-                props.re();
-                setTitleEn("");
-                setTitleRu("");
-                setTitleUz("");
-            })
-            .catch((error) => {
-                console.log("Ошибка Type create", error);
-            })
-            .finally(() => {});
+        if (!loading) {
+            setLoading(true);
+            global_store.store.portfolio
+                .createType({
+                    valueEn: titleEn,
+                    valueRu: titleRu,
+                    valueUz: titleUz,
+                    description: description,
+                })
+                .then((response) => {
+                    props.re();
+                    setTitleEn("");
+                    setTitleRu("");
+                    setTitleUz("");
+                    setDescription("");
+                })
+                .catch((error) => {
+                    console.log("Ошибка Type create", error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
     }
 
     function Delete() {
-        global_store.store.portfolio
-            .deleteType({
-                id: props.id,
-            })
-            .then((response) => {
-                props.re();
-            })
-            .catch((error) => {
-                console.log("Ошибка Type create", error);
-            })
-            .finally(() => {});
+        if (!loading) {
+            setLoading(true);
+            global_store.store.portfolio
+                .deleteType({
+                    id: props.id,
+                })
+                .then((response) => {
+                    props.re();
+                })
+                .catch((error) => {
+                    console.log("Ошибка Type create", error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
     }
 
     return {
@@ -96,6 +115,7 @@ export const useProject = ({ ...props }: PropsType) => {
         Delete,
         Create,
         description,
-        setDescription
+        setDescription,
+        loading,
     };
 };

@@ -7,6 +7,9 @@ import { EditorJs } from "@/entities/EditorJs/EditorJs";
 import "./index.css";
 import Link from "next/link";
 import { Preloader } from "@/shared/Preloader/Preloader";
+import { DocsUploade } from "../CreateAward/DocsUploader";
+import { ImageInput } from "@/shared";
+import { baseUrl } from "@/shared/api/const";
 
 type PropsType = {
     loc: string;
@@ -21,6 +24,8 @@ type PropsType = {
     delete: string;
     creator: string;
     selectType: string;
+    add_docs: string;
+    link_docsT: string;
 };
 export const PortfolioItem = observer(({ ...props }: PropsType) => {
     const data = usePortfolio({
@@ -53,6 +58,18 @@ export const PortfolioItem = observer(({ ...props }: PropsType) => {
                             placeholder={props.editTitle}
                         />
                     )}
+
+                    {data.editMode && (
+                        <div className={style.uploadContainer}>
+                            <div className={style.inputImage}>
+                                <ImageInput
+                                    image={data.uploadedImages}
+                                    setImage={data.setUploadedImages}
+                                />
+                            </div>
+                        </div>
+                    )}
+
                     {data.portfolio?.content ? (
                         <EditorJs
                             data={data.portfolio}
@@ -114,7 +131,28 @@ export const PortfolioItem = observer(({ ...props }: PropsType) => {
                         </select>
                     )}
 
+                    {data.editMode ? (
+                        <div className={style.uploadContainer}>
+                            <DocsUploade
+                                fileList={data.file}
+                                setFileList={data.setFile}
+                                add_docs={props.add_docs}
+                            />
+                        </div>
+                    ) : data.portfolio?.docs ? (
+                        <Link
+                            className={style.link}
+                            href={baseUrl + data.portfolio?.docs}
+                            target={"_blank"}
+                        >
+                            {props.link_docsT}
+                        </Link>
+                    ) : (
+                        <></>
+                    )}
+
                     <Link
+                        className={style.link}
                         href={`/${props.loc}/users/${data.portfolio?.userId}`}
                     >
                         {props.creator}

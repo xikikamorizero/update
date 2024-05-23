@@ -21,7 +21,7 @@ export const useAdminPanel = ({ loc }: { loc: string }) => {
                 .then((response) => {
                     setTypes(response.data);
                 })
-                .catch(() => {})
+                .catch((error) => {})
                 .finally(() => {
                     setLoading(false);
                 });

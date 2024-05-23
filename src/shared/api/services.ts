@@ -9,10 +9,13 @@ export class Auth {
         email: string,
         password: string
     ): Promise<AxiosResponse<types.LoginResponseType>> {
-        return await $voxmentor_auth.post<types.LoginResponseType>(urls.auth.login(), {
-            email: email,
-            password: password,
-        });
+        return await $voxmentor_auth.post<types.LoginResponseType>(
+            urls.auth.login(),
+            {
+                email: email,
+                password: password,
+            }
+        );
     }
     static async registration(
         email: string,
@@ -51,6 +54,8 @@ export class User {
         dislikesMax,
         page,
         limit,
+        sortBy,
+        sortOrder,
     }: types.usersParamType): Promise<AxiosResponse<types.usersType>> {
         const params: Record<string, any> = {
             keyword,
@@ -72,6 +77,8 @@ export class User {
             dislikesMax,
             page,
             limit,
+            sortBy,
+            sortOrder,
         };
 
         if (category && category.length > 0) {
@@ -237,13 +244,14 @@ export class Portfolio {
         typeId,
         page,
         limit,
+        sortOrder,
     }: types.portfolioParamType): Promise<
         AxiosResponse<types.PortfolioListType>
     > {
         return await $voxmentor_api_public.get<types.PortfolioListType>(
             urls.portfolio.get(),
             {
-                params: { keyword, category, typeId, page, limit },
+                params: { keyword, category, typeId, page, limit, sortOrder },
             }
         );
     }
@@ -310,6 +318,7 @@ export class Portfolio {
         category,
         typeId,
         image,
+        docs
     }: types.createPortfolio): Promise<AxiosResponse<types.PortfolioType>> {
         const formData = new FormData();
         formData.append("title", title);
@@ -317,6 +326,7 @@ export class Portfolio {
         formData.append("category", category);
         formData.append("typeId", String(typeId));
         formData.append("image", image);
+        formData.append("docs", docs);
         return await $voxmentor_api_public.post<types.PortfolioType>(
             urls.portfolio.create(),
             formData
@@ -325,14 +335,15 @@ export class Portfolio {
 
     static async edit(
         { id }: types.ID,
-        { title, content, category, typeId, image }: types.createPortfolio
+        { title, content, category, typeId, image, docs }: types.createPortfolio
     ): Promise<AxiosResponse<types.PortfolioType>> {
         const formData = new FormData();
         formData.append("title", title);
         formData.append("content", content);
         formData.append("category", category);
-        formData.append("type", String(typeId));
+        formData.append("typeId", String(typeId));
         formData.append("image", image);
+        formData.append("docs", docs);
         return await $voxmentor_api_public.put<types.PortfolioType>(
             urls.portfolio.edit(id),
             formData

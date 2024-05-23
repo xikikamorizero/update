@@ -4,20 +4,25 @@ import { useLesson } from "./lib/hook";
 import React from "react";
 import { EditorJsEdit } from "@/entities/EditorJsEdit/EditorJsEdit";
 import { ImageInput } from "@/shared";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
     add_title: string;
     add_description: string;
     add_lessonNumber: string;
-    titleValid:string;
-    descriptionValid:string;
+    titleValid: string;
+    descriptionValid: string;
     create: string;
 };
 
-export const CreateLesson = ({...props}:PropsType) => {
-    const data = useLesson({loc:props.loc, titleError:props.titleValid, description:props.descriptionValid});
-    
+export const CreateLesson = ({ ...props }: PropsType) => {
+    const data = useLesson({
+        loc: props.loc,
+        titleError: props.titleValid,
+        description: props.descriptionValid,
+    });
+
     return (
         <div className={style.wrapper}>
             {data.contextHolder}
@@ -43,9 +48,9 @@ export const CreateLesson = ({...props}:PropsType) => {
                 <input
                     value={data.lessonNumber}
                     onChange={(e) => {
-                        data.SetLessonNumber(e.target.value);
+                        data.SetLessonNumber(Number(e.target.value));
                     }}
-                    type={"text"}
+                    type={"number"}
                     className={style.inputTitle}
                     placeholder={props.add_lessonNumber}
                 />
@@ -68,7 +73,13 @@ export const CreateLesson = ({...props}:PropsType) => {
                         data.Create();
                     }}
                 >
-                    {props.create}
+                    {data.loading ? (
+                        <div className={style.preloadCo}>
+                            <Preloader />
+                        </div>
+                    ) : (
+                        props.create
+                    )}
                 </button>
             </div>
         </div>

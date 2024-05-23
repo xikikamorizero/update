@@ -3,14 +3,16 @@ import { Context as GlobalContext } from "@/shared/api";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { notification } from "antd";
+import type { UploadFile } from "antd";
 
-export const useCreateAward = ({loc}:{loc:string}) => {
+export const useCreateAward = ({ loc }: { loc: string }) => {
     const { store } = useContext(GlobalContext);
     const [loading, setLoading] = useState(false);
     const [title, setTitle] = useState("");
     const [year, setYear] = useState(0);
     const [type, setType] = useState("");
     const [uploadedImages, setUploadedImages] = useState<File | null>(null);
+    const [file, setFile] = useState<UploadFile | null>(null);
     let router = useRouter();
 
     const [api, contextHolder] = notification.useNotification();
@@ -26,18 +28,17 @@ export const useCreateAward = ({loc}:{loc:string}) => {
         if (!loading) {
             setLoading(true);
             store.UpdatePort.createAward({
-                    title: title,
-                    type: type,
-                    year:year,
-                    image: uploadedImages,
-                })
+                title: title,
+                type: type,
+                year: year,
+                image: uploadedImages,
+                docs:file
+            })
                 .then((response) => {
                     router.push(`/${loc}/profile`);
                 })
                 .catch((error) => {
                     openNotificationWithIcon(error.request.status);
-                })
-                .finally(() => {
                     setLoading(false);
                 });
         }
@@ -55,6 +56,8 @@ export const useCreateAward = ({loc}:{loc:string}) => {
         setType,
         uploadedImages,
         setUploadedImages,
-        contextHolder
+        contextHolder,
+        file,
+        setFile
     };
 };

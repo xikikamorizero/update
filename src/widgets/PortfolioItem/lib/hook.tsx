@@ -21,7 +21,8 @@ export const usePortfolio = ({ portfolioId, loc }: PropsType) => {
     const [category, setCategory] = useState("");
     const [type, setType] = useState("");
     const [types, setTypes] = useState<TypePortfolio[]>([]);
-    const [uploadedImages, setUploadedImages] = useState<File | null>(null);
+    const [uploadedImages, setUploadedImages] = useState<any | null>(null);
+    const [file, setFile] = useState<any | null>(null);
     const [dataEditor, setDataEditor] = useState(
         store.portfolio?.content ? store.portfolio.content : "{}"
     );
@@ -42,6 +43,8 @@ export const usePortfolio = ({ portfolioId, loc }: PropsType) => {
             setDataEditor(store.portfolio.content);
             setCategory(store.portfolio.category);
             setType(String(store.portfolio.typeId));
+            setUploadedImages(store.portfolio.image);
+            setFile(store.portfolio.docs);
         }
     }, [store.portfolio]);
 
@@ -57,6 +60,7 @@ export const usePortfolio = ({ portfolioId, loc }: PropsType) => {
                         category,
                         typeId: Number(type),
                         image: uploadedImages,
+                        docs: file,
                     }
                 )
                 .then((response) => {
@@ -154,5 +158,7 @@ export const usePortfolio = ({ portfolioId, loc }: PropsType) => {
         types,
         loadingType,
         contextHolder,
+        file,
+        setFile,
     };
 };

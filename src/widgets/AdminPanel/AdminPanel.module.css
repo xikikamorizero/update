@@ -43,3 +43,10 @@
     column-gap: 10px;
     row-gap: 5px;
 }
+
+.preloader {
+    width: 50vh;
+    height: 50vh;
+    position: relative;
+    flex-shrink: 0;
+}

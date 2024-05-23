@@ -22,8 +22,8 @@
     },
     "Teachers": {
         "title": "O'qituvchilar",
-        "type": "universitet",
-        "scienceDegree": "fan darajasi",
+        "type": "Universitet",
+        "scienceDegree": "Fan darajasi",
         "keyword": "Find by name",
 
         "awardT": "Mukofotlar",
@@ -32,8 +32,11 @@
         "projectT": "Loyihalar",
         "courseT": "Kurslar",
         "categoryT": "Kategoriyalar",
-        "from":"dan",
-        "to":"oldin"
+        "from": "dan",
+        "to": "oldin",
+        "likesT": "Yoqtiradi",
+        "dislikesT": "Yoqtirmaydi",
+        "createdAtT": "sana"
     },
     "Portfolio": {
         "title": "Portfolio",
@@ -92,18 +95,27 @@
         "contactsT": "Aloqalar",
         "scienceDegreeT": "Ilmiy daraja",
 
-        "subscriptions":"Obunalar:",
-        "no_subscriptions":"obunalar yo'q",
+        "subscriptions": "Obunalar:",
+        "no_subscriptions": "obunalar yo'q",
 
-        "adminT":"Administrator paneli"
+        "adminT": "Administrator paneli"
     },
-    "Table":{
-        "titleTable":"Sarlavha",
-        "dateTable":"Sana",
-        "locationTable":"Joylashuv",
-        "organizationTable":"Tashkilot",
-        "numberOfHoursTable":"Soatlar soni",
-        "docsTable":"Hujjatlar"
+    "Table": {
+        "titleTable": "Sarlavha",
+        "dateTable": "Sana",
+        "locationTable": "Joylashuv",
+        "organizationTable": "Tashkilot",
+        "numberOfHoursTable": "Soatlar soni",
+        "docsTable": "Hujjatlar",
+
+        "addTitleT": "Sarlavhani kiriting",
+        "addYearT": "Yilni kiriting",
+        "addTypeT": "Turini kiriting",
+        "addLinkT": "Nashrga havolani kiriting",
+        "linkT": "Ishga havola",
+        "docsT": "Ishni ko'rish",
+        "add_docsT": "Ish qo'shish",
+        "yearT": "Yil"
     },
     "Course": {
         "description": "Ta'rif",
@@ -139,7 +151,8 @@
         "add_category": "Turini qo'shish",
         "add_type": "Turdan qo'shish",
         "create": "Yaratish",
-        "selectType":"Turini tanlang"
+        "selectType": "Turini tanlang",
+        "add_docs": "Hujjat qo'shing"
     },
     "CreateAward": {
         "add_title": "Sarlavhani qo'shish",
@@ -148,7 +161,10 @@
         "year": "oolish yili",
         "add_year": "Yil qo'shish",
         "create": "Yaratish",
-        "title": "Mukofot yaratish"
+        "title": "Mukofot yaratish",
+        "add_docs": "Hujjat qo'shing",
+        "link_docs": "Mukofot havolasi",
+        "link_docsE": "Hujjatga havola"
     },
     "CreatePublication": {
         "add_title": "Nomi qo'shish",
@@ -166,20 +182,19 @@
         "registration": "Ro'yxatdan o'tish",
         "no_account": "Hisobingiz yo'qmi?",
         "create": "Yaratish",
-        "text": "o'qituvchi?",
+        "text": "O'qituvchi?",
         "titleErrorReg": "Ro'yxatdan o'tishda xato",
         "descriptionReg": "Bu elektron pochta manziliga ega foydalanuvchi allaqachon mavjud",
         "titleError": "Autentifikatsiyada xato",
         "description": "Noto'g'ri email yoki parol"
     },
-    "Admin":{
-        "add_type_title":"Portfel turlarini boshqarish",
-        "add_title_ru":"Ismni rus tilida kiriting",
-        "add_title_en":"Ismni ingliz tilida kiriting",
-        "add_title_uz":"Ismni o'zbekcha kiriting",
+    "Admin": {
+        "add_type_title": "Portfel turlarini boshqarish",
+        "add_title_ru": "Ismni rus tilida kiriting",
+        "add_title_en": "Ismni ingliz tilida kiriting",
+        "add_title_uz": "Ismni o'zbekcha kiriting",
         "descriptionT": "Tavsif kiriting",
         "countT": "miqdori"
-        
     },
     "Footer": {
         "copyright": "© 2024 Aplikasi Anda. Hak cipta dilindungi."

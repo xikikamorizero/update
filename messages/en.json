@@ -22,7 +22,7 @@
     },
     "Teachers": {
         "title": "Teachers",
-        "type": "type",
+        "type": "University",
         "scienceDegree": "Science Degree",
         "keyword": "Find by name",
 
@@ -33,7 +33,10 @@
         "courseT": "Сourses",
         "categoryT": "Сategories",
         "from": "from",
-        "to": "to"
+        "to": "to",
+        "likesT": "likes",
+        "dislikesT": "dislikes",
+        "createdAtT": "date"
     },
     "Portfolio": {
         "title": "Portfolio",
@@ -95,7 +98,7 @@
         "subscriptions": "Subscriptions:",
         "no_subscriptions": "no subscriptions",
 
-        "adminT":"Admin panel"
+        "adminT": "Admin panel"
     },
     "Table": {
         "titleTable": "Title",
@@ -103,7 +106,17 @@
         "locationTable": "Location",
         "organizationTable": "Organization",
         "numberOfHoursTable": "Number of Hours",
-        "docsTable": "Document"
+        "docsTable": "Document",
+
+        "addTitleT": "Enter the title",
+        "addYearT": "Enter the year",
+        "addTypeT": "Enter the type",
+        "addLinkT": "Enter the link to the publication",
+
+        "linkT": "Link to publication",
+        "docsT": "View work",
+        "add_docsT": "add work",
+        "yearT": "Year"
     },
     "Course": {
         "description": "Description",
@@ -139,7 +152,8 @@
         "add_category": "Add category",
         "add_type": "Add type",
         "create": "Create",
-        "selectType": "Select type"
+        "selectType": "Select type",
+        "add_docs": "Add document"
     },
     "CreateAward": {
         "add_title": "Add title",
@@ -148,7 +162,10 @@
         "year": "year of receipt",
         "add_year": "Add year",
         "create": "Create",
-        "title": "Create Award"
+        "title": "Create Award",
+        "add_docs": "Add document",
+        "link_docs": "Reward link",
+        "link_docsE": "Link to document"
     },
     "CreatePublication": {
         "add_title": "Add title",
@@ -166,7 +183,7 @@
         "registration": "registration",
         "no_account": "no account?",
         "create": "create",
-        "text": "teacher?",
+        "text": "Teacher?",
         "titleErrorReg": "Registration error",
         "descriptionReg": "User with this email already exists",
         "titleError": "Login error",

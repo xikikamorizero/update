@@ -19,7 +19,7 @@ export const useLesson = ({...props}:Props) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [description, setDescription] = useState("");
-    const [lesson_number, SetLessonNumber] = useState("");
+    const [lesson_number, SetLessonNumber] = useState(0);
     const [readingMaterials, setReadingMaterials] = useState<string[]>([]);
     const [uploadedImages, setUploadedImages] = useState<File|null>(null);
 
@@ -48,7 +48,7 @@ export const useLesson = ({...props}:Props) => {
                         title,
                         content,
                         description,
-                        lesson_number,
+                        lesson_number:String(lesson_number),
                         image: uploadedImages,
                     })
                     .then((response) => {

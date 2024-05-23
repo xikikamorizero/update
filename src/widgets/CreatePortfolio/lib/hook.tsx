@@ -3,7 +3,7 @@ import { Context as GlobalContext } from "@/shared/api";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { TypePortfolio } from "@/shared/api/types";
-import { notification } from "antd";
+import { notification, UploadFile } from "antd";
 
 export const useCreatePortfolio = ({ loc }: { loc: string }) => {
     const { store } = useContext(GlobalContext);
@@ -13,6 +13,7 @@ export const useCreatePortfolio = ({ loc }: { loc: string }) => {
     const [category, setCategory] = useState("");
     const [type, setType] = useState("");
     const [uploadedImages, setUploadedImages] = useState<File | null>(null);
+    const [file, setFile] = useState<UploadFile | null>(null);
 
     const [loadingType, setLoadingType] = useState(false);
     const [types, setTypes] = useState<TypePortfolio[]>([]);
@@ -56,14 +57,13 @@ export const useCreatePortfolio = ({ loc }: { loc: string }) => {
                     category,
                     typeId: Number(type),
                     image: uploadedImages,
+                    docs: file,
                 })
                 .then((response) => {
                     router.push(`/${loc}/profile`);
                 })
                 .catch((error) => {
                     openNotificationWithIcon(error.request.status);
-                })
-                .finally(() => {
                     setLoading(false);
                 });
         }
@@ -86,5 +86,7 @@ export const useCreatePortfolio = ({ loc }: { loc: string }) => {
         types,
         loadingType,
         contextHolder,
+        file,
+        setFile,
     };
 };

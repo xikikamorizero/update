@@ -21,10 +21,14 @@ export const usePortfolio = () => {
     function setType(value: string) {
         store.typeId = value;
     }
+    function setSortOrder(value: string) {
+        store.sortOrder = value;
+    }
     useEffect(() => {
         const keyword = path.get("keyword");
         const category = path.get("category");
         const type = path.get("type");
+        const sortOrder = path.get("sortOrder");
         if (keyword != null) {
             store.keyword = keyword;
         }
@@ -33,6 +37,9 @@ export const usePortfolio = () => {
         }
         if (type != null) {
             store.typeId = type;
+        }
+        if (sortOrder != null) {
+            store.sortOrder = sortOrder;
         }
     }, []);
 
@@ -52,10 +59,15 @@ export const usePortfolio = () => {
         } else {
             current.delete("type");
         }
+        if (store.sortOrder != null) {
+            current.set("sortOrder", String(store.sortOrder));
+        } else {
+            current.delete("sortOrder");
+        }
         const search = current.toString();
         const query = search ? `?${search}` : "";
         window.history.pushState(null, "", `${pathname}${query}`);
-    }, [store.keyword, store.category, store.typeId]);
+    }, [store.keyword, store.category, store.typeId, store.sortOrder]);
 
     useEffect(() => {
         if (!store.loadingT) {
@@ -85,6 +97,7 @@ export const usePortfolio = () => {
                             : undefined,
                     page: store.page,
                     limit: store.limit,
+                    sortOrder: store.sortOrder,
                 })
                 .then((response) => {
                     store.portfolio = response.data.portfolio;
@@ -99,7 +112,13 @@ export const usePortfolio = () => {
                     store.loading = false;
                 });
         }
-    }, [store.page, store.keyword, store.category, store.typeId]);
+    }, [
+        store.page,
+        store.keyword,
+        store.category,
+        store.typeId,
+        store.sortOrder,
+    ]);
 
     return {
         portfolio: store.portfolio,
@@ -114,6 +133,8 @@ export const usePortfolio = () => {
         limit: store.limit,
         loadingT: store.loadingT,
         types: store.types,
-        loading:store.loading
+        loading: store.loading,
+        setSortOrder,
+        sortOrder: store.sortOrder,
     };
 };

@@ -5,6 +5,7 @@ import { useProject } from "./lib/hook";
 import { Edit2, CloseCircle, AddCircle } from "iconsax-react";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
+import { Preloader } from "../Preloader/Preloader";
 
 type PropsType = {
     title_en?: string;
@@ -93,13 +94,19 @@ export const CardTypePortfolio = observer(({ ...props }: PropsType) => {
             {props.editMode && !props.create ? (
                 <div className={style.panelUpr}>
                     {data.editModeItem ? (
-                        <AddCircle
+                        <button
+                            disabled={data.loading}
                             className={style.editButton}
                             onClick={() => {
                                 data.Edit();
-                                data.setEditModeItem(false);
                             }}
-                        />
+                        >
+                            {data.loading ? (
+                                <Preloader />
+                            ) : (
+                                <AddCircle className={style.editButton} />
+                            )}
+                        </button>
                     ) : (
                         <Edit2
                             className={style.editButton}
@@ -109,21 +116,35 @@ export const CardTypePortfolio = observer(({ ...props }: PropsType) => {
                         />
                     )}
 
-                    <CloseCircle
+                    <button
+                        disabled={data.loading}
                         className={style.deleteButton}
                         onClick={() => {
                             data.Delete();
                         }}
-                    />
+                    >
+                        {data.loading ? (
+                            <Preloader />
+                        ) : (
+                            <CloseCircle className={style.deleteButton} />
+                        )}
+                    </button>
                 </div>
             ) : props.create ? (
                 <div className={style.panelUpr}>
-                    <AddCircle
+                    <button
+                        disabled={data.loading}
                         className={style.editButton}
                         onClick={() => {
                             data.Create();
                         }}
-                    />
+                    >
+                        {data.loading ? (
+                            <Preloader />
+                        ) : (
+                            <AddCircle className={style.editButton} />
+                        )}
+                    </button>
                 </div>
             ) : (
                 <></>

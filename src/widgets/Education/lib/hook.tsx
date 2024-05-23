@@ -25,11 +25,9 @@ export const useEducation = ({ ...props }: Props) => {
     );
 
     const [uploadedImages, setUploadedImages] = useState<any | null>(null);
-    const [docs, setDocs] = useState<any>(
-        store.education?.docs ? store.education?.docs : null
-    );
 
     const [api, contextHolder] = notification.useNotification();
+    const [file, setFile] = useState<any | null>(null);
 
     const openNotificationWithIcon = (status: number, description: string) => {
         api["error"]({
@@ -43,12 +41,9 @@ export const useEducation = ({ ...props }: Props) => {
             setTitle(store.education.title);
             setDate(store.education.date);
             setUploadedImages(store.education.image);
+            setFile(store.education.docs);
         }
     }, [store.education]);
-
-    const handleFileChange = (event: any) => {
-        setDocs(event.target.files[0]);
-    };
 
     function Edit() {
         if (!store.loading) {
@@ -59,7 +54,7 @@ export const useEducation = ({ ...props }: Props) => {
                     title: title,
                     date: date,
                     image: uploadedImages,
-                    docs: docs,
+                    docs: file,
                 }
             )
                 .then((response) => {
@@ -127,14 +122,14 @@ export const useEducation = ({ ...props }: Props) => {
         setTitle,
         date,
         setDate,
-        setDocs,
-        handleFileChange,
         profile: global_store.store.profile,
         Edit,
         Delete,
         uploadedImages,
         setUploadedImages,
         contextHolder,
-        loading:store.loading
+        loading: store.loading,
+        file,
+        setFile,
     };
 };

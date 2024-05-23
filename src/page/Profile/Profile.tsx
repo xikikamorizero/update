@@ -82,10 +82,20 @@ export const Profile = ({ ...props }: PropsType) => {
                     numberOfHoursTable={t("numberOfHoursTable")}
                     docsTable={t("docsTable")}
 
+                    addTitleT={t("addTitleT")}
+                    addYearT={t("addYearT")}
+                    addTypeT={t("addTypeT")}
+                    addLinkT={t("addLinkT")}
+                    linkT={t("linkT")}
+
                     subscriptions={props.subscriptions}
                     no_subscriptions={props.no_subscriptions}
 
                     adminT={props.adminT}
+
+                    docsT={t("docsT")}
+                    add_docsT={t("add_docsT")}
+                    yearT={t("yearT")}
                 />
             </WithWrapper>
         </div>

@@ -4,12 +4,14 @@ import React from "react";
 import { ImageInput } from "@/shared";
 import { useCreateEducation } from "./lib/hook";
 import { Preloader } from "@/shared/Preloader/Preloader";
+import { DocsUploade } from "../CreateAward/DocsUploader";
 
 type PropsType = {
     loc: string;
     add_title: string;
     add_year: string;
     create: string;
+    add_docs:string;
 };
 
 export const CreateEducation = ({ ...props }: PropsType) => {
@@ -46,6 +48,8 @@ export const CreateEducation = ({ ...props }: PropsType) => {
                         setImage={data.setUploadedImages}
                     />
                 </div>
+
+                <DocsUploade fileList={data.file} setFileList={data.setFile} add_docs={props.add_docs} />
 
                 <button
                     disabled={data.loading}

@@ -11,11 +11,12 @@ type PropsType = {
     title_ruT: string;
     title_uzT: string;
     descriptionT: string;
-    countT:string;
+    countT: string;
 };
 
 export const AdminPanel = ({ ...props }: PropsType) => {
     const t = useTranslations("Main");
+    const d = useTranslations("Profile");
     return (
         <div className={style.container}>
             <p className={style.title}>{props.title}</p>
@@ -28,6 +29,7 @@ export const AdminPanel = ({ ...props }: PropsType) => {
                         title_uzT={props.title_uzT}
                         descriptionT={props.descriptionT}
                         countT={props.countT}
+                        controlT={d("control")}
                     />
                 </VanguardAdm>
             </WithWrapper>

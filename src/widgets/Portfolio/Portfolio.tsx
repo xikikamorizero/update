@@ -9,7 +9,12 @@ import { useContext } from "react";
 import { Context } from "./lib/context";
 import Link from "next/link";
 import { InputFilter } from "@/entities/InputFilter/InputFilter";
-import { SearchNormal1, FilterSquare } from "iconsax-react";
+import {
+    SearchNormal1,
+    FilterSquare,
+    ArrowSquareDown,
+    ArrowSquareUp,
+} from "iconsax-react";
 import { NoItem } from "@/shared/NoItem/NoItem";
 import { Preloader } from "@/shared/Preloader/Preloader";
 
@@ -35,12 +40,30 @@ export const Portfolio = observer(({ ...props }: PropsType) => {
         <div className={style.container}>
             <div className={style.filterContainer}>
                 <p className={style.title}>{props.title}</p>
-                <FilterSquare
-                    className={style.filterButton}
-                    onClick={() => {
-                        setFilter(!filter);
-                    }}
-                />
+
+                <div className={style.filterSortContainer}>
+                    {data.sortOrder == "ASC" ? (
+                        <ArrowSquareDown
+                            className={style.filterButton}
+                            onClick={() => {
+                                data.setSortOrder("DESC");
+                            }}
+                        />
+                    ) : (
+                        <ArrowSquareUp
+                            className={style.filterButton}
+                            onClick={() => {
+                                data.setSortOrder("ASC");
+                            }}
+                        />
+                    )}
+                    <FilterSquare
+                        className={style.filterButton}
+                        onClick={() => {
+                            setFilter(!filter);
+                        }}
+                    />
+                </div>
             </div>
 
             {filter && (
@@ -89,39 +112,43 @@ export const Portfolio = observer(({ ...props }: PropsType) => {
                 </div>
             )}
 
-            {data.loading ? (
-                <div className={style.preloaderContainer}>
-                    <div className={style.preloader}>
-                        <Preloader />
+            <div className={style.containerCard}>
+                {data.loading ? (
+                    <div className={style.preloaderContainer}>
+                        <div className={style.preloader}>
+                            <Preloader />
+                        </div>
                     </div>
-                </div>
-            ) : (
-                <Row gutter={[16, 16]}>
-                    {data.portfolio.length > 0 ? (
-                        data.portfolio?.map((a, i) => (
-                            <Col
-                                xs={xsmall}
-                                sm={small}
-                                md={middle}
-                                lg={large}
-                                key={i}
-                            >
-                                <Link href={`/${props.loc}/portfolio/${a.id}`}>
-                                    <Card
-                                        loading={false}
-                                        src={a.image}
-                                        title={a.title}
-                                        subtitle={a.category}
-                                        proj={"true"}
-                                    />
-                                </Link>
-                            </Col>
-                        ))
-                    ) : (
-                        <NoItem />
-                    )}
-                </Row>
-            )}
+                ) : (
+                    <Row gutter={[16, 16]}>
+                        {data.portfolio.length > 0 ? (
+                            data.portfolio?.map((a, i) => (
+                                <Col
+                                    xs={xsmall}
+                                    sm={small}
+                                    md={middle}
+                                    lg={large}
+                                    key={i}
+                                >
+                                    <Link
+                                        href={`/${props.loc}/portfolio/${a.id}`}
+                                    >
+                                        <Card
+                                            loading={false}
+                                            src={a.image}
+                                            title={a.title}
+                                            subtitle={a.category}
+                                            proj={"true"}
+                                        />
+                                    </Link>
+                                </Col>
+                            ))
+                        ) : (
+                            <NoItem />
+                        )}
+                    </Row>
+                )}
+            </div>
 
             <Pagination
                 className={style.pagination}

@@ -68,6 +68,13 @@ export const useUsers = () => {
     function setDisLikesMax(dislikesMax: number | null) {
         store.dislikesMax = dislikesMax;
     }
+    //
+    function setSortBy(sortBy: string) {
+        store.sortBy = sortBy;
+    }
+    function setSortOrder(sortOrder: string) {
+        store.sortOrder = sortOrder;
+    }
 
     useEffect(() => {
         const keyword = path.get("keyword");
@@ -88,6 +95,9 @@ export const useUsers = () => {
         const likesMax = path.get("likes_max");
         const dislikesMin = path.get("dislikes_min");
         const dislikesMax = path.get("dislikes_max");
+
+        const sortBy = path.get("sortBy");
+        const sortOrder = path.get("sortOrder");
 
         const categoryParams = path.getAll("category");
 
@@ -146,6 +156,14 @@ export const useUsers = () => {
         }
         if (dislikesMax != null) {
             store.dislikesMax = Number(dislikesMax);
+        }
+        //
+
+        if (sortBy != null) {
+            store.sortBy = sortBy;
+        }
+        if (sortOrder != null) {
+            store.sortOrder = sortOrder;
         }
     }, [path]);
 
@@ -278,6 +296,18 @@ export const useUsers = () => {
             current.delete("dislikes_max");
         }
 
+        //
+        if (store.sortBy != null) {
+            current.set("sortBy", String(store.sortBy));
+        } else {
+            current.delete("sortBy");
+        }
+        if (store.sortOrder != null) {
+            current.set("sortOrder", String(store.sortOrder));
+        } else {
+            current.delete("sortOrder");
+        }
+
         const search = current.toString();
         const query = search ? `?${search}` : "";
         window.history.pushState(null, "", `${pathname}${query}`);
@@ -300,6 +330,9 @@ export const useUsers = () => {
         store.dislikesMin,
         store.dislikesMax,
         store.categories,
+
+        store.sortBy,
+        store.sortOrder,
     ]);
 
     useEffect(() => {
@@ -328,6 +361,8 @@ export const useUsers = () => {
                     dislikesMax: store.dislikesMax,
                     page: store.page,
                     limit: store.limit,
+                    sortBy: store.sortBy,
+                    sortOrder: store.sortOrder,
                 })
                 .then((response) => {
                     store.users = response.data.users;
@@ -362,6 +397,9 @@ export const useUsers = () => {
         store.likesMax,
         store.dislikesMin,
         store.dislikesMax,
+
+        store.sortBy,
+        store.sortOrder,
     ]);
 
     return {
@@ -409,5 +447,10 @@ export const useUsers = () => {
         limit: store.limit,
         myId: global_store.store.profile?.id,
         loading: store.loading,
+
+        sortBy: store.sortBy,
+        sortOrder: store.sortOrder,
+        setSortBy,
+        setSortOrder,
     };
 };

@@ -19,7 +19,8 @@ export const LikeDisLike = ({ ...props }: PropsType) => {
     });
     return (
         <div className={style.likesContainer}>
-            <div
+            <button
+                disabled={data.loading}
                 className={`${style.likeAndDis} ${style.like} ${
                     props.isLiked ? style.likeAndDisActive : null
                 }`}
@@ -27,8 +28,9 @@ export const LikeDisLike = ({ ...props }: PropsType) => {
             >
                 <div></div>
                 <p>{props.likes}</p>
-            </div>
-            <div
+            </button>
+            <button
+                disabled={data.loading}
                 onClick={data.DisLike}
                 className={`${style.likeAndDis} ${style.dislike} ${
                     props.isDisliked ? style.likeAndDisActive : null
@@ -36,7 +38,7 @@ export const LikeDisLike = ({ ...props }: PropsType) => {
             >
                 <div></div>
                 <p>{props.dislikes}</p>
-            </div>
+            </button>
         </div>
     );
 };

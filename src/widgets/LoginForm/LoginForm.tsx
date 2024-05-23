@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLogin } from "./lib/hook";
 import { Eye, EyeSlash } from "iconsax-react";
 import { useState } from "react";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
@@ -61,26 +62,32 @@ export const LoginForm = ({ ...props }: PropsType) => {
                 </div>
             </div>
 
-            <div
+            <button
+                disabled={data.loading}
                 className={style.buttonLogin}
                 onClick={() => {
                     data.Login();
                 }}
             >
-                {props.log_in}
-            </div>
+                {data.loading?  <div className={style.preloadCo}>
+                            <Preloader />
+                        </div>:
+                     props.log_in
+                }
+           
+            </button>
             <div className={style.newAccBlock}>
                 <p className={style.newAccBlockText}>{props.no_account}</p>
                 <Link href={`/${props.loc}/registration`}>{props.create}</Link>
             </div>
-            <CloseCircle
+            {/* <CloseCircle
                 onClick={() => {
                     data.router.push(`/${props.loc}`);
                 }}
                 className={style.closeIcon}
                 size="32"
                 color="#000000"
-            />
+            /> */}
         </div>
     );
 };

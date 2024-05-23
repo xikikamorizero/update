@@ -25,6 +25,8 @@ export const EducationItem = ({ ...props }: PropsType) => {
                     save={t("save")}
                     delete={t("delete")}
                     date={c("year")}
+                    linkT={c("link_docsE")}
+                    add_docsT={c("add_docsT")}
                 />
             </WithWrapper>
         </div>

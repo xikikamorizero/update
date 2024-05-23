@@ -89,6 +89,7 @@ export class Store {
     public readonly lesson = new Lesson();
     public readonly UpdatePort = new UpdatePort();
     public profile: types.userType | null = null;
+    public userItem: types.userType | null = null;
     public loader = false;
     public error = 0;
     public isAuth: boolean = false;

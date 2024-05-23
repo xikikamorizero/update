@@ -1,12 +1,14 @@
 import style from "./SlaiderCard.module.css";
 import { baseUrl } from "../api/const";
 import { Skeleton } from "antd";
+import Link from "next/link";
 
 type PropsType = {
     src: string | null;
     title?: string | null;
     subtitle?: string | null;
     loading: boolean;
+    href: string;
 };
 
 export const SlaiderCard = ({ ...props }: PropsType) => {
@@ -21,20 +23,20 @@ export const SlaiderCard = ({ ...props }: PropsType) => {
                 height: "100%",
             }}
         >
-            <div className={style.container}>
+            <Link href={props.href} className={style.container}>
                 <img
                     draggable={false}
                     className={style.avatar}
                     alt="avatar"
-                    src={
-                        props.src
-                            ? baseUrl + props.src
-                            : "/user.png"
-                    }
+                    src={props.src ? baseUrl + props.src : "/user.png"}
                 />
-                <p className={style.title}>{props.title?props.title:"null"}</p>
-                <p className={style.subtitle}>{props.subtitle?props.subtitle:"null"}</p>
-            </div>
+                <p className={style.title}>
+                    {props.title ? props.title : "null"}
+                </p>
+                <p className={style.subtitle}>
+                    {props.subtitle ? props.subtitle : "null"}
+                </p>
+            </Link>
         </Skeleton>
     );
 };

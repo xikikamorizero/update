@@ -8,6 +8,7 @@
     max-width: calc(20% - 8px);
     width: auto;
     user-select: none;
+    color:var(--main_color);
 }
 .avatar {
     width: 100%;

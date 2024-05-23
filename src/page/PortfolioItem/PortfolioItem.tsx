@@ -19,6 +19,7 @@ type PropsType = {
 
 export const PortfolioItem = ({ ...props }: PropsType) => {
     const t = useTranslations("CreatePortfolio");
+    const c = useTranslations("CreateAward");
     return (
         <div className={style.container}>
             <WithWrapper loc={props.loc}>
@@ -35,6 +36,8 @@ export const PortfolioItem = ({ ...props }: PropsType) => {
                     creator={props.creator}
                     loc={props.loc}
                     selectType={t("selectType")}
+                    add_docs={c("add_docs")}
+                    link_docsT={c("link_docsE")}
                 />
             </WithWrapper>
         </div>

@@ -4,19 +4,24 @@ import { CloseCircle } from "iconsax-react";
 import { useRegistration } from "./lib/hook";
 import { useState } from "react";
 import { Eye, EyeSlash } from "iconsax-react";
+import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
     loc: string;
     username: string;
     password: string;
     registration?: string;
-    text?:string;
-    titleError:string;
-    description:string;
+    text?: string;
+    titleError: string;
+    description: string;
 };
 
 export const RegistrationForm = ({ ...props }: PropsType) => {
-    const data = useRegistration({ loc: props.loc, titleError:props.titleError, description:props.description });
+    const data = useRegistration({
+        loc: props.loc,
+        titleError: props.titleError,
+        description: props.description,
+    });
     const [viewPass, setViewPass] = useState(false);
     return (
         <div className={style.formContainer}>
@@ -30,8 +35,8 @@ export const RegistrationForm = ({ ...props }: PropsType) => {
                 type={"text"}
                 placeholder={props.username}
             />
-             
-             <div className={style.passwordContainer}>
+
+            <div className={style.passwordContainer}>
                 <input
                     value={data.password}
                     onChange={(e) => {
@@ -64,18 +69,25 @@ export const RegistrationForm = ({ ...props }: PropsType) => {
                 />
             </div>
 
-            <div
+            <button
+                disabled={data.loading}
                 className={style.buttonLogin}
                 onClick={() => {
                     data.Registration();
                 }}
             >
-                {props.registration}
-            </div>
+                {data.loading ? (
+                    <div className={style.preloadCo}>
+                        <Preloader />
+                    </div>
+                ) : (
+                    props.registration
+                )}
+            </button>
 
             <CloseCircle
                 onClick={() => {
-                    data.router.push(`/${props.loc}`);
+                    data.router.push(`/${props.loc}/login`);
                 }}
                 className={style.closeIcon}
                 size="32"

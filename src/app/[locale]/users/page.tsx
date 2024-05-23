@@ -25,6 +25,9 @@ export default function Users({ params }: { params: { locale: string } }) {
                 categoryT={t("categoryT")}
                 from={t("from")}
                 to={t("to")}
+                likesT={t("likesT")}
+                dislikesT={t("dislikesT")}
+                createdAtT={t("createdAtT")}
             />
         </>
     );

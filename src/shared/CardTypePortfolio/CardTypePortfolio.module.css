@@ -50,10 +50,24 @@
     height: 30px;
     color: green;
     cursor: pointer;
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
 }
 .deleteButton {
     width: 30px;
     height: 30px;
     color: red;
     cursor: pointer;
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
 }

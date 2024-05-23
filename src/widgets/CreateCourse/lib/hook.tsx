@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { notification } from "antd";
 
-export const useCourse = ({loc}:{loc:string}) => {
+export const useCourse = ({ loc }: { loc: string }) => {
     let router = useRouter();
     const global_store = useContext(GlobalContext);
     const [loading, setLoading] = useState(false);
@@ -35,12 +35,10 @@ export const useCourse = ({loc}:{loc:string}) => {
                     image: uploadedImages,
                 })
                 .then((response) => {
-                        router.push(`/${loc}/profile`);
+                    router.push(`/${loc}/profile`);
                 })
                 .catch((error) => {
                     openNotificationWithIcon(error.request.status);
-                })
-                .finally(() => {
                     setLoading(false);
                 });
         }
@@ -59,6 +57,6 @@ export const useCourse = ({loc}:{loc:string}) => {
         setCategory: setCategory,
         uploadedImages: uploadedImages,
         setUploadedImages: setUploadedImages,
-        contextHolder
+        contextHolder,
     };
 };

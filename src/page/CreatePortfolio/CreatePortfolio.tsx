@@ -12,6 +12,7 @@ type PropsType = {
     add_type: string;
     create: string;
     selectType:string;
+    add_docs:string;
 };
 
 export const CreatePortfolio = ({ ...props }: PropsType) => {
@@ -28,6 +29,7 @@ export const CreatePortfolio = ({ ...props }: PropsType) => {
                         add_type={props.add_type}
                         create={props.create}
                         selectType={props.selectType}
+                        add_docs={props.add_docs}
                     />
                 </Vanguard>
             </WithWrapper>

@@ -5,14 +5,21 @@
     gap: 30px;
     height: max-content;
 }
+.containerCard{
+    min-height: 55vh;
+    height: max-content;
+}
 .card {
-    background: red;
     height: 200px;
 }
 .pagination {
     background-color: var(--main_color);
     width: max-content;
     border-radius: 10px;
+}
+.filterSortContainer {
+    display: flex;
+    gap: 10px;
 }
 .filterPanel {
     width: max-content;
@@ -71,7 +78,7 @@
     font-size: 25px;
     font-weight: 600;
 }
-.selectC{
+.selectC {
     width: 220px;
     height: 30px;
     padding: 10px;
@@ -97,13 +104,13 @@
 }
 
 @media (max-width: 750px) {
-    .filterContainer{
+    .filterContainer {
         align-items: start;
     }
-    .secondaryFilterContainer{
-        gap:5px;
+    .secondaryFilterContainer {
+        gap: 5px;
     }
-    .filterInput{
+    .filterInput {
         width: 100px;
     }
     .filterPanel {

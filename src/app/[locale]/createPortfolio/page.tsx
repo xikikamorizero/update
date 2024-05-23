@@ -23,6 +23,7 @@ export default function CreatePortfolio({
                 add_type={t("add_type")}
                 create={t("create")}
                 selectType={t("selectType")}
+                add_docs={t("add_docs")}
             />
         </>
     );

@@ -5,14 +5,33 @@
     gap: 30px;
     height: max-content;
 }
+.containerCard {
+    min-height: 55vh;
+    height: max-content;
+}
 .card {
-    background: red;
     height: 200px;
 }
 .pagination {
     background-color: var(--main_color);
     width: max-content;
     border-radius: 10px;
+}
+.filterSortContainer {
+    display: flex;
+    gap: 10px;
+}
+.sortSelectContainer {
+    display: flex;
+    gap: 5px;
+}
+.sortSelect {
+    width: 120px;
+    border-radius: 5px;
+    border: 1px solid var(--main_color);
+    background-color: var(--main_color);
+
+    padding-left: 10px;
 }
 .filterPanel {
     width: 100%;

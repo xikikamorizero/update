@@ -5,6 +5,7 @@ import { EditorJsEdit } from "../../entities/EditorJsEdit/EditorJsEdit";
 import { ImageInput } from "@/shared";
 import { useCreatePortfolio } from "./lib/hook";
 import { Preloader } from "@/shared/Preloader/Preloader";
+import { DocsUploade } from "../CreateAward/DocsUploader";
 
 type PropsType = {
     loc: string;
@@ -13,6 +14,7 @@ type PropsType = {
     add_type: string;
     create: string;
     selectType: string;
+    add_docs:string;
 };
 
 export const CreatePortfolio = ({ ...props }: PropsType) => {
@@ -72,6 +74,12 @@ export const CreatePortfolio = ({ ...props }: PropsType) => {
                     />
                 </div>
 
+                <DocsUploade
+                    fileList={data.file}
+                    setFileList={data.setFile}
+                    add_docs={props.add_docs}
+                />
+
                 <EditorJsEdit
                     editorData={data.data}
                     setEditorData={data.setData}
@@ -83,7 +91,13 @@ export const CreatePortfolio = ({ ...props }: PropsType) => {
                         data.Create();
                     }}
                 >
-                    {data.loading ? <div className={style.preloadCo}><Preloader /></div> : props.create}
+                    {data.loading ? (
+                        <div className={style.preloadCo}>
+                            <Preloader />
+                        </div>
+                    ) : (
+                        props.create
+                    )}
                 </button>
             </div>
         </div>

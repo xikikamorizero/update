@@ -28,6 +28,9 @@ export class Store {
     public dislikesMin: number | null = null;
     public dislikesMax: number | null = null;
 
+    public sortBy: string = 'createdAt';
+    public sortOrder:string='ASC';
+
     public loading: boolean = false;
 
     constructor() {

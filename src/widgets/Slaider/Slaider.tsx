@@ -10,6 +10,7 @@ type Props = {
     title: string;
     link: string;
     textLink: string;
+    loc:string;
 };
 
 export const Slaider = observer(({ ...props }: Props) => {
@@ -34,6 +35,7 @@ export const Slaider = observer(({ ...props }: Props) => {
                         subtitle={a.science_degree}
                         src={a.avatar}
                         loading={data.loading}
+                        href={`/${props.loc}/users/${a.id}`}
                     />
                 ))}
             </SlaiderContainer>

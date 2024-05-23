@@ -25,11 +25,13 @@ export const Main = ({ ...props }: PropsType) => {
                         title={props.title1}
                         link={`/${props.loc}/users`}
                         textLink={props.textLink}
+                        loc={props.loc}
                     />
                     <SlaiderProject
                         title={props.title2}
                         link={`/${props.loc}/portfolio`}
                         textLink={props.textLink}
+                        loc={props.loc}
                     />
                     <div className={style.bannerContainer}>
                         <div className={style.banner}>

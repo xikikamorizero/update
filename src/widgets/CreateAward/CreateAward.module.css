@@ -13,6 +13,28 @@
     gap: 30px;
     max-width: 770px;
 }
+.docstUploader {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.uploadContainer {
+    width: 360px;
+    background-color: var(--main_color);
+    overflow: hidden;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.upload {
+    width: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .inputTitle {
     width: 100%;
     font-size: 20px;

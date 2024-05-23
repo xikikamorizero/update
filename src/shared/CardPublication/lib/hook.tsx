@@ -9,6 +9,7 @@ type PropsType = {
     year?: number;
     type?: string;
     link: string | null;
+    docs: string | null;
 };
 
 export const useProject = ({ ...props }: PropsType) => {
@@ -18,6 +19,9 @@ export const useProject = ({ ...props }: PropsType) => {
     const [type, setType] = useState(props.type ? props.type : "");
     const [link, setLink] = useState(props.link ? props.link : "");
     const [loading, setLoading] = useState(false);
+    const [loadingProf, setLoadingProf] = useState(false);
+
+    const [docs, setDocs] = useState<any>(props.docs ? props.docs : null);
 
     const [editModeItem, setEditModeItem] = useState(false);
 
@@ -30,15 +34,38 @@ export const useProject = ({ ...props }: PropsType) => {
         });
     };
 
+    console.log(props.publishId, title, year, type, link, docs);
+
+    function updateProfile() {
+        if (!loadingProf) {
+            setLoadingProf(true);
+            global_store.store.user
+                .getProfile()
+                .then((response) => {
+                    global_store.store.profile = response.data;
+                })
+                .catch((error) => {
+                    openNotificationWithIcon(
+                        error.request.status,
+                        "Error updating profile information"
+                    );
+                })
+                .finally(() => {
+                    setLoadingProf(false);
+                });
+        }
+    }
+
     function Edit() {
         if (!loading) {
             setLoading(true);
             global_store.store.UpdatePort.editPublications(
                 { id: props.publishId },
-                { title, year: String(year), type, link }
+                { title, year: String(year), type, link, docs }
             )
                 .then((response) => {
-                    global_store.store.updateProfile();
+                    // global_store.store.updateProfile();
+                    updateProfile();
                     setEditModeItem(false);
                 })
                 .catch((error) => {
@@ -61,9 +88,12 @@ export const useProject = ({ ...props }: PropsType) => {
                 year,
                 type,
                 link,
+                docs,
             })
                 .then((response) => {
-                    global_store.store.updateProfile();
+                    // global_store.store.updateProfile();
+                    updateProfile();
+                    updateProfile();
                     setTitle("");
                     setYear(0);
                     setType("");
@@ -88,7 +118,8 @@ export const useProject = ({ ...props }: PropsType) => {
                 id: props.publishId,
             })
                 .then((response) => {
-                    global_store.store.updateProfile();
+                    // global_store.store.updateProfile();
+                    updateProfile();
                 })
                 .catch((error) => {
                     openNotificationWithIcon(
@@ -117,6 +148,9 @@ export const useProject = ({ ...props }: PropsType) => {
         Delete,
         Create,
         contextHolder,
-        loading
+        loading,
+        docs,
+        setDocs,
+        loadingProf
     };
 };

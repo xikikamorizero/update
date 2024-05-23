@@ -1,9 +1,10 @@
 "use client";
 import style from "./CreateAward.module.css";
-import React from "react";
+import { useState } from "react";
 import { ImageInput } from "@/shared";
 import { useCreateAward } from "./lib/hook";
 import { Preloader } from "@/shared/Preloader/Preloader";
+import { DocsUploade } from "./DocsUploader";
 
 type PropsType = {
     loc: string;
@@ -11,6 +12,8 @@ type PropsType = {
     add_year: string;
     add_type: string;
     create: string;
+
+    add_docs: string;
 };
 
 export const CreateAward = ({ ...props }: PropsType) => {
@@ -55,6 +58,14 @@ export const CreateAward = ({ ...props }: PropsType) => {
                     <ImageInput
                         image={data.uploadedImages}
                         setImage={data.setUploadedImages}
+                    />
+                </div>
+
+                <div className={style.docstUploader}>
+                    <DocsUploade
+                        add_docs={props.add_docs}
+                        fileList={data.file}
+                        setFileList={data.setFile}
                     />
                 </div>
 

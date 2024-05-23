@@ -8,7 +8,18 @@ export class Store {
     public loadingDisLike:boolean = false;
     public loadingSubscribe:boolean = false;
 
+    public update_sub: boolean = false;
+    public update_like: boolean = false;
+
+
     constructor() {
         makeAutoObservable(this);
+    }
+
+    updateSub() {
+        this.update_sub = !this.update_sub;
+    }
+    updateLike() {
+        this.update_like = !this.update_like;
     }
 }

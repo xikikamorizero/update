@@ -18,7 +18,7 @@
     transform: translate(-50%, -50%);
     width: 50%;
     height: 50%; 
-    border: 2px solid #7a7a7a; 
+    border: 5px solid #7a7a7a; 
     border-top-color: #ffffff; 
     border-radius: 50%;
     animation: spin 1s linear infinite; 

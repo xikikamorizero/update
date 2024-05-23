@@ -3,6 +3,7 @@ import { Context as GlobalContext } from "@/shared/api";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { notification } from "antd";
+import type { UploadFile } from "antd";
 
 export const useCreateEducation = ({ loc }: { loc: string }) => {
     const { store } = useContext(GlobalContext);
@@ -10,6 +11,7 @@ export const useCreateEducation = ({ loc }: { loc: string }) => {
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
     const [uploadedImages, setUploadedImages] = useState<File | null>(null);
+    const [file, setFile] = useState<UploadFile | null>(null);
     let router = useRouter();
 
     const [api, contextHolder] = notification.useNotification();
@@ -28,14 +30,13 @@ export const useCreateEducation = ({ loc }: { loc: string }) => {
                 title: title,
                 date: date,
                 image: uploadedImages,
+                docs:file
             })
                 .then((response) => {
                     router.push(`/${loc}/profile`);
                 })
                 .catch((error) => {
                     openNotificationWithIcon(error.request.status);
-                })
-                .finally(() => {
                     setLoading(false);
                 });
         }
@@ -52,5 +53,7 @@ export const useCreateEducation = ({ loc }: { loc: string }) => {
         uploadedImages,
         setUploadedImages,
         contextHolder,
+        file,
+        setFile
     };
 };
