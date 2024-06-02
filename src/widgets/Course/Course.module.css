@@ -7,10 +7,10 @@
     height: max-content;
     /* padding-bottom: 40px; */
 }
-.container input{
+.container input {
     border: 1px solid var(--sub_color);
     border-radius: 5px;
-    padding:10px 0 10px 10px;
+    padding: 10px 0 10px 10px;
 }
 .title {
     width: 100%;
@@ -18,10 +18,16 @@
     font-size: 40px;
     font-weight: 900;
 }
+.descriptionTextArea {
+    border: 1px solid var(--sub_color);
+    border-radius: 5px;
+    padding: 10px 0 10px 10px;
+    width: 100%;
+    font-size: 20px;
+}
 .description {
     width: 100%;
     font-size: 20px;
-    color: var(--sub_color);
 }
 .card_container {
     width: 100%;
@@ -51,7 +57,7 @@
     flex-direction: column;
     gap: 5px;
 }
-.infoText{
+.infoText {
     width: 100%;
     text-align: start;
     font-size: 20px;
@@ -64,10 +70,10 @@
     gap: 10px;
 }
 
-.button:hover{
+.button:hover {
     opacity: 1;
 }
-.createLesson{
+.createLesson {
     width: max-content;
 }
 .preloadCo {
@@ -99,6 +105,22 @@
     flex-shrink: 0;
 }
 
+.inputImage {
+    width: 300px;
+    height: 200px;
+    background-color: var(--sub_color);
+    border: 1px solid var(--main_color);
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.uploadContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 500px) {
     .buttonContainer {
         width: 100%;
@@ -120,12 +142,12 @@
     .editButton {
         width: 100%;
     }
-    .createLesson{
+    .createLesson {
         width: 100%;
         font-size: 20px;
         height: 35px;
     }
-    .title{
+    .title {
         font-size: 25px;
     }
 }

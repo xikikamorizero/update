@@ -49,6 +49,12 @@ export const useUser = ({ userId, loc }: PropsType) => {
                 router.push(`/${loc}/profile`);
             }
         }
+        global_store.store.portfolio
+            .getPortfolioType()
+            .then((response) => {
+                global_store.store.typePortfolio = response.data;
+            })
+            .catch(() => {});
     }, []);
 
     useEffect(() => {

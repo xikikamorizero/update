@@ -32,7 +32,7 @@ export const User = ({ ...props }: PropsType) => {
     const t = useTranslations("Table");
     return (
         <div className={style.container}>
-            <WithWrapper loc={props.loc}>
+            {/* <WithWrapper loc={props.loc}> */}
                 <UserWidget
                     userId={props.userId}
                     loc={props.loc}
@@ -67,7 +67,7 @@ export const User = ({ ...props }: PropsType) => {
                     add_docsT={t("add_docsT")}
                     yearT={t("yearT")}
                 />
-            </WithWrapper>
+            {/* </WithWrapper> */}
         </div>
     );
 };

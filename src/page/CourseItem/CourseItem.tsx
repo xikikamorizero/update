@@ -13,6 +13,12 @@ type PropsType = {
     save:string;
     delete:string;
     edit:string;
+
+    lessonT: string;
+    addTitle: string;
+    addDescription: string;
+    addLevel: string;
+    addCategory: string;
 };
 
 export const CourseItem = ({ ...props }: PropsType) => {
@@ -30,6 +36,12 @@ export const CourseItem = ({ ...props }: PropsType) => {
                     save={props.save}
                     delete={props.delete}
                     edit={props.edit}
+
+                    lessonT={props.lessonT}
+                    addTitle={props.addTitle}
+                    addDescription={props.addDescription}
+                    addLevel={props.addLevel}
+                    addCategory={props.addCategory}
                 />
             </WithWrapper>
         </div>

@@ -8,15 +8,19 @@
     transform: translate(0, -50%);
 }
 .selectCust {
-    width: 45px;
-    padding: 5px;
+    width: min-content;
+    max-width: 50px;
+    padding: 4px;
     border-radius: 1px;
     background-color: var(--secondary_color);
-    color:var(--main_text_color);
+    color: var(--main_text_color);
     cursor: pointer;
+    font-size: 13px;
+    box-sizing: border-box;
 }
 .lang {
-    padding: 0;
+    font-size: 15px;
+    padding: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,8 +29,8 @@
     .containerSwitcher {
         right: 15px;
     }
-    .selectCust{    
+    .selectCust {
         background-color: var(--main_color);
-        color:var(--secondary_text_color);
+        color: var(--secondary_text_color);
     }
 }

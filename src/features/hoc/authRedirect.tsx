@@ -13,7 +13,7 @@ type PropsType = {
 export const WithWrapper = observer(({ children, loc }: PropsType) => {
     const { store } = useContext(Context);
     const router = useRouter();
-    console.log("HOCA", store.isAuth , localStorage.getItem("token"));
+    console.log("HOCA", store.isAuth, localStorage.getItem("token"));
     if (store.isAuth) {
         return children;
     } else if (!store.isAuth && !localStorage.getItem("token")) {

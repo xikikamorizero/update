@@ -36,3 +36,11 @@
     transform: rotate(180deg);
     background-image: url("./assets/like.png");
 }
+.likeDisIco{
+    width: 15px;
+    height: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}

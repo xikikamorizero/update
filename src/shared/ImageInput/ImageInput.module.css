@@ -9,6 +9,7 @@
     background-size: cover;
 
     cursor: pointer;
+    position: relative;
 }
 .inputImageContainer {
     width: 100%;
@@ -16,4 +17,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.imageShab{
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.593);
+}
+.imageShabIcon{
+    width: 40px;
+    height: 40px;
+
+    color:var(--main_color)
 }

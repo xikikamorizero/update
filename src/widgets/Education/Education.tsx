@@ -76,6 +76,7 @@ export const Education = observer(({ ...props }: PropsType) => {
                     )}
 
                     {!data.editMode ? (
+                        data.education?.docs &&
                         <Link
                             className={style.link}
                             href={baseUrl + data.education?.docs}

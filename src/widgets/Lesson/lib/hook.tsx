@@ -55,7 +55,7 @@ export const useLesson = ({ lessonId, loc }: PropsType) => {
                         description: description,
                         lesson_number: lessonNumber,
                         content: dataEditor,
-                        image: null,
+                        image: uploadedImages,
                     }
                 )
                 .then((response) => {

@@ -61,7 +61,13 @@ export const useProject = ({ ...props }: PropsType) => {
             setLoading(true);
             global_store.store.UpdatePort.editPublications(
                 { id: props.publishId },
-                { title, year: String(year), type, link, docs }
+                {
+                    title: title?.trim() !== "" ? title : "null",
+                    year: String(year)?.trim() !== "" ? String(year) : "null",
+                    type: type?.trim() !== "" ? type : "null",
+                    link: link?.trim() !== "" ? link : "null",
+                    docs,
+                }
             )
                 .then((response) => {
                     // global_store.store.updateProfile();
@@ -151,6 +157,6 @@ export const useProject = ({ ...props }: PropsType) => {
         loading,
         docs,
         setDocs,
-        loadingProf
+        loadingProf,
     };
 };

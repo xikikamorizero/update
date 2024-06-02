@@ -2,6 +2,7 @@
 import { Context as GlobalContext } from "@/shared/api";
 import { Context } from "./context";
 import { useContext, useEffect, useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 type PropsType = {
     portfolioId: string;
@@ -55,6 +56,52 @@ export const useProject = () => {
         global_store.store.profile?.avatar
     );
 
+    const router = useRouter();
+
+    useEffect(() => {
+        setName(
+            global_store.store.profile?.name
+                ? global_store.store.profile?.name
+                : ""
+        );
+        setDescription(
+            global_store.store.profile?.description
+                ? global_store.store.profile?.description
+                : ""
+        );
+        setPlaceOfWork(
+            global_store.store.profile?.place_of_work
+                ? global_store.store.profile?.place_of_work
+                : ""
+        );
+        setPosition(
+            global_store.store.profile?.position
+                ? global_store.store.profile?.position
+                : ""
+        );
+        setYearsOfExperience(
+            global_store.store.profile?.yearsOfExperience
+                ? global_store.store.profile?.yearsOfExperience
+                : 0
+        );
+        setScienceDegree(
+            global_store.store.profile?.science_degree
+                ? global_store.store.profile?.science_degree
+                : ""
+        );
+        setContacts(
+            global_store.store.profile?.contacts
+                ? global_store.store.profile?.contacts
+                : ""
+        );
+        setСategories(
+            global_store.store.profile?.categories
+                ? global_store.store.profile?.categories
+                : null
+        );
+        setImage(global_store.store.profile?.avatar);
+    }, [global_store.store.profile]);
+
     function EditProfile() {
         if (!store.loading) {
             store.loading = true;
@@ -101,6 +148,12 @@ export const useProject = () => {
                 .then((response) => {
                     store.portfolio = response.data.portfolio;
                     store.course = response.data.course;
+                    global_store.store.portfolio
+                        .getPortfolioType()
+                        .then((response) => {
+                            global_store.store.typePortfolio = response.data;
+                        })
+                        .catch(() => {});
                 })
                 .catch((error) => {
                     console.log("");

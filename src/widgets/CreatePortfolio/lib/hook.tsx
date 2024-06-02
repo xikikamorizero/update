@@ -21,7 +21,7 @@ export const useCreatePortfolio = ({ loc }: { loc: string }) => {
 
     const [api, contextHolder] = notification.useNotification();
 
-    const openNotificationWithIcon = (status: number, type?: string) => {
+    const openNotificationWithIcon = (status: number | string, type?: string) => {
         api["error"]({
             message: status,
             description: type
@@ -49,23 +49,27 @@ export const useCreatePortfolio = ({ loc }: { loc: string }) => {
 
     function Create() {
         if (!loading) {
-            setLoading(true);
-            store.portfolio
-                .create({
-                    title: title,
-                    content: data,
-                    category,
-                    typeId: Number(type),
-                    image: uploadedImages,
-                    docs: file,
-                })
-                .then((response) => {
-                    router.push(`/${loc}/profile`);
-                })
-                .catch((error) => {
-                    openNotificationWithIcon(error.request.status);
-                    setLoading(false);
-                });
+            if(data!==""){
+                setLoading(true);
+                store.portfolio
+                    .create({
+                        title: title,
+                        content: data,
+                        category,
+                        typeId: Number(type),
+                        image: uploadedImages,
+                        docs: file,
+                    })
+                    .then((response) => {
+                        router.push(`/${loc}/profile`);
+                    })
+                    .catch((error) => {
+                        openNotificationWithIcon(error.request.status);
+                        setLoading(false);
+                    });
+            }else{
+                openNotificationWithIcon("the content field must not be empty");
+            }
         }
     }
 

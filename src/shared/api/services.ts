@@ -87,7 +87,7 @@ export class User {
             });
         }
 
-        return await $voxmentor_api_public.get<types.usersType>(
+        return await $voxmentor_auth.get<types.usersType>(
             urls.user.get(),
             {
                 params,
@@ -98,7 +98,7 @@ export class User {
     static async getUser({
         id,
     }: types.ID): Promise<AxiosResponse<types.userType>> {
-        return await $voxmentor_api_public.get<types.userType>(
+        return await $voxmentor_auth.get<types.userType>(
             urls.user.getUser(id),
             {
                 params: {},
@@ -248,7 +248,7 @@ export class Portfolio {
     }: types.portfolioParamType): Promise<
         AxiosResponse<types.PortfolioListType>
     > {
-        return await $voxmentor_api_public.get<types.PortfolioListType>(
+        return await $voxmentor_auth.get<types.PortfolioListType>(
             urls.portfolio.get(),
             {
                 params: { keyword, category, typeId, page, limit, sortOrder },
@@ -259,7 +259,7 @@ export class Portfolio {
     static async getPortfolioType(): Promise<
         AxiosResponse<types.TypePortfolio[]>
     > {
-        return await $voxmentor_api_public.get<types.TypePortfolio[]>(
+        return await $voxmentor_auth.get<types.TypePortfolio[]>(
             urls.portfolio.getTypes(),
             {
                 params: {},
@@ -270,7 +270,7 @@ export class Portfolio {
     static async getPortfolioItem({
         id,
     }: types.ID): Promise<AxiosResponse<types.PortfolioType>> {
-        return await $voxmentor_api_public.get<types.PortfolioType>(
+        return await $voxmentor_auth.get<types.PortfolioType>(
             urls.portfolio.getPortfolio(id),
             {
                 params: {},

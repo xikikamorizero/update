@@ -1,5 +1,6 @@
 import style from "./LikeDisLike.module.css";
 import { useLikeDisLike } from "./lib/hook";
+import { Like1, Dislike } from "iconsax-react";
 
 type PropsType = {
     likes?: number;
@@ -26,7 +27,8 @@ export const LikeDisLike = ({ ...props }: PropsType) => {
                 }`}
                 onClick={data.Like}
             >
-                <div></div>
+                {/* <div></div> */}
+                <Like1 className={style.likeDisIco} />
                 <p>{props.likes}</p>
             </button>
             <button
@@ -36,7 +38,8 @@ export const LikeDisLike = ({ ...props }: PropsType) => {
                     props.isDisliked ? style.likeAndDisActive : null
                 }`}
             >
-                <div></div>
+                {/* <div></div> */}
+                <Dislike className={style.likeDisIco} />
                 <p>{props.dislikes}</p>
             </button>
         </div>

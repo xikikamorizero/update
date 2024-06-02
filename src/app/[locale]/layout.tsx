@@ -29,6 +29,7 @@ export default function RootLayout({
                     type="image/<generated>"
                     sizes="<generated>"
                 />
+                 <link rel="icon" href="/logo.svg" type="image/x-icon" />
             </head>
             <body className={inter.className}>
                 <div className="wrapper">

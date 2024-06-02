@@ -66,7 +66,17 @@ export const usePortfolio = () => {
         }
         const search = current.toString();
         const query = search ? `?${search}` : "";
-        window.history.pushState(null, "", `${pathname}${query}`);
+        // window.history.pushState(null, "", `${pathname}${query}`);
+
+        window.history.replaceState(
+            {
+                ...window.history.state,
+                as: `${pathname}${query}`,
+                url: `${pathname}${query}`
+            },
+            "",
+            `${pathname}${query}`
+        )
     }, [store.keyword, store.category, store.typeId, store.sortOrder]);
 
     useEffect(() => {

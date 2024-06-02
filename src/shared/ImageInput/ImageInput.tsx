@@ -2,6 +2,7 @@
 import style from "./ImageInput.module.css";
 import { memo, ChangeEvent } from "react";
 import { baseUrl } from "../api/const";
+import { Camera } from "iconsax-react";
 
 type PropsType = {
     image?: File | string | null;
@@ -30,13 +31,19 @@ export const ImageInput = memo(({ ...props }: PropsType) => {
                 style={{
                     backgroundImage: `url(${
                         props.image
-                            ? typeof props.image==='string'? baseUrl+props.image : URL.createObjectURL(props.image)
+                            ? typeof props.image === "string"
+                                ? baseUrl + props.image
+                                : URL.createObjectURL(props.image)
                             : "https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg"
                     })`,
                 }}
-            />
+            >
+                <div className={style.imageShab}>
+                    <Camera className={style.imageShabIcon} />
+                </div>
+            </label>
         </div>
     );
 });
 
-ImageInput.displayName = 'ImageInput';
+ImageInput.displayName = "ImageInput";

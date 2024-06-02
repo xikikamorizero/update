@@ -125,15 +125,17 @@ type PropsType = {
     addLinkT?: string;
     linkT: string;
 
-    docsT:string;
-    add_docsT?:string;
-    yearT:string;
+    docsT: string;
+    add_docsT?: string;
+    yearT: string;
 };
 
 export const Profile = observer(({ ...props }: PropsType) => {
     const [portfolio, setPortfolio] = useState(true);
     const [editPublication, setEditPublication] = useState(false);
     const [editTraning, setEditTraning] = useState(false);
+
+    console.log(props.typesPortfolio);
 
     return (
         <div className={style.wrapper}>
@@ -281,7 +283,7 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         editMode={props.editMode}
                         block={
                             <p className={style.contacts}>
-                                {props.staj}: {props.user?.yearsOfExperience}
+                                {props.staj}: {props.user?.yearsOfExperience} лет
                             </p>
                         }
                     />
@@ -414,7 +416,10 @@ export const Profile = observer(({ ...props }: PropsType) => {
 
                     {props.user?.roles.some((obj) => obj.value == "Admin") &&
                     props.myProf ? (
-                        <Link className={style.adminLink} href={`/${props.loc}/adminPanel`}>
+                        <Link
+                            className={style.adminLink}
+                            href={`/${props.loc}/adminPanel`}
+                        >
                             {props.adminT}
                         </Link>
                     ) : (
@@ -425,7 +430,9 @@ export const Profile = observer(({ ...props }: PropsType) => {
                     <div className={style.userProject}>
                         <div className={style.userWorkLinks}>
                             <div
-                                className={portfolio ? style.active : ""}
+                                className={
+                                    portfolio ? style.active : style.deactive
+                                }
                                 onClick={() => {
                                     setPortfolio(true);
                                 }}
@@ -433,7 +440,9 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                 {props.portfolio_title}
                             </div>
                             <div
-                                className={!portfolio ? style.active : ""}
+                                className={
+                                    !portfolio ? style.active : style.deactive
+                                }
                                 onClick={() => {
                                     setPortfolio(false);
                                 }}
@@ -539,14 +548,22 @@ export const Profile = observer(({ ...props }: PropsType) => {
                             className={style.projectWrapper}
                             style={
                                 editPublication
-                                    ? { height: "300px" }
+                                    ? {
+                                          minHeight: "300px",
+                                          maxHeight: "450px",
+                                          height: "100%",
+                                      }
                                     : props.publication &&
                                       props.publication.length == 0
                                     ? {
                                           height: "300px",
                                           backgroundImage: `url(/noresult.png)`,
                                       }
-                                    : { height: "300px" }
+                                    : {
+                                          minHeight: "300px",
+                                          maxHeight: "450px",
+                                          height: "100%",
+                                      }
                             }
                         >
                             {props.publication && (
@@ -569,7 +586,6 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                                 addLinkT={props.addLinkT}
                                                 linkT={props.linkT}
                                                 key={i}
-
                                                 docsT={props.docsT}
                                                 yearT={props.yearT}
                                                 add_docsT={props.add_docsT}
@@ -588,7 +604,6 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                             addLinkT={props.addLinkT}
                                             linkT={props.linkT}
                                             docs={null}
-
                                             docsT={props.docsT}
                                             yearT={props.yearT}
                                             add_docsT={props.add_docsT}

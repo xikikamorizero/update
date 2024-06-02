@@ -38,7 +38,7 @@ export const DescriptionEditBlok = memo(({ ...props }: PropsType) => {
             ) : (
                 <div className={style.containerItemP}>
                     <h1 className={style.description}>{props.descriptionT}:</h1>
-                    <p className={style.description}>
+                    <p className={style.descriptionText}>
                         {renderedText ? renderedText : "null"}
                     </p>
                     {props.text && props.text.length > 100 && (

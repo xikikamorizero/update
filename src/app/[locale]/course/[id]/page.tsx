@@ -54,6 +54,12 @@ export default function CourseItem({ params }: PropsType) {
                 delete={t("delete")}
                 edit={t("edit")}
                 save={t("save")}
+
+                lessonT={t("lessonT")}
+                addTitle={t("addTitle")}
+                addDescription={t("addDescription")}
+                addLevel={t("addLevel")}
+                addCategory={t("addCategory")}
             />
         </>
     );

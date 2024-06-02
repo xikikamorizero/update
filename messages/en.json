@@ -126,7 +126,13 @@
         "category": "category",
         "save": "Save",
         "edit": "Edit",
-        "delete": "Delete"
+        "delete": "Delete",
+
+        "lessonT":"Lesson",
+        "addTitle":"Edit title",
+        "addDescription":"Edit description",
+        "addLevel":"Edit level",
+        "addCategory":"Edit category"
     },
     "CreateCourse": {
         "title": "Create course",
@@ -177,7 +183,7 @@
     "Login": {
         "title_reg": "Sing up",
         "title_log": "Sing in",
-        "username": "username",
+        "username": "email",
         "password": "password",
         "log_in": "log in",
         "registration": "registration",

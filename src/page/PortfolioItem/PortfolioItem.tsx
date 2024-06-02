@@ -22,7 +22,7 @@ export const PortfolioItem = ({ ...props }: PropsType) => {
     const c = useTranslations("CreateAward");
     return (
         <div className={style.container}>
-            <WithWrapper loc={props.loc}>
+            {/* <WithWrapper loc={props.loc}> */}
                 <PortfolioItemWidget
                     portfolioId={props.portfolioId}
                     category={props.category}
@@ -39,7 +39,7 @@ export const PortfolioItem = ({ ...props }: PropsType) => {
                     add_docs={c("add_docs")}
                     link_docsT={c("link_docsE")}
                 />
-            </WithWrapper>
+            {/* </WithWrapper> */}
         </div>
     );
 };

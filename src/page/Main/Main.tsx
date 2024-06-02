@@ -17,9 +17,10 @@ type PropsType = {
 };
 
 export const Main = ({ ...props }: PropsType) => {
+
     return (
         <div className={style.wrapper}>
-            <WithWrapper loc={props.loc}>
+            {/* <WithWrapper loc={props.loc}> */}
                 <div className={style.container}>
                     <Slaider
                         title={props.title1}
@@ -48,7 +49,7 @@ export const Main = ({ ...props }: PropsType) => {
                         </div>
                     </div>
                 </div>
-            </WithWrapper>
+            {/* </WithWrapper> */}
         </div>
     );
 };

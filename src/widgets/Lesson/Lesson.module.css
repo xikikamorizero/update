@@ -4,9 +4,18 @@
     justify-content: center;
     align-items: center;
 }
+.description {
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+}
 .container {
     width: 100%;
     max-width: 770px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     height: max-content;
 }
 .title {
@@ -15,7 +24,7 @@
     font-size: 40px;
     font-weight: 900;
 }
-.link{
+.link {
     font-size: 20px;
     color: var(--link_color);
 }
@@ -82,6 +91,23 @@
     position: relative;
     flex-shrink: 0;
 }
+
+.inputImage {
+    width: 300px;
+    height: 200px;
+    background-color: var(--sub_color);
+    border: 1px solid var(--main_color);
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.uploadContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 500px) {
     .buttonContainer {
         width: 100%;
@@ -103,7 +129,7 @@
     .editButton {
         width: 100%;
     }
-    .title{
+    .title {
         font-size: 25px;
     }
 }

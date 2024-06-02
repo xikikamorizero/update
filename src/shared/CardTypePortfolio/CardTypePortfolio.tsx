@@ -34,6 +34,7 @@ export const CardTypePortfolio = observer(({ ...props }: PropsType) => {
         title_en: props.title_en,
         title_ru: props.title_ru,
         title_uz: props.title_uz,
+        description:props.description,
         re: props.re,
     });
 

@@ -65,7 +65,6 @@ export const CategoriesFilter = ({ ...props }: PropsType) => {
                         }}
                         className={style.icon}
                         size="25"
-                        color="#ffffff"
                     />
                 </div>
             ) : null}

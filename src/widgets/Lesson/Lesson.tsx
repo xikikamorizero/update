@@ -4,7 +4,7 @@ import style from "./Lesson.module.css";
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { EditorJs } from "../../entities/EditorJs/EditorJs";
-import { AccessDenied } from "@/shared";
+import { AccessDenied, ImageInput } from "@/shared";
 import { Preloader } from "@/shared/Preloader/Preloader";
 
 type PropsType = {
@@ -49,19 +49,28 @@ export const Lesson = observer(
                             />
                         )}
 
-                        {/* {!data.editMode ? (
-                <p className={style.title}>{data.lesson?.description}</p>
-            ) : (
-                <input
-                    className={`${style.titleInput} ${style.title}`}
-                    value={data.description}
-                    onChange={(e) => {
-                        data.setDescription(e.target.value);
-                    }}
-                    type={"text"}
-                    placeholder={"editDescription"}
-                />
-            )} */}
+                        {data.editMode && (
+                            <div className={style.uploadContainer}>
+                                <div className={style.inputImage}>
+                                    <ImageInput
+                                        image={data.uploadedImages}
+                                        setImage={data.setUploadedImages}
+                                    />
+                                </div>
+                            </div>
+                        )}
+
+                        {data.editMode && (
+                            <input
+                                className={`${style.titleInput} ${style.title}`}
+                                value={data.lessonNumber}
+                                onChange={(e) => {
+                                    data.setLessonNumber(e.target.value);
+                                }}
+                                type={"text"}
+                                placeholder={"editLessonNumber"}
+                            />
+                        )}
 
                         {data.lesson?.content ? (
                             <EditorJs
@@ -72,6 +81,22 @@ export const Lesson = observer(
                                 editorData={JSON.parse(data.lesson.content)}
                             />
                         ) : null}
+
+                        {!data.editMode ? (
+                            <p className={style.description}>
+                                Описание: {data.lesson?.description}
+                            </p>
+                        ) : (
+                            <textarea
+                                className={`${style.titleInput} ${style.description}`}
+                                value={data.description}
+                                onChange={(e) => {
+                                    data.setDescription(e.target.value);
+                                }}
+                                placeholder={"editDescription"}
+                            />
+                        )}
+
                         {data.profile?.id == data.authorId && (
                             <div className={style.buttonContainer}>
                                 <button

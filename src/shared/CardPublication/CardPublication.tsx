@@ -103,12 +103,18 @@ export const CardPublication = observer(({ ...props }: PropsType) => {
                         </div>
                     ) : (
                         <div className={style.cardContainer}>
-                            <h1>{props.title}</h1>
-                            <p className={style.type}>{props.type}</p>
-                            <p className={style.year}>
-                                {props.yearT}: {props.year}
-                            </p>
-                            {props.link && (
+                            {props.title !== "null" && <h1>{props.title}</h1>}
+                            {props.type !== "null" && (
+                                <p className={style.type}>{props.type}</p>
+                            )}
+
+                            {props.yearT !== "null" && (
+                                <p className={style.year}>
+                                    {props.yearT}: {props.year}
+                                </p>
+                            )}
+
+                            {props.link && props.link !== "null" ? (
                                 <Link
                                     className={style.link}
                                     href={props.link}
@@ -116,6 +122,8 @@ export const CardPublication = observer(({ ...props }: PropsType) => {
                                 >
                                     {props.linkT}
                                 </Link>
+                            ) : (
+                                <></>
                             )}
                             {props.docs && (
                                 <Link

@@ -125,7 +125,13 @@
         "category": "Kategoriya",
         "save": "Saqlash",
         "edit": "O'zgartirish",
-        "delete": "O'chirish"
+        "delete": "O'chirish",
+
+        "lessonT": "Dars",
+        "addTitle": "Ismni o'zgartirish",
+        "addDescription": "Tavsifni o'zgartirish",
+        "addLevel": "Qiyinchilikni o'zgartirish",
+        "addCategory": "Kategoriyani o'zgartirish"
     },
     "CreateCourse": {
         "title": "Kurs yarating",
@@ -176,7 +182,7 @@
     "Login": {
         "title_reg": "Ro'yxatdan o'tish",
         "title_log": "Tizimga kirish",
-        "username": "Foydalanuvchi nomi",
+        "username": "Elektron pochta",
         "password": "Parol",
         "log_in": "Kirish",
         "registration": "Ro'yxatdan o'tish",

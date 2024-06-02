@@ -23,7 +23,11 @@ export const SlaiderCard = ({ ...props }: PropsType) => {
                 height: "100%",
             }}
         >
-            <Link href={props.href} className={style.container}>
+            <Link
+                draggable={false}
+                href={props.href}
+                className={style.container}
+            >
                 <img
                     draggable={false}
                     className={style.avatar}

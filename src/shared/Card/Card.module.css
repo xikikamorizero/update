@@ -2,6 +2,8 @@
     width: 100%;
     padding: 3% 3% 0 3%;
     box-sizing: border-box;
+    background-color: var(--main_color);
+    border-color: var(--main_color);
 }
 .cardContainer:hover {
     -webkit-box-shadow: 0px 0px 8px 0px var(--main_color);
@@ -15,14 +17,17 @@
 .title {
     width: 100%;
     color: var(--secondary_text_color);
-    font-weight: 600;
+    font-weight: 900;
+    font-size: 20px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
 .subtitle {
     width: 100%;
-    color: var(--subtitle_text_color);
+    color: var(--secondary_text_color);
+    font-weight: 900;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -32,12 +37,12 @@
     height: 45px;
 }
 
-@media (max-width:400px) {
+@media (max-width: 400px) {
     .titleContainer {
         font-size: 13px;
         height: 45px;
     }
-    .subtitle{
+    .subtitle {
         margin: 0;
     }
 }

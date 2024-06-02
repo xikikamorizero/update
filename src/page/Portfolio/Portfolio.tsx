@@ -13,7 +13,7 @@ type PropsType = {
 export const Portfolio = ({ ...props }: PropsType) => {
     return (
         <div className={style.container}>
-            <WithWrapper loc={props.loc}>
+            {/* <WithWrapper loc={props.loc}> */}
                 <PortfolioPage
                     loc={props.loc}
                     title={props.title}
@@ -21,7 +21,7 @@ export const Portfolio = ({ ...props }: PropsType) => {
                     category={props.category}
                     keyword={props.keyword}
                 />
-            </WithWrapper>
+            {/* </WithWrapper> */}
         </div>
     );
 };

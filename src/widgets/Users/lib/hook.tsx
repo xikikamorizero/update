@@ -2,12 +2,13 @@
 import { Context as GlobalContext } from "@/shared/api";
 import { Context } from "./context";
 import { useContext, useEffect } from "react";
-import { useSearchParams, usePathname } from "next/navigation";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 export const useUsers = () => {
     const global_store = useContext(GlobalContext);
     const { store } = useContext(Context);
 
+    const router = useRouter();
     const pathname = usePathname();
     let path = useSearchParams();
     const current = new URLSearchParams(Array.from(path.entries()));
@@ -310,7 +311,23 @@ export const useUsers = () => {
 
         const search = current.toString();
         const query = search ? `?${search}` : "";
-        window.history.pushState(null, "", `${pathname}${query}`);
+        // if (window.history.pushState) {
+        //     window.history.pushState(null, "", `${pathname}${query}`);
+        // }
+    
+
+        window.history.replaceState(
+            {
+                ...window.history.state,
+                as: `${pathname}${query}`,
+                url: `${pathname}${query}`
+            },
+            "",
+            `${pathname}${query}`
+        )
+        // console.log(window.history.pushState)
+
+        // router.replace(`${pathname}${query}`)
     }, [
         store.keyword,
         store.placeOfWork,

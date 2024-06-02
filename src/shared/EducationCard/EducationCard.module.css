@@ -26,6 +26,6 @@
     font-size: 20px;
 }
 .year {
-    color: var(--subtitle_text_color);
+    color: var(--main_text_color);
     font-size: 15px;
 }

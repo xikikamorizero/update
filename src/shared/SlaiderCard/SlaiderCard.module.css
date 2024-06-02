@@ -15,6 +15,7 @@
     height: 19vw;
     max-height: 300px;
     flex-shrink: 0;
+    object-fit: cover;
 }
 .container p {
     overflow: hidden;

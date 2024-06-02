@@ -120,7 +120,7 @@ export const Users = observer(({ ...props }: PropsType) => {
                             placeholder={props.type}
                         />
                         <InputFilter
-                            width={"150px"}
+                            width={"170px"}
                             value={data.scienceDegreets}
                             setValue={data.setScienceDegreets}
                             placeholder={props.scienceDegree}

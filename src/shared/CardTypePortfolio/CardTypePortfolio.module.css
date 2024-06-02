@@ -17,14 +17,20 @@
 }
 .cardContainer input {
     width: 100%;
-    font-size: 15px;
+    font-size: 20px;
+    padding: 5px 10px;
+}
+.cardContainer textarea {
+    width: 100%;
+    font-size: 20px;
+    padding: 5px 10px;
 }
 .cardContainer h1 {
     font-size: 25px;
 }
 .year {
     font-size: 17px;
-    color: var(--subtitle_text_color);
+    color: var(--main_text_color);
 }
 .type {
     font-size: 20px;

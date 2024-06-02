@@ -10,6 +10,9 @@
 html {
     font-family: sans-serif;
     height: 100%;
+
+    scrollbar-color: var(--main_color) var(--secondary_color);
+    scrollbar-width: thin;
 }
 
 body {
@@ -18,10 +21,11 @@ body {
     height: 100%;
     background: var(--secondary_color);
     color: var(--main_text_color);
-    /* background-image: url(../assets/background.jpg); */
+    background-image: url(../../assets/background.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 .wrapper {
     min-height: 100%;
@@ -41,39 +45,108 @@ input:focus {
 }
 
 @custom-media --mobile_adaptive (max-width: 895px);
-
-:root {
-    --main_color: #d3d3d3;
+/* Оригинал */
+/* :root {
+    --main_color: #ffffff;
     --secondary_color: #0e0e0e;
-    --main_text_color: #d3d3d3;
+    --main_text_color: #ffffff;
     --secondary_text_color: #0e0e0e;
     --subtitle_text_color: #3b3b3b;
     --delete: #eb1616;
     --sub_color: #545454;
 
-    --link_color:#2fff00;
-
-    --container_width: 90%;
-    --container_maxwidth: 1600px;
-    --container_maxheight: 900px;
-    --mobile_adaptive: 895px;
-}
-/* :root {
-    --main_color: #000000;
-    --secondary_color: #ffffff;
-    --main_text_color: #000000;
-    --secondary_text_color: #ffffff;
-    --subtitle_text_color: #ffffff;
-    --delete: #eb1616;
-    --sub_color: #545454;
+    --link_color: #2fff00;
 
     --container_width: 90%;
     --container_maxwidth: 1600px;
     --container_maxheight: 900px;
     --mobile_adaptive: 895px;
 } */
+/* Обратные цвета */
+/* :root {
+    --main_color: #0e0e0e;
+    --secondary_color: #fff;
+    --main_text_color: #0e0e0e;
+    --secondary_text_color: #fff;
+    --subtitle_text_color: #3b3b3b;
+    --delete: #eb1616;
+    --sub_color: #a9a9a9;
+
+    --link_color: #2fff00;
+
+    --container_width: 90%;
+    --container_maxwidth: 1600px;
+    --container_maxheight: 900px;
+    --mobile_adaptive: 895px;
+} */
+/* Более четкая версия */
+:root {
+    --main_color: #ffffff;
+    --secondary_color: #0e0e0e;
+    --main_text_color: #ffffff;
+    --secondary_text_color: #0e0e0e;
+    --subtitle_text_color: #4b4b4b;
+    --delete: #eb1616;
+    --sub_color: #444444;
+
+    --link_color: #2fff00;
+
+    --container_width: 90%;
+    --container_maxwidth: 1600px;
+    --container_maxheight: 900px;
+    --mobile_adaptive: 895px;
+}
+/* Версия 2 */
+/* :root {
+    --main_color: #F6F2F6;
+    --secondary_color: #1C252C;
+    --main_text_color: #F6F2F6;
+    --secondary_text_color: #1C252C;
+    --subtitle_text_color: #58545B;
+    --delete: #eb1616;
+    --sub_color: #58545B;
+
+    --link_color: #2fff00;
+
+    --container_width: 90%;
+    --container_maxwidth: 1600px;
+    --container_maxheight: 900px;
+    --mobile_adaptive: 895px;
+} */
+/* Версия 3 */
+/* :root {
+    --main_color: #10100F;
+    --secondary_color: #F4F9FC;
+    --main_text_color: #10100F;
+    --secondary_text_color: #F4F9FC;
+    --subtitle_text_color: #626461;
+    --delete: #eb1616;
+    --sub_color: #9c9c9c;
+
+    --link_color: #2fff00;
+
+    --container_width: 90%;
+    --container_maxwidth: 1600px;
+    --container_maxheight: 900px;
+    --mobile_adaptive: 895px;
+} */
+
 .ce-inline-toolbar {
     background-color: var(--secondary_color);
+}
+.ce-toolbar__plus {
+    color: var(--main_color);
+}
+.ce-toolbar__settings-btn {
+    color: var(--main_color);
+}
+.ant-card-body {
+    height: 70px !important;
+    margin: 0;
+    padding: 0 !important;
+}
+.ant-card-meta-title {
+    margin: 0 !important;
 }
 
 @media (max-width: 1120px) {

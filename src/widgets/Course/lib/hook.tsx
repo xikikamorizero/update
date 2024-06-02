@@ -21,6 +21,7 @@ export const useCourse = ({
     const [description, setDescription] = useState("");
     const [level, setLevel] = useState("");
     const [category, setCategory] = useState("");
+    const [uploadedImages, setUploadedImages] = useState<any | null>(null);
 
     const [error, setError] = useState(false);
 
@@ -39,6 +40,7 @@ export const useCourse = ({
             setDescription(store.course.description);
             setLevel(store.course.level);
             setCategory(store.course.category);
+            setUploadedImages(store.course.image);
         }
     }, [store.course]);
 
@@ -53,7 +55,7 @@ export const useCourse = ({
                         description: description,
                         level: level,
                         category: category,
-                        image: null,
+                        image: uploadedImages,
                     }
                 )
                 .then((response) => {
@@ -137,5 +139,7 @@ export const useCourse = ({
         DeleteCourse,
         contextHolder,
         loading: store.loading,
+        uploadedImages,
+        setUploadedImages,
     };
 };

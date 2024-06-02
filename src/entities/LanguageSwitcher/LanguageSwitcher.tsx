@@ -1,19 +1,25 @@
 "use client";
 import style from "./LanguageSwitcher.module.css";
 import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
-import { ChangeEvent, useTransition } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { ChangeEvent, useEffect, useTransition } from "react";
 
 export const LanguageSwitcher = () => {
     const [isPending, startTransition] = useTransition();
     const router = useRouter();
     const path = usePathname();
+    const pathSearch = useSearchParams();
+    const current = new URLSearchParams(Array.from(pathSearch.entries()));
     const localActive = useLocale();
 
     const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const nextLocale = e.target.value;
         const languageRegex = /^(\/en|\/ru|\/uz)(\/|$)/;
-        const newPath = path.replace(languageRegex, "/");
+
+        const search = current.toString();
+        const query = search ? `?${search}` : "";
+        const fullPath = `${path}${query}`;
+        const newPath = fullPath.replace(languageRegex, "/");
         startTransition(() => {
             router.replace(`/${nextLocale}${newPath}`);
         });

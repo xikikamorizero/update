@@ -25,7 +25,7 @@ type PropsType = {
 export const Users = ({ ...props }: PropsType) => {
     return (
         <div className={style.wrapper}>
-            <WithWrapper loc={props.loc}>
+            {/* <WithWrapper loc={props.loc}> */}
                 <UsersWidget
                     loc={props.loc}
                     title={props.title}
@@ -44,7 +44,7 @@ export const Users = ({ ...props }: PropsType) => {
                     dislikesT={props.dislikesT}
                     createdAtT={props.createdAtT}
                 />
-            </WithWrapper>
+            {/* </WithWrapper> */}
         </div>
     );
 };

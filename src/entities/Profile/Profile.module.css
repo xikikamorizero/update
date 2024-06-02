@@ -9,7 +9,7 @@
     display: flex;
     gap: 40px;
     font-size: 40px;
-    padding: 0 5% 5% 5%;
+    /* padding: 0 5% 5% 5%; */
 }
 .contacts {
     font-size: 25px;
@@ -92,7 +92,6 @@
 .place_of_work {
     font-size: 20px;
     font-weight: 600;
-    opacity: 0.7;
 }
 .science_degree {
     font-size: 20px;
@@ -140,6 +139,9 @@
     padding: 5px;
     border-bottom: 2px solid var(--main_color);
     text-align: center;
+
+    font-weight: 900;
+    font-size: 25px;
 }
 
 .userWorkLinks {
@@ -215,7 +217,7 @@
     font-size: 20px;
     padding: 5px;
     text-align: center;
-    background-color: var(--subtitle_text_color);
+    background-color: var(--sub_color);
     user-select: none;
     border-radius: 10px;
     border: 1px solid var(--main_color);
@@ -231,7 +233,13 @@
     opacity: 0.8;
 }
 .active {
+    font-size: 25px;
     color: var(--main_text_color) !important;
+    font-weight: 900;
+}
+.deactive {
+    font-size: 25px;
+    font-weight: 900;
 }
 .create {
     width: max-content;
@@ -245,6 +253,8 @@
     color: var(--secondary_text_color);
     background-color: var(--main_color);
     cursor: pointer;
+
+    font-weight: 900;
 }
 .roles {
     width: 100%;
@@ -333,6 +343,19 @@
     }
     .create {
         padding: 5px 10px;
+        font-size: 20px;
+    }
+
+    .active {
+        font-size: 20px;
+        font-weight: normal;
+    }
+    .deactive {
+        font-size: 20px;
+        font-weight: normal;
+    }
+    .titlePublication {
+        font-weight: normal;
         font-size: 20px;
     }
 }

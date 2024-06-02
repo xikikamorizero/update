@@ -3,7 +3,7 @@ import style from "./Course.module.css";
 import { Row, Col } from "antd";
 import { useCourse } from "./lib/hook";
 import Link from "next/link";
-import { Card } from "@/shared";
+import { Card, ImageInput } from "@/shared";
 import { observer } from "mobx-react-lite";
 import { AccessDenied } from "@/shared";
 import { Preloader } from "@/shared/Preloader/Preloader";
@@ -19,6 +19,12 @@ type PropsType = {
     save: string;
     delete: string;
     edit: string;
+
+    lessonT: string;
+    addTitle: string;
+    addDescription: string;
+    addLevel: string;
+    addCategory: string;
 };
 
 export const Course = observer(({ ...props }: PropsType) => {
@@ -51,16 +57,15 @@ export const Course = observer(({ ...props }: PropsType) => {
                             <input
                                 className={style.title}
                                 type={"text"}
-                                placeholder={""}
+                                placeholder={props.addTitle}
                                 value={data.title}
                                 onChange={(e) => {
                                     data.setTitle(e.target.value);
                                 }}
                             />
-                            <input
-                                className={style.description}
-                                type={"text"}
-                                placeholder={""}
+                            <textarea
+                                className={style.descriptionTextArea}
+                                placeholder={props.addDescription}
                                 value={data.description}
                                 onChange={(e) => {
                                     data.setDescription(e.target.value);
@@ -73,9 +78,21 @@ export const Course = observer(({ ...props }: PropsType) => {
                             <p className={style.description}>
                                 {props.description}: {data.description}
                             </p>
-                            <p>{data.course?.lessonCount}</p>
+                            {/* <p>{data.course?.lessonCount}</p> */}
                         </>
                     )}
+
+                    {data.editMode && (
+                        <div className={style.uploadContainer}>
+                            <div className={style.inputImage}>
+                                <ImageInput
+                                    image={data.uploadedImages}
+                                    setImage={data.setUploadedImages}
+                                />
+                            </div>
+                        </div>
+                    )}
+
                     <div className={style.card_container}>
                         <Row gutter={[16, 16]}>
                             {data.course?.lessons
@@ -97,7 +114,11 @@ export const Course = observer(({ ...props }: PropsType) => {
                                                       loading={false}
                                                       src={a.image}
                                                       title={a.title}
-                                                      subtitle={a.lesson_number}
+                                                      subtitle={
+                                                          props.lessonT +
+                                                          ": " +
+                                                          a.lesson_number
+                                                      }
                                                       proj={"true"}
                                                   />
                                               </Link>
@@ -111,7 +132,7 @@ export const Course = observer(({ ...props }: PropsType) => {
                             <input
                                 className={style.infoText}
                                 type={"text"}
-                                placeholder={""}
+                                placeholder={props.addLevel}
                                 value={data.level}
                                 onChange={(e) => {
                                     data.setLevel(e.target.value);
@@ -120,7 +141,7 @@ export const Course = observer(({ ...props }: PropsType) => {
                             <input
                                 className={style.infoText}
                                 type={"text"}
-                                placeholder={""}
+                                placeholder={props.addCategory}
                                 value={data.category}
                                 onChange={(e) => {
                                     data.setCategory(e.target.value);

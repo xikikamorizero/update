@@ -51,6 +51,8 @@ export const User = observer(({ ...props }: PropsType) => {
         loc: props.loc,
     });
 
+    console.log(user?.portfolio)
+
     return (
         <div className={style.containert}>
             {loading ? (
