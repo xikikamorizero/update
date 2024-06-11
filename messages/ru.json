@@ -5,8 +5,8 @@
     },
     "Navigation": {
         "home": "Главная",
-        "teachers": "Професcора",
-        "portfolio": "Портфолио",
+        "teachers": "Преподаватели",
+        "portfolio": "Проекты",
         "about": "o нас",
         "title": "© 2024, «VoxMentor». Все интересное у нас."
     },
@@ -21,7 +21,7 @@
         "textLink": "все"
     },
     "Teachers": {
-        "title": "Професора",
+        "title": "Преподаватели",
         "type": "ВУЗ",
         "scienceDegree": "Научная степень",
         "keyword": "Введите Ф.И.О",
@@ -39,7 +39,7 @@
         "createdAtT":"дата"
     },
     "Portfolio": {
-        "title": "Портфолио",
+        "title": "Проекты",
         "type": "все",
         "typeT": "Тип",
         "category": "Категория",
@@ -72,9 +72,9 @@
         "add_description": "Добавить описание",
         "subscribers": "Подписчики:",
         "no_subscribers": "нет подписчиков",
-        "portfolio_title": "Портфолио ",
+        "portfolio_title": "Проекты",
         "course_title": "Курсы",
-        "create_portfolio": "Создать портфолио",
+        "create_portfolio": "Создать проект",
         "create_course": "Создать курс ",
         "subscribe": "подписаться",
         "unsubscribe": "отписаться",
@@ -170,7 +170,8 @@
         "title": "Создать награду",
         "add_docs":"Добавьте документ",
         "link_docs":"Ссылка на награду",
-        "link_docsE":"Ссылка на документ"
+        "link_docsE":"Ссылка на документ",
+        "add_docsT":"Добавить документ"
     },
     "CreatePublication": {
         "add_title": "Добавить название",

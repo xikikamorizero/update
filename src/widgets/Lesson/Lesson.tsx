@@ -14,10 +14,20 @@ type PropsType = {
     deleteT: string;
     saveT: string;
     editT: string;
+
+    descriptionT: string;
 };
 
 export const Lesson = observer(
-    ({ lessonId, loc, accessdenied, deleteT, saveT, editT }: PropsType) => {
+    ({
+        lessonId,
+        loc,
+        accessdenied,
+        deleteT,
+        saveT,
+        editT,
+        descriptionT,
+    }: PropsType) => {
         const data = useLesson({ lessonId, loc });
         if (data.error) {
             return <AccessDenied text={accessdenied} />;
@@ -83,9 +93,13 @@ export const Lesson = observer(
                         ) : null}
 
                         {!data.editMode ? (
-                            <p className={style.description}>
-                                Описание: {data.lesson?.description}
-                            </p>
+                            data.lesson?.description ? (
+                                <p className={style.description}>
+                                    {descriptionT}: {data.lesson?.description}
+                                </p>
+                            ) : (
+                                <></>
+                            )
                         ) : (
                             <textarea
                                 className={`${style.titleInput} ${style.description}`}

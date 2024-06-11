@@ -21,6 +21,7 @@ export const LessonItem = ({ lessonId, loc, accessdenied }: PropsType) => {
                     deleteT={t("delete")}
                     editT={t("edit")}
                     saveT={t("save")}
+                    descriptionT={t("description")}
                 />
             </WithWrapper>
         </div>

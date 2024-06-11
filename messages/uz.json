@@ -6,7 +6,7 @@
     "Navigation": {
         "home": "Home",
         "teachers": "o'qituvchilar",
-        "portfolio": "portfolio",
+        "portfolio": "Loyihalar",
         "about": "about",
         "title": "© 2024, «VoxMentor». Bizda hamma narsa qiziq."
     },
@@ -39,7 +39,7 @@
         "createdAtT": "sana"
     },
     "Portfolio": {
-        "title": "Portfolio",
+        "title": "Loyihalar",
         "type": "hammasi",
         "typeT": "Turi",
         "category": "kategoriya",
@@ -170,7 +170,8 @@
         "title": "Mukofot yaratish",
         "add_docs": "Hujjat qo'shing",
         "link_docs": "Mukofot havolasi",
-        "link_docsE": "Hujjatga havola"
+        "link_docsE": "Hujjatga havola",
+        "add_docsT":"Hujjat qo'shing"
     },
     "CreatePublication": {
         "add_title": "Nomi qo'shish",

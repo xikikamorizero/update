@@ -87,12 +87,9 @@ export class User {
             });
         }
 
-        return await $voxmentor_auth.get<types.usersType>(
-            urls.user.get(),
-            {
-                params,
-            }
-        );
+        return await $voxmentor_auth.get<types.usersType>(urls.user.get(), {
+            params,
+        });
     }
 
     static async getUser({
@@ -318,7 +315,7 @@ export class Portfolio {
         category,
         typeId,
         image,
-        docs
+        docs,
     }: types.createPortfolio): Promise<AxiosResponse<types.PortfolioType>> {
         const formData = new FormData();
         formData.append("title", title);
@@ -472,6 +469,19 @@ export class Lesson {
 }
 
 export class UpdatePort {
+    static async addRole({
+        value,
+        userId,
+    }: types.Role): Promise<AxiosResponse<types.Role>> {
+        return await $voxmentor_api_public.post<types.Role>(
+            urls.updatePort.addRoles(),
+            {
+                value: value,
+                userId: userId,
+            }
+        );
+    }
+
     static async getAwardItem({
         id,
     }: types.ID): Promise<AxiosResponse<types.Award>> {

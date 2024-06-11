@@ -1,6 +1,10 @@
 export type ID = {
     id: string;
 };
+export type Role ={
+    value:string;
+    userId:string;
+}
 export interface authType {
     email: string;
     password: string;

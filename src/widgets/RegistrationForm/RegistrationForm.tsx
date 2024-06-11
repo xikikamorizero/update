@@ -91,7 +91,6 @@ export const RegistrationForm = ({ ...props }: PropsType) => {
                 }}
                 className={style.closeIcon}
                 size="32"
-                color="#000000"
             />
         </div>
     );

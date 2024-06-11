@@ -148,7 +148,12 @@ input:focus {
 .ant-card-meta-title {
     margin: 0 !important;
 }
-
+.ce-conversion-toolbar {
+    background-color: var(--secondary_color);
+}
+.ce-conversion-tool__icon svg {
+    color: var(--secondary_color);
+}
 @media (max-width: 1120px) {
     .center {
         padding: 20px 0 90px 0;

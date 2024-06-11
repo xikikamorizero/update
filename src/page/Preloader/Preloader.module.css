@@ -6,12 +6,29 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--secondary_color);
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url(../../assets/background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
     z-index: 999;
+}
+
+.containerAnim{
+    width: 300px;
+    height: 300px;
+    position: relative;
 }
 .dot {
     width: 10px;

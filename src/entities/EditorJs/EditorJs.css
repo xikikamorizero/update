@@ -1,12 +1,17 @@
 .editorJs {
     width: 100%;
     padding: 10px 20px 10px 20px;
-
 }
 .editorJs .math-input {
     display: none;
 }
+.editorJs .codex-editor__redactor {
+    padding-bottom: 100px !important;
+}
 
+.editorJs .ce-block__content {
+    max-width: 100% !important;;
+}
 .editorJsEdit .math-input {
     display: block;
 }

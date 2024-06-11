@@ -38,6 +38,7 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
+    color: var(--secondary_color);
 }
 .passwordContainer {
     width: 100%;

@@ -28,7 +28,7 @@ export const Profile = observer(({loc}:{loc:string}) => {
             ) : (
                 <ProfileIcon
                     size="30"
-                    color="#ffffff"
+                    className={style.icon}
                     onClick={() => {
                         router.push(`/${loc}/login`);
                     }}

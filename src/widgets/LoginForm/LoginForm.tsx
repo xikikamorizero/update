@@ -80,14 +80,13 @@ export const LoginForm = ({ ...props }: PropsType) => {
                 <p className={style.newAccBlockText}>{props.no_account}</p>
                 <Link href={`/${props.loc}/registration`}>{props.create}</Link>
             </div>
-            {/* <CloseCircle
+            <CloseCircle
                 onClick={() => {
                     data.router.push(`/${props.loc}`);
                 }}
                 className={style.closeIcon}
                 size="32"
-                color="#000000"
-            /> */}
+            />
         </div>
     );
 };

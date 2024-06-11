@@ -35,6 +35,10 @@
     color: var(--secondary_color);
 
     padding-left: 10px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
 }
 .filterPanel {
     width: 100%;

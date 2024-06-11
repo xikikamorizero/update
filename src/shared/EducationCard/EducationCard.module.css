@@ -13,6 +13,8 @@
     cursor: pointer;
     padding: 10px 20px;
     box-sizing: border-box;
+
+    user-select: none;
 }
 .container p {
     overflow: hidden;

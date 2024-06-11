@@ -11,6 +11,9 @@
     flex-shrink: 0;
     position: relative;
 }
+.icon{
+    color:var(--main_color)
+}
 .link{
     width: 100%;
     height: 100%;

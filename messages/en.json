@@ -6,7 +6,7 @@
     "Navigation": {
         "home": "home",
         "teachers": "teachers",
-        "portfolio": "portfolio",
+        "portfolio": "projects",
         "about": "about",
         "title": "© 2024, «VoxMentor». We have everything interesting."
     },
@@ -39,7 +39,7 @@
         "createdAtT": "date"
     },
     "Portfolio": {
-        "title": "Portfolio",
+        "title": "Projects",
         "type": "all",
         "typeT": "Type",
         "category": "category",
@@ -171,7 +171,8 @@
         "title": "Create Award",
         "add_docs": "Add document",
         "link_docs": "Reward link",
-        "link_docsE": "Link to document"
+        "link_docsE": "Link to document",
+        "add_docsT":"Add a document"
     },
     "CreatePublication": {
         "add_title": "Add title",

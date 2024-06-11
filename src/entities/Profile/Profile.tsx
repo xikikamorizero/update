@@ -33,6 +33,7 @@ import { WrapperEditBlockNum } from "@/shared/WrapperEditBlock/WrapperEditBlokNu
 import iconNoResult from "./assets/noresult.png";
 import { Preloader } from "@/shared/Preloader/Preloader";
 import { CardPublicationCreate } from "@/shared/CardPublicationCreate/CardPublicationCreate";
+import { Slaider } from "../Slaider/Slaider";
 
 type PropsType = {
     user: types.userType | null;
@@ -283,7 +284,8 @@ export const Profile = observer(({ ...props }: PropsType) => {
                         editMode={props.editMode}
                         block={
                             <p className={style.contacts}>
-                                {props.staj}: {props.user?.yearsOfExperience} лет
+                                {props.staj}: {props.user?.yearsOfExperience}{" "}
+                                лет
                             </p>
                         }
                     />
@@ -632,7 +634,7 @@ export const Profile = observer(({ ...props }: PropsType) => {
                     className={style.projectWrapper}
                     style={{ height: "max-content" }}
                 >
-                    <div className={style.educationContainer}>
+                    <Slaider>
                         {props.education?.map((a, i) => (
                             <EducationCard
                                 href={`/${props.loc}/education/${a.id}`}
@@ -642,7 +644,10 @@ export const Profile = observer(({ ...props }: PropsType) => {
                                 key={i}
                             />
                         ))}
-                    </div>
+                    </Slaider>
+                    {/* <div className={style.educationContainer}>
+                        
+                    </div> */}
                 </div>
 
                 {props.myProf && (

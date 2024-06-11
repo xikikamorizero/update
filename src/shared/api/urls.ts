@@ -54,6 +54,10 @@ export const user = {
 };
 
 export const updatePort = {
+    addRoles() {
+        return "/users/role";
+    },
+
     getAward(id: string) {
         return `/award/${id}`;
     },

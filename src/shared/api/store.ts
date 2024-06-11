@@ -62,6 +62,8 @@ class UpdatePort {
     constructor() {
         makeAutoObservable(this);
     }
+    public readonly addRole = services.UpdatePort.addRole;
+
     public readonly getAwardItem = services.UpdatePort.getAwardItem;
     public readonly createAward = services.UpdatePort.createAward;
     public readonly editAward = services.UpdatePort.editAward;

@@ -11,7 +11,7 @@
     justify-content: center;
     flex-direction: column;
     gap: 30px;
-    max-width: 770px;
+    max-width: 100%;
 }
 .projectWrapper {
     width: 100%;
