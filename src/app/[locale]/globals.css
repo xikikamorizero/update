@@ -19,7 +19,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: var(--secondary_color);
+    background-color: var(--secondary_color);
     color: var(--main_text_color);
     background-image: url(../../assets/background.jpg);
     background-position: center;
